@@ -137,8 +137,44 @@ function Main() {
         <div className={styles.select}>
           <p className={styles.main_product_title}><span>금연</span>을 위한 최고의 선택</p>
           <div className={styles.select_content}>
-            <div className={styles.self_check}></div>
-            <div className={styles.campaign}></div>
+            <div className={styles.self_check}>
+              <p className={styles.content_title}>자가진단</p>
+              <p className={styles.content_des}>금연을 위해서는 현재 본인의 상태<br/>
+              제대로 아는것이 우선입니다.</p>
+              <br/><br/>
+              <div className={styles.self_check_button}>
+              <span>스토어</span> <span>&gt;</span>
+              </div>
+              <div className={styles.self_check_img}></div>
+            </div>
+            <div className={styles.campaign}>
+              <p className={styles.content_title}>캠페인</p>
+              <p className={styles.content_des}>다양한 캠페인에 대해 알아보고<br/>
+              함께 금연해야합니다.</p>
+              <br/><br/>
+              <div className={styles.campaign_button}>
+              <span>스토어</span> <span>&gt;</span>
+              </div>
+              <div className={styles.campaign_img}></div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.smoke_write}>
+          <div className={styles.write}>
+            <p className={styles.write_category}>금연의 필요성</p>
+            <p className={styles.write_title}>금연을 실천해야 하는 104가지 이유</p>
+            <p className={styles.write_date}>2021-03-19</p>
+          </div>
+          <div className={styles.write}>
+            <p className={styles.write_category}>흡연의 위험성</p>
+            <p className={styles.write_title}>흡연과 암</p>
+            <p className={styles.write_date}>2021-03-19</p>
+          </div>
+          <div className={styles.write}>
+            <p className={styles.write_category}>금연의 필요성</p>
+            <p className={styles.write_title}>금연의 경제적 이득</p>
+            <p className={styles.write_date}>2021-03-19</p>
           </div>
         </div>
       </div>

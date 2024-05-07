@@ -6,6 +6,7 @@ const Aeader = styled.div`
   height:83px;
   background-color: rgba(52, 152, 219, 0.5);
   position: fixed;
+  z-index: 9999;
 `;
 
 const H1 = styled.p`
