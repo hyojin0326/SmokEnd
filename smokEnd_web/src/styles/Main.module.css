@@ -1,0 +1,243 @@
+.main_black {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+}
+
+.main {
+  position: absolute;
+  top: calc(50% - 83px);
+  font-size: 10px;
+  margin-left: 4vw;
+}
+
+.main>.mainText {
+  font-family: 'NanumSquareRoundExtraBold', sans-serif;
+  color: white;
+  font-size: 5.5em;
+  font-weight: 500;
+}
+
+.mainText>span {
+  color: red;
+}
+
+.main>.subText {
+  color: grey;
+  font-size: 2.5em;
+  margin-top: 5vh;
+}
+
+.main>.mainButton {
+  width: 25%;
+  height: 5vh;
+  border: 0.15em solid white;
+  border-radius: 2em;
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5em;
+  overflow: hidden;
+}
+
+.main_smoke {
+  width: 70%;
+  height: 60vh;
+  float: right;
+  position: relative;
+  top: 30vh;
+  background-image: url('../assets/Main_smoke.png');
+  background-size: cover;
+
+}
+.bottom{
+  width:100%;
+  height:50px;
+  position: relative;
+  top:calc(40vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  animation: bounce 1s infinite alternate;
+}
+.bottom>img{
+  height:50px;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px); /* 약간 위로 이동하는 애니메이션 효과 */
+  }
+}
+
+.main_product{
+  height:476px;
+  position: relative;
+  background-color: antiquewhite;
+  top:20vh;
+  font-size: 10px;
+/* overflow */
+}
+.main_product>.main_product_text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left:-35vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size:10px;
+
+}
+
+.main_product_text>.main_product_title{
+  color:black;
+  font-size: 5.5em;
+  font-weight: 500;
+  line-height: 1.3;
+
+}
+.main_product_text>.main_product_title>span{
+  color: red;
+}
+.main_product_text>.main_product_sub{
+  color: grey;
+  font-size: 2em;
+  margin-top: 5vh;
+  line-height: 1.3;
+}
+.main_product_text>.main_product_button{
+  width: 25%;
+  height: 5vh;
+  border: 0.15em solid black;
+  border-radius: 2em;
+  margin-top: 2vh;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  color: black;
+  font-size: 1.5em;
+  overflow: hidden;
+}
+.mainProduct{
+  width:200vw;
+  height:480px;
+  background-color: aqua;
+  position: absolute;
+  top: 50%;
+  left: calc(100vw);
+  transform: translate(-50%, -50%);
+  margin-left: 27vw;
+}
+.mainProduct>.product{
+  width:360px;
+  display: inline-block;
+  margin-left: 33px;
+  border-radius: 2em;
+  margin-top:5px;
+  border: 1px solid black;
+  box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.25);
+}
+.produnct_img{
+  width:100%;
+  height:380px;
+  border-radius: 2em;
+  background-image: url('../assets/data1.png');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product_des{
+  width:100%;
+  height:85px;
+  border-radius: 2em;
+  display: flex;
+  justify-content:center; 
+  align-items:normal;
+  flex-direction:column;
+
+}
+.product_des>.product_title{
+  margin-left: 10px;
+  font-size: 2em;
+  font-weight: bold;
+}
+.product_des>.product_sub{
+  margin-left: 10px;
+  margin-top:10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color:#767676;
+}
+.leftArrow{
+  width:33px;
+  height:33px;
+  position: absolute;
+  left:-5px;
+  top: 50%;
+  transform: translate(0, -50%);
+  background-image: url('../assets/product_arrow.png');
+}
+.rightArrow{
+  width:33px;
+  height:33px;
+  position: absolute;
+  top: 50%;
+  transform: translate(70vw, -50%) rotate(180deg);
+  background-image: url('../assets/product_arrow.png');
+}
+
+
+@media (max-width: 768px) {
+  .main {
+    width: 80vw;
+    margin-left: 20px;
+  }
+
+  .main>.mainText {
+    font-size: 30px;
+  }
+
+  .main>.subText {
+    font-size: 15px;
+  }
+
+  .main>.mainButton {
+    width: 25vw;
+    height: 3vh;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+  .main_smoke {
+    display: none;
+    /* 화면이 작을 때는 배경 이미지 숨김 */
+  }
+  .bottom{
+    width:100%;
+    height:30px;
+    position: relative;
+    top:calc(100vh - 30px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    animation: bounce 1s infinite alternate;
+  }
+  .bottom>img{
+    height:30px;
+  }
+}
