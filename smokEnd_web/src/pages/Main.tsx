@@ -1,25 +1,69 @@
 import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
-import belowArrow from "../assets/belowArrow_white.png";
+import belowArrow from "../assets/belowArrow_white.png";
 import { useState } from "react";
+import data1Image from '../assets/data1.png'
+import styled from 'styled-components';
 function Main() {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  //const [scrollPosition, setScrollPosition] = useState(0);
+  const [num, setNum] = useState<number>(0);
+  const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
 
+  const Image = styled.div`
+    width:100%;
+    height:380px;
+    border-radius: 2em;
+    background-image: url(${data1Image});
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  `;
   const handleLeftArrowClick = () => {
-    setScrollPosition(prevPosition => prevPosition - 393);
+    // num을 1씩 감소시키면서 순환되도록 설정
+    setNum(prevNum => (prevNum === 0 ? 2 : prevNum - 1));
+    setSpecialProductIndex(prevSpecialProductIndex => prevSpecialProductIndex === 2 ? 0 : prevSpecialProductIndex + 1);
   };
 
-  const getProductTransform = (index: number) => {
+  const getProductTransform1 = (index: number) => {
+    // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        return `translateX(${scrollPosition}px)`;
-      case 1:
-        return `translateX(${scrollPosition}px)`;
-      case 2:
-        return `translateX(${scrollPosition}px)`;
-      default:
-        return `translateX(${scrollPosition}px)`;
+        console.log("1: " + num);
+        return `translateX(${num * 393}px)`;
     }
+  };
+
+  const getProductTransform2 = (index: number) => {
+    // index에 따라 변환 값을 계산
+    switch (index) {
+      case 0:
+        console.log("2: " + num);
+        if (num == 0)
+          return `translateX(${num * 393}px)`;
+        else if (num == 2)
+          return `translateX(${(num - 1) * -393}px)`;
+        else if (num == 1)
+          return `translateX(${num * 393}px)`;
+    }
+  };
+
+  const getProductTransform3 = (index: number) => {
+    // index에 따라 변환 값을 계산
+    switch (index) {
+      case 0:
+        console.log("3: " + num);
+        if (num == 1)
+          return `translateX(${(num) * -393 * 2}px)`;
+        else if (num == 2)
+          return `translateX(${(num - 1) * -393}px)`;
+        else if (num == 0)
+          return `translateX(${num * 393}px)`;
+    }
+  };
+
+  const handleRightArrowClick = () => {
+    setNum(prevNum => (prevNum === 2 ? 0 : prevNum + 1));
+    setSpecialProductIndex(prevSpecialProductIndex => prevSpecialProductIndex === 0 ? 2 : prevSpecialProductIndex-1 );
   };
 
   return (
@@ -56,47 +100,47 @@ function Main() {
             </div>
           </div>
           <div className={styles.mainProduct}>
-            <div className={styles.leftArrow} onClick={handleLeftArrowClick}/>
-            <div className={styles.product} style={{ transform: getProductTransform(0) }}>
-              <div className={styles.produnct_img}></div>
-              <div className={styles.product_des}>
-                <p className={styles.product_title}>SmokEnd 담배 케이스</p>
-                <p className={styles.product_sub}>당신의 금연을 도와줄 수 있습니다.</p>
-              </div>
+            <div className={styles.leftArrow} onClick={handleLeftArrowClick} />
+            <div className={`${styles.product} ${specialProductIndex === 0 ? styles.specialProduct : ''}`} style={{ transform: getProductTransform1(0) }}>
+              <Image></Image>
+              {specialProductIndex === 0 && (
+                <div className={styles.product_des}>
+                  <p className={styles.product_title}>특별한 경우 1</p>
+                  <p className={styles.product_sub}>이 제품은 특별한 경우에만 보입니다.</p>
+                </div>
+              )}
             </div>
-            <div className={styles.product} style={{ transform: getProductTransform(1) }}>
-              <div className={styles.produnct_img}></div>
-              
-            </div>
-            <div className={styles.product} style={{ transform: getProductTransform(2) }}>
-              <div className={styles.produnct_img}></div>
-              
-            </div>
-            {/* <div className={styles.product}>
-              <div className={styles.produnct_img}></div>
-              <div className={styles.product_des}>
-                <p className={styles.product_title}>SmokEnd 담배 케이스</p>
-                <p className={styles.product_sub}>당신의 금연을 도와줄 수 있습니다.</p>
-              </div>
-            </div>
-            <div className={styles.product}>
-              <div className={styles.produnct_img}></div>
-              
-            </div>
-            <div className={styles.product}>
-              <div className={styles.produnct_img}></div>
-            </div>
-            <div className={styles.product}>
-              <div className={styles.produnct_img}></div>
-            </div> */}
-            
-            <div className={styles.rightArrow}/>
-          </div>
-          
+            <div className={`${styles.product} ${specialProductIndex === 1 ? styles.specialProduct : ''}`} style={{ transform: getProductTransform2(0) }}>
+              <div className={styles.product_img}></div>
+              {specialProductIndex === 1 && (
+                <div className={styles.product_des}>
+                  <p className={styles.product_title}>특별한 경우 2</p>
+                  <p className={styles.product_sub}>이 제품은 특별한 경우에만 보입니다.</p>
+                </div>
+              )}
 
-          
+            </div>
+            <div className={`${styles.product} ${specialProductIndex === 2 ? styles.specialProduct : ''}`} style={{ transform: getProductTransform3(0) }}>
+            <Image></Image>
+              {specialProductIndex === 2 && (
+                <div className={styles.product_des}>
+                  <p className={styles.product_title}>특별한 경우 3</p>
+                  <p className={styles.product_sub}>이 제품은 특별한 경우에만 보입니다.</p>
+                </div>
+              )}
+            </div>
+
+            <div className={styles.rightArrow} onClick={handleRightArrowClick} />
+          </div>
         </div>
 
+        <div className={styles.select}>
+          <p className={styles.main_product_title}><span>금연</span>을 위한 최고의 선택</p>
+          <div className={styles.select_content}>
+            <div className={styles.self_check}></div>
+            <div className={styles.campaign}></div>
+          </div>
+        </div>
       </div>
     </>
   )
