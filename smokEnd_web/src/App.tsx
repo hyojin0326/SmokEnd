@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Main from "./pages/Main";
+import Footer from "./components/Footer";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -13,6 +14,7 @@ function App() {
     <>
       <GlobalStyles/>
       <Main/>
+      <Footer/>
     </>
   )
 }
