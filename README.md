@@ -174,7 +174,7 @@ await fetch('/w/login', {
         // 로그인 성공
         return response.json();
 
-      } else if(response.status === 401) {
+      } else if(response.status === 403) {
 
         // 이메일 인증 안함 OR 비밀번호 다름
         return response.text();
