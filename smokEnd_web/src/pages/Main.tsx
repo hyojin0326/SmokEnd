@@ -148,12 +148,12 @@ function Main() {
               <div className={styles.self_check_img}></div>
             </div>
             <div className={styles.campaign}>
-              <p className={styles.content_title}>캠페인</p>
-              <p className={styles.content_des}>다양한 캠페인에 대해 알아보고<br/>
-              함께 금연해야합니다.</p>
+              <p className={styles.content_title}>소개</p>
+              <p className={styles.content_des}>SmokEnd가 당신의 건강을 위해<br/>
+              함께합니다.</p>
               <br/><br/>
               <div className={styles.campaign_button}>
-              <span>스토어</span> <span>&gt;</span>
+              <span>바로가기</span> <span>&gt;</span>
               </div>
               <div className={styles.campaign_img}></div>
             </div>

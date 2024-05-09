@@ -125,13 +125,11 @@
   overflow: hidden;
 }
 .mainProduct{
-  width:200vw;
+  width:85vw;
   height:480px;
   position: absolute;
-  top: 50%;
-  left: calc(100vw);
-  transform: translate(-50%, -50%);
-  margin-left: 27vw;
+  margin-left: 30%;
+
 }
 .mainProduct>.product{
   width:360px;
@@ -190,7 +188,7 @@
   height:33px;
   position: absolute;
   top: 50%;
-  transform: translate(70vw, -50%) rotate(180deg);
+  transform: translate(67vw, -50%) rotate(180deg);
   background-image: url('../assets/product_arrow.png');
 }
 .select{
