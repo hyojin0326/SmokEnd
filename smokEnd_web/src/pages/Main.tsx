@@ -1,9 +1,10 @@
 import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
-import belowArrow from "../assets/belowArrow_white.png";
+import belowArrow from "../assets/main/belowArrow_white.png";
 import { useState } from "react";
-import data1Image from '../assets/data1.png'
+import data1Image from '../assets/main/data1.png'
 import styled from 'styled-components';
+import Footer from "../components/Footer";
 function Main() {
   //const [scrollPosition, setScrollPosition] = useState(0);
   const [num, setNum] = useState<number>(0);
@@ -74,7 +75,6 @@ function Main() {
 
   return (
     <>
-
       <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
       {/* 헤더 컴포넌트 불러오기 */}
       <Header />
@@ -185,6 +185,7 @@ function Main() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   )
 }
