@@ -1,13 +1,16 @@
 import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
-import belowArrow from "../assets/belowArrow_white.png";
+import belowArrow from "../assets/main/belowArrow_white.png";
 import { useState } from "react";
-import data1Image from '../assets/data1.png'
+import data1Image from '../assets/main/data1.png'
 import styled from 'styled-components';
+import Footer from "../components/Footer";
 function Main() {
   //const [scrollPosition, setScrollPosition] = useState(0);
   const [num, setNum] = useState<number>(0);
   const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
+  const isMobile = window.innerWidth <= 768;
+
 
   const Image = styled.div`
     width:100%;
@@ -17,6 +20,10 @@ function Main() {
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
+    @media (max-width: 768px) {
+        height: 150px; 
+        border-radius: 2em;
+    }
   `;
   const handleLeftArrowClick = () => {
     // num을 1씩 감소시키면서 순환되도록 설정
@@ -29,7 +36,7 @@ function Main() {
     switch (index) {
       case 0:
         console.log("1: " + num);
-        return `translateX(${num * 393}px)`;
+        return `translateX(${num * (isMobile ? 145 : 393)}px)`;
     }
   };
 
@@ -39,11 +46,11 @@ function Main() {
       case 0:
         console.log("2: " + num);
         if (num == 0)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -393}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 145 : 393)}px)`;
         else if (num == 1)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
     }
   };
 
@@ -53,11 +60,11 @@ function Main() {
       case 0:
         console.log("3: " + num);
         if (num == 1)
-          return `translateX(${(num) * -393 * 2}px)`;
+          return `translateX(${(num) * (isMobile ? 145 : 393) * -2}px)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -393}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 145 : 393)}px)`;
         else if (num == 0)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
     }
   };
 
@@ -68,7 +75,6 @@ function Main() {
 
   return (
     <>
-
       <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
       {/* 헤더 컴포넌트 불러오기 */}
       <Header />
@@ -89,6 +95,7 @@ function Main() {
           <img src={belowArrow}></img>
         </div>
       </div>
+
       <div className={styles.main_white}>
         <div className={styles.main_product}>
           <div className={styles.main_product_text}>
@@ -148,12 +155,12 @@ function Main() {
               <div className={styles.self_check_img}></div>
             </div>
             <div className={styles.campaign}>
-              <p className={styles.content_title}>캠페인</p>
-              <p className={styles.content_des}>다양한 캠페인에 대해 알아보고<br/>
-              함께 금연해야합니다.</p>
+              <p className={styles.content_title}>소개</p>
+              <p className={styles.content_des}>SmokEnd가 당신의 건강을 위해<br/>
+              함께합니다.</p>
               <br/><br/>
               <div className={styles.campaign_button}>
-              <span>스토어</span> <span>&gt;</span>
+              <span>바로가기</span> <span>&gt;</span>
               </div>
               <div className={styles.campaign_img}></div>
             </div>
@@ -178,6 +185,7 @@ function Main() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   )
 }
