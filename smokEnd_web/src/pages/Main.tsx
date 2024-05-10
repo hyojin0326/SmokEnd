@@ -8,6 +8,8 @@ function Main() {
   //const [scrollPosition, setScrollPosition] = useState(0);
   const [num, setNum] = useState<number>(0);
   const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
+  const isMobile = window.innerWidth <= 768;
+
 
   const Image = styled.div`
     width:100%;
@@ -17,6 +19,10 @@ function Main() {
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
+    @media (max-width: 768px) {
+        height: 150px; 
+        border-radius: 2em;
+    }
   `;
   const handleLeftArrowClick = () => {
     // num을 1씩 감소시키면서 순환되도록 설정
@@ -29,7 +35,7 @@ function Main() {
     switch (index) {
       case 0:
         console.log("1: " + num);
-        return `translateX(${num * 393}px)`;
+        return `translateX(${num * (isMobile ? 145 : 393)}px)`;
     }
   };
 
@@ -39,11 +45,11 @@ function Main() {
       case 0:
         console.log("2: " + num);
         if (num == 0)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -393}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 145 : 393)}px)`;
         else if (num == 1)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
     }
   };
 
@@ -53,11 +59,11 @@ function Main() {
       case 0:
         console.log("3: " + num);
         if (num == 1)
-          return `translateX(${(num) * -393 * 2}px)`;
+          return `translateX(${(num) * (isMobile ? 145 : 393) * -2}px)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -393}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 145 : 393)}px)`;
         else if (num == 0)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
     }
   };
 
@@ -89,6 +95,7 @@ function Main() {
           <img src={belowArrow}></img>
         </div>
       </div>
+
       <div className={styles.main_white}>
         <div className={styles.main_product}>
           <div className={styles.main_product_text}>

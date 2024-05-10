@@ -65,6 +65,19 @@
 .bottom>img{
   height:50px;
 }
+.main_product>.main_product_text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left:-35vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size:10px;
+
+}
+
 @keyframes bounce {
   from {
     transform: translateY(0);
@@ -73,7 +86,6 @@
     transform: translateY(-10px); /* 약간 위로 이동하는 애니메이션 효과 */
   }
 }
-
 .main_product{
   height:476px;
   position: relative;
@@ -94,7 +106,6 @@
   font-size:10px;
 
 }
-
 .main_product_title{
   color:black;
   font-size: 5.5em;
@@ -137,7 +148,7 @@
   margin-left: 33px;
   border-radius: 2em;
   margin-top:5px;
-  border: 1px solid black;
+  border: 1px solid rgb(0, 0, 0);
   transition: transform 0.5s ease;
 }
 .specialProduct {
@@ -160,7 +171,6 @@
   justify-content:center; 
   align-items:normal;
   flex-direction:column;
-
 }
 .product_des>.product_title{
   margin-left: 10px;
@@ -373,7 +383,7 @@
     align-items: center;
     color: white;
     font-weight: 500;
-    font-size: 1em;
+    font-size: 10px;
   }
 
   .main_smoke {
@@ -393,5 +403,191 @@
   }
   .bottom>img{
     height:30px;
+  }
+  .main_product{
+    position: relative;
+    top:40px;
+    font-size: 10px;
+    overflow: hidden;
+  }
+  .main_product>.main_product_text{
+    position: absolute;
+    width:100%;
+    top: 30%;
+    left: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size:10px;
+  
+  }
+  .main_product_title{
+    color:black;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.3;
+  
+  }
+  .main_product_text>.main_product_sub{
+    font-size: 15px;
+    margin-top: 0;
+  }
+  .main_product_text>.main_product_button{
+    width: 25vw;
+    height: 3vh;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .mainProduct{
+    width:150%;
+    height:210px;
+    position: relative;
+    top:50%;
+    margin-left:10px;
+  }
+  .mainProduct>.product{
+    width:130px;
+    display: inline-block;
+    border-radius: 20px;
+    margin-left: 15px;
+  }
+  .specialProduct {
+    box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.25);
+  }
+  .product_img{
+    width:100%;
+    height:150px;
+    border-radius: 2em;
+  }
+  .product_des{
+    width:100%;
+    height:50px;
+    border-radius: 2em;
+    display: flex;
+    justify-content:center; 
+    align-items:normal;
+    flex-direction:column;
+  }
+  .product_des>.product_title{
+    font-size: 15px;
+    margin-top: 0;
+    margin-left: 5px;
+  }
+  .product_des>.product_sub{
+    margin-left: 5px;
+    margin-top:3px;
+    font-size: 8px;
+  }
+  .leftArrow{
+    width:22px;
+    height:22px;
+    position: relative;
+    top:50%;
+    background-image: url('../assets/product_arrow.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .rightArrow{
+    width:22px;
+    height:22px;
+    position: absolute;
+    top: 50%;
+    transform: translate(90vw, -50%) rotate(180deg);
+    background-image: url('../assets/product_arrow.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .select{
+    height: 60vh;
+    margin-top:50px;
+  }
+  .select_content{
+    width:100%;
+    height:200px;
+    margin:0;
+  }
+  .self_check{
+    width:49%;
+    height:80%;
+    margin-left: 10px;
+  }
+  .campaign{
+    margin-right: 10px;
+    width:49%;
+    height:80%;
+  }
+  .self_check>.content_title{
+    font-size: 15px;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
+  .self_check>.content_des{
+    font-size: 10px;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
+  .self_check_button{
+    width: 20vw;
+    height: 3vh;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .campaign>.content_title{
+    font-size: 15px;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
+  .campaign>.content_des{
+    font-size: 10px;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
+  .campaign_button{
+    width: 20vw;
+    height: 3vh;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .smoke_write{
+    height:30vh;
+    margin-top: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .smoke_write>.write{
+    width:25vw;
+    height:20vh;
+  }
+  .write>.write_category{
+    font-size: 15px;
+  }
+  .write>.write_title{
+    font-size: 10px;
+  }
+  .write>.write_date{
+    font-size: 8px;
   }
 }
