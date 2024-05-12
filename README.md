@@ -1,16 +1,29 @@
 # 사용 가이드
 
+## Functions
+- Firebase 프로젝트의 ```Functions```에 들어가 보시면 몇가지의 함수가 정의되어 있습니다.
+![스크린샷 2024-05-12 175859](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/ad3b1ddd-af7c-4f56-9624-bbeaba28bdf7)
+- 각 기능 옆에 ```Functions : 함수이름``` 같은 식으로 작성해 둘 테니, 요청을 보낼 때는 그 URL뒤에 작성해놓은 엔드포인트를 붙여서 method에 맞게 전송하시면 됩니다.
+<br />
+
+- 회원가입 요청(POST)을 보낸다고 가정하겠습니다.
+1. Functions의 ```express```함수의 트리거(URL)를 확인합니다
+2. 그 URL 뒤에 제가 지정해 놓은 Endpoint를 붙여서 URL을 완성합니다
+3. ```https://test-testurl-uc.a.run.app/signup``` 같은 식으로요
+4. 저 URL로 GET요청이나 POST요청을 전송하면 됩니다. Fetch의 경우 따로 전송방식(메소드)을 지정하지 않으면 기본적으로 GET요청이 전송됩니다.
+5. Flutter의 경우에는 요청을 보낼때 ```http.get```이랑 ```http.post```랑 나누어져 있으니까 그거 쓰시면 됩니다 
+
 ## Notice
 1. CORS의 origin 설정이 '*'로 되어 있습니다. 이게 보안에 문제가 많은건 맞는데 이건 나중에 수정하겠습니다
 2. (웹) HTTP요청 헤더에 인증정보(쿠키)가 포함이 안되는 문제가 있는데 브라우저 아니면 구글쪽 문제인것 같아서 일단 쿠키 보내는건 포기해야 할 듯
-3. (웹) HTTP요청을 할 때 try-catch쓰면 되겠지 싶었는데 상황에 따라 뱉는 응답코드가 다 달라서 try-catch는 쓰면 안될 듯
+3. (웹) Fetch는 서버가 400번 이상의 응답코드를 보내면 전부 함수 실행중에 에러가 났다고 처리하기 때문에 try-catch 대신에 then-catch를 사용합시다
 4. (웹) 요청은 axios나 fetch중에 아무거나 써도 되는데, fetch쓰신다고 하셨으니 그거 기준으로 쓰겠습니다
 5. Firebase에 앱/웹을 등록해서 사용하는 방법도 있지 않나 싶을텐데, 그건 클라이언트에서 Firebase에 직접 접촉하는거라 클라이언트쪽 코드가 복잡해 지기 때문에 http요청을 써서 DB의 데이터를 가져오는 겁니다.
 ---
 ## 사용자 인증(Authentication)
 <br />
 
-### 회원가입 (method : POST, endpoint : /signup)
+### 회원가입 (method : POST | Functions: express | endpoint : /signup)
 #### 요청
 - 회원가입 페이지는 아이디(이메일), 비밀번호, 닉네임, 생년월일, 성별 데이터를 입력받습니다.
 - 웹(React)의 경우에는 state를 다음과 같이 구성합니다
@@ -120,7 +133,7 @@ Future<void> signUp() async {
 - if문 안의 내용을 수정해서 결과에 따라 다른 처리를 하면 됩니다
 <br />
 
-### 로그인 (method : POST, endpoint : (웹)/w/login  (앱)/m/login)
+### 로그인 (method : POST | Functions: express | endpoint : (웹)/w/login  (앱)/m/login)
 Q. 왜 웹이랑 앱이랑 엔드포인트가 다르죠  
 A. 세션을 따로 관리해야 하기 때문입니다
 <br />
@@ -265,3 +278,72 @@ Future<void> mobileLogin() async {
 ```
 - if문 안에 SharedPreference를 사용하는 코드가 적혀 있습니다. 'sessionId'라는 이름으로 반환받은 값을 저장한 겁니다. 이 값은 로그인한 사용자 식별에 사용합니다
 - 나중에 필요할 때 prefs.getString('sessionId') 같은 식으로 가져올겁니다
+
+### 비밀번호 재설정 (method : GET | Functions: express | endpoint : /resetpw)
+#### 요청
+- 이메일을 입력받고, 그걸 URL에 담아 요청을 하면 되는 매우 간단한 구조입니다. 그럼 입력한 이메일로 재설정 메일이 전송됩니다
+<br />
+
+#### 응답
+- 가입이 되어 있지 않은 이메일인 경우 ```404(Not Found)```에러를 반환합니다
+- 어떤 이유로든 에러가 발생한 경우 ```500(Internal Server Error```를 반환합니다
+- 전송이 정상적으로 이루어 진 경우 ```200(OK)```를 반환하고, 다음과 같은 메일을 전송합니다
+![스크린샷 2024-05-09 195625](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/95cbf234-b947-4706-aef9-cd30cac4f603)
+<br />
+
+#### 사용
+- (React) 웹에서 요청은 다음과 같이 전송합니다
+```
+const handleResetPassword = async () => {
+    await fetch(`https://firebase에서 생성된 url/resetpw?email=${email}`)
+    .then(response => {
+      if(response.status === 200) {
+        // 성공시 동작
+        alert('메일 전송 완료');
+      } else if(response.status === 404) {
+        // 가입된 메일없음
+        alert('가입된 메일이 없음');
+      } else if(response.status === 500) {
+        alert('서버 에러')
+      }
+    });
+  };
+```
+- 함수를 하나 정의하고, 그 안에 요청을 보내는 코드를 작성했습니다. 버튼 누르면 저거 실행되도록 하면 되겠네요
+- 이메일을 요청 본문(body)에 담는게 아니라, url에 담으셔야 합니다.
+<br />
+
+- (Flutter) 앱에서 요청은 다음과 같이 전송합니다
+1. 이메일을 입력받을 TextField에 controller를 등록합니다
+```
+TextField(
+     controller: _emailController, // 요거
+     decoration: InputDecoration(
+     hintText: 'Enter your email',
+  ),
+),
+```
+2. 요청을 보낼 함수를 만듭니다. 반환형은 늘 그랬듯 ```Future<void>```입니다
+```
+Future<void> _handleResetPassword() async {
+    String email = _emailController.text;
+    String url = 'https://firebase에서 생성된 url/resetpw?email=$email';
+
+    try {
+      http.Response response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        // 성공시 동작
+        print('OK');
+      } else if(response.statusCode == 404){
+        // 가입된 메일이 없음
+        print('가입된 메일이 없음');
+      } else {
+        // 서버 에러
+        print('Internal Server Error');
+      }
+    } catch (error) {
+      print('Error occurred: $error');
+    }
+  }
+```
+- 버튼같은거 만들어서, 버튼을 눌렀을때 위의 함수가 실행되도록 하면 됩니다
