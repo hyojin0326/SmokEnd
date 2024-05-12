@@ -6,7 +6,7 @@
     align-items: center;
     font-size: 10px;
 }
-.signup{
+.signin{
     width:40vw;
     height:40vw;
     border-radius: 4vw;
@@ -113,7 +113,7 @@ form>button{
 }
 
 @media (max-width: 768px) {
-    .signup{
+    .signin{
         width:70vw;
         height:80vw;
         padding: 0;

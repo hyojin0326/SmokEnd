@@ -79,7 +79,7 @@ function Signin(){
         <>
          <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
         <div className={styles.MainContent}>
-            <div className={styles.signup}>
+            <div className={styles.signin}>
                 <div className={styles.logo}>
                     <p>Smok<span>E</span>nd</p>
                 </div>

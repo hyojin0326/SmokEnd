@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import Main from "./pages/Main";
 import Signin from "./pages/Signin";
+import Findpw from "./pages/Findpw";
+import Signup from "./pages/Signup";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -12,7 +14,7 @@ function App() {
   return (
     <>
       <GlobalStyles/>
-      <Signin/>
+      <Signup/>
     </>
   )
 }
