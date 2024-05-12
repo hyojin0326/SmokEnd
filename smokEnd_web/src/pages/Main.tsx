@@ -13,16 +13,16 @@ function Main() {
 
 
   const Image = styled.div`
-    width:100%;
-    height:380px;
-    border-radius: 2em;
+    width:25vw;
+    height:26vw;
+    border-radius: 2vw;
     background-image: url(${data1Image});
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
     @media (max-width: 768px) {
-        height: 150px; 
-        border-radius: 2em;
+        width:35vw;
+        height:36vw;
     }
   `;
   const handleLeftArrowClick = () => {
@@ -35,38 +35,36 @@ function Main() {
     // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        console.log("1: " + num);
-        return `translateX(${num * (isMobile ? 145 : 393)}px)`;
+        return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
     }
-  };
+};
 
-  const getProductTransform2 = (index: number) => {
+const getProductTransform2 = (index: number) => {
     // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        console.log("2: " + num);
         if (num == 0)
-          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
+          return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -1 * (isMobile ? 145 : 393)}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 40 : 28)}vw)`;
         else if (num == 1)
-          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
+          return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
     }
-  };
+};
 
-  const getProductTransform3 = (index: number) => {
+const getProductTransform3 = (index: number) => {
     // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        console.log("3: " + num);
         if (num == 1)
-          return `translateX(${(num) * (isMobile ? 145 : 393) * -2}px)`;
+          return `translateX(${(num) * (isMobile ? 40 : 28) * -2}vw)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -1 * (isMobile ? 145 : 393)}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 40 : 28)}vw)`;
         else if (num == 0)
-          return `translateX(${num * (isMobile ? 145 : 393)}px)`;
+          return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
     }
-  };
+};
+
 
   const handleRightArrowClick = () => {
     setNum(prevNum => (prevNum === 2 ? 0 : prevNum + 1));
@@ -85,7 +83,7 @@ function Main() {
             <br />
             <p className={styles.subText}>당신의 폐는 건강하십니까?</p>
             <div className={styles.mainButton}>
-              <p>더 알아보기     <span>&gt;</span></p>
+              <p>더 알아보기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <span>&gt;</span></p>
             </div>
           </div>
           <div className={styles.main_smoke}>
@@ -112,8 +110,8 @@ function Main() {
               <Image></Image>
               {specialProductIndex === 0 && (
                 <div className={styles.product_des}>
-                  <p className={styles.product_title}>특별한 경우 1</p>
-                  <p className={styles.product_sub}>이 제품은 특별한 경우에만 보입니다.</p>
+                  <p className={styles.product_title}>SomkEnd 담배 케이스</p>
+                  <p className={styles.product_sub}>당신의 금연을 도와줄 수 있습니다.</p>
                 </div>
               )}
             </div>
@@ -183,11 +181,11 @@ function Main() {
             <p className={styles.write_title}>금연의 경제적 이득</p>
             <p className={styles.write_date}>2021-03-19</p>
           </div>
-        </div>
+        </div> 
       </div>
       <Footer/>
     </>
   )
 }
 
-export default Main
+export default Main;
