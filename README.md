@@ -2,7 +2,8 @@
 
 ## Functions
 - Firebase 프로젝트의 ```Functions```에 들어가 보시면 몇가지의 함수가 정의되어 있습니다.
-![스크린샷 2024-05-12 175859](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/ad3b1ddd-af7c-4f56-9624-bbeaba28bdf7)
+![스크린샷 2024-05-12 175859](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/6e5892b3-bbad-4ba6-8a12-5e5a6394d251)
+
 - 각 기능 옆에 ```Functions : 함수이름``` 같은 식으로 작성해 둘 테니, 요청을 보낼 때는 그 URL뒤에 작성해놓은 엔드포인트를 붙여서 method에 맞게 전송하시면 됩니다.
 <br />
 
