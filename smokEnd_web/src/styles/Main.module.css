@@ -33,11 +33,10 @@
   border-radius: 2vw;
   margin-top: 1.5vw;
   display: flex;
-  justify-content:flex-start;
+  justify-content:space-around;
   align-items: center;
   color: white;
   font-size: 1.2vw;
-  padding-left: 1vw;
   overflow: hidden;
 }
 
