@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Tenada";
+  src: url("../assets/font/Tenada.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url("../assets/font/NanumSquareRoundB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url("../assets/font/NanumSquareRoundEB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundL";
+  src: url("../assets/font/NanumSquareRoundL.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url("../assets/font/NanumSquareRoundR.ttf");
+}
