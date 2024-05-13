@@ -1,23 +1,31 @@
 import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
-import belowArrow from "../assets/belowArrow_white.png";
+import belowArrow from "../assets/main/belowArrow_white.png";
 import { useState } from "react";
-import data1Image from '../assets/data1.png'
+import data1Image from '../assets/main/data1.png'
 import styled from 'styled-components';
-function Main() {
-  //const [scrollPosition, setScrollPosition] = useState(0);
-  const [num, setNum] = useState<number>(0);
-  const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
+import Footer from "../components/Footer";
 
-  const Image = styled.div`
-    width:100%;
-    height:380px;
-    border-radius: 2em;
+const Image = styled.div`
+    width:25vw;
+    height:26vw;
+    border-radius: 2vw;
     background-image: url(${data1Image});
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
+    @media (max-width: 768px) {
+        width:35vw;
+        height:36vw;
+    }
   `;
+
+function Main() {
+  //const [scrollPosition, setScrollPosition] = useState(0);
+  const [num, setNum] = useState<number>(0);
+  const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
+  const isMobile = window.innerWidth <= 768;
+
   const handleLeftArrowClick = () => {
     // num을 1씩 감소시키면서 순환되도록 설정
     setNum(prevNum => (prevNum === 0 ? 2 : prevNum - 1));
@@ -28,38 +36,36 @@ function Main() {
     // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        console.log("1: " + num);
-        return `translateX(${num * 393}px)`;
+        return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
     }
-  };
+};
 
-  const getProductTransform2 = (index: number) => {
+const getProductTransform2 = (index: number) => {
     // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        console.log("2: " + num);
         if (num == 0)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -393}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 40 : 28)}vw)`;
         else if (num == 1)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
     }
-  };
+};
 
-  const getProductTransform3 = (index: number) => {
+const getProductTransform3 = (index: number) => {
     // index에 따라 변환 값을 계산
     switch (index) {
       case 0:
-        console.log("3: " + num);
         if (num == 1)
-          return `translateX(${(num) * -393 * 2}px)`;
+          return `translateX(${(num) * (isMobile ? 40 : 28) * -2}vw)`;
         else if (num == 2)
-          return `translateX(${(num - 1) * -393}px)`;
+          return `translateX(${(num - 1) * -1 * (isMobile ? 40 : 28)}vw)`;
         else if (num == 0)
-          return `translateX(${num * 393}px)`;
+          return `translateX(${num * (isMobile ? 40 : 28)}vw)`;
     }
-  };
+};
+
 
   const handleRightArrowClick = () => {
     setNum(prevNum => (prevNum === 2 ? 0 : prevNum + 1));
@@ -68,10 +74,8 @@ function Main() {
 
   return (
     <>
-
       <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
-      {/* 헤더 컴포넌트 불러오기 */}
-      <Header />
+
       <div className={styles.main_black}>
         <div className={styles.main_content}>
           <div className={styles.main} >
@@ -79,7 +83,7 @@ function Main() {
             <br />
             <p className={styles.subText}>당신의 폐는 건강하십니까?</p>
             <div className={styles.mainButton}>
-              <p>더 알아보기     <span>&gt;</span></p>
+              <p>더 알아보기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <span>&gt;</span></p>
             </div>
           </div>
           <div className={styles.main_smoke}>
@@ -89,6 +93,7 @@ function Main() {
           <img src={belowArrow}></img>
         </div>
       </div>
+
       <div className={styles.main_white}>
         <div className={styles.main_product}>
           <div className={styles.main_product_text}>
@@ -105,8 +110,8 @@ function Main() {
               <Image></Image>
               {specialProductIndex === 0 && (
                 <div className={styles.product_des}>
-                  <p className={styles.product_title}>특별한 경우 1</p>
-                  <p className={styles.product_sub}>이 제품은 특별한 경우에만 보입니다.</p>
+                  <p className={styles.product_title}>SomkEnd 담배 케이스</p>
+                  <p className={styles.product_sub}>당신의 금연을 도와줄 수 있습니다.</p>
                 </div>
               )}
             </div>
@@ -148,12 +153,12 @@ function Main() {
               <div className={styles.self_check_img}></div>
             </div>
             <div className={styles.campaign}>
-              <p className={styles.content_title}>캠페인</p>
-              <p className={styles.content_des}>다양한 캠페인에 대해 알아보고<br/>
-              함께 금연해야합니다.</p>
+              <p className={styles.content_title}>소개</p>
+              <p className={styles.content_des}>SmokEnd가 당신의 건강을 위해<br/>
+              함께합니다.</p>
               <br/><br/>
               <div className={styles.campaign_button}>
-              <span>스토어</span> <span>&gt;</span>
+              <span>바로가기</span> <span>&gt;</span>
               </div>
               <div className={styles.campaign_img}></div>
             </div>
@@ -176,10 +181,11 @@ function Main() {
             <p className={styles.write_title}>금연의 경제적 이득</p>
             <p className={styles.write_date}>2021-03-19</p>
           </div>
-        </div>
+        </div> 
       </div>
+      <Footer/>
     </>
   )
 }
 
-export default Main
+export default Main;
