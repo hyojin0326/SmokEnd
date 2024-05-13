@@ -1,0 +1,162 @@
+.bigBox {
+  padding-top: 3vw;
+}
+
+.pageName {
+  font-family: "Tenada";
+  font-size: 3.2vw;
+  text-align: center;
+}
+
+.p {
+  font-family: "NanumSquareRoundL";
+  font-size: 1.2vw;
+  text-align: center;
+  color: rgb(66, 66, 66);
+}
+
+.container {
+  display: flex;
+  margin-left: 15vw;
+}
+
+.box {
+  width: 16vw;
+  height: 4vw;
+  background-color: rgb(255, 255, 255);
+  border-bottom-left-radius: 1vw;
+  border-top-right-radius: 1vw;
+  border: 0.1vw solid rgb(0, 0, 0);
+  cursor: pointer;
+  margin-left: 1vw;
+  margin-top: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box:hover {
+  background-color: rgb(0, 0, 0);
+  border: 0.1vw solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.box:hover .text {
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: "NanumSquareRoundL";
+  cursor: pointer;
+}
+
+.text {
+  font-size: 1.2vw;
+  color: rgb(0, 0, 0);
+  font-family: "NanumSquareRoundB";
+  cursor: pointer;
+}
+
+.scrollBox {
+  width: 65vw; /* 원하는 너비로 조정 */
+  /* 원하는 높이로 조정 */
+  height: 60vw;
+  /* 내용이 넘치면 스크롤 표시 */
+  overflow: auto;
+  border: 0.1vw solid rgb(255, 255, 255);
+  padding: 1vw;
+  margin-left: 16vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.textBox {
+  width: 65vw; /* 원하는 너비로 조정 */
+  max-height: 60vw; /* 원하는 높이로 조정 */
+  /* background-color: aqua; */
+  /* 다음 세 속성 추가 */
+  overflow-y: auto;
+}
+
+.imageContainer {
+  width: 13vw;
+  height: 13vw;
+  overflow: hidden; /* 이미지가 div 영역을 벗어나는 경우 잘라냅니다. */
+  float: right;
+}
+
+.imageContainer img {
+  /* 이미지를 div의 가로 너비에 맞게 조정합니다. */
+  width: 15vw;
+  height: auto; /* 비율을 유지하면서 이미지를 조정합니다. */
+}
+
+.leftContainer {
+  float: left;
+}
+
+.NickName {
+  font-family: "NanumSquareRoundR";
+  font-size: 1vw;
+  margin-top: 1vw;
+  margin-left: 1vw;
+  color: rgb(52, 52, 52);
+}
+
+.Name {
+  font-family: "NanumSquareRoundB";
+  font-size: 1.5vw;
+  margin-top: 1vw;
+  margin-left: 1vw;
+}
+
+.date {
+  font-family: "NanumSquareRoundR";
+  font-size: 1vw;
+  margin-top: 0.2vw;
+  margin-left: 1vw;
+  color: rgb(52, 52, 52);
+}
+
+.post {
+  margin-top: 1vw;
+  /* background-color: aqua; */
+}
+
+.but {
+  margin-left: 77vw;
+}
+
+.noButtonStyle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+@font-face {
+  font-family: "Tenada";
+  src: url("../assets/font/Tenada.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url("../assets/font/NanumSquareRoundB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url("../assets/font/NanumSquareRoundEB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundL";
+  src: url("../assets/font/NanumSquareRoundL.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url("../assets/font/NanumSquareRoundR.ttf");
+}
