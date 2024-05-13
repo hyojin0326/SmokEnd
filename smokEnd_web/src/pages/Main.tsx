@@ -83,7 +83,7 @@ const getProductTransform3 = (index: number) => {
             <br />
             <p className={styles.subText}>당신의 폐는 건강하십니까?</p>
             <div className={styles.mainButton}>
-              <p>더 알아보기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <span>&gt;</span></p>
+              <span>더 알아보기</span> <span>&gt;</span>
             </div>
           </div>
           <div className={styles.main_smoke}>
