@@ -5,14 +5,8 @@ import { useState } from "react";
 import data1Image from '../assets/main/data1.png'
 import styled from 'styled-components';
 import Footer from "../components/Footer";
-function Main() {
-  //const [scrollPosition, setScrollPosition] = useState(0);
-  const [num, setNum] = useState<number>(0);
-  const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
-  const isMobile = window.innerWidth <= 768;
 
-
-  const Image = styled.div`
+const Image = styled.div`
     width:25vw;
     height:26vw;
     border-radius: 2vw;
@@ -25,6 +19,13 @@ function Main() {
         height:36vw;
     }
   `;
+
+function Main() {
+  //const [scrollPosition, setScrollPosition] = useState(0);
+  const [num, setNum] = useState<number>(0);
+  const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
+  const isMobile = window.innerWidth <= 768;
+
   const handleLeftArrowClick = () => {
     // num을 1씩 감소시키면서 순환되도록 설정
     setNum(prevNum => (prevNum === 0 ? 2 : prevNum - 1));
