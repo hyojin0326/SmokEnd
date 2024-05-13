@@ -17,14 +17,18 @@
     padding: 0.2vw 0.1vw;
     flex-direction: column;
 }
+.Link{
+    color:black;
+    text-decoration: none;
+}
 .logo{
     width:30vw;
 }
-.logo>p{
+.logo>*>p{
     font-size: 3.3vw;
     text-align: center;
 }
-.logo>p>span{
+.logo>*>p>span{
     color:red
 }
 .login{
@@ -122,7 +126,7 @@ form>button{
     .logo{
         width:60vw;
     }
-    .logo>p{
+    .logo>*>p{
         font-size:7vw;
     }
     .login{

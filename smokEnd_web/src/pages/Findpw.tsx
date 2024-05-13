@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NaverLogo from "../assets/logo/naverLogo.jpeg";
 import KakaoLogo from "../assets/logo/kakaoLogo.png";
 import GoogleLogo from "../assets/logo/googleLogo.png";
+import { Link } from "react-router-dom";
 
 
 
@@ -64,7 +65,7 @@ function Findpw(){
         <div className={styles.MainContent}>
             <div className={styles.findpw}>
                 <div className={styles.logo}>
-                    <p>Smok<span>E</span>nd</p>
+                    <Link to="/" className={styles.Link}><p>Smok<span>E</span>nd</p></Link>
                 </div>
                 <div className={styles.findpwForm}>
                     <form onSubmit={onSubmit}>
@@ -72,7 +73,7 @@ function Findpw(){
                         {emailError && <p className={styles.emailError}>{emailError}</p>}
                         <button>비밀번호 찾기</button>
                         <div className={styles.loginOrSignup}>
-                            <span>로그인</span>|<span>회원가입</span>
+                            <span><Link to="/login" className={styles.Link}>로그인</Link></span>|<span><Link to="/signup" className={styles.Link}>회원가입</Link></span>
                         </div>
                     </form>  
                     

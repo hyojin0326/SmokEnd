@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NaverLogo from "../assets/logo/naverLogo.jpeg";
 import KakaoLogo from "../assets/logo/kakaoLogo.png";
 import GoogleLogo from "../assets/logo/googleLogo.png";
+import { Link } from "react-router-dom";
 
 interface FormData {
     email: string;
@@ -81,7 +82,7 @@ function Signin(){
         <div className={styles.MainContent}>
             <div className={styles.signin}>
                 <div className={styles.logo}>
-                    <p>Smok<span>E</span>nd</p>
+                    <Link to="/" className={styles.Link}><p>Smok<span>E</span>nd</p></Link>
                 </div>
                 <div className={styles.login}>
                     <form onSubmit={onSubmit}>
@@ -94,7 +95,7 @@ function Signin(){
                         </label>
                         <button>로그인</button>
                         <div className={styles.joinOrfind}>
-                            <span>회원가입</span>|<span>비밀번호 찾기</span>
+                            <span><Link to="/signup" className={styles.Link}>회원가입</Link></span>|<span><Link to="/findpw" className={styles.Link}>비밀번호 찾기</Link></span>
                         </div>
                     </form>  
                     

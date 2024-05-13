@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/Signup.module.css";
+import { Link } from "react-router-dom";
 
 interface FormData {
     email: string;
@@ -98,7 +99,7 @@ function Signup(){
         <div className={styles.MainContent}>
             <div className={styles.signup}>
                 <div className={styles.logo}>
-                    <p>Smok<span>E</span>nd</p>
+                    <Link to="/" className={styles.Link}><p>Smok<span>E</span>nd</p></Link>
                 </div>
                 <div className={styles.signupForm}>
                     <form onSubmit={onSubmit}>

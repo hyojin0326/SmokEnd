@@ -74,8 +74,7 @@ const getProductTransform3 = (index: number) => {
   return (
     <>
       <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
-      {/* 헤더 컴포넌트 불러오기 */}
-      <Header />
+
       <div className={styles.main_black}>
         <div className={styles.main_content}>
           <div className={styles.main} >
