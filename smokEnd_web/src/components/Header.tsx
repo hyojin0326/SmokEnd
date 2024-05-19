@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/Header.module.css";
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleLogin = () => {
     setIsLoggedIn(true);

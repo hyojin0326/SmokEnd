@@ -18,7 +18,7 @@ function Footer(){
             <div className={styles.mainDiv}>
                 <div className={styles.left}>
                     <p>당신의 금연</p>
-                    <p style={{lineHeight:2}}>SmokEnd에서 함께 합니다.</p>
+                    <p style={{lineHeight:2}}><span className={styles.logo}>Smok<span>E</span>nd</span>에서 함께 합니다.</p>
                 </div>
                 <div className={styles.right}>
                     <div className={styles.AppButton}>
