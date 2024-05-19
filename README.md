@@ -1,350 +1,572 @@
 # 사용 가이드
+적어둔 코드 그대로 복사해서 쓰시면 됩니다. URL이랑 세부 동작은 직접 정의하시구요
 
 ## Functions
 - Firebase 프로젝트의 ```Functions```에 들어가 보시면 몇가지의 함수가 정의되어 있습니다.
 ![스크린샷 2024-05-12 175859](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/6e5892b3-bbad-4ba6-8a12-5e5a6394d251)
-
 - 각 기능 옆에 ```Functions : 함수이름``` 같은 식으로 작성해 둘 테니, 요청을 보낼 때는 그 URL뒤에 작성해놓은 엔드포인트를 붙여서 method에 맞게 전송하시면 됩니다.
+- ```https://test-testurl-uc.a.run.app/signup``` 같은 식으로요
 <br />
 
-- 회원가입 요청(POST)을 보낸다고 가정하겠습니다.
-1. Functions의 ```express```함수의 트리거(URL)를 확인합니다
-2. 그 URL 뒤에 제가 지정해 놓은 Endpoint를 붙여서 URL을 완성합니다
-3. ```https://test-testurl-uc.a.run.app/signup``` 같은 식으로요
-4. 저 URL로 GET요청이나 POST요청을 전송하면 됩니다. Fetch의 경우 따로 전송방식(메소드)을 지정하지 않으면 기본적으로 GET요청이 전송됩니다.
-5. Flutter의 경우에는 요청을 보낼때 ```http.get```이랑 ```http.post```랑 나누어져 있으니까 그거 쓰시면 됩니다 
+## Flutter
+- 사전 준비가 좀 필요합니다
+1. ```pubspec.yaml```파일의 ```dependencies```부분에 다음과 같은 내용을 추가합니다
+```
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1 // 요청을 보낼 때 사용합니다
+  shared_preferences: ^2.2.3 // 로그인한 사용자가 '유효한' 사용자인지 체크하기 위해 쓸겁니다
+```
+2. 요청을 보내는 함수가 있는 파일, Shared Preferences를 사용하는 파일 상단에 다음과 같은 내용을 추가합니다
+```
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+```
+<br />
 
 ## Notice
-1. CORS의 origin 설정이 '*'로 되어 있습니다. 이게 보안에 문제가 많은건 맞는데 이건 나중에 수정하겠습니다
-2. (웹) HTTP요청 헤더에 인증정보(쿠키)가 포함이 안되는 문제가 있는데 브라우저 아니면 구글쪽 문제인것 같아서 일단 쿠키 보내는건 포기해야 할 듯
-3. (웹) Fetch는 서버가 400번 이상의 응답코드를 보내면 전부 함수 실행중에 에러가 났다고 처리하기 때문에 try-catch 대신에 then-catch를 사용합시다
-4. (웹) 요청은 axios나 fetch중에 아무거나 써도 되는데, fetch쓰신다고 하셨으니 그거 기준으로 쓰겠습니다
-5. Firebase에 앱/웹을 등록해서 사용하는 방법도 있지 않나 싶을텐데, 그건 클라이언트에서 Firebase에 직접 접촉하는거라 클라이언트쪽 코드가 복잡해 지기 때문에 http요청을 써서 DB의 데이터를 가져오는 겁니다.
+1. (React) Fetch는 서버가 400번 이상의 응답코드를 반환하면 함수 실행중에 에러가 났다고 처리합니다. 기본적으로 then~catch를 사용하면 되는데, 응답코드가 400번 이상이면 catch문 안의 내용도 같이 실행되니까 주의합시다
+2. 쓸데도 없는 설명은 가져다 버리고, 코드(함수)만 써 놓았습니다. 복붙하여 사용하되, 세부적인 동작은 직접 정의합시다
+
 ---
-## 사용자 인증(Authentication)
+## 사용자 인증
 <br />
 
 ### 회원가입 (method : POST | Functions: express | endpoint : /signup)
-#### 요청
-- 회원가입 페이지는 아이디(이메일), 비밀번호, 닉네임, 생년월일, 성별 데이터를 입력받습니다.
-- 웹(React)의 경우에는 state를 다음과 같이 구성합니다
+#### React
+- URL은 ```Firebase Functions```에서 확인하시고, IF문 안의 동작은 알아서 정의합니다.
 ```
-// 여기서 중요한건, 속성 이름(email, password, ...)은 바뀌면 안됩니다. 바뀌면 서버가 데이터를 못받아서 에러가 납니다
 const [formData, setFormData] = useState({
     email: '',
     password: '',
     name: '',
     birth: '',
-    gender: '',
-});
-```
-- 앱(Flutter)의 경우에는 TextField를 다음과 같이 구성합니다
-```
-TextEditingController emailController = TextEditingController(); // 컨트롤러
+    gender: ''
+  });
+const [response, setResponse] = useState('');
 
-TextField(
-  controller: emailController,
-  decoration: InputDecoration(labelText: '이메일'),
-)
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      }).then(async response => {
+        if(response.status === 201) { // 회원가입 완료
+
+          const resData = await response.text(); 
+          setResponse(resData); // response에 메세지가 담깁니다
+
+        } else if(response.status === 500) { // 서버에러 or 이메일 중복
+
+          const resData = await response.text(); 
+          setResponse(resData); // response에 메세지가 담깁니다
+
+        } else { // 실행안될...걸요? 
+
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          
+        }
+      })
+  };
 ```
-- 입력 받은 데이터를 요청본문(body)에 담아 ```/signup```경로로 ```POST```요청을 하면 됩니다
 <br />
 
-#### 응답
-- 사용자 생성에 성공하는 경우, ```201(Created)```코드를 반환합니다
-- 이후 다음과 같은 내용이 들어 있는 이메일 인증 링크를 입력했던 이메일로 전송합니다
-![스크린샷 2024-05-08 131938](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/1b222155-d0e9-4731-a053-af650a66d34e)
-- 이 링크를 클릭했는지 여부는 로그인에 영향을 줍니다
-- 어떤 이유로든 에러가 발생한 경우 ```500(Internal Server Error)```코드를 반환합니다
-<br />
-
-#### 사용
-- (React) 웹에서 요청은 다음과 같이 전송합니다
+#### Flutter
+- URL은 ```Firebase Functions```에서 확인하시고, IF문 안의 동작은 알아서 정의합니다. 지금은 예시로 코드를 써 놨습니다
 ```
-// URL은 Firebase를 참고합시다
-await fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    }).then(response => {
-      if(response.status === 201) {
+// TextField에 controller로 집어넣습니다
+TextEditingController _emailController = TextEditingController();
+TextEditingController _passwordController = TextEditingController();
+TextEditingController _nameController = TextEditingController();
+TextEditingController _birthController = TextEditingController();
+TextEditingController _genderController = TextEditingController(); // 직접 입력받는 형태를 취하고 있습니다. 나중에 바꿔주세요
 
-        // 회원가입이 정상적으로 이루어진 경우의 동작
-        console.log(response.text());
+Future<void> _signup() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    String name = _nameController.text;
+    String birth = _birthController.text;
+    String gender = _genderController.text; // 직접 입력받는 형태를 취하고 있습니다. 나중에 바꿔주세요
 
-      } else if(response.status === 500) {
+    try {
+      var url = Uri.parse('/signup');
+      var response = await http.post(url, body: {
+        'email': email,
+        'password': password,
+        'name': name,
+        'birth': birth,
+        'gender': gender,
+      });
 
-        // 회원가입이 정상적으로 이루어지지 않은 경우의 동작
-        console.log(response.text());
+      if (response.statusCode == 201) { // 회원가입 성공 시
 
-      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
 
-        // 여기 있는거 실행되면 매우 큰 문제가 있는거임
-        console.log('???');
-        
+
+      } else { // 회원가입 실패 or 서버오류
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
       }
-    }).catch(err => {
-      // fetch호출 자체가 실패한 경우
-    })
-```
-- 이건 회원가입에 성공했냐 실패했냐 여부만 판단하면 되는거라, if문 안의 내용을 수정하면 됩니다
-<br />
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
 
-- (Flutter) 플러터에서 요청은 다음과 같이 전송합니다
-1. 우선 ```pubspec.yaml```파일에 다음과 같은 내용을 추가합니다
-```
-dependencies:
-  flutter:
-    sdk: flutter
-  http: ^1.2.1 // 요거
-```
-2. dart파일에 이런 내용을 추가합니다
-```
-import 'package:http/http.dart' as http;
-```
-3. 요청을 보낼 함수를 만듭니다. 반환형은 무조건 ```Future<void>```입니다
-```
-// URL은 Firebase를 참고합시다
-Future<void> signUp() async {
-    final response = await http.post(
-      Uri.parse('/signup'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{ // 역시 속성 이름은 바뀌면 안됩니다
-        'email': emailController.text,
-        'password': passwordController.text,
-        'name': nameController.text,
-        'birth': birthController.text,
-        'gender': genderController.text,
-      }),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('오류가 발생했습니다. 다시 시도해주세요.'),
+        ),
+      );
 
-    if (response.statusCode == 201) {
-      // 회원가입 성공
-      
-    } else {
-      // 회원가입 실패
-      
     }
   }
 ```
-- if문 안의 내용을 수정해서 결과에 따라 다른 처리를 하면 됩니다
 <br />
 
+---
 ### 로그인 (method : POST | Functions: express | endpoint : (웹)/w/login  (앱)/m/login)
-Q. 왜 웹이랑 앱이랑 엔드포인트가 다르죠  
-A. 세션을 따로 관리해야 하기 때문입니다
+- 엔드포인트가 다르다는 점에 주의합니다
 <br />
 
-#### 요청
-- 로그인 페이지는 아이디(이메일), 비밀번호, 로그인 유지 여부(checkbox) 데이터를 입력받습니다.
-- 웹(React)의 경우에는 state를 다음과 같이 구성합니다
+#### React
+- 두 번째 then문에 동작을 정의합니다. 쿠키 만드는 코드는 건드리지 않습니다
 ```
-// 속성이름은 바꾸면 에러나니까 바꾸지 맙시다
 const [formData, setFormData] = useState({
     email: '',
     password: '',
     remember_me: false, // 체크박스에 따라 값이 변해야 합니다
 });
+const [response, setResponse] = useState('');
+
+const handleLogin = async (e) => {
+    e.preventDefault();
+    await fetch('/w/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      }).then(async response => {
+        if(response.status === 200) { // 로그인 성공
+
+          const resData = await response.json();
+          setResponse(JSON.stringify(resData)); // response에 세션정보가 담깁니다
+          return resData;
+  
+        } else if(response.status === 403) { // 이메일 인증 안함 OR 비밀번호 다름
+
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          return resData;
+  
+
+        } else if(response.status === 404) { // 가입된 메일 없음
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          return resData;
+  
+        } else if(response.status === 500) { // 서버 문제 입니다
+
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          return resData;
+          
+        } else { // 이 안에 있는건 아마 실행 안될겁니다. 안되어야 합니다
+          console.log('???');
+        }
+      }).then(result => { // 로그인 성공시의 동작을 정의하면 됩니다.
+
+        // 쿠키 만들기 (필수)
+         if(result && result.sessionId) {
+            if(result.remember_me) { // remember_me가 true이면 쿠키의 유효기간을 더 길게 설정
+              const now = new Date();
+              const expirationDate = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+              document.cookie = `sessionId=${result.sessionId}; expires=${expirationDate.toUTCString()};`;
+            } else {
+              document.cookie = `sessionId=${result.sessionId}`;
+            }
+         } else { // 로그인 실패시 동작을 정의하면 됩니다
+          alert(result);
+         }
+      })
+  };
 ```
-- 앱(Flutter)의 경우, 웹이랑 다르게 로그아웃을 하지 않는 한 무조건 로그인 유지가 되어야 하기 때문에 웹 처럼 remember_me를 따로 구성할 필요는 없고, 그냥 이메일이랑 비밀번호 입력받는 TextField 2개 만드시면 됩니다
 <br />
 
-#### 응답
-- 로그인이 정상적으로 이루어진 경우, ```200(OK)```코드와 함께 다음과 같은 JSON데이터를 반환합니다
+#### Flutter
+- 반환받은 sessionId를 SharedPreferences에 저장합니다.
+- if문 안에 적힌 SnackBar는 예시 코드입니다. 지워도 됩니다
 ```
-{
-  "sessionId":"5253f6dv1d-375a-466c-b03a-8ebc0svc8cf24bb", // 랜덤으로 생성되는 세션 id
-  "remember_me":true // 로그인 유지 여부
-}
-```
-- 이 데이터를 웹은 쿠키로, 앱은 Shared Preference에 저장해야 합니다. 자세한건 밑의 ```사용```부분에 작성해 두겠습니다
-- 비밀번호가 일치하지 않는 경우, 또는 이메일 인증이 완료되지 않은 사용자인 경우 ```403(Forbidden)```코드와 함께 다음과 같은 메세지를 반환합니다
-```
-res.status(403).send('비밀번호가 일치하지 않습니다');
-res.status(403).send('인증이 완료되지 않은 사용자입니다');
-```
-- 가입된 이메일이 없는 경우, ```404(Not Found)```코드와 함께 다음과 같은 메세지를 반환합니다
-```
-res.status(404).send('사용자를 찾을 수 없습니다');
-```
-<br />
+import 'dart:convert'; // 코드 맨 위에 추가합니다
 
-#### 사용
-- (React) 웹에서 요청은 다음과 같이 전송합니다
-```
-await fetch('/w/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    }).then(response => {
-      if(response.status === 200) {
+TextEditingController _emailController = TextEditingController();
+TextEditingController _passwordController = TextEditingController();
 
-        // 로그인 성공
-        return response.json();
+Future<void> _signin() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
 
-      } else if(response.status === 403) {
+    try {
+      var url = Uri.parse('/m/login');
+      var response = await http.post(url, body: {
+        'email': email,
+        'password': password,
+      });
 
-        // 이메일 인증 안함 OR 비밀번호 다름
-        return response.text();
+      if (response.statusCode == 200) { // 로그인 성공시의 동작
 
-      } else if(response.status === 404) {
+        // SharedPreferences에 저장합니다 지우지 맙시다
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        Map<String, dynamic> responseData = json.decode(response.body);
+        String sessionId = responseData['sessionId'];
+        await prefs.setString('sessionId', sessionId);
 
-        // 가입된 메일 없음
-        return response.text();
+      } else if(response.statusCode == 403){ // 비밀번호 불일치 or 인증 안함
 
-      } else if(response.status === 500) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
 
-        // 에러
-        return response.text();
-        
-      } else {
+      } else { // 서버 에러입니다
 
-        // 여기 있는거 실행되면 매우 큰 문제가 있는거임
-        console.log('???');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
 
       }
-    }).then(result => {
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
 
-      // 쿠키 만들기
-       if(result && result.sessionId) {
-          if(result.remember_me) {
-            // remember_me가 true이면 쿠키의 유효기간을 더 길게 설정
-            const now = new Date();
-            const expirationDate = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
-            document.cookie = `sessionId=${result.sessionId}; expires=${expirationDate.toUTCString()};`;
-          } else {
-            document.cookie = `sessionId=${result.sessionId}`;
-          }
-       } else {
-        // 로그인 실패시 동작
-        console.log('로그인 실패')
-       }
-    }).catch(err => {
-      // fetch호출 자체가 실패한 경우
-    })
-```
-- then을 두 번을 사용해 전송된 데이터(JSON, 텍스트)를 참조하면서 쿠키를 생성하고 있습니다. 쿠키의 유효성은 테스트를 해 봐야 알 수 있겠지만, 지금은 이정도면 될겁니다
-- 역시 if문 안의 내용(쿠키 만드는거 빼고)을 수정하면 됩니다
-<br />
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('오류가 발생했습니다. 다시 시도해주세요.'),
+        ),
+      );
 
-- (Flutter) 앱에서 요청은 다음과 같이 전송합니다
-1. 우선 ```pubspec.yaml```파일에 다음과 같은 내용을 추가합니다
-```
-dependencies:
-  flutter:
-    sdk: flutter
-  http: ^1.2.1
-  shared_preferences: ^2.2.3 // 요거
-```
-2. dart파일에 이런 내용을 추가합니다
-```
-import 'package:shared_preferences/shared_preferences.dart';
-```
-3. 요청을 보낼 함수를 만듭니다. 반환형은 무조건 ```Future<void>```입니다
-```
-// URL은 Firebase를 참고합시다
-Future<void> mobileLogin() async {
-    final response = await http.post(
-      Uri.parse('/m/login'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'email': emailController.text,
-        'password': passwordController.text,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      // 로그인 성공
-      _showAlert(response.body); // 이건 임의로 만든 alert창 띄우는 함수입니다.
-
-      // 데이터 저장
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      Map<String, dynamic> responseData = json.decode(response.body);
-      String sessionId = responseData['sessionId'];
-      await prefs.setString('sessionId', sessionId);
-
-    } else {
-      // 로그인 실패
-      _showAlert(response.body); // response.body에 서버가 반환한 값('비밀번호가 일치하지 않습니다'같은거)이 들어갑니다
     }
   }
 ```
-- if문 안에 SharedPreference를 사용하는 코드가 적혀 있습니다. 'sessionId'라는 이름으로 반환받은 값을 저장한 겁니다. 이 값은 로그인한 사용자 식별에 사용합니다
-- 나중에 필요할 때 prefs.getString('sessionId') 같은 식으로 가져올겁니다
-
-### 비밀번호 재설정 (method : GET | Functions: express | endpoint : /resetpw)
-#### 요청
-- 이메일을 입력받고, 그걸 URL에 담아 요청을 하면 되는 매우 간단한 구조입니다. 그럼 입력한 이메일로 재설정 메일이 전송됩니다
 <br />
 
-#### 응답
-- 가입이 되어 있지 않은 이메일인 경우 ```404(Not Found)```에러를 반환합니다
-- 어떤 이유로든 에러가 발생한 경우 ```500(Internal Server Error```를 반환합니다
-- 전송이 정상적으로 이루어 진 경우 ```200(OK)```를 반환하고, 다음과 같은 메일을 전송합니다
-![스크린샷 2024-05-09 195625](https://github.com/ljtq20/smokEnd-cloud-functions/assets/155207532/95cbf234-b947-4706-aef9-cd30cac4f603)
+---
+### 로그아웃 (method : POST | Functions: express | endpoint : (웹)/w/logout  (앱)/m/logout)
+- 엔드포인트가 다르다는 점에 주의합니다
 <br />
 
-#### 사용
-- (React) 웹에서 요청은 다음과 같이 전송합니다
+#### React
+- 로그인과 마찬가지로, 쿠키 삭제하는 코드는 건드리지 맙시다
+- if문 안에 동작을 추가하면 됩니다
 ```
-const handleResetPassword = async () => {
-    await fetch(`https://firebase에서 생성된 url/resetpw?email=${email}`)
-    .then(response => {
-      if(response.status === 200) {
-        // 성공시 동작
-        alert('메일 전송 완료');
-      } else if(response.status === 404) {
-        // 가입된 메일없음
-        alert('가입된 메일이 없음');
-      } else if(response.status === 500) {
-        alert('서버 에러')
+const [response, setResponse] = useState('');
+
+const handleLogout = async () => {
+  // 쿠키에 저장된 값을 참조하는 겁니다. 꼭 있어야 합니다.
+  const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  
+  if (!sessionId) { // 로그인이 필요함을 알려주시면 됩니다. 경고창 같은거 띄워도 됩니다
+    setResponse('로그인이 필요합니다');
+    return;
+  }
+
+  await fetch('/w/logout', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ sessionId })
+  })
+    .then(async response => {
+      if (response.status === 200) { // 로그아웃 완료
+
+          document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // 쿠키를 삭제합니다
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+
+      } else if(response.status === 404) { // 세션이 유효하지 않은 경우입니다
+
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+
+      } else if(response.status === 500) { // 서버 문제 입니다
+        
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          
+      }
+    })
+};
+```
+<br />
+
+#### Flutter
+- 뭐 입력받고 어쩌고 할 필요는 없습니다.
+```
+Future<void> _logout() async {
+    try {
+      var url = Uri.parse('/m/logout');
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String sessionId = prefs.getString('sessionId') ?? "";
+
+      if(sessionId == "") { // 로그인이 안되어 있는 경우입니다
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('로그인이나 합시다'),
+          ),
+        );
+        return;
+      }
+      
+      var response = await http.post(url, body: {
+        'sessionId': sessionId
+      });
+
+      if (response.statusCode == 200) { // 로그아웃 완료
+
+        await prefs.remove('sessionId'); // 로그인하면서 저장했던 값을 삭제합니다. 이 코드는 지우지 맙시다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else if(response.statusCode == 404) { // 세션이 유효하지 않은 경우입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else { // 서버 에러입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      }
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('오류가 발생했습니다. 다시 시도해주세요.'),
+        ),
+      );
+
+    }
+  }
+```
+
+<br />
+
+---
+### 회원탈퇴 (method : POST | Functions: express | endpoint : (웹)/w/quit  (앱)/m/quit)
+- 엔드포인트가 다르다는 점에 주의합니다
+<br />
+
+#### React
+- 로그아웃 코드랑 별 다를건 없습니다
+```
+const [response, setResponse] = useState('');
+
+const handleQuit = async () => {
+  // 쿠키에 저장된 값을 참조하는 겁니다. 꼭 있어야 합니다.
+  const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  
+  if (!sessionId) { // 로그인이 필요함을 알려주시면 됩니다
+    setResponse('로그인이 필요합니다'); 
+    return;
+  }
+
+  await fetch('/w/quit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ sessionId })
+  })
+    .then(async response => {
+      if (response.status === 200) { // 회원탈퇴 완료
+
+          document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // 쿠키를 삭제합니다
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          
+      } else if(response.status === 404) { // 세션이 유효하지 않은 경우입니다
+
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+
+      } else if(response.status === 500) { // 서버 문제 입니다
+
+          const resData = await response.text();
+          setResponse(resData); // response에 메세지가 담깁니다
+          
+      }
+    });
+};
+```
+
+#### Flutter
+- 이것도 로그아웃 하는 코드랑 별 다를건 없습니다
+```
+TextEditingController _emailController = TextEditingController();
+
+Future<void> _quit() async {
+  try {
+    var url = Uri.parse('/m/quit');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String sessionId = prefs.getString('sessionId') ?? "";
+
+    if(sessionId == "") { // 로그인이 안되어 있는 경우입니다
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('로그인이나 합시다'),
+        ),
+      );
+      return;
+    }
+
+    var response = await http.post(url, body: {
+      'sessionId': sessionId
+    });
+
+    if (response.statusCode == 200) { // 회원탈퇴 완료
+
+      await prefs.remove('sessionId'); // 로그인하면서 저장했던 값을 삭제합니다. 지우지 맙시다
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.body),
+        ),
+      );
+
+    } else if(response.statusCode == 404) { // 세션이 유효하지 않은 경우입니다
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.body),
+        ),
+      );
+
+    } else { // 서버 에러입니다
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.body),
+        ),
+      );
+
+    }
+  } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('오류가 발생했습니다. 다시 시도해주세요.'),
+      ),
+    );
+
+  }
+}
+```
+<br />
+
+---
+### 비밀번호 재설정 (method : GET | Functions: express | endpoint : /resetpw)
+- 이메일 날아가는거니까 이상한 이메일 입력받지 않게 조심합니다
+<br />
+
+#### React
+- 요청 본문에 이메일을 담는게 아니라 url에 담는다는 점에 주의합니다
+```
+const [formData, setFormData] = useState({
+        email: ''
+    });
+const [response, setResponse] = useState('');
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch(`/resetpw?email=${formData.email}`)
+    .then(async response => {
+      if(response.status === 200) { // 전송 완료
+
+        const resData = await response.text();
+        setResponse(resData);
+    
+      } else if(response.status === 404) { // 가입된 메일없음
+
+            const resData = await response.text();
+            setResponse(resData);
+
+      } else if(response.status === 500) { // 서버에러
+        
+            const resData = await response.text();
+            setResponse(resData);
       }
     });
   };
 ```
-- 함수를 하나 정의하고, 그 안에 요청을 보내는 코드를 작성했습니다. 버튼 누르면 저거 실행되도록 하면 되겠네요
-- 이메일을 요청 본문(body)에 담는게 아니라, url에 담으셔야 합니다.
 <br />
 
-- (Flutter) 앱에서 요청은 다음과 같이 전송합니다
-1. 이메일을 입력받을 TextField에 controller를 등록합니다
+#### Flutter
+- 요청 본문에 이메일을 담는게 아니라 url에 담는다는 점에 주의합니다
 ```
-TextField(
-     controller: _emailController, // 요거
-     decoration: InputDecoration(
-     hintText: 'Enter your email',
-  ),
-),
-```
-2. 요청을 보낼 함수를 만듭니다. 반환형은 늘 그랬듯 ```Future<void>```입니다
-```
-Future<void> _handleResetPassword() async {
+Future<void> _signin() async {
     String email = _emailController.text;
-    String url = 'https://firebase에서 생성된 url/resetpw?email=$email';
 
     try {
-      http.Response response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        // 성공시 동작
-        print('OK');
-      } else if(response.statusCode == 404){
-        // 가입된 메일이 없음
-        print('가입된 메일이 없음');
-      } else {
-        // 서버 에러
-        print('Internal Server Error');
+      var url = Uri.parse('/resetpw?email=$email');
+      var response = await http.get(url);
+
+      if (response.statusCode == 200) { // 전송완료
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else if(response.statusCode == 404){ // 가입된 메일 없음ㅣ
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else { // 서버 에러입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
       }
-    } catch (error) {
-      print('Error occurred: $error');
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('오류가 발생했습니다. 다시 시도해주세요.'),
+        ),
+      );
+
     }
   }
 ```
-- 버튼같은거 만들어서, 버튼을 눌렀을때 위의 함수가 실행되도록 하면 됩니다
