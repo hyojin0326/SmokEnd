@@ -1,0 +1,193 @@
+.content {
+    width: 80vw;
+    margin: 0 auto;
+    padding-top: 83px;
+}
+
+.pageName {
+    font-family: "Tenada";
+    font-size: 3.2vw;
+    text-align: center;
+}
+
+.mainContent {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    margin-top: 3vw;
+}
+
+.row1 {
+    width: 60%;
+}
+
+.row2 {
+    width: 40%;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vw;
+
+}
+
+.contentMargin {
+    width: calc(100% - 2vw);
+    border-radius: 2vw;
+    border: 0.1vw solid black;
+}
+
+.contentMargin>div {
+    margin: 2vw;
+}
+
+.name {
+    font-size: 1.5vw;
+    margin-bottom: 2vw;
+}
+
+.checkbox {
+    width: 90%;
+    font-size: 1vw;
+    height: 2.5vw;
+    display: flex;
+    align-items: center;
+    margin-top: -1vw;
+    margin-bottom: 1vw;
+}
+
+.input_check {
+    margin-right: 0.5vw;
+}
+
+.select {
+    width: 79%;
+    float: right;
+    height: 2.5vw;
+    padding-left: 1vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid black;
+}
+
+.label {
+    width: 90%;
+    font-size: 1.2vw;
+    height: 2.5vw;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+.label>span {
+    width: 25%;
+}
+
+.input {
+    width: 75%;
+    float: right;
+    height: 2.5vw;
+    padding-left: 1vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid black;
+
+}
+
+.input_address {
+    width: 55%;
+    float: right;
+    height: 2.5vw;
+    padding-left: 1vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid black;
+}
+
+.input_address_button {
+    width: 18%;
+    height: 2.5vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vw;
+    margin-left: 2%;
+}
+
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width:30vw;
+    height:35vw;
+}
+.underline{
+    width:100%;
+    background-color: black;
+    height:0.08vw;
+}
+.orderInfo{
+    width:100%;
+    height:6vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    display: flex;
+    flex-direction: row;
+}
+.orderInfo_info{
+    width: calc(100% - 6vw);
+    height:100%;
+    padding-left: 1vw;
+    position: relative;
+}
+.top_text{
+    position: absolute;
+    top:0.5vw;
+}
+.bottom_text{
+    position: absolute;
+    bottom:0.5vw;
+}
+.orderPay{
+    width:100%;
+    height:4vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    display: flex;
+    flex-direction: column;
+}
+.orderPay>p{
+    height:2vw;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.orderTotal>p{
+    width:100%;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.button{
+
+}

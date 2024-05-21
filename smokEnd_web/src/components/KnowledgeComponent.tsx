@@ -30,7 +30,8 @@ function KnowledgeComponent(){
             alert("모든 항목에 답변을 선택해주세요.");
         }
     };
-    
+
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <>
@@ -280,7 +281,7 @@ function KnowledgeComponent(){
                 <p className={styles.source}>&lt; 출처 &gt;</p>
                 <p className={styles.source}>- ’국민 암예방 수칙“ 실천지침_금연, 보건복지부, 국립암센터, p5</p>
                 <div className={styles.button}>
-                    <button onClick={handleEvaluate} className={styles.evaluateButton}>평가하기</button>
+                    <button onClick={handleEvaluate} className={`${styles.evaluateButton} ${isMobile ? 'active' : ''}`}>평가하기</button>
                 </div>
                 
 

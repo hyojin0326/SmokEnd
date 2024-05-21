@@ -26,7 +26,7 @@ function ConditionComponent() {
             setEvaluationComplete(true);
             alert("평가가 완료되었습니다!");
             // 결과를 SelfAssessmentResult 컴포넌트로 전송
-            const evaluationResult = { "value":"매우 활동적인 신체활동을 시작하기 전이나 체력 평가 전에 의사와 전화통화를 하거나 직접 찾아가 위 설문지에 '예'라고 답한 문항에 대해 상의하고 신체활동을 시작해도 좋은지 확인하여 주시기 바랍니다." ,"head":"평가결과"};
+            const evaluationResult = { "value": "매우 활동적인 신체활동을 시작하기 전이나 체력 평가 전에 의사와 전화통화를 하거나 직접 찾아가 위 설문지에 '예'라고 답한 문항에 대해 상의하고 신체활동을 시작해도 좋은지 확인하여 주시기 바랍니다.", "head": "평가결과" };
 
             // 결과와 함께 SelfAssessmentResult 컴포넌트로 이동
             navigate("/selfAssessment/result", { state: { evaluationResult: evaluationResult } });
@@ -35,6 +35,7 @@ function ConditionComponent() {
         }
     };
 
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <>
@@ -123,7 +124,7 @@ function ConditionComponent() {
                     attempting smoking cessation. Addict Behav, 24: 399-410.</p>
                 <p className={styles.source}>- 국민 암예방수칙 실천지침 (신체활동)</p>
                 <div className={styles.button}>
-                    <button onClick={handleEvaluate} className={styles.evaluateButton}>평가하기</button>
+                    <button onClick={handleEvaluate} className={`${styles.evaluateButton} ${isMobile ? 'active' : ''}`}>평가하기</button>
                 </div>
 
 
