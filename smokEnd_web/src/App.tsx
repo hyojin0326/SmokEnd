@@ -3,6 +3,10 @@ import Main from "./pages/Main";
 import Signin from "./pages/Signin";
 import Findpw from "./pages/Findpw";
 import Signup from "./pages/Signup";
+import Review from "./pages/Review";
+import SmokeText from "./pages/SmokeText";
+import Introduction from "./pages/Introduction";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -37,18 +41,28 @@ const GlobalStyles = createGlobalStyle`
 function App() {
   return (
     <>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Router>
         <Routes>
-          <Route path="/" element={<><Header/><Main/></>}/>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Main />
+              </>
+            }
+          />
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/findpw" element={<Findpw/>}/>
-          
+          <Route path="/findpw" element={<Findpw />} />
+          <Route path="/Review" element={<Review />} />
+          <Route path="/SmokeText" element={<SmokeText />} />
+          <Route path="/Introduction" element={<Introduction />} />
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
 export default App;
