@@ -14,6 +14,8 @@ import KnowledgeComponent from "./components/KnowledgeComponent";
 import ConditionComponent from "./components/ConditionComponent";
 import Footer from "./components/Footer";
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
+import Purchase from "./pages/Purchase";
+import Purchase_P from "./pages/Purchase_P";
 
 
 const GlobalStyles = createGlobalStyle`
@@ -53,14 +55,16 @@ function App() {
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw/>}/>
-          <Route path="/selfAssessment/*" element={<><SelfAssessment /></>}>
+          <Route path="/selfAssessment/*" element={<><Header/><SelfAssessment /></>}>
             <Route path="nicotine" element={<><NicotineComponent/></>} />
             <Route path="habit" element={<HabitComponent/>}/>
             <Route path="knowledge" element={<KnowledgeComponent/>}/>
             <Route path="condition" element={<ConditionComponent/>}/>
-            <Route path="result" element={<SelfAssessmentResult/>}/>
+            <Route path="result" element={<><SelfAssessment/></>}/>
           </Route>
           <Route path="/smokeText" element={<><SmokeText/></>}/>
+          <Route path="/purchase" element={<><Header/><Purchase/></>} />
+          <Route path="/mileagePurchase" element={<Purchase_P/>} />
         </Routes>
       </Router>
     </>

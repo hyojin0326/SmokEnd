@@ -144,6 +144,8 @@ input[type="radio"] {
         width:20vw;
         border-radius: 2vw;
         font-size: 2.5vw;
+        color: black;
+        border: 0.3vw solid black;
     }
     
     
@@ -164,4 +166,9 @@ input[type="radio"] {
     .knowledge_radio{
         text-align: center;
     }
+    .evaluateButton:active{
+        background-color: black;
+        color: white;
+    }
+    
 }

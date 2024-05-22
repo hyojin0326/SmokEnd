@@ -87,6 +87,7 @@ form>button{
         width:70vw;
         border-radius: 8vw;
         margin-top: 30vw;
+        border: 0.3vw solid black;
     }
     .logo{
         width:60vw;
@@ -111,6 +112,10 @@ form>button{
         padding-left: 3vw;
         border-radius: 3vw;
         font-size:2.5vw;
+        border: 0.3vw solid black;
+    }
+    .input::placeholder{
+        color:#454545;
     }
     .input_birth{
         width:17vw;
@@ -120,8 +125,12 @@ form>button{
         border-radius: 3vw;
         font-size:2.5vw;
         margin-bottom: 2.5vw;
-        margin-left:0.7vw;
-        margin-right: 0.7vw;
+        margin-left:0.6vw;
+        margin-right: 0.6vw;
+        border: 0.3vw solid black;
+    }
+    .input_birth::placeholder{
+        color:#454545;
     }
     .Error{
         top:-1.5vw;

@@ -357,6 +357,7 @@
     border-radius: 4vw;
     font-size: 2vw;
     padding-left: 4vw;
+    border: 0.5vw solid white;
   }
   
   .main_smoke {
@@ -390,6 +391,7 @@
     border-radius: 4vw;
     margin-top: 3.5vw;
     font-size: 2vw;
+    border: 0.5vw solid black;
   }
   .mainProduct{
     width:150vw;
@@ -403,6 +405,7 @@
     width:35vw;
     margin-top: -1.5vw;
     margin-left: 5vw;
+    border: 0.3vw solid black;
 
   }
   .product_img{
@@ -444,9 +447,11 @@
   }
   .self_check{
     height:45vw;
+    border: 0.5vw solid black;
   }
   .campaign{
     height:45vw;
+    border: 0.5vw solid black;
   }
   .self_check>.content_title{
     font-size: 3vw;
@@ -465,6 +470,7 @@
     margin-top: -8vw;
     font-size: 2vw;
     margin-left: 5vw;
+    border: 0.3vw solid white;
   }
   .self_check_img{
     width: 20vw;
@@ -489,6 +495,7 @@
     margin-top: -8vw;
     font-size: 2vw;
     margin-left: 5vw;
+    border: 0.3w solid black;
   }
   .campaign_img{
     width: 20vw;
@@ -505,6 +512,7 @@
     height:20vw;
     padding-left: 4vw;
     padding-right: 4vw;
+    border: 0.3vw solid black;
   }
   .write>.write_category{
     font-size: 2.2vw;

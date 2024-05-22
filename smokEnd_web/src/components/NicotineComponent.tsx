@@ -31,7 +31,8 @@ function NicotionComponent() {
             alert("모든 항목에 답변을 선택해주세요.");
         }
     };
-    
+
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <>
@@ -117,7 +118,7 @@ function NicotionComponent() {
                 <p className={styles.source}>&lt; 출처 &gt;</p>
                 <p className={styles.source}>- FTND－K(Fagerstrom Test for Nicotine Dependence).</p>
                 <div className={styles.button}>
-                    <button onClick={handleEvaluate} className={styles.evaluateButton}>평가하기</button>
+                    <button onClick={handleEvaluate} className={`${styles.evaluateButton} ${isMobile ? 'active' : ''}`}>평가하기</button>
                 </div>
                 
 

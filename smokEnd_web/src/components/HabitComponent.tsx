@@ -30,6 +30,7 @@ function HabitComponent() {
         }
     };
 
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <>
@@ -452,7 +453,7 @@ function HabitComponent() {
                 <p className={styles.source}>&lt; 출처 &gt;</p>
                 <p className={styles.source}>- 청소년 금연동기유발프로그램 END, 보건복지부, 한국건강증진재단, p18</p>
                 <div className={styles.button}>
-                    <button onClick={handleEvaluate} className={styles.evaluateButton}>평가하기</button>
+                    <button onClick={handleEvaluate} className={`${styles.evaluateButton} ${isMobile ? 'active' : ''}`}>평가하기</button>
                 </div>
 
 
