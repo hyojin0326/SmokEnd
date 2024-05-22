@@ -27,26 +27,6 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-// const router = createBrowserRouter([
-//   {
-//     path:"/",
-//     element:<Main/>,
-//     children:[
-//       {
-//         path:"",
-//         element:<Main/>,
-//       }
-//     ]
-//   },
-//   {
-//     path:"/login",
-//     element:<Signin/>
-//   },
-//   {
-//     path:"/signup",
-//     element:<Signup/>
-//   }
-// ])
 function App() {
   return (
     <>

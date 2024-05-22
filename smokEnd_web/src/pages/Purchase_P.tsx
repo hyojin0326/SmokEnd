@@ -154,8 +154,11 @@ function Purchase() {
             alert('모든 항목을 입력해주세요.');
             return; // 함수 실행 중지
         }
-        if (allAgreement == false)
+        if (allAgreement == false){
             alert("팔수 약관 동의를 선택해주세요.");
+            return;
+        }
+            
 
         //서버 기능
 

@@ -222,13 +222,18 @@ function Purchase() {
         }
         if (selectedOption === "신용/체크카드" && selectedPayment === "") {
             alert("결제할 카드를 선택해주세요.");
+            return;
         }
         if (selectedOption === "무통장 입금" && selectedPayment === "") {
             alert("결제할 은행을 선택해주세요.");
+            return;
         }
 
-        if (allAgreement == false)
+        if (allAgreement == false){
             alert("팔수 약관 동의를 선택해주세요.");
+            return;
+        }
+            
 
         //서버 기능
 
