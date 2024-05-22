@@ -15,6 +15,9 @@ import HabitComponent from "./components/HabitComponent";
 import KnowledgeComponent from "./components/KnowledgeComponent";
 import ConditionComponent from "./components/ConditionComponent";
 // import Footer from "./components/Footer";
+import Purchase from "./pages/Purchase";
+import Purchase_P from "./pages/Purchase_P";
+
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
 
 const GlobalStyles = createGlobalStyle`
@@ -82,7 +85,16 @@ function App() {
           <Route path="knowledge" element={<KnowledgeComponent />} />
           <Route path="condition" element={<ConditionComponent />} />
           <Route path="result" element={<SelfAssessmentResult />} />
-
+          <Route
+            path="/purchase"
+            element={
+              <>
+                <Header />
+                <Purchase />
+              </>
+            }
+          />
+          <Route path="/mileagePurchase" element={<Purchase_P />} />
           <Route path="/Review" element={<Review />} />
           <Route path="/SmokeText" element={<SmokeText />} />
           <Route path="/Introduction" element={<Introduction />} />

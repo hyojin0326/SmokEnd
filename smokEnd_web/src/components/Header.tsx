@@ -222,13 +222,13 @@ function Header() {
                       <p className={styles.loggedInli}>금연 지도</p>
                       <br />
                       <p className={styles.loggedInli}>
-                        <Link to="/SmokeText" className={styles.Link}>
+                        <Link to="/SmokeText" className={styles.Link1}>
                           흡연의 위험성
                         </Link>
                       </p>
                       <br />
                       <p className={styles.loggedInli}>
-                        <Link to="/SmokeText" className={styles.Link}>
+                        <Link to="/SmokeText" className={styles.Link1}>
                           금연의 필요성
                         </Link>
                       </p>
