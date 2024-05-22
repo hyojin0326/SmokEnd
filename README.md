@@ -648,7 +648,7 @@ Future<void> _setTarget() async {
 - 요청을 보내면, 오늘 피운 담배 갯수를 +1 해줍니다.
 - 서버에서 보내는 push notification이랑 앱에서 실행하는 local notification이 있는데, 서버에서 보내는건 복잡하니까 local notification을 사용할 겁니다
 
-사전 준비가 좀 필요합니다
+#### 사전준비(중요!)
 1. ```pubspec.yaml```파일에 가서 다음과 같은 내용을 추가합니다
 ```
 dependencies:
@@ -902,4 +902,51 @@ Future<void> _giveup() async {
 
     }
   }
+```
+<br />
+
+## 구매
+### 현금구매 (method : POST | Functions: express | endpoint : /purchase)
+- 어차피 우리 사이트에서 직접 현금으로 구매할 수 있는건 담배케이스 하나밖에 없어서 조금 단순하게 코드를 짰습니다
+- 당장 실제 현금구매를 구현하긴 어려움이 있으니, 일단 구매가 되었다고 가정하고 신호만 전송하도록 했습니다
+```
+const handlePurchase = async (e) => {
+    e.preventDefault();
+
+    const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    
+    if (!sessionId) { // 로그인이 필요함을 알려주시면 됩니다
+      setResponse('로그인이 필요합니다');
+      return;
+    }
+
+    await fetch('/purchase', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sessionId: sessionId,
+        data : JSON.stringify(formData)
+      })
+    })
+      .then(async response => {
+        if (response.status === 200) { // 구매완료
+
+            const resData = await response.text();
+            setResponse(resData); // response에 메세지가 담깁니다
+
+        } else if(response.status === 404) { // 세션이 유효하지 않은 경우입니다
+
+            const resData = await response.text();
+            setResponse(resData); // response에 메세지가 담깁니다
+
+        } else if(response.status === 500) { // 서버 문제 입니다
+          
+            const resData = await response.text();
+            setResponse(resData); // response에 메세지가 담깁니다
+            
+        }
+      })
+  };
 ```
