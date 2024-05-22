@@ -33,6 +33,13 @@
     color: white;
     font-size: 2.6em;
 }
+.logo{
+    font-family: "Tenada";
+}
+.logo>span{
+    font-family: "Tenada";
+    color:red;
+}
 @media (max-width: 768px) {
     .mainDiv{
         height:100px;

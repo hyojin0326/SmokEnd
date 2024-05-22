@@ -121,6 +121,7 @@ form>button{
         height:80vw;
         padding: 0;
         border-radius: 8vw;
+        border: 0.3vw solid black;
     }
     .logo{
         width:60vw;
@@ -142,6 +143,10 @@ form>button{
         padding-left: 3vw;
         border-radius: 3vw;
         font-size:2.5vw;
+        border: 0.3vw solid black;
+    }
+    .input::placeholder{
+        color:#454545;
     }
     .emailError{
         top:-1.5vw;
@@ -156,7 +161,7 @@ form>button{
         margin-top:0.5vw;
       }
     .check_p{
-        color:#6C6C6C;
+        color:#454545;
         font-size: 2vw;
     }
     form>button{

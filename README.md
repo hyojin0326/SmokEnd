@@ -1,5 +1,4 @@
 # 사용 가이드
-적어둔 코드 그대로 복사해서 쓰시면 됩니다. URL이랑 세부 동작은 직접 정의하시구요
 
 ## Functions
 - Firebase 프로젝트의 ```Functions```에 들어가 보시면 몇가지의 함수가 정의되어 있습니다.
@@ -449,7 +448,7 @@ Future<void> _quit() async {
 
     if (response.statusCode == 200) { // 회원탈퇴 완료
 
-      await prefs.remove('sessionId'); // 로그인하면서 저장했던 값을 삭제합니다. 지우지 맙시다
+      await prefs.remove('sessionId'); // 로그인하면서 저장했던 값을 삭제합니다
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -569,4 +568,385 @@ Future<void> _signin() async {
 
     }
   }
+```
+## 목표 설정 ( 앱만 해당합니다 )
+<br />
+
+### 목표 설정하기 (method : POST | Functions: express | endpoint : /setTarget)
+- 개월 수, 평소에 피우던 양을 입력받습니다.
+- term과 amount값은 여러분들이 form을 어떻게 구성할지 몰라서 일단 임시로 값을 넣어놨는데, 어쨋든 입력받은 값 집어넣으시면 됩니다.
+- 근데 term과 amount값은 주석에도 쓰여 있듯이 '반드시 텍스트로 변환해서(toString()쓰면 될듯?)'넣으셔야 합니다. 아니면 에러납니다
+
+```
+Future<void> _setTarget() async {
+    try {
+      var url = Uri.parse('/setTarget');
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String sessionId = prefs.getString('sessionId') ?? "";
+
+      if(sessionId == "") { // 로그인이 안되어 있는 경우입니다
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('로그인이나 합시다'),
+          ),
+        );
+        return;
+      }
+
+      var response = await http.post(url, body: {
+        'term' : '개월수', // 입력받은 값을 넣는겁니다
+        'amount' : '하루에 피우는 양', // 반드시 텍스트로 변환해서 넣습니다
+        'sessionId': sessionId
+      });
+
+      if (response.statusCode == 201) { // 목표 설정 완료
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else if(response.statusCode == 403) { // 오늘은 목표설정이 안되거나 or 이미 목표를 설정 했거나
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else if(response.statusCode == 404) { // 세션이 유효하지 않은 경우입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else { // 서버 에러입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      }
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.toString()),
+        ),
+      );
+
+    }
+  }
+```
+
+### 흡연알림 (method : POST | Functions: express | endpoint : /notification)
+- 요청을 보내면, 오늘 피운 담배 갯수를 +1 해줍니다.
+- 서버에서 보내는 push notification이랑 앱에서 실행하는 local notification이 있는데, 서버에서 보내는건 복잡하니까 local notification을 사용할 겁니다
+
+#### 사전준비(중요!)
+1. ```pubspec.yaml```파일에 가서 다음과 같은 내용을 추가합니다
+```
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1
+  shared_preferences: ^2.2.3
+  flutter_local_notifications: ^17.1.2 // 요거
+```
+
+2. ```ios/Runner/AppDelegate.swift```파일에 가서 다음과 같은 내용을 추가합니다.
+- 근데 참고자료가 조금 옛날거라 잘 동작하는지는 몰?루
+```
+import UIKit
+import Flutter
+
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    // 요기부터
+    if #available(iOS 10.0, *) {
+          UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+    }
+    // 요기까지
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+}
+```
+
+3. ```android/app/src/main/AndroidManifest.xml```파일에 가서 <activity>태그 안에 다음과 같은 내용을 추가합니다
+```
+<activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize"
+
+            // 요기부터
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            // 요기까지
+>
+```
+
+4. ```android/app/src/main/res/drawable``` 폴더에 앱 아이콘용 이미지를 하나 집어넣습니다. 이미지 파일 명은 반드시 ```app_icon.png```로 하셔야 합니다. 알림 아이콘은 나중에 만들면 되니까 일단은 아무 이미지나 집어넣습니다. 이미지 없으면 에러납니다
+
+
+5. ```notification.dart```라는 파일을 새로 만들고, 이 코드를 복사 붙여넣기 합니다
+```
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+final notifications = FlutterLocalNotificationsPlugin();
+
+
+//1. 앱로드시 실행할 기본설정
+initNotification() async {
+
+  //안드로이드용 아이콘파일 이름
+  var androidSetting = AndroidInitializationSettings('app_icon');
+
+  //ios에서 앱 로드시 유저에게 권한요청하려면
+  var iosSetting = DarwinInitializationSettings(
+    requestAlertPermission: true,
+    requestBadgePermission: true,
+    requestSoundPermission: true,
+  );
+
+  var initializationSettings = InitializationSettings(
+      android: androidSetting,
+      iOS: iosSetting
+  );
+  await notifications.initialize(
+    initializationSettings,
+  );
+}
+
+showNotification() async {
+
+  var androidDetails = AndroidNotificationDetails(
+    'notification',
+    'smoke notification',
+    priority: Priority.high,
+    importance: Importance.max,
+    color: Color.fromARGB(255, 0, 0, 0),
+  );
+
+  var iosDetails =  DarwinNotificationDetails(
+    presentAlert: true,
+    presentBadge: true,
+    presentSound: true,
+  );
+
+  // 알림 id, 제목, 내용 맘대로 채우기
+  notifications.show(
+      1,
+      'SmokEnd',
+      '임마 담배폈대요', // 이거 수정하면 됩니다
+      NotificationDetails(android: androidDetails, iOS: iosDetails)
+  );
+}
+```
+
+6. 알림을 띄워주는 함수가 실행되도록할 코드가 적힌 파일 상단에 방금 만든 파일을 import합니다
+```
+import 'notification.dart';
+```
+
+7. 앱이 실행될 때, ```notification.dart```파일에 정의해둔 ```initNotification()```이라는 함수가 한번은 실행이 되어야 합니다. 임시방편으로 테스트하는 위젯에 ```initState()```에 작성해 뒀는데, 이 점은 나중에 생각합시다.
+```
+@override
+  void initState() {
+    super.initState();
+    initNotification(); // 요거
+  }
+```
+
+<br />
+
+요청을 보내는 코드는 다음과 같습니다
+```
+Future<void> _notification() async {
+    try {
+      var url = Uri.parse('/notification');
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String sessionId = prefs.getString('sessionId') ?? "";
+
+      if(sessionId == "") { // 로그인이 안되어 있는 경우입니다
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('로그인이나 합시다'),
+          ),
+        );
+        return;
+      }
+
+      var response = await http.post(url, body: {
+        'sessionId': sessionId
+      });
+
+      if (response.statusCode == 200) { // 업데이트 완료
+
+        showNotification(); // 요걸 실행하면 알람이 울립니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else if(response.statusCode == 404) { // 세션이 유효하지 않은 경우입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else { // 서버 에러입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      }
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.toString()),
+        ),
+      );
+
+    }
+  }
+```
+<br />
+
+Q. 알람이 안울려요 <br />
+A. 에뮬레이터/기기의 앱 설정에 들어가서 notification권한을 설정해 줍니다
+<br />
+
+Q. 그래서 저 함수는 언제 실행하는데요 <br />
+A. 아두이노로 부터 블루투스 신호를 받을 때 실행합니다. 자세한 동작과정은 저도 모르니까 조사를 좀 해봐야할듯
+<br />
+
+
+### 포기하기 (method : POST | Functions: express | endpoint : /giveup)
+- 포기버튼을 누르면 그 하루동안은 추가로 목표설정이 안됩니다
+```
+Future<void> _giveup() async {
+    try {
+      var url = Uri.parse('/giveup');
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String sessionId = prefs.getString('sessionId') ?? "";
+
+      if(sessionId == "") { // 로그인이 안되어 있는 경우입니다
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('로그인이나 합시다'),
+          ),
+        );
+        return;
+      }
+
+      var response = await http.post(url, body: {
+        'sessionId': sessionId
+      });
+
+      if (response.statusCode == 200) { // 완료
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else if(response.statusCode == 404) { // 세션이 유효하지 않은 경우입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      } else { // 서버 에러입니다
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+          ),
+        );
+
+      }
+    } catch (error) { // 네트워크 오류 (클라이언트의 오류입니다)
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.toString()),
+        ),
+      );
+
+    }
+  }
+```
+<br />
+
+## 구매
+### 현금구매 (method : POST | Functions: express | endpoint : /purchase)
+- 어차피 우리 사이트에서 직접 현금으로 구매할 수 있는건 담배케이스 하나밖에 없어서 조금 단순하게 코드를 짰습니다
+- 당장 실제 현금구매를 구현하긴 어려움이 있으니, 일단 구매가 되었다고 가정하고 신호만 전송하도록 했습니다
+```
+const handlePurchase = async (e) => {
+    e.preventDefault();
+
+    const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    
+    if (!sessionId) { // 로그인이 필요함을 알려주시면 됩니다
+      setResponse('로그인이 필요합니다');
+      return;
+    }
+
+    await fetch('/purchase', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sessionId: sessionId,
+        data : JSON.stringify(formData)
+      })
+    })
+      .then(async response => {
+        if (response.status === 200) { // 구매완료
+
+            const resData = await response.text();
+            setResponse(resData); // response에 메세지가 담깁니다
+
+        } else if(response.status === 404) { // 세션이 유효하지 않은 경우입니다
+
+            const resData = await response.text();
+            setResponse(resData); // response에 메세지가 담깁니다
+
+        } else if(response.status === 500) { // 서버 문제 입니다
+          
+            const resData = await response.text();
+            setResponse(resData); // response에 메세지가 담깁니다
+            
+        }
+      })
+  };
 ```
