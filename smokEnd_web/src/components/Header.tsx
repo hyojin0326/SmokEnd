@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../styles/Header.module.css";
 import { Link } from "react-router-dom";
 import menu from "../assets/mobile_menu.png";
@@ -341,9 +341,9 @@ function Header() {
                       className={styles.MobileloggedInli4}
                       onClick={handleLogin}
                     >
-                      <Link to="/login" className={styles.Link}>
-                        Login
-                      </Link>
+                      {/* <Link to="/login" className={styles.Link}> */}
+                      Login
+                      {/* </Link> */}
                     </p>
                   </div>
                 </div>

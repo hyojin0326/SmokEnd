@@ -5,6 +5,8 @@ import textwrite from "../assets/SmokeText/textwrite.png";
 import Header from "../components/Header";
 
 const SmokeText: React.FC = () => {
+  const isMobile = window.innerWidth <= 768;
+
   const [selectedTab, setSelectedTab] = useState<string>("흡연의 중요성");
   const [posts, setPosts] = useState<{ [key: string]: string[] }>({
     "흡연의 중요성": [],
@@ -101,7 +103,7 @@ const SmokeText: React.FC = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       <div className={styles.bigBox}>
         <p className={styles.pageName}>담배</p>
         <p className={styles.p}>담배에 대해 얼마나 아십니까?</p>
@@ -125,7 +127,6 @@ const SmokeText: React.FC = () => {
         </div>
       </div>
 
-      {/* 선택된 탭에 따라 다른 내용을 보여줄 컴포넌트 */}
       <TabContent />
     </>
   );
