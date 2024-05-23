@@ -4,6 +4,7 @@ import DaumPostcode from 'react-daum-postcode';
 import styled from "styled-components";
 import product from "../assets/main/data1.png";
 
+
 interface FormData {
     orderName: string;
     orderPhone: string;
@@ -17,6 +18,7 @@ interface FormData {
     addressZonecode: string;
     address: string;
     addressDetail: string;
+
 }
 interface AgreementCheckboxes {
     one: boolean;
@@ -55,7 +57,7 @@ function Purchase() {
     });
     const { orderName, orderPhone, orderPassword, passwordCheck,
         shippingName, shippingPhone, shippingRequest,
-        addressZonecode, address, addressDetail
+        addressZonecode, address, addressDetail,
     } = formData;
 
     const handleAddressButtonClick = () => {
@@ -101,7 +103,6 @@ function Purchase() {
             shippingPhone: orderPhone
         }));
     };
-
     const [agreementCheckboxes, setAgreementCheckboxes] = useState<AgreementCheckboxes>({
         one: false,
         two: false,
@@ -154,12 +155,10 @@ function Purchase() {
             alert('모든 항목을 입력해주세요.');
             return; // 함수 실행 중지
         }
-        if (allAgreement == false){
+        if (allAgreement == false) {
             alert("팔수 약관 동의를 선택해주세요.");
             return;
         }
-            
-
         //서버 기능
 
     }
@@ -191,7 +190,7 @@ function Purchase() {
                                         <label className={styles.checkbox}><input type="checkbox" className={styles.input_check} onClick={sameInfo} />  주문자 정보와 동일</label>
                                         <p className={styles.label}><span>이름</span><input type="text" className={styles.input} name="shippingName" value={shippingName} onChange={onChange} placeholder="이름을 입력해주세요." required></input></p>
                                         <p className={styles.label}><span>연락처</span><input type="text" className={styles.input} name="shippingPhone" value={shippingPhone} onChange={onChange} placeholder='"-" 없이 입력해 주세요' required></input></p>
-                                        <p className={styles.label}><span>주소</span><input type="text" className={styles.input_address} name="addressZonecode" value={addressZonecode} placeholder="우편번호" required></input><div className={styles.input_address_button} onClick={handleAddressButtonClick}>주소찾기</div></p>
+                                        <div className={styles.label}><span>주소</span><input type="text" className={styles.input_address} name="addressZonecode" value={addressZonecode} placeholder="우편번호" readOnly required></input><div className={styles.input_address_button} onClick={handleAddressButtonClick}>주소찾기</div></div>
                                         {showPostcode && (
                                             <div className={styles.modalBackground} onClick={handleModalBackgroundClick}>
                                                 <div className={styles.modalContent}>
@@ -201,7 +200,7 @@ function Purchase() {
                                                 </div>
                                             </div>
                                         )}
-                                        <p className={styles.label}><span></span><input type="text" className={styles.input} name="address" value={address} placeholder="주소" required></input></p>
+                                        <p className={styles.label}><span></span><input type="text" className={styles.input} name="address" value={address} placeholder="주소" readOnly required></input></p>
                                         <p className={styles.label}><span></span><input type="text" className={styles.input} name="addressDetail" value={addressDetail} placeholder="상세주소" onChange={onChange} required></input></p>
                                         <p className={styles.label}><span>요청사항</span>
                                             <select className={styles.select} name="shippingRequest" value={shippingRequest} onChange={onChangeSelect} required>

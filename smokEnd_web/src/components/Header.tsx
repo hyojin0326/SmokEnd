@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Header.module.css";
 import { Link } from "react-router-dom";
 import menu from "../assets/mobile_menu.png";
@@ -8,6 +8,31 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // //쿠키여부에 따라 로그인 헤더 변경
+  // const getCookie = (name: string): string | undefined => {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) return parts.pop()?.split(";").shift();
+  // };
+  // //이부분은 현재 서버문제로 단순하게 쿠키를 생성함
+  // const setCookie = (name: string, value: string, days: number): void => {
+  //   const now = new Date();
+  //   const expirationDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+  //   document.cookie = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/`;
+  // };
+
+  // useEffect(() => {
+  //   setCookie("exampleCookie", "someValue", 7); // 7일 동안 유효한 쿠키 설정
+  //   const sessionId = getCookie("exampleCookie");
+  //   // setIsLoggedIn(!!sessionId); 
+  //   if(sessionId===undefined){
+  //     setIsLoggedIn(false);
+  //   }
+  //   else{
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
