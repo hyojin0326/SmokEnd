@@ -1,10 +1,11 @@
 import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
 import belowArrow from "../assets/main/belowArrow_white.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data1Image from "../assets/main/data1.png";
 import styled from "styled-components";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Image = styled.div`
   width: 25vw;
@@ -25,6 +26,26 @@ function Main() {
   const [num, setNum] = useState<number>(0);
   const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
   const isMobile = window.innerWidth <= 768;
+  const [isLogin, setIsLogin] = useState(false);
+  //스크롤 시도하면 로그인으로 유도
+  const [isScrollAttempted, setIsScrollAttempted] = useState(false);
+
+  //로그인 상태에 따라
+  useEffect(() => {
+    const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    setIsLogin(!!sessionId);
+  }, []);
+  //스크롤 가능, 불가능
+  useEffect(() => {
+    if (isLogin) {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isLogin]);
 
   const handleLeftArrowClick = () => {
     // num을 1씩 감소시키면서 순환되도록 설정
@@ -87,15 +108,23 @@ function Main() {
             </p>
             <br />
             <p className={styles.subText}>당신의 폐는 건강하십니까?</p>
-            <div className={styles.mainButton}>
-              <span>더 알아보기</span> <span>&gt;</span>
-            </div>
+            {isLogin ? (
+              <Link to="/introduction" className={styles.mainButton}>
+                <span>더 알아보기</span> <span>&gt;</span>
+              </Link>
+            ) : (
+              <Link to="/login" className={styles.mainButton}>
+                <span>더 알아보기</span> <span>&gt;</span>
+              </Link>
+            )}
           </div>
           <div className={styles.main_smoke}></div>
         </div>
-        <div className={styles.bottom}>
-          <img src={belowArrow}></img>
-        </div>
+        {isLogin && (
+          <div className={styles.bottom}>
+            <img src={belowArrow} alt="Arrow" />
+          </div>
+        )}
       </div>
 
       <div className={styles.main_white}>
@@ -118,9 +147,8 @@ function Main() {
           <div className={styles.mainProduct}>
             <div className={styles.leftArrow} onClick={handleLeftArrowClick} />
             <div
-              className={`${styles.product} ${
-                specialProductIndex === 0 ? styles.specialProduct : ""
-              }`}
+              className={`${styles.product} ${specialProductIndex === 0 ? styles.specialProduct : ""
+                }`}
               style={{ transform: getProductTransform1(0) }}
             >
               <Image></Image>
@@ -134,9 +162,8 @@ function Main() {
               )}
             </div>
             <div
-              className={`${styles.product} ${
-                specialProductIndex === 1 ? styles.specialProduct : ""
-              }`}
+              className={`${styles.product} ${specialProductIndex === 1 ? styles.specialProduct : ""
+                }`}
               style={{ transform: getProductTransform2(0) }}
             >
               <div className={styles.product_img}></div>
@@ -150,9 +177,8 @@ function Main() {
               )}
             </div>
             <div
-              className={`${styles.product} ${
-                specialProductIndex === 2 ? styles.specialProduct : ""
-              }`}
+              className={`${styles.product} ${specialProductIndex === 2 ? styles.specialProduct : ""
+                }`}
               style={{ transform: getProductTransform3(0) }}
             >
               <Image></Image>

@@ -1,7 +1,7 @@
 import styles from "../styles/NoSmokingArea.module.css";
 import { useEffect, useState } from "react";
 
-const { kakao } = window;
+const { kakao } = window as any;
 
 interface Districts {
     [key: string]: string[];
