@@ -45,7 +45,7 @@
 <br />
 
 ### 로그인 (method : POST | Functions : api | endpoint : /api/auth/w/login)
-- 헤더에 표시되는 사용자의 이름과 마일리지를 쿠키로 저장합니다
+- 헤더에 표시되는 사용자의 이름과 마일리지 + 관리자 여부를 쿠키로 저장합니다
 ```
 await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/login', {
             method: 'POST',
@@ -100,10 +100,10 @@ await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/login', {
                     const now = new Date();
                     const expirationDate = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
                     document.cookie = `sessionId=${result.sessionId}; expires=${expirationDate.toUTCString()};`;
-                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage})}; expires=${expirationDate.toUTCString()};`;
+                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage, isAdmin:result.isAdmin})}; expires=${expirationDate.toUTCString()};`;
                 } else {
                     document.cookie = `sessionId=${result.sessionId}`;
-                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage})}`
+                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage, isAdmin:result.isAdmin})}`
                 }
             } else {
                 // 로그인 실패시 동작
