@@ -1,5 +1,5 @@
 .bigBox {
-  padding-top: 3vw;
+  padding-top: 7vw;
 }
 
 .pageName {
@@ -134,6 +134,15 @@
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+.box.active {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.box.active .text {
+  color: rgb(255, 255, 255);
 }
 
 @media (max-width: 768px) {

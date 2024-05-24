@@ -1,0 +1,284 @@
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* * {
+  box-sizing: border-box;
+} */
+
+.popup-content {
+  position: fixed;
+  /* top: 27vw;
+  left: 48vw; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  padding: 3vw;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2vw 0px rgba(0, 0, 0, 0.5);
+}
+
+.bigbigBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.bigBox {
+  /* padding-top: 4vw;
+  padding-bottom: 4vw; */
+}
+
+.p {
+  font-family: "NanumSquareRoundB";
+  font-size: 1.2vw;
+  color: rgb(33, 33, 33);
+  margin-top: 1vw;
+}
+
+.textarea {
+  margin-top: 1vw;
+  width: 30vw;
+  height: 5vw;
+  font-family: "NanumSquareRoundB";
+  padding: 1vw;
+  border: 0.1vw solid #ccc;
+  border-radius: 1vw;
+  resize: none; /* 사용자가 크기를 조절할 수 없도록 설정 */
+}
+
+.pick {
+  margin-top: 1vw;
+  padding: 1vw;
+  width: 5vw;
+  height: 5vw;
+  background-color: rgb(188, 188, 188);
+  border-radius: 1vw;
+  font-family: "NanumSquareRoundB";
+  display: flex;
+  /* flex-direction: column; */
+  /* 세로 중앙 정렬 */
+  align-items: center;
+  /* 가로 중앙 정렬 */
+  justify-content: center;
+  cursor: pointer;
+}
+
+.butcss {
+  margin-top: 1vw;
+  padding: 1vw;
+  width: 32.2vw;
+  height: 3vw;
+
+  border-radius: 0.5vw;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+
+  color: rgb(255, 255, 255);
+  font-size: 1.5vw;
+  font-family: "NanumSquareRoundB";
+  border: none; /* 버튼의 기본 border 제거 */
+  padding: 0; /* 내부 패딩 제거 */
+  cursor: pointer;
+}
+
+.butcss:hover {
+  margin-top: 1vw;
+  padding: 1vw;
+  width: 32.2vw;
+  height: 3vw;
+  border: 0.1vw solid rgb(0, 0, 0);
+
+  border-radius: 0.5vw;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+
+  color: rgb(0, 0, 0);
+  font-size: 1.5vw;
+  font-family: "NanumSquareRoundB";
+  padding: 0; /* 내부 패딩 제거 */
+  cursor: pointer;
+}
+
+.pick img {
+  width: 2vw;
+  height: 2vw;
+}
+
+.pickAlign {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+}
+
+.star img {
+  width: 3vw;
+  height: 3vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* * {
+    box-sizing: border-box;
+  } */
+
+  .popup-content {
+    position: fixed;
+    /* top: 27vw;
+    left: 48vw; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    padding: 3vw;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2vw 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .bigbigBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 세로 중앙 정렬 */
+  }
+
+  .bigBox {
+    /* padding-top: 4vw;
+    padding-bottom: 4vw; */
+  }
+
+  .p {
+    font-family: "NanumSquareRoundB";
+    font-size: 4vw;
+    color: rgb(33, 33, 33);
+    margin-top: 6vw;
+  }
+
+  .textarea {
+    margin-top: 1vw;
+    width: 60vw;
+    height: 20vw;
+    font-family: "NanumSquareRoundB";
+    padding: 1vw;
+    border: 0.1vw solid #ccc;
+    border-radius: 1vw;
+    resize: none; /* 사용자가 크기를 조절할 수 없도록 설정 */
+  }
+
+  .pick {
+    margin-top: 1vw;
+    padding: 1vw;
+    width: 20vw;
+    height: 20vw;
+    background-color: rgb(188, 188, 188);
+    border-radius: 1vw;
+    font-family: "NanumSquareRoundB";
+    display: flex;
+    /* flex-direction: column; */
+    /* 세로 중앙 정렬 */
+    align-items: center;
+    /* 가로 중앙 정렬 */
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .butcss {
+    margin-top: 3vw;
+    padding: 1vw;
+    width: 62.2vw;
+    height: 6vw;
+
+    border-radius: 0.5vw;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+
+    color: rgb(255, 255, 255);
+    font-size: 3vw;
+    font-family: "NanumSquareRoundB";
+    border: none; /* 버튼의 기본 border 제거 */
+    padding: 0; /* 내부 패딩 제거 */
+    cursor: pointer;
+  }
+
+  .butcss:hover {
+    margin-top: 3vw;
+    padding: 1vw;
+    width: 62.2vw;
+    height: 6vw;
+    border: 0.1vw solid rgb(0, 0, 0);
+
+    border-radius: 0.5vw;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+
+    color: rgb(0, 0, 0);
+    font-size: 3vw;
+    font-family: "NanumSquareRoundB";
+    padding: 0; /* 내부 패딩 제거 */
+    cursor: pointer;
+  }
+
+  .pick img {
+    width: 7vw;
+    height: 7vw;
+  }
+
+  .pickAlign {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+  }
+
+  .star img {
+    width: 8vw;
+    height: 8vw;
+    margin-top: 1vw;
+    margin-right: 1vw;
+    cursor: pointer;
+  }
+}
+
+@font-face {
+  font-family: "Tenada";
+  src: url("../assets/font/Tenada.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url("../assets/font/NanumSquareRoundB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url("../assets/font/NanumSquareRoundEB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundL";
+  src: url("../assets/font/NanumSquareRoundL.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url("../assets/font/NanumSquareRoundR.ttf");
+}

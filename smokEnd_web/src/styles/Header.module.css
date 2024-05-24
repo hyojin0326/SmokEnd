@@ -133,7 +133,30 @@
   z-index: 9999;
 }
 
+.defaultHeader {
+  width: 100vw;
+  height: 4vw;
+  background-color: rgba(255, 255, 255, 0);
+  position: fixed;
+  display: inline;
+  z-index: 9999;
+}
+
 .loggedInheader:hover::after {
+  content: ""; /* 가상 요소를 생성하여 박스를 표시 */
+  position: absolute; /* 절대적으로 위치 지정 */
+  left: 0; /* 부모 요소인 .loggedInheader에서의 왼쪽 위치 */
+  top: 4vw; /* 부모 요소인 .loggedInheader에서의 하단 위치 */
+  width: 100vw; /* 부모 요소인 .loggedInheader의 너비 */
+  height: 12vw; /* 박스의 높이 */
+  background-color: rgb(255, 255, 255); /* 박스의 색상 */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  /* z-index: 99999; */
+  /* 연한 선 추가 */
+  border-top: 0.1vw solid rgba(0, 0, 0, 0.1);
+}
+
+.defaultHeader:hover::after {
   content: ""; /* 가상 요소를 생성하여 박스를 표시 */
   position: absolute; /* 절대적으로 위치 지정 */
   left: 0; /* 부모 요소인 .loggedInheader에서의 왼쪽 위치 */
@@ -179,6 +202,18 @@
   text-decoration: none;
   color: black;
   margin-left: 1.5vw;
+}
+
+.defaultHeader:hover .subMenu {
+  /* 해당 메뉴 아이템에 호버할 때 자식 메뉴를 보여줍니다. */
+  display: block;
+  position: absolute;
+  left: -5.5vw; /* 기존의 값보다 작게 조정하여 가운데로 이동 */
+  transform: translateX(2vw); /* 기존의 값보다 크게 조정하여 가운데로 이동 */
+  top: 2.3vw;
+  width: 11vw;
+  /* height: 150vh; */
+  z-index: 99999;
 }
 
 .loggedInheader:hover .subMenu {
@@ -390,7 +425,6 @@ nav {
     background-color: rgba(0, 0, 0, 0.783); /* 흰색 박스의 색상과 투명도 조절 */
     z-index: 999; /* 다른 요소 위에 표시되도록 z-index 설정 */
   }
-
   .menuOpenContent {
     position: fixed;
     top: 10vw;
@@ -416,6 +450,15 @@ nav {
     width: 110vw;
     height: 10vw;
     background-color: rgb(255, 255, 255);
+    position: fixed;
+    display: inline;
+    z-index: 9999;
+  }
+
+  .MobiledefaultHeader {
+    width: 110vw;
+    height: 10vw;
+    background-color: rgba(255, 255, 255, 0);
     position: fixed;
     display: inline;
     z-index: 9999;
@@ -481,7 +524,7 @@ nav {
     height: 6vw;
     width: 7vw;
     margin-top: 2.6vw;
-    margin-left: 60vw;
+    margin-left: 57vw;
   }
 
   .MobileloggedInli {
