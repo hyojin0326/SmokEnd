@@ -98,7 +98,7 @@ function Signup() {
         console.log("DB에 보낼 데이터:", dbData);
         
         // 서버로 데이터 전송
-        fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/join', {
+        fetch(`${import.meta.env.VITE_URL_API}/api/auth/join`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

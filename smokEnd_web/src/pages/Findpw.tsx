@@ -52,7 +52,7 @@ function Findpw() {
             return;
         }
 
-        await fetch(`https://express-e76gdpmm5q-uc.a.run.app/resetpw?email=${formData.email}`)
+        await fetch(`${import.meta.env.VITE_URL_API}/api/auth/resetpw?email=${formData.email}`)
             .then(async response => {
                 if (response.status === 200) {
                     // 성공시 동작
