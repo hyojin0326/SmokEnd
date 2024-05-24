@@ -1,5 +1,5 @@
 # 사용 가이드
-- URL까지 그냥 써 놨으니까 그대로 복사해서 수정/추가 해 주시면 됩니다
+- URL을 환경변수로 대체합니다
 - 에러 발생하면 말씀해 주세요
 <br />
 
@@ -11,7 +11,7 @@
 ### 회원가입 (method : POST | Functions : api | endpoint : /api/auth/join)
 ```
 // 서버로 데이터 전송
-    fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/join', {
+    fetch(`${import.meta.env.VITE_URL_API}/api/auth/join`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -47,7 +47,7 @@
 ### 로그인 (method : POST | Functions : api | endpoint : /api/auth/w/login)
 - 헤더에 표시되는 사용자의 이름과 마일리지 + 관리자 여부를 쿠키로 저장합니다
 ```
-await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/login', {
+await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -126,7 +126,7 @@ const handleLogout = async () => {
       return;
     }
 
-    await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/logout', {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ const handleQuit = async () => {
       return;
     }
 
-    await fetch(`https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/delete/${sessionId}`, {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/delete/${sessionId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -201,7 +201,7 @@ const handleQuit = async () => {
 
 ### 비밀번호 찾기 (method : GET | Functions : api | endpoint : /api/auth/resetpw)
 ```
-await fetch(`https://api-e76gdpmm5q-uc.a.run.app/api/auth/resetpw?email=${formData.email}`)
+await fetch(`${import.meta.env.VITE_URL_API}/api/auth/resetpw?email=${formData.email}`)
             .then(async response => {
                 if (response.status === 200) {
                     // 성공시 동작
