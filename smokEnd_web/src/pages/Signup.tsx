@@ -98,7 +98,7 @@ function Signup() {
         console.log("DB에 보낼 데이터:", dbData);
         
         // 서버로 데이터 전송
-        fetch('https://express-e76gdpmm5q-uc.a.run.app/signup', {
+        fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/join', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -107,18 +107,15 @@ function Signup() {
         })
             .then(response => {
                 if(response.status === 201) {
-
                     // 회원가입이 정상적으로 이루어진 경우의 동작
                     console.log(response.text());
-                    window.location.href = '/';
+                    window.location.href = '/login';
             
                   } else if(response.status === 500) {
-            
                     // 회원가입이 정상적으로 이루어지지 않은 경우의 동작
                     console.log(response.text());
             
                   } else {
-            
                     // 여기 있는거 실행되면 매우 큰 문제가 있는거임
                     console.log('???');
                     
@@ -143,7 +140,7 @@ function Signup() {
                             <input className={styles.input} type="text" name="email" value={email} onChange={onChange} placeholder="이메일을 입력하세요" required />
                             {emailError && <p className={styles.Error}>{emailError}</p>}
                             <p>비밀번호</p>
-                            <input className={styles.input} type="password" name="password" value={password} onChange={onChange} required />
+                            <input className={styles.input} type="password" name="password" value={password} onChange={onChange} placeholder="6자 이상 입력하세요."required />
                             {passwordCheckError && <p className={styles.Error}>{passwordCheckError}</p>}
                             <p>비밀번호 확인</p>
                             <input className={styles.input} type="password" name="passwordCheck" value={passwordCheck} onChange={onChange} required />

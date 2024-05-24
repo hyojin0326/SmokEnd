@@ -61,7 +61,7 @@ function Signin() {
             return;
         }
 
-        await fetch('https://express-e76gdpmm5q-uc.a.run.app/w/login', {
+        await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ function Signin() {
                 window.location.href = '/';
                 return resData;
 
-            } else if (response.status === 403) {
+            } else if (response.status === 401) {
                 // 이메일 인증 안함 OR 비밀번호 다름
                 const resData = await response.text();
                 setResponse(resData);
@@ -114,8 +114,10 @@ function Signin() {
                     const now = new Date();
                     const expirationDate = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
                     document.cookie = `sessionId=${result.sessionId}; expires=${expirationDate.toUTCString()};`;
+                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage, isAdmin:result.isAdmin})}; expires=${expirationDate.toUTCString()};`;
                 } else {
                     document.cookie = `sessionId=${result.sessionId}`;
+                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage, isAdmin:result.isAdmin})}`
                 }
             } else {
                 // 로그인 실패시 동작
