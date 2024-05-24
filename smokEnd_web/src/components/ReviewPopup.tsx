@@ -8,8 +8,14 @@ function ReviewPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState([star, star, star, star, star]);
   const [text, setText] = useState("");
+  const isMobile = window.innerWidth <= 768;
 
   const togglePopup = () => {
+    if (!isOpen) {
+      // 팝업을 열 때 초기화 -> 나중에 초기화 지우기 -> 디비로 넘어가고
+      setStars([star, star, star, star, star]);
+      setText("");
+    }
     setIsOpen(!isOpen);
   };
 
@@ -18,13 +24,16 @@ function ReviewPopup() {
     setStars(newStars);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
     console.log(
       "만족도 별 갯수:",
       stars.filter((starImg) => starImg === star2).length
     );
     console.log("상세 글:", text);
+    setIsOpen(false); // 팝업창 닫기
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,10 +42,14 @@ function ReviewPopup() {
 
   return (
     <div>
-      <button onClick={togglePopup}>팝업 열기</button>
+      <button onClick={togglePopup}>리뷰 쓰기</button>
       {isOpen && (
-        <div className={styles["popup-background"]}>
-          <div className={styles["popup-content"]}>
+        <div className={styles["popup-background"]} onClick={togglePopup}>
+          <div
+            className={styles["popup-content"]}
+            // 팝업 내부 클릭시 이벤트 전파 막기
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className={styles.bigbigBox}>
               <div className={styles.bigBox}>
                 <div className={styles.p}>상세 사진</div>
@@ -66,12 +79,15 @@ function ReviewPopup() {
                     onChange={handleTextChange}
                   />
                 </div>
-                <button type="submit" className={styles.butcss}>
+                <button
+                  type="button"
+                  className={styles.butcss}
+                  onClick={handleSubmit}
+                >
                   작성하기
                 </button>
               </div>
             </div>
-            <button onClick={togglePopup}>닫기</button>
           </div>
         </div>
       )}
