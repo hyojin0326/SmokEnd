@@ -49,6 +49,7 @@ interface FormData {
 
     accountName: string;
     accountNumber: string;
+    paymentMethod: string;
 }
 interface AgreementCheckboxes {
     one: boolean;
@@ -99,12 +100,14 @@ function Purchase() {
         address: '',
         addressDetail: '',
         accountName: '',
-        accountNumber: ''
+        accountNumber: '',
+        //디비값 아님
+        paymentMethod: ''
     });
     const { orderName, orderPhone, orderPassword, passwordCheck,
         shippingName, shippingPhone, shippingRequest,
         addressZonecode, address, addressDetail,
-        accountName, accountNumber
+        accountName, accountNumber, paymentMethod
     } = formData;
 
     const handleAddressButtonClick = () => {
@@ -222,13 +225,18 @@ function Purchase() {
         }
         if (selectedOption === "신용/체크카드" && selectedPayment === "") {
             alert("결제할 카드를 선택해주세요.");
+            return;
         }
         if (selectedOption === "무통장 입금" && selectedPayment === "") {
             alert("결제할 은행을 선택해주세요.");
+            return;
         }
 
-        if (allAgreement == false)
+        if (allAgreement == false){
             alert("팔수 약관 동의를 선택해주세요.");
+            return;
+        }
+            
 
         //서버 기능
 
@@ -261,7 +269,7 @@ function Purchase() {
                                         <label className={styles.checkbox}><input type="checkbox" className={styles.input_check} onClick={sameInfo} />  주문자 정보와 동일</label>
                                         <p className={styles.label}><span>이름</span><input type="text" className={styles.input} name="shippingName" value={shippingName} onChange={onChange} placeholder="이름을 입력해주세요." required></input></p>
                                         <p className={styles.label}><span>연락처</span><input type="text" className={styles.input} name="shippingPhone" value={shippingPhone} onChange={onChange} placeholder='"-" 없이 입력해 주세요' required></input></p>
-                                        <p className={styles.label}><span>주소</span><input type="text" className={styles.input_address} name="addressZonecode" value={addressZonecode} placeholder="우편번호" required></input><div className={styles.input_address_button} onClick={handleAddressButtonClick}>주소찾기</div></p>
+                                        <div className={styles.label}><span>주소</span><input type="text" className={styles.input_address} name="addressZonecode" value={addressZonecode} placeholder="우편번호" readOnly required></input><div className={styles.input_address_button} onClick={handleAddressButtonClick}>주소찾기</div></div>
                                         {showPostcode && (
                                             <div className={styles.modalBackground} onClick={handleModalBackgroundClick}>
                                                 <div className={styles.modalContent}>
@@ -271,7 +279,7 @@ function Purchase() {
                                                 </div>
                                             </div>
                                         )}
-                                        <p className={styles.label}><span></span><input type="text" className={styles.input} name="address" value={address} placeholder="주소" required></input></p>
+                                        <p className={styles.label}><span></span><input type="text" className={styles.input} name="address" value={address} placeholder="주소" readOnly required></input></p>
                                         <p className={styles.label}><span></span><input type="text" className={styles.input} name="addressDetail" value={addressDetail} placeholder="상세주소" onChange={onChange} required></input></p>
                                         <p className={styles.label}><span>요청사항</span>
                                             <select className={styles.select} name="shippingRequest" value={shippingRequest} onChange={onChangeSelect} required>
@@ -291,7 +299,7 @@ function Purchase() {
                                     <div>
                                         <p className={styles.name}>결제수단</p>
                                         <div className={styles.underline} />
-                                        <label style={{ fontSize: isMobile ? '3vw' : '1.2vw' , paddingTop: isMobile? '2vw':'', paddingBottom: isMobile? '2vw':''}}><input type="radio" id="pay" name="pay" checked />일반결제</label>
+                                        <label style={{ fontSize: isMobile ? '3vw' : '1.2vw' , paddingTop: isMobile? '2vw':'', paddingBottom: isMobile? '2vw':''}}><input type="radio" id="pay" name="pay"  defaultChecked />일반결제</label>
                                         <div className={styles.payment}>
                                             <div className={styles.payment_select}>
                                                 <div
@@ -345,8 +353,8 @@ function Purchase() {
                                                             <p style={{ color: "blue", fontSize: isMobile ? '2.2vw' : '1vw'}}>법인카드 결제 시 일시불만 가능</p>
                                                             <p style={{ fontSize: isMobile ? '2vw' : '0.8vw' }}>무이자 할부 안내</p>
                                                         </div>
-                                                        <select className={styles.select_payment} value="일시불">
-                                                            <option value="01">일시불</option>
+                                                        <select className={styles.select_payment} value={paymentMethod} onChange={onChangeSelect}>
+                                                            <option value="일시불">일시불</option>
                                                         </select>
                                                     </div>
                                                 )}
@@ -386,9 +394,9 @@ function Purchase() {
                                                                 <li style={{ paddingBottom: isMobile ? '1vw' : '0.5vw' }}>계좌로 환불이 어려운 경우, 사유에 따라 계좌정보 변경 후 다시 환불 신청하실 수 있습니다.</li>
                                                             </ul>
                                                             <div className={styles.mobileBank}>
-                                                            <p className={styles.label}><span>은행명</span><input type="text" className={styles.input} style={{ color: "8f8f8f" }} name="payment" value={selectedPayment} required></input></p>
+                                                            <p className={styles.label}><span>은행명</span><input type="text" className={styles.input} style={{ color: "8f8f8f" }} name="payment" value={selectedPayment} readOnly required></input></p>
                                                             <p className={styles.label}><span>계좌번호</span><input type="text" className={styles.input} name="accountNumber" value={accountNumber} onChange={onChange} placeholder='"-"없이 입력해 주세요.' required></input></p>
-                                                            <p className={styles.label}><span>예금주명</span><input type="text" className={styles.input_address} name="accountName" value={accountName} onChange={onChange} placeholder={isMobile? '':'예금주 명을 입력해 주세요.'} required></input><div className={styles.input_address_button} onClick={handleAccountButtonClick}>계좌확인</div></p>
+                                                            <div className={styles.label}><span>예금주명</span><input type="text" className={styles.input_address} name="accountName" value={accountName} onChange={onChange} placeholder={isMobile? '':'예금주 명을 입력해 주세요.'} required></input><div className={styles.input_address_button} onClick={handleAccountButtonClick}>계좌확인</div></div>
                                                             </div>
                                                         </div>
 
