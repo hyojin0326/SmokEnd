@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "../styles/Header.module.css";
 import { Link } from "react-router-dom";
 import menu from "../assets/mobile_menu.png";
@@ -8,6 +9,7 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
+  const isAboutPage = location.pathname === "/Introduction";
 
   // //쿠키여부에 따라 로그인 헤더 변경
   // const getCookie = (name: string): string | undefined => {
@@ -25,7 +27,7 @@ function Header() {
   // useEffect(() => {
   //   setCookie("exampleCookie", "someValue", 7); // 7일 동안 유효한 쿠키 설정
   //   const sessionId = getCookie("exampleCookie");
-  //   // setIsLoggedIn(!!sessionId); 
+  //   // setIsLoggedIn(!!sessionId);
   //   if(sessionId===undefined){
   //     setIsLoggedIn(false);
   //   }
@@ -48,7 +50,9 @@ function Header() {
 
   const loggedInHeader = (
     <nav>
-      <div className={styles.loggedInheader}>
+      <div
+        className={isAboutPage ? styles.defaultHeader : styles.loggedInheader}
+      >
         <div className={styles.loggedInheaderleft}>
           <div className={styles.loggedInlogo}>
             Smok<div className={styles.loggedInlogo2}>E</div>nd
@@ -145,7 +149,11 @@ function Header() {
 
   const MobileloggedInHeader = (
     <nav>
-      <div className={styles.MobileloggedInHeader}>
+      <div
+        className={
+          isAboutPage ? styles.MobiledefaultHeader : styles.MobileloggedInHeader
+        }
+      >
         <div className={styles.menu} onClick={handleMenuClick}>
           <img src={menu} />
         </div>
@@ -294,9 +302,9 @@ function Header() {
               <div className={styles.box}>
                 <div className={styles.linkContainer4}>
                   <a className={styles.loggedOuta2} onClick={handleLogin}>
-                    <Link to="/login" className={styles.Link1}>
-                      Login
-                    </Link>
+                    {/* <Link to="/login" className={styles.Link1}> */}
+                    Login
+                    {/* </Link> */}
                   </a>
                 </div>
               </div>
@@ -366,9 +374,9 @@ function Header() {
                       className={styles.MobileloggedInli4}
                       onClick={handleLogin}
                     >
-                      <Link to="/login" className={styles.Link}>
-                        Login
-                      </Link>
+                      {/* <Link to="/login" className={styles.Link}> */}
+                      Login
+                      {/* </Link> */}
                     </p>
                   </div>
                 </div>
