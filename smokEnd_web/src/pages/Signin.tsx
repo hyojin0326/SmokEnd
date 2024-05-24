@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import styles from "../styles/Signin.module.css";
 import styled from "styled-components";
 import NaverLogo from "../assets/logo/naverLogo.jpeg";
@@ -61,7 +62,7 @@ function Signin() {
             return;
         }
 
-        await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/login', {
+        await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -133,7 +134,7 @@ function Signin() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-
+    
     return (
         <>
             <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
