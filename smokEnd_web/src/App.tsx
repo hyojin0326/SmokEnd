@@ -3,7 +3,7 @@ import Main from "./pages/Main";
 import Signin from "./pages/Signin";
 import Findpw from "./pages/Findpw";
 import Signup from "./pages/Signup";
-import Review from "./pages/Review";
+import ReviewPopup from "./components/ReviewPopup";
 import Introduction from "./pages/Introduction";
 import SelfAssessment from "./pages/SelfAssessment";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -95,7 +95,7 @@ function App() {
             }
           />
           <Route path="/mileagePurchase" element={<Purchase_P />} />
-          <Route path="/Review" element={<Review />} />
+          <Route path="/ReviewPopup" element={<ReviewPopup />} />
           <Route path="/SmokeText" element={<SmokeText />} />
           <Route path="/Introduction" element={<Introduction />} />
         </Routes>
