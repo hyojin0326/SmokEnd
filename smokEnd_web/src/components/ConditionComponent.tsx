@@ -41,8 +41,8 @@ function ConditionComponent() {
         <>
             <div className={styles.Content}>
                 <div className={styles.top} />
-                <p className={styles.title}>흡연에 대한 나의 상식점검 평가</p>
-                <p className={styles.description}>흡연에 대해 어떻게 생각하고 계신가요? 우리가 잘못알고 있던 담배, 오해하고 있는 흡연에 관한 상식 문제입니다. 나도 모르고 있던 나의 흡연에 대한 생각을 아래 설문을 통해 평가해보시기 바랍니다. 다음 각 문항 중 맞다고 생각되는 곳(O 혹은 X)에 체크를 해주시기 바랍니다.</p>
+                <p className={styles.title}>나의 신체 상태 진단</p>
+                {/* <p className={styles.description}>흡연에 대해 어떻게 생각하고 계신가요? 우리가 잘못알고 있던 담배, 오해하고 있는 흡연에 관한 상식 문제입니다. 나도 모르고 있던 나의 흡연에 대한 생각을 아래 설문을 통해 평가해보시기 바랍니다. 다음 각 문항 중 맞다고 생각되는 곳(O 혹은 X)에 체크를 해주시기 바랍니다.</p> */}
                 <p className={styles.note}>* 전체 질문에 답변을 체크해야 결과를 볼 수 있습니다.</p>
 
                 <table>

@@ -19,6 +19,7 @@ import Purchase from "./pages/Purchase";
 import Purchase_P from "./pages/Purchase_P";
 
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
+import NoSmokingArea from "./pages/NosmokingAreas";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -49,6 +50,7 @@ function App() {
           <Route path="/Review" element={<><Header/><Review /></>} />
           <Route path="/SmokeText" element={<><Header/><SmokeText /></>} />
           <Route path="/Introduction" element={<><Header/><Introduction /></>} />
+          <Route path="/noSmokingArea" element={<><Header/><NoSmokingArea /></>} />
         </Routes>
       </Router>
     </>
