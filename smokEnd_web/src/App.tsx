@@ -3,7 +3,7 @@ import Main from "./pages/Main";
 import Signin from "./pages/Signin";
 import Findpw from "./pages/Findpw";
 import Signup from "./pages/Signup";
-import Review from "./pages/Review";
+import ReviewPopup from "./components/ReviewPopup";
 import Introduction from "./pages/Introduction";
 import SelfAssessment from "./pages/SelfAssessment";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -27,28 +27,77 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+// const router = createBrowserRouter([
+//   {
+//     path:"/",
+//     element:<Main/>,
+//     children:[
+//       {
+//         path:"",
+//         element:<Main/>,
+//       }
+//     ]
+//   },
+//   {
+//     path:"/login",
+//     element:<Signin/>
+//   },
+//   {
+//     path:"/signup",
+//     element:<Signup/>
+//   }
+// ])
 function App() {
   return (
     <>
       <GlobalStyles />
       <Router>
         <Routes>
-          <Route path="/" element={<><Header /><Main /></>}/>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Main />
+              </>
+            }
+          />
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw />} />
-
-          <Route path="/selfAssessment/*" element={ <><Header/><SelfAssessment /></>}/>
-            <Route path="nicotine"element={<><NicotineComponent /></>}/>
-            <Route path="habit" element={<HabitComponent />} />
-            <Route path="knowledge" element={<KnowledgeComponent />} />
-            <Route path="condition" element={<ConditionComponent />} />
-            <Route path="result" element={<SelfAssessmentResult />} />
-          <Route path="/purchase"element={<><Header /><Purchase /></>}/>
-          <Route path="/mileagePurchase" element={<><Header/><Purchase_P /></>} />
-          <Route path="/Review" element={<><Header/><Review /></>} />
-          <Route path="/SmokeText" element={<><Header/><SmokeText /></>} />
-          <Route path="/Introduction" element={<><Header/><Introduction /></>} />
+          <Route
+            path="/selfAssessment/*"
+            element={
+              <>
+                <SelfAssessment />
+              </>
+            }
+          />
+          <Route
+            path="nicotine"
+            element={
+              <>
+                <NicotineComponent />
+              </>
+            }
+          />
+          <Route path="habit" element={<HabitComponent />} />
+          <Route path="knowledge" element={<KnowledgeComponent />} />
+          <Route path="condition" element={<ConditionComponent />} />
+          <Route path="result" element={<SelfAssessmentResult />} />
+          <Route
+            path="/purchase"
+            element={
+              <>
+                <Header />
+                <Purchase />
+              </>
+            }
+          />
+          <Route path="/mileagePurchase" element={<Purchase_P />} />
+          <Route path="/ReviewPopup" element={<ReviewPopup />} />
+          <Route path="/SmokeText" element={<SmokeText />} />
+          <Route path="/Introduction" element={<Introduction />} />
         </Routes>
       </Router>
     </>

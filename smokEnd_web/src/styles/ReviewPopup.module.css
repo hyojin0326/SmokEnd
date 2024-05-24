@@ -1,3 +1,32 @@
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* * {
+  box-sizing: border-box;
+} */
+
+.popup-content {
+  position: fixed;
+  /* top: 27vw;
+  left: 48vw; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(170, 81, 248);
+  padding: 3vw;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2vw 0px rgba(0, 0, 0, 0.5);
+}
+
 .bigbigBox {
   display: flex;
   flex-direction: column;
@@ -5,21 +34,21 @@
 }
 
 .bigBox {
-  padding-top: 4vw;
-  padding-bottom: 4vw;
+  /* padding-top: 4vw;
+  padding-bottom: 4vw; */
 }
 
 .p {
   font-family: "NanumSquareRoundB";
   font-size: 1.2vw;
   color: rgb(33, 33, 33);
-  margin-top: 2vw;
+  margin-top: 1vw;
 }
 
 .textarea {
   margin-top: 1vw;
-  width: 50vw;
-  height: 20vw;
+  width: 30vw;
+  height: 10vw;
   font-family: "NanumSquareRoundB";
   padding: 1vw;
   border: 0.1vw solid #ccc;
@@ -30,8 +59,8 @@
 .pick {
   margin-top: 1vw;
   padding: 1vw;
-  width: 50vw;
-  height: 20vw;
+  width: 30vw;
+  height: 10vw;
   background-color: rgb(188, 188, 188);
   border-radius: 1vw;
   font-family: "NanumSquareRoundB";
@@ -44,9 +73,9 @@
 }
 
 .butcss {
-  margin-top: 3vw;
+  margin-top: 1vw;
   padding: 1vw;
-  width: 52.2vw;
+  width: 32.2vw;
   height: 3vw;
 
   border-radius: 0.5vw;
@@ -62,9 +91,9 @@
 }
 
 .butcss:hover {
-  margin-top: 3vw;
+  margin-top: 1vw;
   padding: 1vw;
-  width: 52.2vw;
+  width: 32.2vw;
   height: 3vw;
   border: 0.1vw solid rgb(0, 0, 0);
 
