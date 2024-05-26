@@ -9,7 +9,7 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
-  const isAboutPage = location.pathname === "/Introduction";
+  const isAboutPage = location.pathname === "/introduction";
   const [response, setResponse] = useState("");
 
   useEffect(() => {
