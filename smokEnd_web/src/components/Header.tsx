@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Header.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import menu from "../assets/mobile_menu.png";
 import menuWhite from "../assets/mobile_menu_white.png";
 
@@ -9,7 +9,6 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
   const isAboutPage = location.pathname === "/Introduction";
   const [response, setResponse] = useState("");
 
@@ -47,7 +46,7 @@ function Header() {
       return;
     }
 
-    await fetch("https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/logout", {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
