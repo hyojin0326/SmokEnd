@@ -40,7 +40,7 @@ function Header() {
       return;
     }
 
-    await fetch('https://api-e76gdpmm5q-uc.a.run.app/api/auth/w/logout', {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
