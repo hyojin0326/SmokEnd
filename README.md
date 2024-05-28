@@ -221,3 +221,61 @@ await fetch(`${import.meta.env.VITE_URL_API}/api/auth/resetpw?email=${formData.e
                 }
             });
 ```
+<br />
+
+## 데이터 가져오기
+### 보건소 데이터 가져오기
+- ```/api/get/location/강원/강릉시```같은 형식으로 요청하는 겁니다
+- 서버는 요렇게 생긴 데이터(가 담긴 배열)를 반환해 줍니다
+```
+[
+    {
+        "name":"강릉시보건소",
+        "address":"강원 강릉시 남부로17번길 38 강릉시보건소",
+        "geo":{"_latitude":37.7428443073466,"_longitude":128.88276932466}
+    }
+]
+```
+- 참고로 지금은 강원도지역의 데이터만 가져올 수 있습니다. 데이터를 직접 찾아서 넣어야 하는데 지역이 많아서 다른거까지 다 넣기엔 빡셉니다
+<br />
+
+코드
+```
+const [locationData, setLocationData] = useState([]);
+const getLocation = async () => {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/get/location/${selectedRegion}/${selectedDistrict}`)
+      .then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json();
+            setLocationData(resData);
+
+        } else if(response.status === 404) { // 저장된거 없음
+
+            const resData = await response.text();
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+
+참고로 전 이렇게 참조를 했습니다
+```
+<h2>응답 데이터</h2>
+{locationData && locationData.map((it, index) => (
+<div key={index}>
+  <p>이름 : {it.name} </p>
+  <p>주소 : {it.address} </p>
+  <p>좌표 : {it.geo._latitude}, {it.geo._longitude} </p>
+</div>
+))}<br />
+```
+
