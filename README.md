@@ -405,3 +405,60 @@ const handle = async () => {
     </div>
 ))}<br />
 ```
+<br />
+
+### 니코틴 의존도 검사 (method : POST | Functions : api | endpoint : /api/diagnosis/nicotine)
+- 위와 마찬가지로, 기존에 만드신 state를 그대로 씁니다
+- 서버는 다음과 같은 JSON 데이터를 반환합니다. <b>배열 아니니까 주의합시다</b>
+```
+{
+    title: '높은 의존도' || '중간 정도의 의존도' || '낮은 의존도'
+    value: 그 의존도에 대한 설명(사이트에 있던거 그대로 가져다 씀)
+}
+```
+```
+const [response, setResponse] = useState('');
+const [selectedAnswers, setSelectedAnswers] = useState({ // 다 더하면 0점 ~ 10점 사이의 값이 됩니다
+    q1: 1,
+    q2: 1,
+    q3: 0,
+    q4: 0,
+    q5: 0,
+    q6: 0,
+});
+const handle = async () => {
+    let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니 비 로그인시의 동작입니다
+
+    await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/nicotine`, {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionId,
+                selectedAnswers: selectedAnswers
+            })
+    }).then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json(); // 데이터가 json형태로 답깁니다
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+참조는 이렇게 합니다
+```
+타이틀 : response.title
+설명 : response.value
+```
