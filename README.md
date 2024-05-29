@@ -340,4 +340,68 @@ const getItem = async () => {
 ```
 
 ## 자가진단
-- 제작중
+### 흡연에 대한 상식 점검 (method : POST | Functions : api | endpoint : /api/diagnosis/knowledge)
+- 기존에 만들어 두신 state를 그대로 사용합니다
+- 서버는 다음과 같은 데이터(배열)를 반환합니다
+```
+[
+    {
+        no : 문제번호입니다
+        answer : 내가 쓴 답이 정답인지 오답인지를 표시합니다. (정답/오답 의 데이터를 가집니다)
+        description : 그 문제에 대한 설명입니다
+    }
+]
+```
+```
+const [response, setResponse] = useState('');
+  
+  const [selectedAnswers, setSelectedAnswers] = useState({ //1이 정답, 2가 오답이라고 생각하겠습니다
+    q1: 1,q2: 1, q3: 1, q4: 1, q5: 1,
+    q6: 1,q7: 1, q8: 1, q9: 1, q10: 1,
+    q11: 1,q12: 1, q13: 1, q14: 1, q15: 1,
+    q16: 1,q17: 1, q18: 1, q19: 1, q20: 1,
+    q21: 1,q22: 1, q23: 1, q24: 1, q25: 1
+});
+
+const handle = async () => {
+    let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니 비 로그인시의 동작입니다
+
+    await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/knowledge`, {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionId,
+                selectedAnswers: selectedAnswers // state그대로 집어 넣으시는 겁니다
+            })
+    }).then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json(); // 데이터가 json형태로 답깁니다
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+참조는 다음과 같이 했습니다
+```
+<h2>응답 내용</h2>
+{response && response.map((it, index) => (
+    <div key={index}>
+      <p>번호 : {it.no} </p>
+      <p>정답 : {it.answer} </p>
+      <p>설명 : {it.description}</p>
+    </div>
+))}<br />
+```
