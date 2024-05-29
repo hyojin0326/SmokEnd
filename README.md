@@ -1,6 +1,9 @@
 # 사용 가이드
 - URL을 환경변수로 대체합니다
 - 에러 발생하면 말씀해 주세요
+
+Q. 서버에서 데이터 받아오는데 시간이 너무 오래걸려요
+A. 서버 코드에 await가 많아서 그런가 싶긴 한데, 해결하려고 노력중이니까 기다려주세요
 <br />
 
 # 뭐 바꿈
@@ -224,7 +227,7 @@ await fetch(`${import.meta.env.VITE_URL_API}/api/auth/resetpw?email=${formData.e
 <br />
 
 ## 데이터 가져오기
-### 보건소 데이터 가져오기
+### 보건소 데이터 가져오기 (method : GET | Functions : api | endpoint : /api/get/location/:city/:district)
 - ```/api/get/location/강원/강릉시```같은 형식으로 요청하는 겁니다
 - 서버는 요렇게 생긴 데이터(가 담긴 배열)를 반환해 줍니다
 ```
@@ -278,4 +281,63 @@ const getLocation = async () => {
 </div>
 ))}<br />
 ```
+<br />
 
+### 판매 상품 데이터 가져오기 (method : GET | Functions : api | endpoint : /api/get/item)
+- 금연관련상품들, 알약이나 금연껌 같은 상품들 입니다
+- 다음과 같은 데이터를 가져옵니다
+```
+[
+    {
+        "id" : 구분용 아이디입니다. 1,2,3,4,5 같은 식으로 되어 있습니다
+        "image" : 상품 이미지입니다.
+        "name" : 이름입니다
+        "price" : 현금가격입니다
+        "m_price" : 마일리지 가격입니다
+        "url" : 그 상품 팔고있는 페이지입니다(쿠팡)
+    }
+]
+```
+```
+const [itemData, setItemData] = useState([]);
+const getItem = async () => {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/get/item`)
+      .then(async response => {
+
+        if (response.status === 200) { // 성공
+            
+            const resData = await response.json(); // item데이터가 json형태로 담깁니다
+            setItemData(resData);
+            setResponse('ok');
+
+        } else if(response.status === 404) { // 저장된거 없음
+
+            const resData = await response.text();
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      });
+  };
+```
+
+참고로 전 이렇게 참조를 했습니다
+```
+{itemData.map(item => (
+      <div key={item.id} className="card">
+        <img src={item.image} alt={item.name} />
+        <div>
+          <h3>{item.name}</h3>
+          <p>ID: {item.id}</p>
+          <p>가격: {item.price}</p>
+          <p>마일리지 가격: {item.m_price}</p>
+        </div>
+      </div>
+))}
+```
+
+## 자가진단
+- 제작중
