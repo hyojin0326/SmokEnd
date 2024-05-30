@@ -428,11 +428,11 @@ function Header() {
             <li className={styles.li}>
               <div className={styles.box}>
                 <div className={styles.linkContainer4}>
-                  <p className={styles.loggedOuta2} onClick={handleLogin}>
+                  <div className={styles.loggedOuta2} onClick={handleLogin}>
                     <Link to="/login" className={styles.Link1}>
                       Login
                     </Link>
-                  </p>
+                  </div>
                 </div>
               </div>
             </li>
@@ -497,14 +497,14 @@ function Header() {
                   <p className={styles.MobileloggedInli2}>나의 신체상태 진단</p>
                   <br />
                   <div>
-                    <p
+                    <div
                       className={styles.MobileloggedInli4}
                       onClick={handleLogin}
                     >
                       <Link to="/login" className={styles.Link}>
                         Login
                       </Link>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
