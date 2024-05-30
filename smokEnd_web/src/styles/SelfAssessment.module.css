@@ -1,5 +1,5 @@
 .content {
-  width: 80vw;
+  width: 70vw;
   margin: 0 auto;
   padding-top: 83px;
 }
@@ -48,6 +48,10 @@
   color: white;
 }
 @media (max-width: 768px) {
+  .content {
+    width: 80vw;
+  }
+  
   .pageName {
     font-size: 8.2vw;
   }

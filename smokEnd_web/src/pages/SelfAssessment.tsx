@@ -1,15 +1,23 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import styles from "../styles/SelfAssessment.module.css";
 import NicotineComponent from "../components/NicotineComponent";
 import HabitComponent from "../components/HabitComponent";
 import KnowledgeComponent from "../components/KnowledgeComponent";
 import ConditionComponent from "../components/ConditionComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelfAssessmentResult from "../components/SelfAssessmentResult";
 
 function SelfAssessment() {
+    const location = useLocation();
     const [activeTab, setActiveTab] = useState("");
 
+    useEffect(() => {
+        // Get the current path and set the active tab based on it
+        const currentPath = location.pathname.split("/").pop() || "";
+        setActiveTab(currentPath);
+    }, [location]);
+
+    
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
     };
