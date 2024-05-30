@@ -9,6 +9,7 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [slideIn, setSlideIn] = useState(false);
   const isAboutPage = location.pathname === "/introduction";
   const [response, setResponse] = useState("");
 
@@ -25,8 +26,22 @@ function Header() {
     }
   }, []);
 
+  // const handleMenuClick = () => {
+  //   setMenuOpen(!menuOpen);
+  // };
+
   const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
+    //메뉴를 닫는 경우
+    if (menuOpen) {
+      setSlideIn(false);
+      setTimeout(() => {
+        setMenuOpen(false);
+      }, 500); // 애니메이션 지속 시간 (0.5초)와 일치시킵니다.
+    } else {
+      //메뉴를 여는 경우
+      setMenuOpen(true);
+      setSlideIn(true);
+    }
   };
 
   const handleLogin = () => {
@@ -84,7 +99,7 @@ function Header() {
     if (!isLoggedIn) {
       alert("로그인이 필요한 서비스입니다.");
       //navigate쓰려했는데 왜 안되지
-      // window.location.href = '/login';
+      window.location.href = '/login';
     } else {
       // 로그인한 경우 수행할 작업
     }
@@ -249,7 +264,7 @@ function Header() {
               className={styles.menuOpenBackground}
               onClick={handleMenuClick}
             >
-              <div className={styles.menuOpenContent}>
+              <div className={ slideIn ? styles.menuOpenContent : styles.menuCloseContent }>
                 <div className={styles.MobileBox}>
                   <p className={styles.MobileloggedInli}>소개</p>
                   <br />
@@ -356,7 +371,7 @@ function Header() {
                       <p
                         className={styles.loggedInli}
                       >
-                        <Link to="/introduction" className={styles.Link}>
+                        <Link to="/introduction" style={{ color: "white" }} className={styles.Link}>
                           SmokEnd 소개
                         </Link>
                       </p>
@@ -373,7 +388,7 @@ function Header() {
                         className={styles.loggedInli}
                         onClick={handleProtectedClick}
                       >
-                        <Link to="/noSmokingArea" className={styles.Link}>
+                        <Link to="/noSmokingArea" style={{ color: "white" }} className={styles.Link}>
                           금연 지도
                         </Link>
 
@@ -433,7 +448,7 @@ function Header() {
                       >
                         <Link
                           to="/selfAssessment/nicotine"
-                          className={styles.Link}
+                          className={styles.Link1}
                         >
                           니코틴 의존도 진단
                         </Link>
@@ -445,7 +460,7 @@ function Header() {
                       >
                         <Link
                           to="/selfAssessment/habit"
-                          className={styles.Link}
+                          className={styles.Link1}
                         >
                           나의 흡연습관 평가
                         </Link>
@@ -457,7 +472,7 @@ function Header() {
                       >
                         <Link
                           to="/selfAssessment/knowledge"
-                          className={styles.Link}
+                          className={styles.Link1}
                         >
                           흡연 상식 점검
                         </Link>
@@ -469,7 +484,7 @@ function Header() {
                       >
                         <Link
                           to="/selfAssessment/condition"
-                          className={styles.Link}
+                          className={styles.Link1}
                         >
                           나의 신체상태 진단
                         </Link>
@@ -509,13 +524,13 @@ function Header() {
           </Link>
           `
         </div>
-        {menuOpen && (
+        { menuOpen && (
           <>
             <div
               className={styles.menuOpenBackground}
               onClick={handleMenuClick}
             >
-              <div className={styles.menuOpenContent}>
+             <div className={ slideIn ? styles.menuOpenContent : styles.menuCloseContent }>
                 <div className={styles.MobileBox}>
                   <p className={styles.MobileloggedInli}>소개</p>
                   <br />

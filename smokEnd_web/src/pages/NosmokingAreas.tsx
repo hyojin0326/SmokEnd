@@ -36,6 +36,7 @@ const districts: Districts = {
 };
 
 function NoSmokingArea() {
+    const isMobile = window.innerWidth <= 768;
     const [markerData, setMarkerData] = useState<MarkerData>({ name: "", lat: 0, lng: 0 });
     const [selectedRegion, setSelectedRegion] = useState<string>('');
     const [selectedDistrict, setSelectedDistrict] = useState<string>('');
@@ -182,8 +183,8 @@ function NoSmokingArea() {
                         <div className={styles.box} style={{ marginRight: "2vw" }}>
                             <div className={styles.one}>
                                 <p>고창군 보건소 값있음</p>
-                                <p style={{ fontSize: "1vw" }}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
-                                <p style={{ fontSize: "1vw" }}>연락처: 063-560-8742</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w'}}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 063-560-8742</p>
                             </div>
                             <div className={styles.two}>
                                 <div className={styles.findMap} onClick={handleMarker("고창군 보건소", 35.4358216, 126.7020806)}><span>지도찾기</span> <span>&gt;</span></div>
@@ -192,8 +193,8 @@ function NoSmokingArea() {
                         <div className={styles.box} style={{ marginLeft: "2vw" }}>
                             <div className={styles.one}>
                                 <p>고창군 보건소 다른값</p>
-                                <p style={{ fontSize: "1vw" }}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
-                                <p style={{ fontSize: "1vw" }}>연락처: 063-560-8742</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 063-560-8742</p>
                             </div>
                             <div className={styles.two}>
                                 <div className={styles.findMap} onClick={handleMarker("다른값", 33.450701, 126.570667)}><span>지도찾기</span> <span>&gt;</span></div>

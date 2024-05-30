@@ -439,7 +439,17 @@ nav {
     box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
     animation: slideIn 0.5s forwards;
   }
-
+  .menuCloseContent {
+    position: fixed;
+    top: 10vw;
+    right: -0.5vw;
+    width: 70vw;
+    height: 190vw;
+    background-color: white;
+    z-index: 1000; /* 흰색 박스 위에 위치하도록 설정 */
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    animation: slideOut 0.5s forwards;
+  }
   @keyframes slideIn {
     from {
       right: -70vw;
@@ -448,7 +458,15 @@ nav {
       right: -0.5vw;
     }
   }
-
+  @keyframes slideOut {
+    from {
+      right: -0.5vw;
+    }
+    to {
+      right: -70vw;
+    }
+  }
+  
   .MobileloggedInHeader {
     width: 110vw;
     height: 10vw;
