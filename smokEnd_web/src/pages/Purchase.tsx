@@ -423,12 +423,12 @@ function Purchase() {
                                         </div>
                                         <div className={styles.underline} />
                                         <div className={styles.orderPay}>
-                                            <p>상품금액<span>2,000P</span></p>
-                                            <p>배송비 <span style={{ color: "green" }}>0P</span></p>
+                                            <p>상품금액<span>2,000원</span></p>
+                                            <p>배송비 <span style={{ color: "green" }}>0원</span></p>
                                         </div>
                                         <div className={styles.underline} />
                                         <div className={styles.orderTotal}>
-                                            <p>총 결제금액<span>2,000P</span></p>
+                                            <p>총 결제금액<span>2,000원</span></p>
                                         </div>
                                         <button className={styles.button}>결제하기</button>
                                     </div>

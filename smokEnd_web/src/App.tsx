@@ -20,6 +20,7 @@ import Purchase_P from "./pages/Purchase_P";
 
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
 import NoSmokingArea from "./pages/NosmokingAreas";
+import ScrollToTop from "./components/ScrollToTop";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -33,6 +34,7 @@ function App() {
     <>
       <GlobalStyles />
       <Router>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<><Header /><Main /></>}/>
           <Route path="/login" element={<Signin />} />

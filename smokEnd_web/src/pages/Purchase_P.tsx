@@ -226,7 +226,7 @@ function Purchase() {
                                             <Orderinfo_img style={{ backgroundImage: `url(${product})` }} />
                                             <div className={styles.orderInfo_info}>
                                                 <p className={styles.top_text}>자체 제작 담배 케이스</p>
-                                                <p className={styles.bottom_text}>2,000 원 / 1개</p>
+                                                <p className={styles.bottom_text}>2,000 P / 1개</p>
                                             </div>
                                         </div>
                                         <div className={styles.underline} />
