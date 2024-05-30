@@ -223,7 +223,6 @@ function Header() {
           </div>
         </div>
       </div>
-      <div></div>
     </nav>
   );
 
@@ -290,12 +289,12 @@ function Header() {
                     <a className={styles.MobileloggedInli4}>DUDIN</a>
                     <a className={styles.MobileloggedInli3}>29 p</a>
                     <a className={styles.MobileloggedInli3}>/</a>
-                    <a
+                    <p
                       className={styles.MobileloggedInli3}
                       onClick={handleLogout}
                     >
                       LOGOUT
-                    </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -350,18 +349,18 @@ function Header() {
                         className={styles.loggedInli}
                         onClick={handleProtectedClick}
                       >
-                        {/* <Link to="/SmokeText" className={styles.Link1}> */}
-                        흡연의 위험성
-                        {/* </Link> */}
+                        <Link to="/SmokeText" className={styles.Link1}>
+                          흡연의 위험성
+                        </Link>
                       </p>
                       <br />
                       <p
                         className={styles.loggedInli}
                         onClick={handleProtectedClick}
                       >
-                        {/* <Link to="/SmokeText" className={styles.Link1}> */}
-                        금연의 필요성
-                        {/* </Link> */}
+                        <Link to="/SmokeText" className={styles.Link1}>
+                          금연의 필요성
+                        </Link>
                       </p>
                     </div>
                   </div>
@@ -429,11 +428,11 @@ function Header() {
             <li className={styles.li}>
               <div className={styles.box}>
                 <div className={styles.linkContainer4}>
-                  <a className={styles.loggedOuta2} onClick={handleLogin}>
+                  <p className={styles.loggedOuta2} onClick={handleLogin}>
                     <Link to="/login" className={styles.Link1}>
                       Login
                     </Link>
-                  </a>
+                  </p>
                 </div>
               </div>
             </li>

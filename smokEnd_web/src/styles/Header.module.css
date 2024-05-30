@@ -1,11 +1,14 @@
 .Link {
   color: black;
   text-decoration: none;
+  font-family: "NanumSquareRoundR";
 }
 .Link1 {
   color: rgb(255, 255, 255);
   text-decoration: none;
+  font-family: "NanumSquareRoundR";
 }
+
 /*로그아웃 해더*/
 .loggedOutheader {
   width: 100vw;
