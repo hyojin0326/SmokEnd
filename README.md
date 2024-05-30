@@ -2,7 +2,7 @@
 - URL을 환경변수로 대체합니다
 - 에러 발생하면 말씀해 주세요
 
-Q. 서버에서 데이터 받아오는데 시간이 너무 오래걸려요
+Q. 서버에서 데이터 받아오는데 시간이 너무 오래걸려요 <br />
 A. 서버 코드에 await가 많아서 그런가 싶긴 한데, 해결하려고 노력중이니까 기다려주세요
 <br />
 
@@ -366,7 +366,7 @@ const [response, setResponse] = useState('');
 const handle = async () => {
     let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
-    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니 비 로그인시의 동작입니다
+    if(!sessionId) sessionId=''; //  자가진단이 로그인을 강제할 이유는 없으니, 비 로그인시에는 빈 값을 전달합니다
 
     await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/knowledge`, {
         method: 'POST',
@@ -429,9 +429,66 @@ const [selectedAnswers, setSelectedAnswers] = useState({ // 다 더하면 0점 ~
 const handle = async () => {
     let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
-    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니 비 로그인시의 동작입니다
+    if(!sessionId) sessionId=''; //  자가진단이 로그인을 강제할 이유는 없으니, 비 로그인시에는 빈 값을 전달합니다
 
     await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/nicotine`, {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionId,
+                selectedAnswers: selectedAnswers
+            })
+    }).then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json(); // 데이터가 json형태로 답깁니다
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+참조는 이렇게 합니다
+```
+타이틀 : response.title
+설명 : response.value
+```
+<br />
+
+### 나의 흡연 습관 평가 (method : POST | Functions : api | endpoint : /api/diagnosis/habit)
+- 위의 니코틴 의존도 검사와 조금도 다르지 않습니다
+- 서버는 다음과 같은 JSON 데이터를 반환합니다. <b>배열 아니니까 주의합시다</b>
+```
+{
+    title: "A유형/무슨무슨유형"
+    value: "대충 그 유형에 대한 설명"
+}
+```
+```
+const [response, setResponse] = useState('');
+  
+const [selectedAnswers, setSelectedAnswers] = useState({
+    q1: 0,q2: 0,q3: 0,q4: 0,q5: 0,q6: 0,
+    q7: 0,q8: 0,q9: 0,q10: 0,q11: 0,q12: 0,
+    q13: 0,q14: 0,q15: 0,q16: 0,q17: 0,q18: 0,
+    q19: 0,q20: 0,q21: 0
+});
+
+const handle = async () => {
+    let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니, 비 로그인시에는 빈 값을 전달합니다
+
+    await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/habit`, {
         method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
