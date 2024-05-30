@@ -1,6 +1,9 @@
 # 사용 가이드
 - URL을 환경변수로 대체합니다
 - 에러 발생하면 말씀해 주세요
+
+Q. 서버에서 데이터 받아오는데 시간이 너무 오래걸려요
+A. 서버 코드에 await가 많아서 그런가 싶긴 한데, 해결하려고 노력중이니까 기다려주세요
 <br />
 
 # 뭐 바꿈
@@ -220,4 +223,242 @@ await fetch(`${import.meta.env.VITE_URL_API}/api/auth/resetpw?email=${formData.e
                     console.log("서버 에러");
                 }
             });
+```
+<br />
+
+## 데이터 가져오기
+### 보건소 데이터 가져오기 (method : GET | Functions : api | endpoint : /api/get/location/:city/:district)
+- ```/api/get/location/강원/강릉시```같은 형식으로 요청하는 겁니다
+- 서버는 요렇게 생긴 데이터(가 담긴 배열)를 반환해 줍니다
+```
+[
+    {
+        "name":"강릉시보건소",
+        "address":"강원 강릉시 남부로17번길 38 강릉시보건소",
+        "geo":{"_latitude":37.7428443073466,"_longitude":128.88276932466}
+    }
+]
+```
+- 참고로 지금은 강원도지역의 데이터만 가져올 수 있습니다. 데이터를 직접 찾아서 넣어야 하는데 지역이 많아서 다른거까지 다 넣기엔 빡셉니다
+<br />
+
+코드
+```
+const [locationData, setLocationData] = useState([]);
+const getLocation = async () => {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/get/location/${selectedRegion}/${selectedDistrict}`)
+      .then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json();
+            setLocationData(resData);
+
+        } else if(response.status === 404) { // 저장된거 없음
+
+            const resData = await response.text();
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+
+참고로 전 이렇게 참조를 했습니다
+```
+<h2>응답 데이터</h2>
+{locationData && locationData.map((it, index) => (
+<div key={index}>
+  <p>이름 : {it.name} </p>
+  <p>주소 : {it.address} </p>
+  <p>좌표 : {it.geo._latitude}, {it.geo._longitude} </p>
+</div>
+))}<br />
+```
+<br />
+
+### 판매 상품 데이터 가져오기 (method : GET | Functions : api | endpoint : /api/get/item)
+- 금연관련상품들, 알약이나 금연껌 같은 상품들 입니다
+- 다음과 같은 데이터를 가져옵니다
+```
+[
+    {
+        "id" : 구분용 아이디입니다. 1,2,3,4,5 같은 식으로 되어 있습니다
+        "image" : 상품 이미지입니다.
+        "name" : 이름입니다
+        "price" : 현금가격입니다
+        "m_price" : 마일리지 가격입니다
+        "url" : 그 상품 팔고있는 페이지입니다(쿠팡)
+    }
+]
+```
+```
+const [itemData, setItemData] = useState([]);
+const getItem = async () => {
+    await fetch(`${import.meta.env.VITE_URL_API}/api/get/item`)
+      .then(async response => {
+
+        if (response.status === 200) { // 성공
+            
+            const resData = await response.json(); // item데이터가 json형태로 담깁니다
+            setItemData(resData);
+            setResponse('ok');
+
+        } else if(response.status === 404) { // 저장된거 없음
+
+            const resData = await response.text();
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      });
+  };
+```
+
+참고로 전 이렇게 참조를 했습니다
+```
+{itemData.map(item => (
+      <div key={item.id} className="card">
+        <img src={item.image} alt={item.name} />
+        <div>
+          <h3>{item.name}</h3>
+          <p>ID: {item.id}</p>
+          <p>가격: {item.price}</p>
+          <p>마일리지 가격: {item.m_price}</p>
+        </div>
+      </div>
+))}
+```
+
+## 자가진단
+### 흡연에 대한 상식 점검 (method : POST | Functions : api | endpoint : /api/diagnosis/knowledge)
+- 기존에 만들어 두신 state를 그대로 사용합니다
+- 서버는 다음과 같은 데이터(배열)를 반환합니다
+```
+[
+    {
+        no : 문제번호입니다
+        answer : 내가 쓴 답이 정답인지 오답인지를 표시합니다. (정답/오답 의 데이터를 가집니다)
+        description : 그 문제에 대한 설명입니다
+    }
+]
+```
+```
+const [response, setResponse] = useState('');
+  
+  const [selectedAnswers, setSelectedAnswers] = useState({ //1이 정답, 2가 오답이라고 생각하겠습니다
+    q1: 1,q2: 1, q3: 1, q4: 1, q5: 1,
+    q6: 1,q7: 1, q8: 1, q9: 1, q10: 1,
+    q11: 1,q12: 1, q13: 1, q14: 1, q15: 1,
+    q16: 1,q17: 1, q18: 1, q19: 1, q20: 1,
+    q21: 1,q22: 1, q23: 1, q24: 1, q25: 1
+});
+
+const handle = async () => {
+    let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니 비 로그인시의 동작입니다
+
+    await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/knowledge`, {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionId,
+                selectedAnswers: selectedAnswers // state그대로 집어 넣으시는 겁니다
+            })
+    }).then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json(); // 데이터가 json형태로 답깁니다
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+참조는 다음과 같이 했습니다
+```
+<h2>응답 내용</h2>
+{response && response.map((it, index) => (
+    <div key={index}>
+      <p>번호 : {it.no} </p>
+      <p>정답 : {it.answer} </p>
+      <p>설명 : {it.description}</p>
+    </div>
+))}<br />
+```
+<br />
+
+### 니코틴 의존도 검사 (method : POST | Functions : api | endpoint : /api/diagnosis/nicotine)
+- 위와 마찬가지로, 기존에 만드신 state를 그대로 씁니다
+- 서버는 다음과 같은 JSON 데이터를 반환합니다. <b>배열 아니니까 주의합시다</b>
+```
+{
+    title: '높은 의존도' || '중간 정도의 의존도' || '낮은 의존도'
+    value: 그 의존도에 대한 설명(사이트에 있던거 그대로 가져다 씀)
+}
+```
+```
+const [response, setResponse] = useState('');
+const [selectedAnswers, setSelectedAnswers] = useState({ // 다 더하면 0점 ~ 10점 사이의 값이 됩니다
+    q1: 1,
+    q2: 1,
+    q3: 0,
+    q4: 0,
+    q5: 0,
+    q6: 0,
+});
+const handle = async () => {
+    let sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+    if(!sessionId) sessionId=''; // 자가진단이 로그인을 강제할 이유는 없으니 비 로그인시의 동작입니다
+
+    await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/nicotine`, {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: sessionId,
+                selectedAnswers: selectedAnswers
+            })
+    }).then(async response => {
+        if (response.status === 200) { // 성공
+
+            const resData = await response.json(); // 데이터가 json형태로 답깁니다
+            setResponse(resData);
+
+        } else if(response.status === 500) { // 서버 에러
+
+            const resData = await response.text();
+            setResponse(resData);
+        }
+      })
+      .catch(error => {
+        console.log('fetch에러');
+      });
+  };
+```
+참조는 이렇게 합니다
+```
+타이틀 : response.title
+설명 : response.value
 ```

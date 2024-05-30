@@ -1,3 +1,13 @@
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.innerContainer {
+  width: 70vw;
+}
+
 .bigBox {
   padding-top: 7vw;
 }
@@ -17,7 +27,6 @@
 
 .container {
   display: flex;
-  margin-left: 15vw;
 }
 
 .box {
@@ -64,7 +73,6 @@
   overflow: auto;
   border: 0.1vw solid rgb(255, 255, 255);
   padding: 1vw;
-  margin-left: 16vw;
   margin-top: 1vw;
   margin-bottom: 1vw;
 }
@@ -72,8 +80,6 @@
 .textBox {
   width: 65vw; /* 원하는 너비로 조정 */
   max-height: 60vw; /* 원하는 높이로 조정 */
-  /* background-color: aqua; */
-  /* 다음 세 속성 추가 */
   overflow-y: auto;
 }
 
@@ -119,11 +125,10 @@
 
 .post {
   margin-top: 1vw;
-  /* background-color: aqua; */
 }
 
 .but {
-  margin-left: 77vw;
+  margin-left: 60vw;
 }
 
 .noButtonStyle {
@@ -146,6 +151,16 @@
 }
 
 @media (max-width: 768px) {
+  .outerContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .innerContainer {
+    width: 80vw;
+  }
+
   .box.active {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
@@ -174,7 +189,6 @@
 
   .container {
     display: flex;
-    margin-left: 15vw;
   }
 
   .box {
@@ -221,7 +235,6 @@
     overflow: auto;
     border: 0.1vw solid rgb(255, 255, 255);
     padding: 1vw;
-    margin-left: 9vw;
     margin-top: 1vw;
     margin-bottom: 1vw;
   }
