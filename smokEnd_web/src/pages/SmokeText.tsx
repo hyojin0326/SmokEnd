@@ -104,30 +104,33 @@ const SmokeText: React.FC = () => {
   return (
     <>
       <Header />
-      <div className={styles.bigBox}>
-        <p className={styles.pageName}>담배</p>
-        <p className={styles.p}>담배에 대해 얼마나 아십니까?</p>
-      </div>
-      <div className={styles.container}>
-        <div
-          className={`${styles.box} ${
-            selectedTab === "흡연의 중요성" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("흡연의 중요성")}
-        >
-          <div className={styles.text}>흡연의 중요성</div>
+      <div className={styles.outerContainer}>
+        <div className={styles.innerContainer}>
+          <div className={styles.bigBox}>
+            <p className={styles.pageName}>담배</p>
+            <p className={styles.p}>담배에 대해 얼마나 아십니까?</p>
+          </div>
+          <div className={styles.container}>
+            <div
+              className={`${styles.box} ${
+                selectedTab === "흡연의 중요성" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("흡연의 중요성")}
+            >
+              <div className={styles.text}>흡연의 중요성</div>
+            </div>
+            <div
+              className={`${styles.box} ${
+                selectedTab === "금연의 필요성" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("금연의 필요성")}
+            >
+              <div className={styles.text}>금연의 필요성</div>
+            </div>
+          </div>
+          <TabContent />
         </div>
-        <div
-          className={`${styles.box} ${
-            selectedTab === "금연의 필요성" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("금연의 필요성")}
-        >
-          <div className={styles.text}>금연의 필요성</div>
-        </div>
       </div>
-
-      <TabContent />
     </>
   );
 };

@@ -29,46 +29,53 @@ function Header() {
     setMenuOpen(!menuOpen);
   };
 
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   const handleLogout = async () => {
     // 쿠키에 저장된 값을 참조하는 겁니다. 꼭 있어야 합니다.
-    const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
-    
-    if (!sessionId) { // 로그인이 필요함을 알려주시면 됩니다
-      setResponse('로그인이 필요합니다');
+    const sessionId = document.cookie.replace(
+      /(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+
+    if (!sessionId) {
+      // 로그인이 필요함을 알려주시면 됩니다
+      setResponse("로그인이 필요합니다");
       return;
     }
 
     await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/logout`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ sessionId })
-    })
-      .then(async response => {
-        if (response.status === 200) { // 로그아웃 완료
+      body: JSON.stringify({ sessionId }),
+    }).then(async (response) => {
+      if (response.status === 200) {
+        // 로그아웃 완료
 
-            document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // 쿠키를 삭제합니다
-            document.cookie = 'userStats=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-            const resData = await response.text();
-            setResponse(resData); // response에 메세지가 담깁니다
-            setIsLoggedIn(false);
-            alert("로그아웃 성공");
-            window.location.href = "/";
-
-        } else if(response.status === 401) { // 세션이 유효하지 않은 경우입니다
-
-            const resData = await response.text();
-            setResponse(resData); // response에 메세지가 담깁니다
-            console.log("실패: 세션이 유효하지않음");
-
-        } else if(response.status === 500) { // 서버 문제 입니다
-          
-            const resData = await response.text();
-            setResponse(resData); // response에 메세지가 담깁니다
-            console.log("실패: 서버오류");
-        }
-      })
+        document.cookie = "sessionId=; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // 쿠키를 삭제합니다
+        document.cookie = "userStats=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        const resData = await response.text();
+        setResponse(resData); // response에 메세지가 담깁니다
+        console.log("로그아웃:", resData);
+        setIsLoggedIn(false);
+        alert("로그아웃 성공");
+        window.location.href = "/";
+      } else if (response.status === 401) {
+        // 세션이 유효하지 않은 경우입니다
+        const resData = await response.text();
+        setResponse(resData); // response에 메세지가 담깁니다
+        console.log("로그아웃 실패(세션 유효):", resData);
+      } else if (response.status === 500) {
+        // 서버 문제 입니다
+        const resData = await response.text();
+        setResponse(resData); // response에 메세지가 담깁니다
+        console.log("로그아웃 실패(서버):", resData);
+      }
+    });
   };
 
   //로그인 안한 상태일때 헤더부분의 내용을 클릭시
@@ -216,7 +223,6 @@ function Header() {
           </div>
         </div>
       </div>
-      <div></div>
     </nav>
   );
 
@@ -283,12 +289,12 @@ function Header() {
                     <a className={styles.MobileloggedInli4}>DUDIN</a>
                     <a className={styles.MobileloggedInli3}>29 p</a>
                     <a className={styles.MobileloggedInli3}>/</a>
-                    <a
+                    <p
                       className={styles.MobileloggedInli3}
                       onClick={handleLogout}
                     >
                       LOGOUT
-                    </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -343,18 +349,18 @@ function Header() {
                         className={styles.loggedInli}
                         onClick={handleProtectedClick}
                       >
-                        {/* <Link to="/SmokeText" className={styles.Link1}> */}
-                        흡연의 위험성
-                        {/* </Link> */}
+                        <Link to="/SmokeText" className={styles.Link1}>
+                          흡연의 위험성
+                        </Link>
                       </p>
                       <br />
                       <p
                         className={styles.loggedInli}
                         onClick={handleProtectedClick}
                       >
-                        {/* <Link to="/SmokeText" className={styles.Link1}> */}
-                        금연의 필요성
-                        {/* </Link> */}
+                        <Link to="/SmokeText" className={styles.Link1}>
+                          금연의 필요성
+                        </Link>
                       </p>
                     </div>
                   </div>
@@ -422,11 +428,11 @@ function Header() {
             <li className={styles.li}>
               <div className={styles.box}>
                 <div className={styles.linkContainer4}>
-                  <a className={styles.loggedOuta2}>
+                  <p className={styles.loggedOuta2} onClick={handleLogin}>
                     <Link to="/login" className={styles.Link1}>
                       Login
                     </Link>
-                  </a>
+                  </p>
                 </div>
               </div>
             </li>
@@ -493,6 +499,7 @@ function Header() {
                   <div>
                     <p
                       className={styles.MobileloggedInli4}
+                      onClick={handleLogin}
                     >
                       <Link to="/login" className={styles.Link}>
                         Login
