@@ -355,7 +355,7 @@ const getItem = async () => {
 ```
 const [response, setResponse] = useState('');
   
-  const [selectedAnswers, setSelectedAnswers] = useState({ //1이 정답, 2가 오답이라고 생각하겠습니다
+  const [selectedAnswers, setSelectedAnswers] = useState({ //1이 O, 2가 X라고 생각하겠습니다
     q1: 1,q2: 1, q3: 1, q4: 1, q5: 1,
     q6: 1,q7: 1, q8: 1, q9: 1, q10: 1,
     q11: 1,q12: 1, q13: 1, q14: 1, q15: 1,
