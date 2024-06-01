@@ -40,7 +40,7 @@ function SelfAssessment() {
                         className={`${styles.box} ${activeTab === "habit" ? styles.active : ""}`}
                         onClick={() => handleTabClick("habit")}
                     >
-                        <p>흡엽습관 평가</p>
+                        <p>흡연습관 평가</p>
                     </Link>
                     <Link
                         to="knowledge"

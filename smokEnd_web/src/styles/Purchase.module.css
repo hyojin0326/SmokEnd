@@ -1,7 +1,7 @@
 .content {
     width: 70vw;
     margin: 0 auto;
-    padding-top: 83px;
+    padding-top: 7vw;
 }
 
 .pageName {
@@ -309,6 +309,7 @@
 @media (max-width: 768px) {
     .content {
         width: 100vw;
+        padding-top: 15vw;
     }
 
     .pageName {
