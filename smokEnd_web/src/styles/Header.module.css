@@ -7,6 +7,7 @@
   color: rgb(255, 255, 255);
   text-decoration: none;
   font-family: "NanumSquareRoundR";
+  margin-bottom: 2vw;
 }
 
 /*로그아웃 해더*/
@@ -72,6 +73,7 @@
   font-family: "NanumSquareRoundB";
   cursor: pointer;
   margin-left: 5vw;
+  display: inline;
 }
 
 .loggedOutText {
@@ -373,6 +375,7 @@ a {
   /* color: black; */
   /* margin-left: 1vw; */
   font-family: "NanumSquareRoundB";
+  display: inline;
 }
 
 .li {
