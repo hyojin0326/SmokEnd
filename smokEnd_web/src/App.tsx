@@ -21,6 +21,7 @@ import Purchase_P from "./pages/Purchase_P";
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
 import NoSmokingArea from "./pages/NosmokingAreas";
 import ScrollToTop from "./components/ScrollToTop";
+import Test from "./pages/Test";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -37,6 +38,7 @@ function App() {
       <ScrollToTop />
         <Routes>
           <Route path="/" element={<><Header /><Main /></>}/>
+          {/* <Route path="/" element={<><Test /></>}/> */}
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw />} />
