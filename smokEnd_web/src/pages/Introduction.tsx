@@ -73,6 +73,7 @@ function Introduction() {
             </div>
           </div>
         </div>
+
         <div className={styles.background}>
           <img
             src={background2}
@@ -88,66 +89,98 @@ function Introduction() {
               ref={phoneRef2}
             />
             <div className={styles.leftBox}>
+              <div className={styles.Fname}>함께, </div>
+              <br />
+              <div className={styles.Grey}>
+                <div className={styles.logo}>
+                  Smok<div className={styles.logo2}>E</div>nd
+                </div>
+                <p className={styles.p}>는 금연을 필요로하는</p>
+                <br />
+                <br />
+                <p className={styles.p}>
+                  흡연자를 위한 앱과 웹페이지, 스마트 담배갑
+                </p>
+                <br />
+                <br />
+                <p className={styles.p}>
+                  그리고 건강하고 새로운 시작을 지원합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.container}>
+          <div className={styles.background}>
+            {/* <img
+              src={background2}
+              alt="background2"
+              className={styles.backgroundImage2}
+            /> */}
+            <div className={styles.phone1}>
+              <img
+                src={phone1}
+                alt="phone1"
+                className={styles.phoneImage}
+                onLoad={() => setPhone1Loaded(true)}
+                ref={phoneRef1}
+              />
+              <div className={styles.rightBox}>
+                <div className={styles.Fname}>조금씩, 하지만 확실하게.</div>
+                <br />
+                <div className={styles.Grey}>
+                  <p className={styles.p}>선택한 기간동안의 하루 목표치를</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>평소 내가 피우던 양에 기반하여</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>자동으로 설정합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.background}>
+        <img
+          src={background2}
+          alt="background2"
+          className={styles.backgroundImage2}
+        />
+        <div className={styles.phone2}>
+          <img
+            src={phone2}
+            alt="phone2"
+            className={styles.phoneImage2}
+            onLoad={() => setPhone2Loaded(true)}
+            ref={phoneRef2}
+          />
+          <div className={styles.leftBox}>
+            <div className={styles.Fname}>함께, </div>
+            <br />
+            <div className={styles.Grey}>
               <div className={styles.logo}>
                 Smok<div className={styles.logo2}>E</div>nd
               </div>
               <p className={styles.p}>는 금연을 필요로하는</p>
               <br />
               <br />
-              <p className={styles.p}>흡연자를 위한 앱과 웹페이지,</p>
-              <br />
-              <br />
-              <p className={styles.p}>그리고 스마트 담배갑을 제공합니다.</p>
-              <img
-                src={caseImage}
-                alt="case"
-                className={styles.caseImage}
-                ref={caseRef}
-              />
-              <div className={styles.rightTextContainer}>
-                <div className={styles.additionalText}>
-                  <div className={styles.logo}>
-                    Smok<div className={styles.logo2}>E</div>nd
-                  </div>
-                  <p className={styles.p}> 케이스와 함께</p>
-                  <br />
-                  <br />
-                  <p className={styles.p}>
-                    앱에서 금연 플래너를 만들어 보세요.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.lastBackground}>
-          <div className={styles.phone3}>
-            <img src={phone3} alt="phone3" className={styles.phoneImage3} />
-            <div className={styles.rightBox}>
               <p className={styles.p}>
-                플래너를 잘 지켜 받은 포인트로 랭킹에 올라,
+                흡연자를 위한 앱과 웹페이지, 스마트 담배갑
               </p>
               <br />
               <br />
-              <div className={styles.p}>
-                마일리지를 획득하세요 <div className={styles.redP}>: )</div>
-              </div>
-            </div>
-          </div>
-          <img src={web} className={styles.web} />
-          <div className={styles.leftTextContainer}>
-            <div className={styles.additionalText}>
-              <div className={styles.logo}>
-                Smok<div className={styles.logo2}>E</div>nd
-              </div>
-              <p className={styles.p}> 마일리지는</p>
-              <br />
-              <br />
-              <p className={styles.p}>웹에서 사용 가능합니다 &gt;_0</p>
+              <p className={styles.p}>
+                그리고 건강하고 새로운 시작을 지원합니다.
+              </p>
             </div>
           </div>
         </div>
       </div>
+
       <div className={styles.centerCircleContainer}>
         <img src={circle} className={styles.circle} />
       </div>

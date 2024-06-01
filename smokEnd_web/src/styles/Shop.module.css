@@ -1,0 +1,245 @@
+/* 더미 데이터 컨테이너 */
+.dummyDataContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 더미 데이터 아이템 */
+.dummyDataItem {
+  margin: 0vw 1.5vw; /* 상하 2vw, 좌우 2.5vw */
+}
+
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.innerContainer {
+  width: 70vw;
+}
+
+.bigBox {
+  padding-top: 7vw;
+}
+
+.pageName {
+  font-family: "Tenada";
+  font-size: 3.2vw;
+  text-align: center;
+}
+
+.p {
+  font-family: "NanumSquareRoundL";
+  font-size: 1.2vw;
+  text-align: center;
+  color: rgb(66, 66, 66);
+}
+
+.smokShopContainer {
+  background-color: #e7e7e7;
+  width: 70vw;
+  height: 25vw;
+  /* 마진 여기도 맞추려면 5vw로 하면 됨 */
+  margin-top: 3vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.295);
+  cursor: pointer;
+}
+
+.smokShopLeft {
+  float: left;
+  margin-top: 12vw;
+  margin-left: 8vw;
+}
+
+.text {
+  font-family: "NanumSquareRoundL";
+  font-size: 1.2vw;
+  color: rgb(66, 66, 66);
+}
+
+.logo {
+  font-family: "NanumSquareRoundB";
+  display: inline;
+  font-size: 3vw;
+  color: rgb(0, 0, 0);
+}
+
+.logo2 {
+  font-family: "NanumSquareRoundB";
+  color: red;
+  display: inline;
+}
+
+.smokShopRight {
+  float: right;
+  margin-top: 2vw;
+  margin-right: 6vw;
+}
+
+.smokShopRight img {
+  width: 16vw;
+  height: 20vw;
+}
+
+.ShopBigContainer {
+  background-color: #000000;
+  width: 14vw;
+  height: 22vw;
+  margin-top: 6vw;
+  cursor: pointer;
+}
+
+.hoverBox {
+  display: none; /* 기본적으로 숨김 */
+  position: absolute;
+  width: 14vw;
+  height: 22vw;
+  margin-bottom: 2vw;
+  background-color: rgba(0, 0, 0, 0.342);
+  /* border-radius: 10px; */
+  z-index: 9999;
+}
+
+.ShopBigContainer:hover .hoverBox {
+  display: block; /* 호버 시 나타남 */
+}
+
+.hoverCenter {
+  display: flex; /* flexbox 사용 */
+  flex-direction: column; /* 수직 배치 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  margin-top: 6vw;
+}
+
+.hoverTextBox {
+  margin-top: 1vw;
+  width: 12vw;
+  height: 3vw;
+  background-color: rgb(129, 129, 129);
+  border-radius: 30px;
+  display: flex; /* flexbox 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.hoverTextBox:hover {
+  width: 12vw;
+  height: 3vw;
+  background-color: rgba(0, 0, 0, 0.452);
+  border-radius: 30px;
+  display: flex; /* flexbox 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.hoverText {
+  font-family: "NanumSquareRoundB";
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  display: inline;
+}
+
+.ShopBigContainer:hover {
+  background-color: #000000;
+  width: 14vw;
+  height: 22vw;
+  /* margin-top: 1vw; */
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.ShopContainer {
+  background-color: #ffffff;
+  width: 14vw;
+  height: 22vw;
+  margin-top: 6vw;
+  cursor: pointer;
+}
+
+.ShopContainerimg {
+  background-color: #e7e7e7;
+  width: 14vw;
+  height: 17vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.295);
+}
+
+.ShopTextBox {
+  text-align: center;
+  margin-top: 1vw;
+}
+
+.ShopTextB {
+  font-family: "NanumSquareRoundB";
+  font-size: 1.5vw;
+  margin-bottom: 1vw;
+}
+
+.ShopTextL {
+  font-family: "NanumSquareRoundL";
+  font-size: 1vw;
+  color: rgb(66, 66, 66);
+  display: inline;
+}
+
+/* 페이지네이션 */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 4vw;
+}
+
+.pagination button {
+  background-color: #ffffff;
+  border: 0px solid #ddd;
+  color: #333;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination button.activePage {
+  background-color: #00000060;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Tenada";
+  src: url("../assets/font/Tenada.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url("../assets/font/NanumSquareRoundB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url("../assets/font/NanumSquareRoundEB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundL";
+  src: url("../assets/font/NanumSquareRoundL.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url("../assets/font/NanumSquareRoundR.ttf");
+}

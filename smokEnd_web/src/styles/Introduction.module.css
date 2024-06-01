@@ -17,7 +17,7 @@
 
 .backgroundImage2 {
   width: 100%;
-  height: 125%;
+  height: 100%;
 }
 
 .phone1 {
@@ -146,6 +146,18 @@
   position: absolute;
   bottom: 20vw;
   left: 21vw;
+}
+
+.Fname {
+  font-family: "NanumSquareRoundEB";
+  font-size: 2vw;
+}
+
+.Grey .logo {
+  color: rgb(55, 54, 54);
+}
+.Grey .p {
+  color: rgb(55, 54, 54);
 }
 
 .additionalText {
