@@ -469,7 +469,7 @@ nav {
       right: -70vw;
     }
   }
-  
+
   .MobileloggedInHeader {
     width: 110vw;
     height: 10vw;
@@ -565,9 +565,17 @@ nav {
     margin-left: 2vw;
     margin-top: 2vw;
     font-size: 4vw;
+    display: inline;
   }
 
   .MobileloggedInli4 {
+    margin-left: 6vw;
+    margin-top: 2vw;
+    font-size: 4vw;
+    display: inline;
+  }
+
+  .MobileloggedInli5 {
     margin-left: 6vw;
     margin-top: 2vw;
     font-size: 4vw;

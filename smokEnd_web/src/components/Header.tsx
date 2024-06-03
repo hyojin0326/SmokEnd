@@ -99,7 +99,7 @@ function Header() {
     if (!isLoggedIn) {
       alert("로그인이 필요한 서비스입니다.");
       //navigate쓰려했는데 왜 안되지
-      window.location.href = '/login';
+      window.location.href = "/login";
     } else {
       // 로그인한 경우 수행할 작업
     }
@@ -140,19 +140,28 @@ function Header() {
                     <div className={styles.linkContainer}>
                       <a className={styles.loggedIna}>금연</a>
                       <div className={styles.subMenu}>
-                        <p className={styles.loggedInli} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli}
+                          onClick={handleProtectedClick}
+                        >
                           <Link to="/noSmokingArea" className={styles.Link}>
                             금연 지도
                           </Link>
                         </p>
                         <br />
-                        <p className={styles.loggedInli} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli}
+                          onClick={handleProtectedClick}
+                        >
                           <Link to="/SmokeText" className={styles.Link}>
                             흡연의 위험성
                           </Link>
                         </p>
                         <br />
-                        <p className={styles.loggedInli} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli}
+                          onClick={handleProtectedClick}
+                        >
                           <Link to="/SmokeText" className={styles.Link}>
                             금연의 필요성
                           </Link>
@@ -166,9 +175,19 @@ function Header() {
                     <div className={styles.linkContainer}>
                       <a className={styles.loggedIna}>상품</a>
                       <div className={styles.subMenu}>
-                        <p className={styles.loggedInli} onClick={handleProtectedClick}>담배 케이스</p>
+                        <p
+                          className={styles.loggedInli}
+                          onClick={handleProtectedClick}
+                        >
+                          담배 케이스
+                        </p>
                         <br />
-                        <p className={styles.loggedInli} onClick={handleProtectedClick}>금연 상품</p>
+                        <p
+                          className={styles.loggedInli}
+                          onClick={handleProtectedClick}
+                        >
+                          금연 상품
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -178,7 +197,10 @@ function Header() {
                     <div className={styles.linkContainer2}>
                       <a className={styles.loggedIna}>자가진단</a>
                       <div className={styles.subMenu}>
-                        <p className={styles.loggedInli3} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli3}
+                          onClick={handleProtectedClick}
+                        >
                           <Link
                             to="/selfAssessment/nicotine"
                             className={styles.Link}
@@ -187,7 +209,10 @@ function Header() {
                           </Link>
                         </p>
                         <br />
-                        <p className={styles.loggedInli3} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli3}
+                          onClick={handleProtectedClick}
+                        >
                           <Link
                             to="/selfAssessment/habit"
                             className={styles.Link}
@@ -196,7 +221,10 @@ function Header() {
                           </Link>
                         </p>
                         <br />
-                        <p className={styles.loggedInli3} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli3}
+                          onClick={handleProtectedClick}
+                        >
                           <Link
                             to="/selfAssessment/knowledge"
                             className={styles.Link}
@@ -205,7 +233,10 @@ function Header() {
                           </Link>
                         </p>
                         <br />
-                        <p className={styles.loggedInli3} onClick={handleProtectedClick}>
+                        <p
+                          className={styles.loggedInli3}
+                          onClick={handleProtectedClick}
+                        >
                           <Link
                             to="/selfAssessment/condition"
                             className={styles.Link}
@@ -264,23 +295,44 @@ function Header() {
               className={styles.menuOpenBackground}
               onClick={handleMenuClick}
             >
-              <div className={ slideIn ? styles.menuOpenContent : styles.menuCloseContent }>
+              <div
+                className={
+                  slideIn ? styles.menuOpenContent : styles.menuCloseContent
+                }
+              >
                 <div className={styles.MobileBox}>
                   <p className={styles.MobileloggedInli}>소개</p>
                   <br />
-                  <p className={styles.MobileloggedInli2}><Link to="/introduction" className={styles.Link}>SmokEnd 소개</Link></p>
+                  <p className={styles.MobileloggedInli2}>
+                    <Link to="/introduction" className={styles.Link}>
+                      SmokEnd 소개
+                    </Link>
+                  </p>
                   <br />
                   <p className={styles.MobileloggedInli}>금연</p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}><Link to="/noSmokingArea" className={styles.Link} >금연 지도</Link></p>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
+                    <Link to="/noSmokingArea" className={styles.Link}>
+                      금연 지도
+                    </Link>
+                  </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link to="/SmokeText" className={styles.Link}>
                       흡연의 위험성
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link to="/SmokeText" className={styles.Link}>
                       금연의 필요성
                     </Link>
@@ -294,25 +346,28 @@ function Header() {
                   <br />
                   <p className={styles.MobileloggedInli}>자가진단</p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
-                    <Link
-                      to="/selfAssessment/nicotine"
-                      className={styles.Link}
-                    >
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
+                    <Link to="/selfAssessment/nicotine" className={styles.Link}>
                       니코틴 의존도 진단
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
-                    <Link
-                      to="/selfAssessment/habit"
-                      className={styles.Link}
-                    >
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
+                    <Link to="/selfAssessment/habit" className={styles.Link}>
                       나의 흡연습관 평가
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link
                       to="/selfAssessment/knowledge"
                       className={styles.Link}
@@ -321,7 +376,10 @@ function Header() {
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link
                       to="/selfAssessment/condition"
                       className={styles.Link}
@@ -331,11 +389,11 @@ function Header() {
                   </p>
                   <br />
                   <div>
-                    <a className={styles.MobileloggedInli4}>DUDIN</a>
-                    <a className={styles.MobileloggedInli3}>29 p</a>
-                    <a className={styles.MobileloggedInli3}>/</a>
+                    <p className={styles.MobileloggedInli4}>DUDIN</p>
+                    <p className={styles.MobileloggedInli3}>/</p>
+                    <p className={styles.MobileloggedInli3}>29 p</p>
                     <p
-                      className={styles.MobileloggedInli3}
+                      className={styles.MobileloggedInli5}
                       onClick={handleLogout}
                     >
                       LOGOUT
@@ -368,10 +426,12 @@ function Header() {
                   <div className={styles.linkContainer}>
                     <a className={styles.loggedOuta}>소개</a>
                     <div className={styles.logOutsubMenu}>
-                      <p
-                        className={styles.loggedInli}
-                      >
-                        <Link to="/introduction" style={{ color: "white" }} className={styles.Link}>
+                      <p className={styles.loggedInli}>
+                        <Link
+                          to="/introduction"
+                          style={{ color: "white" }}
+                          className={styles.Link}
+                        >
                           SmokEnd 소개
                         </Link>
                       </p>
@@ -388,10 +448,13 @@ function Header() {
                         className={styles.loggedInli}
                         onClick={handleProtectedClick}
                       >
-                        <Link to="/noSmokingArea" style={{ color: "white" }} className={styles.Link}>
+                        <Link
+                          to="/noSmokingArea"
+                          style={{ color: "white" }}
+                          className={styles.Link}
+                        >
                           금연 지도
                         </Link>
-
                       </p>
                       <br />
                       <p
@@ -524,29 +587,50 @@ function Header() {
           </Link>
           `
         </div>
-        { menuOpen && (
+        {menuOpen && (
           <>
             <div
               className={styles.menuOpenBackground}
               onClick={handleMenuClick}
             >
-             <div className={ slideIn ? styles.menuOpenContent : styles.menuCloseContent }>
+              <div
+                className={
+                  slideIn ? styles.menuOpenContent : styles.menuCloseContent
+                }
+              >
                 <div className={styles.MobileBox}>
                   <p className={styles.MobileloggedInli}>소개</p>
                   <br />
-                  <p className={styles.MobileloggedInli2}><Link to="/introduction" className={styles.Link}>SmokEnd 소개</Link></p>
+                  <p className={styles.MobileloggedInli2}>
+                    <Link to="/introduction" className={styles.Link}>
+                      SmokEnd 소개
+                    </Link>
+                  </p>
                   <br />
                   <p className={styles.MobileloggedInli}>금연</p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}><Link to="/noSmokingArea" className={styles.Link} >금연 지도</Link></p>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
+                    <Link to="/noSmokingArea" className={styles.Link}>
+                      금연 지도
+                    </Link>
+                  </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link to="/SmokeText" className={styles.Link}>
                       흡연의 위험성
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link to="/SmokeText" className={styles.Link}>
                       금연의 필요성
                     </Link>
@@ -560,25 +644,28 @@ function Header() {
                   <br />
                   <p className={styles.MobileloggedInli}>자가진단</p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
-                    <Link
-                      to="/selfAssessment/nicotine"
-                      className={styles.Link}
-                    >
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
+                    <Link to="/selfAssessment/nicotine" className={styles.Link}>
                       니코틴 의존도 진단
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
-                    <Link
-                      to="/selfAssessment/habit"
-                      className={styles.Link}
-                    >
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
+                    <Link to="/selfAssessment/habit" className={styles.Link}>
                       나의 흡연습관 평가
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link
                       to="/selfAssessment/knowledge"
                       className={styles.Link}
@@ -587,7 +674,10 @@ function Header() {
                     </Link>
                   </p>
                   <br />
-                  <p className={styles.MobileloggedInli2} onClick={handleProtectedClick}>
+                  <p
+                    className={styles.MobileloggedInli2}
+                    onClick={handleProtectedClick}
+                  >
                     <Link
                       to="/selfAssessment/condition"
                       className={styles.Link}
@@ -619,8 +709,8 @@ function Header() {
       ? MobileloggedInHeader
       : loggedInHeader
     : isMobile
-      ? MobileloggedOutHeader
-      : loggedOutHeader;
+    ? MobileloggedOutHeader
+    : loggedOutHeader;
 }
 
 export default Header;
