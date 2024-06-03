@@ -42,6 +42,8 @@ const ShopComponent: React.FC<ShopComponentProps> = ({
 };
 
 const Shop: React.FC = () => {
+  const isMobile = window.innerWidth <= 768;
+
   const dummyData: ShopComponentProps = {
     hoverOptions: ["현금 구매", "마일리지 구매"],
     product: {
@@ -69,14 +71,12 @@ const Shop: React.FC = () => {
         </div>
 
         <div className={styles.smokShopContainer}>
-          <div className={styles.smokShopLeft}>
+          <div className={`${styles.smokShopLeft} ${styles.reducedBr}`}>
             <div className={styles.logo}>
               Smok<div className={styles.logo2}>E</div>nd 케이스
             </div>
             <br />
-            <br />
             <div className={styles.text}>당신의 눈을 즐겁게, 폐를 건강하게</div>
-            <br />
             <div className={styles.text}>SmokEnd가 함께 합니다.</div>
           </div>
           <div className={styles.smokShopRight}>
