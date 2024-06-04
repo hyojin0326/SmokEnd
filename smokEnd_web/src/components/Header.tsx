@@ -6,6 +6,7 @@ import menuWhite from "../assets/mobile_menu_white.png";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
   const [slideIn, setSlideIn] = useState(false);
@@ -48,6 +49,11 @@ function Header() {
   };
 
   const handleLogout = async () => {
+    setIsLoading(true);
+    if(isLoading){
+      alert("로그아웃 중입니다.");
+      return;
+    }
     // 쿠키에 저장된 값을 참조하는 겁니다. 꼭 있어야 합니다.
     const sessionId = document.cookie.replace(
       /(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/,
@@ -75,7 +81,6 @@ function Header() {
         const resData = await response.text();
         setResponse(resData); // response에 메세지가 담깁니다
         console.log("로그아웃:", resData);
-        setIsLoggedIn(false);
         alert("로그아웃 성공");
         window.location.href = "/";
       } else if (response.status === 401) {
@@ -89,12 +94,13 @@ function Header() {
         setResponse(resData); // response에 메세지가 담깁니다
         console.log("로그아웃 실패(서버):", resData);
       }
+      setIsLoggedIn(false);
     });
   };
 
   //로그인 안한 상태일때 헤더부분의 내용을 클릭시
   //로그인이 필요한 서비스입니다. 띄워주고 로그인으로 이동
-  const handleProtectedClick = (event: React.MouseEvent<HTMLParagraphElement>,link:string|null) => {
+  const handleProtectedClick = (event: React.MouseEvent<HTMLParagraphElement>,link:string) => {
     event.preventDefault();
     if (!isLoggedIn) {
       alert("로그인이 필요한 서비스입니다.");
@@ -102,7 +108,7 @@ function Header() {
       window.location.href = '/login';
     } else {
       // 로그인한 경우 수행할 작업
-      window.location.href = '/selfAssessment/condition';
+      window.location.href = link;
     }
   };
 

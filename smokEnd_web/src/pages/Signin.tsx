@@ -34,6 +34,7 @@ function Signin() {
         remember_me: false,
     });
     const [response, setResponse] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const { email, password, remember_me } = formData;
     const [emailError, setEmailError] = useState<string>("");
@@ -62,6 +63,11 @@ function Signin() {
             return;
         }
 
+        setIsLoading(true);
+        if (isLoading) {
+            alert("로그인 중입니다.");
+            return;
+        }
         await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/login`, {
             method: 'POST',
             headers: {
@@ -69,6 +75,7 @@ function Signin() {
             },
             body: JSON.stringify(formData)
         }).then(async response => {
+            setIsLoading(false);
             if (response.status === 200) {
                 // 로그인 성공
                 const resData = await response.json();
@@ -115,10 +122,10 @@ function Signin() {
                     const now = new Date();
                     const expirationDate = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
                     document.cookie = `sessionId=${result.sessionId}; expires=${expirationDate.toUTCString()};`;
-                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage, isAdmin:result.isAdmin})}; expires=${expirationDate.toUTCString()};`;
+                    document.cookie = `userStats=${JSON.stringify({ name: result.name, mileage: result.mileage, isAdmin: result.isAdmin })}; expires=${expirationDate.toUTCString()};`;
                 } else {
                     document.cookie = `sessionId=${result.sessionId}`;
-                    document.cookie = `userStats=${JSON.stringify({name: result.name, mileage:result.mileage, isAdmin:result.isAdmin})}`
+                    document.cookie = `userStats=${JSON.stringify({ name: result.name, mileage: result.mileage, isAdmin: result.isAdmin })}`
                 }
             } else {
                 // 로그인 실패시 동작
@@ -134,7 +141,7 @@ function Signin() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-    
+
     return (
         <>
             <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />

@@ -54,7 +54,7 @@ function NoSmokingArea() {
         console.log('선택된 구:', selectedDistrict);
 
         if (selectedRegion === '전북' && selectedDistrict === '고창군') {
-            handleMarker("고창군 보건소", 35.4358216, 126.7020806)();
+            handleMarker("고창군 보건소", 37.584896, 126.9235712)();
         }
     };
 
@@ -187,7 +187,7 @@ function NoSmokingArea() {
                                 <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 063-560-8742</p>
                             </div>
                             <div className={styles.two}>
-                                <div className={styles.findMap} onClick={handleMarker("고창군 보건소", 35.4358216, 126.7020806)}><span>지도찾기</span> <span>&gt;</span></div>
+                                <div className={styles.findMap} onClick={handleMarker("고창군 보건소", 37.584896, 126.9235712)}><span>지도찾기</span> <span>&gt;</span></div>
                             </div>
                         </div>
                         <div className={styles.box} style={{ marginLeft: "2vw" }}>

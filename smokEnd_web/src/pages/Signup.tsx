@@ -30,6 +30,7 @@ function Signup() {
     const [emailError, setEmailError] = useState<string>("");
     const [passwordCheckError, setPasswordCheckError] = useState<string>("");
     const [birthError, setBirthError] = useState<string>("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -97,6 +98,12 @@ function Signup() {
 
         console.log("DB에 보낼 데이터:", dbData);
         
+        setIsLoading(true);
+        if (isLoading) {
+            alert("회원가입 중입니다.");
+            return;
+        }
+
         // 서버로 데이터 전송
         fetch(`${import.meta.env.VITE_URL_API}/api/auth/join`, {
             method: 'POST',
@@ -106,6 +113,7 @@ function Signup() {
             body: JSON.stringify(dbData)
         })
             .then(response => {
+                setIsLoading(false);
                 if(response.status === 201) {
                     // 회원가입이 정상적으로 이루어진 경우의 동작
                     console.log(response.text());
