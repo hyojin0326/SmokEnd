@@ -3,7 +3,7 @@ import styles from "../styles/Footer.module.css";
 
 const Footers = styled.div`
     width:100vw;
-    height:40vh;
+    height:30vh;
     background-color: black;
     display: flex;
     align-items: center;

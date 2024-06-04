@@ -255,7 +255,6 @@ function Main() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
