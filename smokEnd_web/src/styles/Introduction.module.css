@@ -1,7 +1,31 @@
-.container {
-  position: relative;
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
+  /* width: 100%; */
+}
+
+.innerContainer {
   width: 100vw;
-  height: auto;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.container {
+  /* position: relative; */
+  /* height: auto; */
+  /* width: 70vw; */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.Incontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
+  width: 100%;
 }
 
 .background {
@@ -17,13 +41,20 @@
 
 .backgroundImage2 {
   width: 100%;
-  height: 100%;
+  height: 150%;
+}
+
+.backgroundImage6 {
+  margin-top: -37%;
+  width: 100%;
+  height: 120%;
 }
 
 .phone1 {
+  width: 70vw;
   position: absolute;
   top: 15%;
-  left: -8%;
+  left: -20%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
   display: flex;
@@ -32,55 +63,120 @@
 }
 
 .phone2 {
+  width: 70vw;
   position: absolute;
   top: 13%;
-  right: 28%;
-  transform: translateX(10%);
+  right: 42%;
+  transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  /* display: flex; */
+  /* flex-direction: column;   */
+  justify-content: center;
+  align-items: center;
 }
 
 .phone3 {
+  width: 70vw;
   position: absolute;
-  top: 115vw;
-  left: -9%; /* 중앙 정렬을 위해 left를 50%로 설정 */
+  top: -18vw;
+  left: -20%; /* 중앙 정렬을 위해 left를 50%로 설정 */
   transform: translateX(50%); /* 가로 방향으로 -50%만큼 이동하여 중앙 정렬 */
   z-index: 2; /* phone1 이미지를 위에 표시 */
+  display: flex;
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
 }
 
-.web {
+.phone4 {
+  width: 70vw;
   position: absolute;
-  top: 155vw;
-  left: 65vw;
-  transform: translate(
-    -50%,
-    -50%
-  ); /* 수직, 수평 방향으로 -50%만큼 이동하여 중앙 정렬 */
-  width: 35vw; /* 적절한 크기로 조정 */
-  z-index: 1; /* .phoneImage보다 낮은 z-index 설정 */
+  top: -12vw;
+  right: 41%;
+  transform: translateX(50%);
+  z-index: 2; /* phone1 이미지를 위에 표시 */
+  /* display: flex; */
+  /* flex-direction: column;   */
+  justify-content: center;
+  align-items: center;
+}
+
+.phone5 {
+  width: 70vw;
+  position: absolute;
+  top: -75%;
+  left: -20%;
+  transform: translateX(50%);
+  z-index: 2; /* phone1 이미지를 위에 표시 */
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.phone6 {
+  width: 70vw;
+  position: absolute;
+  top: -55%;
+  right: 41%;
+  transform: translateX(50%);
+  z-index: 2; /* phone1 이미지를 위에 표시 */
+  /* display: flex; */
+  /* flex-direction: column;   */
+  justify-content: center;
+  align-items: center;
+}
+
+.web {
+  width: 70vw;
+  position: absolute;
+  top: -45%;
+  left: -22%;
+  transform: translateX(50%);
+  z-index: 2; /* phone1 이미지를 위에 표시 */
+  /* display: flex; */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.web2 {
+  width: 70vw;
+  position: absolute;
+  top: -45%;
+  left: -15%;
+  transform: translateX(50%);
+  z-index: 2; /* phone1 이미지를 위에 표시 */
+  /* display: flex; */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.webImage {
+  width: 40vw;
+  height: 41vw;
+  margin-bottom: 5vw;
 }
 
 .phoneImage {
   width: 20vw;
   height: 35vw;
-  animation: shake 2s ease-in-out 1 forwards;
+  /* animation: shake 2s ease-in-out 1 forwards; */
 }
 
 .phoneImage2 {
-  width: 18vw;
-  height: 35vw;
+  width: 19vw;
+  height: 36vw;
 }
 
 .phoneImage3 {
-  width: 18vw;
-  height: 35vw;
+  width: 19vw;
+  height: 36vw;
 }
 
-.animateUp {
-  animation: slideUp 2s ease-in-out forwards;
+.caseImage {
+  /* position: absolute; */
+  /* top: 14vw; .leftBox 아래로 이동 */
+  /* left: -4vw; */
+  width: 25vw; /* 적절한 크기로 조정 */
+  /* z-index: 1; .phoneImage보다 낮은 z-index 설정 */
 }
 
 /* 위로 슥 올라오는 애니메이션 */
@@ -114,26 +210,53 @@
 
 .rightBox {
   float: right;
-  margin-left: 9vw;
+  margin-left: 7vw;
 }
 
 .rightBox2 {
   float: right;
-  /* margin-left: 0vw; */
-  margin-top: 1vw;
+  margin-left: 7vw;
+}
+
+.rightBox5 {
+  float: right;
+  margin-left: 15vw;
+  margin-top: 20vw;
+}
+
+.rightBox3 {
+  float: right;
+  margin-left: 14vw;
+  margin-top: 20vw;
+}
+
+.rightBoxWeb {
+  float: right;
+  margin-left: 5vw;
+  margin-top: -25vw;
+  display: inline;
 }
 
 .leftBox {
   float: left;
+  margin-right: 7vw;
+}
+
+.leftBox4 {
+  float: left;
   margin-right: 15vw;
 }
 
-.caseImage {
-  position: absolute;
-  top: 14vw; /* .leftBox 아래로 이동 */
-  left: -4vw;
-  width: 25vw; /* 적절한 크기로 조정 */
-  z-index: 1; /* .phoneImage보다 낮은 z-index 설정 */
+.leftBox6 {
+  float: left;
+  margin-right: 7vw;
+  margin-top: 10vw;
+}
+
+.leftBoxWeb {
+  float: left;
+  margin-right: 5vw;
+  margin-top: 16vw;
 }
 
 .rightTextContainer {
@@ -200,12 +323,330 @@
   background-color: rgb(255, 255, 255);
 }
 
-.centerCircleContainer {
-  position: absolute;
-  top: 190vw;
+.centerCircleBigContainer {
   display: flex;
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
+}
+
+.centerCircleContainer {
+  position: absolute;
+  top: 370vw;
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  flex-direction: column; /* 수직 배치 */
+  width: 70vw;
+}
+
+.circle {
+  width: 0.5vw;
+}
+
+.circleP {
+  font-family: "NanumSquareRoundB";
+  /* display: inline; */
+  font-size: 1.8vw;
+  color: rgb(0, 0, 0);
+  /* letter-spacing: 1px; */
+}
+
+.test {
+  width: 70vw;
+  height: 50vw;
+  margin-top: 10vw;
+}
+
+@media (max-width: 768px) {
+  .outerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 */
+    /* width: 100%; */
+  }
+
+  .innerContainer {
+    width: 100vw;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .container {
+    /* position: relative; */
+    /* height: auto; */
+    /* width: 70vw; */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .Incontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 */
+    width: 100%;
+  }
+
+  .background {
+    position: relative;
+    width: 100vw;
+    height: 47vw;
+  }
+
+  .backgroundImage {
+    width: 100%;
+    height: 100%;
+  }
+
+  .backgroundImage2 {
+    width: 100%;
+    height: 150%;
+  }
+
+  .backgroundImage6 {
+    margin-top: -37%;
+    width: 100%;
+    height: 120%;
+  }
+
+  .phone1 {
+    width: 70vw;
+    position: absolute;
+    top: 15%;
+    left: -20%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .phone2 {
+    width: 70vw;
+    position: absolute;
+    top: 13%;
+    right: 42%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    /* display: flex; */
+    /* flex-direction: column;   */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone3 {
+    width: 70vw;
+    position: absolute;
+    top: -18vw;
+    left: -20%; /* 중앙 정렬을 위해 left를 50%로 설정 */
+    transform: translateX(50%); /* 가로 방향으로 -50%만큼 이동하여 중앙 정렬 */
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .phone4 {
+    width: 70vw;
+    position: absolute;
+    top: -12vw;
+    right: 41%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    /* display: flex; */
+    /* flex-direction: column;   */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone5 {
+    width: 70vw;
+    position: absolute;
+    top: -75%;
+    left: -20%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .phone6 {
+    width: 70vw;
+    position: absolute;
+    top: -55%;
+    right: 41%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    /* display: flex; */
+    /* flex-direction: column;   */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .web {
+    width: 70vw;
+    position: absolute;
+    top: -45%;
+    left: -22%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    /* display: flex; */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .web2 {
+    width: 70vw;
+    position: absolute;
+    top: -45%;
+    left: -15%;
+    transform: translateX(50%);
+    z-index: 2; /* phone1 이미지를 위에 표시 */
+    /* display: flex; */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .webImage {
+    width: 40vw;
+    height: 41vw;
+    margin-bottom: 5vw;
+  }
+
+  .phoneImage {
+    width: 20vw;
+    height: 35vw;
+    /* animation: shake 2s ease-in-out 1 forwards; */
+  }
+
+  .phoneImage2 {
+    width: 19vw;
+    height: 36vw;
+  }
+
+  .phoneImage3 {
+    width: 19vw;
+    height: 36vw;
+  }
+
+  .caseImage {
+    /* position: absolute; */
+    /* top: 14vw; .leftBox 아래로 이동 */
+    /* left: -4vw; */
+    width: 25vw; /* 적절한 크기로 조정 */
+    /* z-index: 1; .phoneImage보다 낮은 z-index 설정 */
+  }
+
+  /* 위로 슥 올라오는 애니메이션 */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* 흔들리는 애니메이션 */
+  @keyframes shake {
+    0% {
+      transform: rotate(-5deg);
+    }
+    25% {
+      transform: rotate(5deg);
+    }
+    50% {
+      transform: rotate(-5deg);
+    }
+    75% {
+      transform: rotate(5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .Fname {
+    font-family: "NanumSquareRoundEB";
+    font-size: 2vw;
+  }
+
+  .Grey .logo {
+    color: rgb(55, 54, 54);
+  }
+  .Grey .p {
+    color: rgb(55, 54, 54);
+  }
+
+  .additionalText {
+    font-family: "NanumSquareRoundB";
+    font-size: 1.5vw;
+    color: rgb(0, 0, 0);
+  }
+
+  .logo {
+    font-family: "Tenada";
+    display: inline;
+    font-size: 1.5vw;
+    color: rgb(0, 0, 0);
+  }
+
+  .logo2 {
+    font-family: "Tenada";
+    color: red;
+    display: inline;
+  }
+
+  .p {
+    font-family: "NanumSquareRoundB";
+    display: inline;
+    font-size: 1.5vw;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+  }
+
+  .redP {
+    font-family: "NanumSquareRoundB";
+    display: inline;
+    font-size: 1.5vw;
+    color: rgb(255, 1, 1);
+  }
+
+  .centerCircleBigContainer {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .centerCircleContainer {
+    position: absolute;
+    top: 370vw;
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    flex-direction: column; /* 수직 배치 */
+    width: 70vw;
+  }
+
+  .circle {
+    width: 0.5vw;
+  }
+
+  .circleP {
+    font-family: "NanumSquareRoundB";
+    /* display: inline; */
+    font-size: 1.8vw;
+    color: rgb(0, 0, 0);
+    /* letter-spacing: 1px; */
+  }
+
+  .test {
+    width: 70vw;
+    height: 50vw;
+    margin-top: 10vw;
+  }
 }
 
 @font-face {

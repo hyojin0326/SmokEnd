@@ -6,137 +6,309 @@ import Header from "../components/Header";
 import phone1 from "../assets/Introduction/phone1.png";
 import phone2 from "../assets/Introduction/phone2.png";
 import phone3 from "../assets/Introduction/phone3.png";
+import phone4 from "../assets/Introduction/phone4.png";
+import phone5 from "../assets/Introduction/phone5.png";
 import web from "../assets/Introduction/web.png";
+import web2 from "../assets/Introduction/web2.png";
 import circle from "../assets/Introduction/circle.png";
 import caseImage from "../assets/Introduction/case.png";
+import test from "../assets/Introduction/test.jpg";
 
 function Introduction() {
-  const phoneRef1 = useRef<HTMLImageElement>(document.createElement("img"));
-  const phoneRef2 = useRef<HTMLImageElement>(document.createElement("img"));
-  const caseRef = useRef<HTMLImageElement>(document.createElement("img"));
-
-  const [phone1Loaded, setPhone1Loaded] = useState(false);
-  const [phone2Loaded, setPhone2Loaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (phone1Loaded && phone2Loaded && caseRef.current) {
-        const caseImageElement = caseRef.current;
-        const caseOffsetTop = caseImageElement.offsetTop;
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-
-        // 페이지의 아래로 스크롤하여 이미지 부분으로 도달하면 애니메이션 실행
-        if (scrollTop + window.innerHeight >= caseOffsetTop) {
-          caseImageElement.classList.add(styles.animateUp);
-          phoneRef2.current.classList.add(styles.animateUp);
-        }
-      }
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [phone1Loaded, phone2Loaded]);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <>
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <img
+                src={background1}
+                alt="background1"
+                className={styles.backgroundImage}
+              />
+              <div className={styles.Incontainer}>
+                <div className={styles.phone1}>
+                  <div className={styles.logo}>
+                    Smok<div className={styles.logo2}>E</div>nd
+                  </div>
+                  <p className={styles.p}>에 오신 걸 환영 합니다.</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>지금 부터</p>
+                  <div className={styles.logo}>
+                    Smok<div className={styles.logo2}>E</div>nd
+                  </div>
+                  <p className={styles.p}>의 이야기를 시작합니다.</p>
+                </div>
+                <div>
+                  <img
+                    src={phone1}
+                    alt="phone1"
+                    className={styles.phoneImage}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <div className={styles.Incontainer}>
+                <div className={styles.phone2}>
+                  <div>
+                    <div className={styles.Fname}>함께, </div>
+                    <div>
+                      <img
+                        src={phone2}
+                        alt="phone2"
+                        className={styles.phoneImage2}
+                      />
+                    </div>
+                    <div className={styles.Grey}>
+                      <div className={styles.logo}>
+                        Smok<div className={styles.logo2}>E</div>nd
+                      </div>
+                      <p className={styles.p}>는 금연을 필요로하는</p>
+                      <br />
+                      <br />
+                      <p className={styles.p}>
+                        흡연자를 위한 앱과 웹페이지, 스마트 담배갑
+                      </p>
+                      <br />
+                      <br />
+                      <p className={styles.p}>
+                        그리고 건강하고 새로운 시작을 지원합니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <div className={styles.Incontainer}>
+                <div className={styles.phone3}>
+                  <div className={styles.Fname}>조금씩, 하지만 확실하게.</div>
+
+                  <img src={phone3} className={styles.phoneImage2} />
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>선택한 기간동안의 하루 목표치를</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>평소 내가 피우던 양에 기반하여</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>자동으로 설정합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <div className={styles.Incontainer}>
+                <div className={styles.phone4}>
+                  <div className={styles.Fname}>기록은 편하게, </div>
+                  <img src={caseImage} className={styles.caseImage} />
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>하루의 흡연 상황을</p>
+                    <br />
+                    <br />
+                    <div className={styles.logo}>
+                      Smok<div className={styles.logo2}>E</div>nd
+                    </div>
+                    <p className={styles.p}> 케이스를 통해</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>자동으로 측정/갱신합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <div className={styles.Incontainer}>
+                <div className={styles.phone5}>
+                  <div className={styles.Fname}>노력의 결실을 한 눈에.</div>
+                  <img
+                    src={phone4}
+                    alt="phone1"
+                    className={styles.phoneImage2}
+                  />
+
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>캘린더를 통해 나의</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>목표달성 현황을</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>한 눈에 확인 합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <div className={styles.Incontainer}>
+                <div className={styles.phone6}>
+                  <div className={styles.Fname}>남들 보다 더. </div>
+                  <img src={phone5} className={styles.phoneImage2} />
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>주간 랭킹을 통해 보상을 지급하여</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>
+                      금연의 또 다른 동기를 부여해 주었습니다.
+                    </p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>자동으로 측정/갱신합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.container}>
+            <div className={styles.background}>
+              <div className={styles.Incontainer}>
+                <div className={styles.phone7}>
+                  <div className={styles.Fname}>
+                    금연 성공, 마일리지로 누리는 혜택
+                  </div>
+                  <img src={web} className={styles.webImage} />{" "}
+                  <img src={web2} className={styles.webImage} />{" "}
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>목표를 달성하여 획득한</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>마일리지를 통해</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>금연에 도움이 되는 여러 상품을</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>구매할 수 있습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.centerCircleBigContainer}>
+          <div className={styles.centerCircleContainer}>
+            <img src={circle} className={styles.circle} />
+            <br />
+            <p className={styles.circleP}>
+              개발자들의 이야기가 궁금하다면 스크롤 해주세용 !
+            </p>
+            <br />
+            <img src={circle} className={styles.circle} />
+            <img src={test} className={styles.test} />
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
-      <Header />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <img
-            src={background1}
-            alt="background1"
-            className={styles.backgroundImage}
-          />
-          <div className={styles.phone1}>
-            <img
-              src={phone1}
-              alt="phone1"
-              className={styles.phoneImage}
-              onLoad={() => setPhone1Loaded(true)}
-              ref={phoneRef1}
-            />
-            <div className={styles.rightBox}>
-              <div className={styles.logo}>
-                Smok<div className={styles.logo2}>E</div>nd
-              </div>
-              <p className={styles.p}>에 오신 걸 환영 합니다.</p>
-              <br />
-              <br />
-              <p className={styles.p}>지금 부터</p>
-              <div className={styles.logo}>
-                Smok<div className={styles.logo2}>E</div>nd
-              </div>
-              <p className={styles.p}>의 이야기를 시작합니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.background}>
-          <img
-            src={background2}
-            alt="background2"
-            className={styles.backgroundImage2}
-          />
-          <div className={styles.phone2}>
-            <img
-              src={phone2}
-              alt="phone2"
-              className={styles.phoneImage2}
-              onLoad={() => setPhone2Loaded(true)}
-              ref={phoneRef2}
-            />
-            <div className={styles.leftBox}>
-              <div className={styles.Fname}>함께, </div>
-              <br />
-              <div className={styles.Grey}>
-                <div className={styles.logo}>
-                  Smok<div className={styles.logo2}>E</div>nd
-                </div>
-                <p className={styles.p}>는 금연을 필요로하는</p>
-                <br />
-                <br />
-                <p className={styles.p}>
-                  흡연자를 위한 앱과 웹페이지, 스마트 담배갑
-                </p>
-                <br />
-                <br />
-                <p className={styles.p}>
-                  그리고 건강하고 새로운 시작을 지원합니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div className={styles.innerContainer}>
         <div className={styles.container}>
           <div className={styles.background}>
-            {/* <img
+            <img
+              src={background1}
+              alt="background1"
+              className={styles.backgroundImage}
+            />
+            <div className={styles.Incontainer}>
+              <div className={styles.phone1}>
+                <img src={phone1} alt="phone1" className={styles.phoneImage} />
+                <div className={styles.rightBox}>
+                  <div className={styles.logo}>
+                    Smok<div className={styles.logo2}>E</div>nd
+                  </div>
+                  <p className={styles.p}>에 오신 걸 환영 합니다.</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>지금 부터</p>
+                  <div className={styles.logo}>
+                    Smok<div className={styles.logo2}>E</div>nd
+                  </div>
+                  <p className={styles.p}>의 이야기를 시작합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <img
               src={background2}
               alt="background2"
               className={styles.backgroundImage2}
-            /> */}
-            <div className={styles.phone1}>
-              <img
-                src={phone1}
-                alt="phone1"
-                className={styles.phoneImage}
-                onLoad={() => setPhone1Loaded(true)}
-                ref={phoneRef1}
-              />
-              <div className={styles.rightBox}>
-                <div className={styles.Fname}>조금씩, 하지만 확실하게.</div>
-                <br />
-                <div className={styles.Grey}>
-                  <p className={styles.p}>선택한 기간동안의 하루 목표치를</p>
+            />
+            <div className={styles.Incontainer}>
+              <div className={styles.phone2}>
+                <img src={phone2} alt="phone2" className={styles.phoneImage2} />
+                <div className={styles.leftBox}>
+                  <div className={styles.Fname}>함께, </div>
                   <br />
                   <br />
-                  <p className={styles.p}>평소 내가 피우던 양에 기반하여</p>
-                  <br />
-                  <br />
-                  <p className={styles.p}>자동으로 설정합니다.</p>
+                  <div className={styles.Grey}>
+                    <div className={styles.logo}>
+                      Smok<div className={styles.logo2}>E</div>nd
+                    </div>
+                    <p className={styles.p}>는 금연을 필요로하는</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>
+                      흡연자를 위한 앱과 웹페이지, 스마트 담배갑
+                    </p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>
+                      그리고 건강하고 새로운 시작을 지원합니다.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -144,45 +316,174 @@ function Introduction() {
         </div>
       </div>
 
-      <div className={styles.background}>
-        <img
-          src={background2}
-          alt="background2"
-          className={styles.backgroundImage2}
-        />
-        <div className={styles.phone2}>
-          <img
-            src={phone2}
-            alt="phone2"
-            className={styles.phoneImage2}
-            onLoad={() => setPhone2Loaded(true)}
-            ref={phoneRef2}
-          />
-          <div className={styles.leftBox}>
-            <div className={styles.Fname}>함께, </div>
-            <br />
-            <div className={styles.Grey}>
-              <div className={styles.logo}>
-                Smok<div className={styles.logo2}>E</div>nd
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <div className={styles.Incontainer}>
+              <div className={styles.phone3}>
+                <img src={phone3} className={styles.phoneImage2} />
+                <div className={styles.rightBox3}>
+                  <div className={styles.Fname}>조금씩, 하지만 확실하게.</div>
+                  <br />
+                  <br />
+
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>선택한 기간동안의 하루 목표치를</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>평소 내가 피우던 양에 기반하여</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>자동으로 설정합니다.</p>
+                  </div>
+                </div>
               </div>
-              <p className={styles.p}>는 금연을 필요로하는</p>
-              <br />
-              <br />
-              <p className={styles.p}>
-                흡연자를 위한 앱과 웹페이지, 스마트 담배갑
-              </p>
-              <br />
-              <br />
-              <p className={styles.p}>
-                그리고 건강하고 새로운 시작을 지원합니다.
-              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className={styles.centerCircleContainer}>
-        <img src={circle} className={styles.circle} />
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <div className={styles.Incontainer}>
+              <div className={styles.phone4}>
+                <img src={caseImage} className={styles.caseImage} />
+                <div className={styles.leftBox4}>
+                  <div className={styles.Fname}>기록은 편하게, </div>
+                  <br />
+                  <br />
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>하루의 흡연 상황을</p>
+                    <br />
+                    <br />
+                    <div className={styles.logo}>
+                      Smok<div className={styles.logo2}>E</div>nd
+                    </div>
+                    <p className={styles.p}> 케이스를 통해</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>자동으로 측정/갱신합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <div className={styles.Incontainer}>
+              <div className={styles.phone5}>
+                <img src={phone4} alt="phone1" className={styles.phoneImage2} />
+                <div className={styles.rightBox5}>
+                  <div className={styles.Fname}>노력의 결실을 한 눈에.</div>
+                  <br />
+                  <br />
+
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>캘린더를 통해 나의</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>목표달성 현황을</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>한 눈에 확인 합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <img
+              src={background2}
+              alt="background2"
+              className={styles.backgroundImage6}
+            />
+            <div className={styles.Incontainer}>
+              <div className={styles.phone6}>
+                <img src={phone5} className={styles.phoneImage2} />
+                <div className={styles.leftBox6}>
+                  <div className={styles.Fname}>남들 보다 더. </div>
+                  <br />
+                  <br />
+                  <div className={styles.Grey}>
+                    <p className={styles.p}>주간 랭킹을 통해 보상을 지급하여</p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>
+                      금연의 또 다른 동기를 부여해 주었습니다.
+                    </p>
+                    <br />
+                    <br />
+                    <p className={styles.p}>자동으로 측정/갱신합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <div className={styles.Incontainer}></div>
+            <div className={styles.web}>
+              <img src={web} className={styles.webImage} />
+              <div className={styles.rightBoxWeb}>
+                <div className={styles.Fname}>
+                  금연 성공, 마일리지로 누리는 혜택
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.innerContainer}>
+        <div className={styles.container}>
+          <div className={styles.background}>
+            <div className={styles.Incontainer}></div>
+            <div className={styles.web2}>
+              <img src={web2} className={styles.webImage} />
+              <div className={styles.leftBoxWeb}>
+                <div className={styles.Grey}>
+                  <p className={styles.p}>목표를 달성하여 획득한</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>마일리지를 통해</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>금연에 도움이 되는 여러 상품을</p>
+                  <br />
+                  <br />
+                  <p className={styles.p}>구매할 수 있습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.centerCircleBigContainer}>
+        <div className={styles.centerCircleContainer}>
+          <img src={circle} className={styles.circle} />
+          <br />
+          <p className={styles.circleP}>
+            개발자들의 이야기가 궁금하다면 스크롤 해주세용 !
+          </p>
+          <br />
+          <img src={circle} className={styles.circle} />
+          <img src={test} className={styles.test} />
+        </div>
       </div>
     </>
   );
