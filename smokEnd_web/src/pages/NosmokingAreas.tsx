@@ -195,6 +195,7 @@ function NoSmokingArea() {
                                 <div className={styles.findMap} onClick={handleMarker("강릉시보건소", 37.7428443073466, 128.88276932466, "강원 강릉시 남부로17번길 38 강릉시보건소", "033-660-3500")}><span>지도찾기</span> <span>&gt;</span></div>
                             </div>
                         </div>
+
                     </div>
 
 
