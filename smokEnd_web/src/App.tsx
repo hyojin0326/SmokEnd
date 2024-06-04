@@ -22,6 +22,7 @@ import SelfAssessmentResult from "./components/SelfAssessmentResult";
 import NoSmokingArea from "./pages/NosmokingAreas";
 import ScrollToTop from "./components/ScrollToTop";
 import Test from "./pages/Test";
+import Shop from "./pages/Shop";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -55,6 +56,7 @@ function App() {
           <Route path="/smokeText" element={<><Header/><SmokeText /></>} />
           <Route path="/introduction" element={<><Header/><Introduction /></>} />
           <Route path="/noSmokingArea" element={<><Header/><NoSmokingArea/></>} />
+          <Route path="/shop" element={<><Header/><Shop/></>} />
         </Routes>
 
       </Router>

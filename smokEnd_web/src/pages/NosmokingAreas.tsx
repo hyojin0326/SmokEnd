@@ -58,55 +58,58 @@ function NoSmokingArea() {
         }
     };
 
-        //맵띄우기
-        useEffect(() => {
-            if (markerData) {
-                const { name, lat, lng } = markerData;
-                const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
+    //맵띄우기
+    useEffect(() => {
+        if (markerData) {
+            const { name, lat, lng } = markerData;
+            const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 
-                if (markerData.name !== "") {
-                    // 지도의 중심을 마커의 위치로 설정
-                    const options = {
-                        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표.
-                        level: 3 // 지도의 레벨(확대, 축소 정도)
-                    };
+            if (markerData.name !== "") {
+                // 지도의 중심을 마커의 위치로 설정
+                const options = {
+                    center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표.
+                    level: 3 // 지도의 레벨(확대, 축소 정도)
+                };
 
-                    const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+                const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
 
-                    // 마커가 표시될 위치입니다 
-                    const markerPosition = new kakao.maps.LatLng(lat, lng);
+                // 주소-좌표 변환 객체를 생성합니다
+                var geocoder = new kakao.maps.services.Geocoder();
 
-                    // 마커를 생성합니다
-                    const marker = new kakao.maps.Marker({
-                        position: markerPosition
-                    });
+                // 마커가 표시될 위치입니다 
+                const markerPosition = new kakao.maps.LatLng(lat, lng);
 
-                    // 마커가 지도 위에 표시되도록 설정합니다
-                    marker.setMap(map);
-                    const iwContent = `<div style="padding:5px;">${name}<br><a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="color:blue" target="_blank">길찾기</a></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-                        iwPosition = new kakao.maps.LatLng(lat, lng); // 인포윈도우 표시 위치입니다
+                // 마커를 생성합니다
+                const marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
 
-                    // 인포윈도우를 생성합니다
-                    const infowindow = new kakao.maps.InfoWindow({
-                        position: iwPosition,
-                        content: iwContent
-                    });
+                // 마커가 지도 위에 표시되도록 설정합니다
+                marker.setMap(map);
+                const iwContent = `<div style="padding:5px;">${name}<br><a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="color:blue" target="_blank">길찾기</a></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                    iwPosition = new kakao.maps.LatLng(lat, lng); // 인포윈도우 표시 위치입니다
 
-                    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-                    infowindow.open(map, marker);
-                }
-                else{
-                    // 지도의 중심을 마커의 위치로 설정
-                    const options = {
-                        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
-                        level: 3 // 지도의 레벨(확대, 축소 정도)
-                    };
-    
-                    const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-                }
+                // 인포윈도우를 생성합니다
+                const infowindow = new kakao.maps.InfoWindow({
+                    position: iwPosition,
+                    content: iwContent
+                });
+
+                // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                infowindow.open(map, marker);
             }
-            
-        }, [markerData]);
+            else {
+                // 지도의 중심을 마커의 위치로 설정
+                const options = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
+                    level: 3 // 지도의 레벨(확대, 축소 정도)
+                };
+
+                const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+            }
+        }
+
+    }, [markerData]);
 
     // useEffect(() => {
     //     var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -183,7 +186,7 @@ function NoSmokingArea() {
                         <div className={styles.box} style={{ marginRight: "2vw" }}>
                             <div className={styles.one}>
                                 <p>고창군 보건소 값있음</p>
-                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w'}}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
                                 <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 063-560-8742</p>
                             </div>
                             <div className={styles.two}>
