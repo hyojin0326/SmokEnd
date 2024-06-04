@@ -6,7 +6,6 @@ import Signup from "./pages/Signup";
 import ReviewPopup from "./components/ReviewPopup";
 import Introduction from "./pages/Introduction";
 import SelfAssessment from "./pages/SelfAssessment";
-import Shop from "./pages/Shop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -22,6 +21,7 @@ import Purchase_P from "./pages/Purchase_P";
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
 import NoSmokingArea from "./pages/NosmokingAreas";
 import ScrollToTop from "./components/ScrollToTop";
+import Test from "./pages/Test";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -37,104 +37,26 @@ function App() {
       <Router>
       <ScrollToTop />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header />
-                <Main />
-              </>
-            }
-          />
+          <Route path="/" element={<><Header /><Main /></>}/>
+          {/* <Route path="/" element={<><Test /></>}/> */}
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw />} />
 
-          <Route
-            path="/selfAssessment/*"
-            element={
-              <>
-                <Header />
-                <SelfAssessment />
-              </>
-            }
-          />
-          <Route
-            path="nicotine"
-            element={
-              <>
-                <NicotineComponent />
-              </>
-            }
-          />
-          <Route path="habit" element={<HabitComponent />} />
-          <Route path="knowledge" element={<KnowledgeComponent />} />
-          <Route path="condition" element={<ConditionComponent />} />
-          <Route path="result" element={<SelfAssessmentResult />} />
-          <Route
-            path="/purchase"
-            element={
-              <>
-                <Header />
-                <Purchase />
-              </>
-            }
-          />
-          <Route
-            path="/mileagePurchase"
-            element={
-              <>
-                <Header />
-                <Purchase_P />
-              </>
-            }
-          />
-          <Route
-            path="/review"
-            element={
-              <>
-                <Header />
-                <ReviewPopup />
-              </>
-            }
-          />
-          <Route
-            path="/smokeText"
-            element={
-              <>
-                <Header />
-                <SmokeText />
-              </>
-            }
-          />
-          <Route
-            path="/introduction"
-            element={
-              <>
-                <Header />
-                <Introduction />
-              </>
-            }
-          />
-          <Route
-            path="/noSmokingArea"
-            element={
-              <>
-                <Header />
-                <NoSmokingArea />
-              </>
-            }
-          />
-          <Route
-            path="/shop"
-            element={
-              <>
-                <Header />
-                <Shop />
-              </>
-            }
-          />
+          <Route path="/selfAssessment/*" element={ <><Header/><SelfAssessment /></>}/>
+            <Route path="nicotine"element={<><NicotineComponent /></>}/>
+            <Route path="habit" element={<HabitComponent />} />
+            <Route path="knowledge" element={<KnowledgeComponent />} />
+            <Route path="condition" element={<ConditionComponent />} />
+            <Route path="result" element={<SelfAssessmentResult />} />
+          <Route path="/purchase"element={<><Header /><Purchase /></>}/>
+          <Route path="/mileagePurchase" element={<><Header/><Purchase_P /></>} />
+          <Route path="/review" element={<><Header/><ReviewPopup /></>} />
+          <Route path="/smokeText" element={<><Header/><SmokeText /></>} />
+          <Route path="/introduction" element={<><Header/><Introduction /></>} />
+          <Route path="/noSmokingArea" element={<><Header/><NoSmokingArea/></>} />
         </Routes>
+
       </Router>
     </>
   );
