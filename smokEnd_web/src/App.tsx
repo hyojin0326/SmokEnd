@@ -23,6 +23,7 @@ import NoSmokingArea from "./pages/NosmokingAreas";
 import ScrollToTop from "./components/ScrollToTop";
 import Test from "./pages/Test";
 import Shop from "./pages/Shop";
+import Footer from "./components/Footer";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -52,7 +53,7 @@ function App() {
             <Route path="result" element={<SelfAssessmentResult />} />
           <Route path="/purchase"element={<><Header /><Purchase /></>}/>
           <Route path="/mileagePurchase" element={<><Header/><Purchase_P /></>} />
-          <Route path="/review" element={<><Header/><ReviewPopup /></>} />
+          <Route path="/review" element={<><ReviewPopup /></>} />
           <Route path="/smokeText" element={<><Header/><SmokeText /></>} />
           <Route path="/introduction" element={<><Header/><Introduction /></>} />
           <Route path="/noSmokingArea" element={<><Header/><NoSmokingArea/></>} />
@@ -60,6 +61,7 @@ function App() {
         </Routes>
 
       </Router>
+      <Footer/>
     </>
   );
 }

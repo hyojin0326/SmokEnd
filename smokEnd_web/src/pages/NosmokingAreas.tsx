@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import styles from "../styles/NoSmokingArea.module.css";
+import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const { kakao } = window as any;
@@ -8,6 +9,8 @@ interface MarkerData {
     name: string;
     lat: number;
     lng: number;
+    address: string;
+    number: string;
 }
 
 interface Districts {
@@ -35,9 +38,12 @@ const districts: Districts = {
     강원: ['횡성군', '화전군', '홍천군', '평창군', '태백시', '춘천시', '철원군', '정선군', '인제군', '원주시', '영월군', '양양군', '양구군', '속초시', '삼척시', '동해시', '고성군', '강릉시']
 };
 
+// const IwContent = styled.div`
+//     <div style="padding:5px;">${name}<br><a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="color:blue" target="_blank">길찾기</a></div>
+// `;
 function NoSmokingArea() {
     const isMobile = window.innerWidth <= 768;
-    const [markerData, setMarkerData] = useState<MarkerData>({ name: "", lat: 0, lng: 0 });
+    const [markerData, setMarkerData] = useState<MarkerData>({ name: "", lat: 0, lng: 0, address: "", number: "" });
     const [selectedRegion, setSelectedRegion] = useState<string>('');
     const [selectedDistrict, setSelectedDistrict] = useState<string>('');
 
@@ -53,15 +59,20 @@ function NoSmokingArea() {
         console.log('선택된 지역:', selectedRegion);
         console.log('선택된 구:', selectedDistrict);
 
-        if (selectedRegion === '전북' && selectedDistrict === '고창군') {
-            handleMarker("고창군 보건소", 37.584896, 126.9235712)();
+        if (selectedRegion === '강원' && selectedDistrict === '강릉시') {
+            //강원 강릉시에 있는 보건소 값(디비) 에서 아무값이나 가져와서 보여줄 예정
+            handleMarker("강릉시보건소", 37.7428443073466, 128.88276932466, "강원 강릉시 남부로17번길 38 강릉시보건소", "033-660-3500")();
+        }
+        else if (selectedRegion === '강원' && selectedDistrict === '고성군') {
+            //강원 강릉시에 있는 보건소 값(디비) 에서 아무값이나 가져와서 보여줄 예정
+            handleMarker("고성군보건소", 38.37735022121055, 128.472121778786, "강원 고성군 수성로 30", "033-660-3500")();
         }
     };
 
-    //맵띄우기
+    // //맵띄우기
     useEffect(() => {
         if (markerData) {
-            const { name, lat, lng } = markerData;
+            const { name, lat, lng, address, number } = markerData;
             const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 
             if (markerData.name !== "") {
@@ -73,8 +84,6 @@ function NoSmokingArea() {
 
                 const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
 
-                // 주소-좌표 변환 객체를 생성합니다
-                var geocoder = new kakao.maps.services.Geocoder();
 
                 // 마커가 표시될 위치입니다 
                 const markerPosition = new kakao.maps.LatLng(lat, lng);
@@ -86,13 +95,39 @@ function NoSmokingArea() {
 
                 // 마커가 지도 위에 표시되도록 설정합니다
                 marker.setMap(map);
-                const iwContent = `<div style="padding:5px;">${name}<br><a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="color:blue" target="_blank">길찾기</a></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                // <a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="color:blue" target="_blank">큰지도보기</a> 
+                //     <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="color:blue" target="_blank">길찾기</a>
+                const iwContent = `
+                <div style="width:15vw; padding:1.2vw;">
+                    <p style="font-size:1.2vw;">${name}</p><br/>
+                    <p style="font-size:1.0vw;">${address}</p>
+                    <p style="font-size:1.0vw;">${number}</p><br/>
+                    <p> 
+                    <a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="text-decoration:none; color:black;" target="_blank">
+                    <span style="padding:0.3vw; font-size:1vw; border:0.1vw solid black">지도보기</span></a>
+                    <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="text-decoration:none; color:black;" target="_blank">
+                    <span style=" margin: 0.3vw; padding:0.3vw; font-size:1vw; border:0.1vw solid black">길찾기</span></a></p>
+                </div>
+                `,
                     iwPosition = new kakao.maps.LatLng(lat, lng); // 인포윈도우 표시 위치입니다
+                const iwContent_mobile = `
+                    <div style="padding: 1.2vw">
+                        <p style="font-size:4.2vw;">${name}</p><br/>
+                        <p style="font-size:2.8vw;">${address}</p>
+                        <p style="font-size:2.8vw;">${number}</p><br/>
+                        <p> 
+                        <a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="text-decoration:none; color:black;" target="_blank">
+                        <span style="padding:0.5vw; font-size:3vw; border:0.3vw solid black">지도보기</span></a>
+                        <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="text-decoration:none; color:black;" target="_blank">
+                        <span style=" margin: 0.5vw; padding:0.5vw; font-size:3vw; border:0.3vw solid black">길찾기</span></a></p>
+                    </div>
+                    `,
+                    iwPosition_mobile = new kakao.maps.LatLng(lat, lng); // 인포윈도우 표시 위치입니다
 
                 // 인포윈도우를 생성합니다
                 const infowindow = new kakao.maps.InfoWindow({
-                    position: iwPosition,
-                    content: iwContent
+                    position: isMobile? iwPosition_mobile : iwPosition,
+                    content: isMobile ? iwContent_mobile : iwContent
                 });
 
                 // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
@@ -111,41 +146,8 @@ function NoSmokingArea() {
 
     }, [markerData]);
 
-    // useEffect(() => {
-    //     var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    //     var options = { //지도를 생성할 때 필요한 기본 옵션
-    //         center: new kakao.maps.LatLng(37.5176, 126.8659), //지도의 중심좌표.
-    //         level: 3 //지도의 레벨(확대, 축소 정도)
-    //     };
-
-    //     var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-    //     // 마커가 표시될 위치입니다 
-    //     var markerPosition = new kakao.maps.LatLng(37.5176, 126.8659);
-
-    //     // 마커를 생성합니다
-    //     var marker = new kakao.maps.Marker({
-    //         position: markerPosition
-    //     });
-
-    //     // 마커가 지도 위에 표시되도록 설정합니다
-    //     marker.setMap(map)
-
-    //     var iwContent = '<div style="padding:5px;">양천구 보건소<br><a href="https://map.kakao.com/link/map/양천구 보건소,37.5176, 126.8659" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/양천구 보건소,37.5176, 126.8659" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    //         iwPosition = new kakao.maps.LatLng(37.5176, 126.8659); //인포윈도우 표시 위치입니다
-
-    //     // 인포윈도우를 생성합니다
-    //     var infowindow = new kakao.maps.InfoWindow({
-    //         position: iwPosition,
-    //         content: iwContent
-    //     });
-
-    //     // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-    //     infowindow.open(map, marker);
-    // }, [])
-
-    const handleMarker = (name: string, lat: number, lng: number) => () => {
-        setMarkerData({ name, lat, lng });
+    const handleMarker = (name: string, lat: number, lng: number, address: string, number: string) => () => {
+        setMarkerData({ name, lat, lng, address, number });
     };
 
 
@@ -185,22 +187,12 @@ function NoSmokingArea() {
                     <div className={styles.boxContent}>
                         <div className={styles.box} style={{ marginRight: "2vw" }}>
                             <div className={styles.one}>
-                                <p>고창군 보건소 값있음</p>
-                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
-                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 063-560-8742</p>
+                                <p>강릉시보건소</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>강원 강릉시 남부로17번길 38 강릉시보건소</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 033-660-3500</p>
                             </div>
                             <div className={styles.two}>
-                                <div className={styles.findMap} onClick={handleMarker("고창군 보건소", 37.584896, 126.9235712)}><span>지도찾기</span> <span>&gt;</span></div>
-                            </div>
-                        </div>
-                        <div className={styles.box} style={{ marginLeft: "2vw" }}>
-                            <div className={styles.one}>
-                                <p>고창군 보건소 다른값</p>
-                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>주소: 전라북도 고창군 고창읍 전봉준로 90(고창읍율계리)</p>
-                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 063-560-8742</p>
-                            </div>
-                            <div className={styles.two}>
-                                <div className={styles.findMap} onClick={handleMarker("다른값", 33.450701, 126.570667)}><span>지도찾기</span> <span>&gt;</span></div>
+                                <div className={styles.findMap} onClick={handleMarker("강릉시보건소", 37.7428443073466, 128.88276932466, "강원 강릉시 남부로17번길 38 강릉시보건소", "033-660-3500")}><span>지도찾기</span> <span>&gt;</span></div>
                             </div>
                         </div>
                     </div>
