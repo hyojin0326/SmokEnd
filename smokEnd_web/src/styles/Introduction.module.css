@@ -1,3 +1,7 @@
+.MOMBox {
+  height: 450vw;
+}
+
 .outerContainer {
   display: flex;
   justify-content: center;
