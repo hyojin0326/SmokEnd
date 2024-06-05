@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Shop.module.css";
 import CASE from "../assets/Introduction/case.png";
 
@@ -8,8 +8,13 @@ interface Product {
   points: string;
 }
 
+interface HoverOption {
+  text: string;
+  url: string;
+}
+
 interface ShopComponentProps {
-  hoverOptions: string[];
+  hoverOptions: HoverOption[];
   product: Product;
 }
 
@@ -23,7 +28,9 @@ const ShopComponent: React.FC<ShopComponentProps> = ({
         <div className={styles.hoverCenter}>
           {hoverOptions.map((option, index) => (
             <div className={styles.hoverTextBox} key={index}>
-              <div className={styles.hoverText}>{option}</div>
+              <a href={option.url} className={styles.hoverText}>
+                {option.text}
+              </a>
             </div>
           ))}
         </div>
@@ -44,8 +51,15 @@ const ShopComponent: React.FC<ShopComponentProps> = ({
 const Shop: React.FC = () => {
   const isMobile = window.innerWidth <= 768;
 
+  // 더미 데이터 (데이터베이스에서 가져올 경우 주석 해제)
   const dummyData: ShopComponentProps = {
-    hoverOptions: ["현금 구매", "마일리지 구매"],
+    hoverOptions: [
+      {
+        text: "현금 구매",
+        url: "https://www.coupang.com/vp/products/7872543388?itemId=21509565790&vendorItemId=88563074966&sourceType=srp_product_ads&clickEventId=fbd544b0-22f3-11ef-8d5e-079ba51d28c4&korePlacement=15&koreSubPlacement=1&q=%EA%B8%88%EC%97%B0%EC%A0%9C%ED%92%88&itemsCount=36&searchId=da4b82249098446ea43c9f921020461a&rank=0&isAddedCart=",
+      },
+      { text: "마일리지 구매", url: "/mileagePurchase" },
+    ],
     product: {
       name: "금연 알약",
       price: "20,000₩",
@@ -58,6 +72,20 @@ const Shop: React.FC = () => {
   const totalPages = Math.ceil(totalItems / pageSize); // 전체 페이지 수
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
+  const [products, setProducts] = useState<ShopComponentProps[]>([]); // 상품 상태
+
+  useEffect(() => {
+    // 데이터베이스에서 상품을 가져오는 로직 (나중에 주석 해제)
+    // const fetchProducts = async () => {
+    //   const response = await fetch("API_ENDPOINT");
+    //   const data = await response.json();
+    //   setProducts(data);
+    // };
+    // fetchProducts();
+
+    // 현재는 더미 데이터를 사용
+    setProducts(Array(totalItems).fill(dummyData));
+  }, []);
 
   const startIndex = (currentPage - 1) * pageSize; // 현재 페이지에서 보여줄 아이템의 시작 인덱스
   const endIndex = Math.min(startIndex + pageSize, totalItems); // 현재 페이지에서 보여줄 아이템의 끝 인덱스
@@ -85,16 +113,14 @@ const Shop: React.FC = () => {
         </div>
         {/* 더미 데이터 부분 */}
         <div className={styles.dummyDataContainer}>
-          {[...Array(totalItems).keys()]
-            .slice(startIndex, endIndex)
-            .map((index) => (
-              <div className={styles.dummyDataItem} key={index}>
-                <ShopComponent
-                  hoverOptions={dummyData.hoverOptions}
-                  product={dummyData.product}
-                />
-              </div>
-            ))}
+          {products.slice(startIndex, endIndex).map((product, index) => (
+            <div className={styles.dummyDataItem} key={index}>
+              <ShopComponent
+                hoverOptions={product.hoverOptions}
+                product={product.product}
+              />
+            </div>
+          ))}
         </div>
         {/* 더미 데이터 부분 */}
         {/* 페이지네이션 부분 */}
