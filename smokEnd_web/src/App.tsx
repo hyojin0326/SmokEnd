@@ -23,6 +23,7 @@ import NoSmokingArea from "./pages/NosmokingAreas";
 import ScrollToTop from "./components/ScrollToTop";
 import Test from "./pages/Test";
 import Shop from "./pages/Shop";
+import Footer from "./components/Footer";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -135,8 +136,92 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/selfAssessment/*"
+            element={
+              <>
+                <Header />
+                <SelfAssessment />
+              </>
+            }
+          />
+          <Route
+            path="nicotine"
+            element={
+              <>
+                <NicotineComponent />
+              </>
+            }
+          />
+          <Route path="habit" element={<HabitComponent />} />
+          <Route path="knowledge" element={<KnowledgeComponent />} />
+          <Route path="condition" element={<ConditionComponent />} />
+          <Route path="result" element={<SelfAssessmentResult />} />
+          <Route
+            path="/purchase"
+            element={
+              <>
+                <Header />
+                <Purchase />
+              </>
+            }
+          />
+          <Route
+            path="/mileagePurchase"
+            element={
+              <>
+                <Header />
+                <Purchase_P />
+              </>
+            }
+          />
+          <Route
+            path="/review"
+            element={
+              <>
+                <ReviewPopup />
+              </>
+            }
+          />
+          <Route
+            path="/smokeText"
+            element={
+              <>
+                <Header />
+                <SmokeText />
+              </>
+            }
+          />
+          <Route
+            path="/introduction"
+            element={
+              <>
+                <Header />
+                <Introduction />
+              </>
+            }
+          />
+          <Route
+            path="/noSmokingArea"
+            element={
+              <>
+                <Header />
+                <NoSmokingArea />
+              </>
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <>
+                <Header />
+                <Shop />
+              </>
+            }
+          />
         </Routes>
       </Router>
+      <Footer />
     </>
   );
 }
