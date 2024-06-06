@@ -167,7 +167,7 @@ function Header() {
                     <div className={styles.linkContainer}>
                       <a className={styles.loggedIna}>상품</a>
                       <div className={styles.subMenu}>
-                        <p className={styles.loggedInli} onClick={(event) => handleProtectedClick(event, "/noSmokingArea")}>담배 케이스</p>
+                        <p className={styles.loggedInli} onClick={(event) => handleProtectedClick(event, "/smokEndCase")}>담배 케이스</p>
                         <br />
                         <p className={styles.loggedInli} onClick={(event) => handleProtectedClick(event, "/shop")}>금연 상품</p>
                       </div>
@@ -265,7 +265,7 @@ function Header() {
                   <br />
                   <p className={styles.MobileloggedInli}>상품</p>
                   <br />
-                  <p className={styles.MobileloggedInli2}>담배 케이스</p>
+                  <p className={styles.MobileloggedInli2} onClick={(event) => handleProtectedClick(event, "/smokEndCase")}>담배 케이스</p>
                   <br />
                   <p className={styles.MobileloggedInli2} onClick={(event) => handleProtectedClick(event, "/shop")}>금연 상품</p>
                   <br />
@@ -375,7 +375,7 @@ function Header() {
                     <div className={styles.logOutsubMenu}>
                       <p
                         className={styles.loggedInli}
-                        onClick={(event) => handleProtectedClick(event, "/")}
+                        onClick={(event) => handleProtectedClick(event, "/smokEndCase")}
                         style={{ color: "white" }}
                       >
                         담배 케이스
@@ -489,9 +489,9 @@ function Header() {
                   <br />
                   <p className={styles.MobileloggedInli}>상품</p>
                   <br />
-                  <p className={styles.MobileloggedInli2}>담배 케이스</p>
+                  <p className={styles.MobileloggedInli2} onClick={(event) => handleProtectedClick(event, "/smokEndCase")}>담배 케이스</p>
                   <br />
-                  <p className={styles.MobileloggedInli2}>금연 상품</p>
+                  <p className={styles.MobileloggedInli2} onClick={(event) => handleProtectedClick(event, "/shop")}>금연 상품</p>
                   <br />
                   <p className={styles.MobileloggedInli}>자가진단</p>
                   <br />

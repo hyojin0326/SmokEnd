@@ -24,6 +24,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Test from "./pages/Test";
 import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
+import SmokEndCase from "./pages/SmokEndCase";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -58,6 +59,7 @@ function App() {
           <Route path="/introduction" element={<><Header/><Introduction /></>} />
           <Route path="/noSmokingArea" element={<><Header/><NoSmokingArea/></>} />
           <Route path="/shop" element={<><Header/><Shop/></>} />
+          <Route path="/smokEndCase" element={<><Header/><SmokEndCase/></>}/>
         </Routes>
 
       </Router>

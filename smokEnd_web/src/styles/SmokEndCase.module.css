@@ -1,0 +1,256 @@
+.content {
+    width: 70vw;
+    margin: 0 auto;
+    padding-top: 7vw;
+    margin-bottom: 20vw;
+}
+
+.box {
+    width: 100%;
+    height: 30vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.underline {
+    width: 100%;
+    height: 0.1vw;
+    background-color: #454545;
+    margin-top: 3vw;
+}
+
+.box>.picture {
+    width: 50%;
+    height: 100%;
+    background-image: url('../assets/main/data1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.box>.detailContent {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detailContent>div{
+    width:70%;
+}
+.title {
+    font-family: "NanumSquareRoundB";
+    font-size: 2.2vw;
+}
+.title>span {
+    color: red;
+}
+.subTitle{
+    color:#454545;
+    font-size: 1.2vw;
+}
+.review{
+    width: 100%;
+    height:2vw;
+    margin-top: 2vw;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 0.2vw;
+    border-bottom: 0.1vw solid #454545;
+}
+.review>p{
+    color: #036DE9;
+    font-size:1vw;
+}
+.money>.case{
+    margin:0.5vw 0;
+    font-size: 1.2vw;
+}
+.delivery{
+    width:100%;
+    height: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 1vw;
+    border-bottom: 0.1vw solid #454545;
+}
+.deliveryFee{
+    width:65%;
+    height: 100%;
+    border-radius: 0.5vw;
+    border: 0.1vw solid #454545;
+    display: flex;
+    padding:0 1vw;
+    justify-content: space-between;
+    align-items: center;
+}
+.count{
+    width:20%;
+    height:100%;
+    border-radius: 0.5vw;
+    display: flex;
+    align-items: center;
+    margin-right: 0.3vw;
+}
+.countValue{
+    width:70%;
+    height:95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
+    border: 0.1vw solid #454545;
+    
+}
+.countNumber{
+    width:30%;
+    height:100%;
+    border-bottom-right-radius: 0.5vw;
+    border-top-right-radius: 0.5vw;
+    display: flex;
+    flex-direction: column;
+}
+.upNumber{
+    width:100%;
+    height:50%;
+    border-top-right-radius: 0.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#969696;
+    border-top: 0.1vw solid #454545;
+    border-right: 0.1vw solid #454545;
+    border-bottom: 0.1vw solid #454545;
+    font-size: 0.8vw;
+    
+}
+.downNumber{
+    width:100%;
+    height:50%;
+    border-bottom-right-radius: 0.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#969696;
+    border-right: 0.1vw solid #454545;
+    border-bottom: 0.1vw solid #454545;
+    font-size: 0.8vw;
+}
+.upNumber:hover, .downNumber:hover{
+    color: black;
+}
+.total{
+    width:100%;
+    height: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5vw 0;
+}
+.totalMoney{
+    font-size: 1.5vw;
+}
+.button{
+    width:100%;
+    height:2.5vw;
+    background-color: black;
+    border-radius: 0.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size: 1.2vw;
+}
+.bottom{
+    height: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top:0.5vw;
+}
+.des{
+    width:100%;
+    height:100vw;
+    background-color: #f3f2f2;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+.reviewTop{
+    width:100%;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    font-size: 1.2vw;
+    display: flex;
+    justify-content: space-between;
+}
+.reviewContent{
+    width:100%;
+    font-size: 1vw;
+    margin-bottom: 4vw;
+}
+.reviewUser{
+    width:100%;
+    height:4vw;
+    display: flex;
+    flex-direction: row;
+}
+.userProfile{
+    width:4vw;
+    height:100%;
+    background-image: url('../assets/smokEndCase/userProfile.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.userInfo{
+    width:20vw;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.userInfo>.nickName{
+    height: calc(100% - 1.5vw);
+    width:100%;
+    display: flex;
+    align-items: center;
+    font-size: 1.2vw;
+}
+.userInfo>.star{
+    height: 1.5vw;
+    width:100%;
+    display: flex;
+    align-items:end;
+    font-size: 1vw;
+}
+.reviewtitle{
+    color:#454545;
+    font-size: 0.8vw;
+    padding: 0.5vw 0;
+}
+.reviewImgs{
+    width:100%;
+    height:6vw;
+    display: flex;
+    flex-direction: row;
+}
+.reviewDes{
+    width:100%;
+    padding: 0.5vw 0;
+}
+.scrollToTopButton{
+    width:3.5vw;
+    height:3.5vw;
+    position: fixed;
+    bottom:5vw;
+    right:12vw;
+    background-image: url('../assets/smokEndCase/upButton.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
