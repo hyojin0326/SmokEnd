@@ -141,11 +141,15 @@
 }
 
 .hoverText {
+  padding-top: 1.8vw;
+  width: 12vw;
+  height: 3vw;
   font-family: "NanumSquareRoundB";
   font-size: 1.2vw;
   color: rgb(255, 255, 255);
   display: inline;
   text-decoration: none; /* 밑줄 제거 */
+  z-index: 99999;
 }
 
 .ShopBigContainer:hover {
@@ -365,6 +369,9 @@
   }
 
   .hoverText {
+    padding-top: 3vw;
+    width: 30vw;
+    height: 5vw;
     font-family: "NanumSquareRoundB";
     font-size: 2.5vw;
     color: rgb(255, 255, 255);
