@@ -2,7 +2,7 @@ import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
 import belowArrow from "../assets/main/belowArrow_white.png";
 import { useEffect, useState } from "react";
-import data1Image from "../assets/main/data1.png";
+import data1Image from "../assets/Introduction/case.png";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const Image = styled.div`
   height: 26vw;
   border-radius: 2vw;
   background-image: url(${data1Image});
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   @media (max-width: 768px) {
@@ -27,8 +27,6 @@ function Main() {
   const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
   const isMobile = window.innerWidth <= 768;
   const [isLogin, setIsLogin] = useState(false);
-  //스크롤 시도하면 로그인으로 유도
-  const [isScrollAttempted, setIsScrollAttempted] = useState(false);
 
   //로그인 상태에 따라
   useEffect(() => {
@@ -140,9 +138,11 @@ function Main() {
               <br />
               마일리지, 현금으로, 구매할 수 있습니다.
             </p>
+            <Link to="/shop" className={styles.Link}>
             <div className={styles.main_product_button}>
               <span>스토어</span> <span>&gt;</span>
             </div>
+            </Link>
           </div>
           <div className={styles.mainProduct}>
             <div className={styles.leftArrow} onClick={handleLeftArrowClick} />
@@ -213,13 +213,15 @@ function Main() {
               </p>
               <br />
               <br />
+              <Link to="/selfAssessment/nicotine" className={styles.Link}>
               <div className={styles.self_check_button}>
-                <span>스토어</span> <span>&gt;</span>
+                <span>바로가기</span> <span>&gt;</span>
               </div>
+              </Link>
               <div className={styles.self_check_img}></div>
             </div>
             <div className={styles.campaign}>
-              <p className={styles.content_title}>소개</p>
+              <p className={styles.content_title}>금연 지도</p>
               <p className={styles.content_des}>
                 SmokEnd가 당신의 건강을 위해
                 <br />
@@ -227,9 +229,11 @@ function Main() {
               </p>
               <br />
               <br />
+              <Link to="/noSmokingArea" className={styles.Link}>
               <div className={styles.campaign_button}>
                 <span>바로가기</span> <span>&gt;</span>
               </div>
+              </Link>
               <div className={styles.campaign_img}></div>
             </div>
           </div>

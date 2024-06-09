@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 import ReviewPopup from "./components/ReviewPopup";
 import Introduction from "./pages/Introduction";
 import SelfAssessment from "./pages/SelfAssessment";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 import Header from "./components/Header";
 import SmokeText from "./pages/SmokeText";
@@ -24,6 +24,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Test from "./pages/Test";
 import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
+import SmokEndCase from "./pages/SmokEndCase";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -31,197 +32,56 @@ const GlobalStyles = createGlobalStyle`
     margin:0;
   }
 `;
+function AppContent() {
+  const location = useLocation();
+  const noFooterRoutes = ["/login", "/signup", "/findpw"];
+  
+  const shouldShowFooter = !noFooterRoutes.includes(location.pathname);
+
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Main />
+            </>
+          }
+        />
+        {/* <Route path="/" element={<><Test /></>}/> */}
+        <Route path="/login" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/findpw" element={<Findpw />} />
+        <Route path="/selfAssessment/*" element={ <><Header/><SelfAssessment /></>}/>
+          <Route path="nicotine"element={<><NicotineComponent /></>}/>
+          <Route path="habit" element={<HabitComponent />} />
+          <Route path="knowledge" element={<KnowledgeComponent />} />
+          <Route path="condition" element={<ConditionComponent />} />
+          <Route path="result" element={<SelfAssessmentResult />} />
+        <Route path="/purchase"element={<><Header /><Purchase /></>}/>
+        <Route path="/mileagePurchase" element={<><Header/><Purchase_P /></>} />
+        <Route path="/review" element={<><ReviewPopup /></>} />
+        <Route path="/smokeText" element={<><Header/><SmokeText /></>} />
+        <Route path="/introduction" element={<><Header/><Introduction /></>} />
+        <Route path="/noSmokingArea" element={<><Header/><NoSmokingArea/></>} />
+        <Route path="/shop" element={<><Header/><Shop/></>} />
+        <Route path="/smokEndCase" element={<><Header/><SmokEndCase/></>}/>
+      </Routes>
+      {shouldShowFooter && <Footer />}
+    </>
+  );
+}
 
 function App() {
   return (
     <>
       <GlobalStyles />
       <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header />
-                <Main />
-              </>
-            }
-          />
-          {/* <Route path="/" element={<><Test /></>}/> */}
-          <Route path="/login" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/findpw" element={<Findpw />} />
-
-          <Route
-            path="/selfAssessment/*"
-            element={
-              <>
-                <Header />
-                <SelfAssessment />
-              </>
-            }
-          />
-          <Route
-            path="nicotine"
-            element={
-              <>
-                <NicotineComponent />
-              </>
-            }
-          />
-          <Route path="habit" element={<HabitComponent />} />
-          <Route path="knowledge" element={<KnowledgeComponent />} />
-          <Route path="condition" element={<ConditionComponent />} />
-          <Route path="result" element={<SelfAssessmentResult />} />
-          <Route
-            path="/purchase"
-            element={
-              <>
-                <Header />
-                <Purchase />
-              </>
-            }
-          />
-          <Route
-            path="/mileagePurchase"
-            element={
-              <>
-                <Header />
-                <Purchase_P />
-              </>
-            }
-          />
-          <Route
-            path="/review"
-            element={
-              <>
-                <ReviewPopup />
-              </>
-            }
-          />
-          <Route
-            path="/smokeText"
-            element={
-              <>
-                <Header />
-                <SmokeText />
-              </>
-            }
-          />
-          <Route
-            path="/introduction"
-            element={
-              <>
-                <Header />
-                <Introduction />
-              </>
-            }
-          />
-          <Route
-            path="/noSmokingArea"
-            element={
-              <>
-                <Header />
-                <NoSmokingArea />
-              </>
-            }
-          />
-          <Route
-            path="/shop"
-            element={
-              <>
-                <Header />
-                <Shop />
-              </>
-            }
-          />
-          <Route
-            path="/selfAssessment/*"
-            element={
-              <>
-                <Header />
-                <SelfAssessment />
-              </>
-            }
-          />
-          <Route
-            path="nicotine"
-            element={
-              <>
-                <NicotineComponent />
-              </>
-            }
-          />
-          <Route path="habit" element={<HabitComponent />} />
-          <Route path="knowledge" element={<KnowledgeComponent />} />
-          <Route path="condition" element={<ConditionComponent />} />
-          <Route path="result" element={<SelfAssessmentResult />} />
-          <Route
-            path="/purchase"
-            element={
-              <>
-                <Header />
-                <Purchase />
-              </>
-            }
-          />
-          <Route
-            path="/mileagePurchase"
-            element={
-              <>
-                <Header />
-                <Purchase_P />
-              </>
-            }
-          />
-          <Route
-            path="/review"
-            element={
-              <>
-                <ReviewPopup />
-              </>
-            }
-          />
-          <Route
-            path="/smokeText"
-            element={
-              <>
-                <Header />
-                <SmokeText />
-              </>
-            }
-          />
-          <Route
-            path="/introduction"
-            element={
-              <>
-                <Header />
-                <Introduction />
-              </>
-            }
-          />
-          <Route
-            path="/noSmokingArea"
-            element={
-              <>
-                <Header />
-                <NoSmokingArea />
-              </>
-            }
-          />
-          <Route
-            path="/shop"
-            element={
-              <>
-                <Header />
-                <Shop />
-              </>
-            }
-          />
-        </Routes>
+        <AppContent />
       </Router>
-      <Footer />
     </>
   );
 }

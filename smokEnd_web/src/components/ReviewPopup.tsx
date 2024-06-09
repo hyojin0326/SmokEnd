@@ -5,7 +5,7 @@ import star from "../assets/Review/star.png";
 import star2 from "../assets/Review/star2.png";
 
 function ReviewPopup() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [stars, setStars] = useState([star, star, star, star, star]);
   const [text, setText] = useState("");
   const isMobile = window.innerWidth <= 768;
@@ -42,7 +42,6 @@ function ReviewPopup() {
 
   return (
     <div>
-      <button onClick={togglePopup}>리뷰 쓰기</button>
       {isOpen && (
         <div className={styles["popup-background"]} onClick={togglePopup}>
           <div

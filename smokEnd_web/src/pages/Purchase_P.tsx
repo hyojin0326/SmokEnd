@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Purchase.module.css";
 import DaumPostcode from 'react-daum-postcode';
 import styled from "styled-components";
-import product from "../assets/main/data1.png";
+import product from "../assets/Introduction/case.png";
 
 
 interface FormData {
@@ -30,7 +30,7 @@ interface AgreementCheckboxes {
 const Orderinfo_img = styled.div`
     width:6vw;
     height:100%;
-    background-size:cover;
+    background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 1vw;

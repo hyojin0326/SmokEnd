@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Shop.module.css";
 import CASE from "../assets/Introduction/case.png";
+import { Link } from "react-router-dom";
 
 interface Product {
   name: string;
@@ -98,6 +99,7 @@ const Shop: React.FC = () => {
           <p className={styles.p}>당신의 금연 친구</p>
         </div>
 
+        <Link to="/smokEndCase">
         <div className={styles.smokShopContainer}>
           <div className={`${styles.smokShopLeft} ${styles.reducedBr}`}>
             <div className={styles.logo}>
@@ -111,6 +113,7 @@ const Shop: React.FC = () => {
             <img src={CASE} alt="Case" />
           </div>
         </div>
+        </Link>
         {/* 더미 데이터 부분 */}
         <div className={styles.dummyDataContainer}>
           {products.slice(startIndex, endIndex).map((product, index) => (
