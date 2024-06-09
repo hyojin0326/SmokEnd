@@ -2,7 +2,7 @@ import styles from "../styles/Main.module.css";
 import Header from "../components/Header";
 import belowArrow from "../assets/main/belowArrow_white.png";
 import { useEffect, useState } from "react";
-import data1Image from "../assets/main/data1.png";
+import data1Image from "../assets/Introduction/case.png";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const Image = styled.div`
   height: 26vw;
   border-radius: 2vw;
   background-image: url(${data1Image});
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 import styles from "../styles/SmokEndCase.module.css";
 import star from "../assets/Review/star.png";
 import star2 from "../assets/Review/star2.png";
-import data1 from "../assets/main/data1.png"
+import data1 from "../assets/Introduction/case.png"
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import ReviewPopup from "../components/ReviewPopup";
@@ -13,7 +13,6 @@ interface StarProps {
 
 interface ReviewProps {
     isMobile: boolean;
-    image: string;
 }
 function SmokEndCase() {
     const isMobile = window.innerWidth <= 768;
@@ -78,7 +77,7 @@ function SmokEndCase() {
             height: isMobile ? '4vw' : '1.5vw',
             backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
-            backgroundRepeat: 'no - repeat',
+            backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
         }} />
     );
@@ -89,8 +88,8 @@ function SmokEndCase() {
             height: isMobile ? '15vw' : '6vw',
             backgroundImage: `url(${data1})`,
             marginRight: isMobile ? '1.5vw' : '0.5vw',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no - repeat',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
         }} />
     );
@@ -163,8 +162,8 @@ function SmokEndCase() {
                     </div>
                     <div className={styles.reviewtitle}>SmokEnd 케이스</div>
                     <div className={styles.reviewImgs}>
-                        <ReviewImg isMobile={isMobile} image={star} />
-                        <ReviewImg isMobile={isMobile} image={star} />
+                        <ReviewImg isMobile={isMobile}/>
+                        <ReviewImg isMobile={isMobile}/>
                     </div>
                     <div className={styles.reviewDes}>
                         처음 롤앤롤 라벤더 화장지를 사용했을 때 가장 인상적이었던 것은 바로 부드러운 사용감과 매력적인 라벤더 향이었습니다. 화장지가 얼굴을 만질 때 부드러운 스킨케어 제품을 사용하는 것 같은 느낌이었고, 라벤더 향은 섬세하고 달콤하여 화장실 공간을 한층 더 편안하게 만들어 주었습니다. 특히 저는 피부가 민감한 편이지만 롤앤롤 라벤더 화장지를 사용해도 전혀 자극이 없어서 매우 만족했습니다.
@@ -188,8 +187,8 @@ function SmokEndCase() {
                     </div>
                     <div className={styles.reviewtitle}>SmokEnd 케이스</div>
                     <div className={styles.reviewImgs}>
-                        <ReviewImg isMobile={isMobile} image={star} />
-                        <ReviewImg isMobile={isMobile} image={star} />
+                        <ReviewImg isMobile={isMobile}/>
+                        <ReviewImg isMobile={isMobile}/>
                     </div>
                     <div className={styles.reviewDes}>
                         처음 롤앤롤 라벤더 화장지를 사용했을 때 가장 인상적이었던 것은 바로 부드러운 사용감과 매력적인 라벤더 향이었습니다. 화장지가 얼굴을 만질 때 부드러운 스킨케어 제품을 사용하는 것 같은 느낌이었고, 라벤더 향은 섬세하고 달콤하여 화장실 공간을 한층 더 편안하게 만들어 주었습니다. 특히 저는 피부가 민감한 편이지만 롤앤롤 라벤더 화장지를 사용해도 전혀 자극이 없어서 매우 만족했습니다.

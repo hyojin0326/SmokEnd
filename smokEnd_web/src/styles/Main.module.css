@@ -145,8 +145,8 @@
   width:25vw;
   height:26vw;
   border-radius: 2vw;
-  background-image: url('../assets/main/data1.png');
-  background-size:cover;
+  background-image: url('../assets/Introduction/case.png');
+  background-size:contain;
   background-repeat: no-repeat;
   background-position: center;
 }

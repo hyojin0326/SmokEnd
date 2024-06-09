@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Purchase.module.css";
 import DaumPostcode from 'react-daum-postcode';
 import styled from "styled-components";
-import product from "../assets/main/data1.png";
+import product from "../assets/Introduction/case.png";
 import one from "../assets/payment/1.png";
 import two from "../assets/payment/2.png";
 import three from "../assets/payment/3.png";
