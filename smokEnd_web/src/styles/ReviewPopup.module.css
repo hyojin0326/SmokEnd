@@ -78,15 +78,15 @@
   padding: 1vw;
   width: 32.2vw;
   height: 3vw;
+  border: 0.1vw solid rgba(65, 65, 65, 0.625);
 
   border-radius: 0.5vw;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
 
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 1.5vw;
   font-family: "NanumSquareRoundB";
-  border: none; /* 버튼의 기본 border 제거 */
   padding: 0; /* 내부 패딩 제거 */
   cursor: pointer;
 }
@@ -96,13 +96,12 @@
   padding: 1vw;
   width: 32.2vw;
   height: 3vw;
-  border: 0.1vw solid rgb(0, 0, 0);
 
   border-radius: 0.5vw;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   cursor: pointer;
 
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 1.5vw;
   font-family: "NanumSquareRoundB";
   padding: 0; /* 내부 패딩 제거 */
@@ -208,15 +207,15 @@
     padding: 1vw;
     width: 62.2vw;
     height: 6vw;
+    border: 0.2vw solid rgba(65, 65, 65, 0.625);
 
     border-radius: 0.5vw;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
 
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 3vw;
     font-family: "NanumSquareRoundB";
-    border: none; /* 버튼의 기본 border 제거 */
     padding: 0; /* 내부 패딩 제거 */
     cursor: pointer;
   }
@@ -226,13 +225,12 @@
     padding: 1vw;
     width: 62.2vw;
     height: 6vw;
-    border: 0.1vw solid rgb(0, 0, 0);
 
     border-radius: 0.5vw;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     cursor: pointer;
 
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 3vw;
     font-family: "NanumSquareRoundB";
     padding: 0; /* 내부 패딩 제거 */
