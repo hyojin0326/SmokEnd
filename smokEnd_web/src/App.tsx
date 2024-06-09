@@ -52,7 +52,7 @@ function App() {
           {/* <Route path="/" element={<><Test /></>}/> */}
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/findpw" element={<Findpw />} /?
+          <Route path="/findpw" element={<Findpw />} />
           <Route
             path="/selfAssessment/*"
             element={
@@ -219,6 +219,7 @@ function App() {
               </>
             }
           />
+           <Route path="/smokEndCase" element={<><Header/><SmokEndCase/></>}/>
         </Routes>
       </Router>
       <Footer />
