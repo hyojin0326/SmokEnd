@@ -18,7 +18,7 @@ const SelfAssessmentResult: React.FC = () => {
     console.log("평가 결과:", evaluationResult);
 
     return (
-        <div className={styles.Content}>
+        <div className={styles.ContentResult}>
             <div className={styles.top} />
             <p className={styles.title}>평가결과</p>
             <table style={{marginBottom: "10vw"}}>

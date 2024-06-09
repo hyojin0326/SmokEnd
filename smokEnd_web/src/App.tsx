@@ -34,7 +34,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 function AppContent() {
   const location = useLocation();
-  const noFooterRoutes = ["/login", "/signup", "/findpw"];
+  const noFooterRoutes = ["/login", "/signup", "/findpw","/selfAssessment/result"];
   
   const shouldShowFooter = !noFooterRoutes.includes(location.pathname);
 
