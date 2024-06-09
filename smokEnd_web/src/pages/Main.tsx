@@ -151,7 +151,9 @@ function Main() {
                 }`}
               style={{ transform: getProductTransform1(0) }}
             >
+              <Link to="/smokEndCase">
               <Image></Image>
+              </Link>
               {specialProductIndex === 0 && (
                 <div className={styles.product_des}>
                   <p className={styles.product_title}>SomkEnd 담배 케이스</p>
