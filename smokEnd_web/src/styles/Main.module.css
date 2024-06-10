@@ -8,6 +8,7 @@
   text-decoration: none;
 }
 .main {
+  width:35%;
   position: absolute;
   top: calc(50vh - 83px);
   margin-left: 4vw;
@@ -47,8 +48,8 @@
 }
 
 .main_smoke {
-  position: relative;
-  width: 50%;
+  position: absolute;
+  width: 65%;
   height: 100vh;
   float: right;
   right: 6vw;
