@@ -57,7 +57,7 @@
 .phone1 {
   width: 70vw;
   position: absolute;
-  top: 22%;
+  top: 11vh;
   left: -20%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
