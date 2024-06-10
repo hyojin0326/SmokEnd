@@ -29,29 +29,29 @@
   display: flex;
   justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
-  width: 100%;
+  /* width: 100%; */
 }
 
 .background {
   position: relative;
   width: 100vw;
-  height: 47vw;
+  height: 100vh;
 }
 
 .backgroundImage {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 .backgroundImage2 {
-  width: 100%;
-  height: 150%;
+  width: 100vw;
+  height: 150vh;
 }
 
 .backgroundImage6 {
   margin-top: -37%;
-  width: 100%;
-  height: 120%;
+  width: 100vw;
+  height: 120vh;
 }
 
 .phone1 {
@@ -382,7 +382,7 @@
 
   .backgroundImg {
     background-image: url("../assets/Introduction/background.jpg");
-    background-size: 100vw 175vw;
+    background-size: 100vw 100vh;
     /* filter: brightness(1) contrast(1); */
   }
 
@@ -393,7 +393,7 @@
 
   .backSize {
     width: 100vw;
-    height: 175vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
   }

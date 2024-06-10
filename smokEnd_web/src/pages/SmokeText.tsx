@@ -1,4 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import styles from "../styles/SmokeText.module.css";
 import test from "../assets/SmokeText/test.jpg";
 import textwrite from "../assets/SmokeText/textwrite.png";
@@ -6,23 +13,41 @@ import Header from "../components/Header";
 
 const SmokeText: React.FC = () => {
   const isMobile = window.innerWidth <= 768;
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const [selectedTab, setSelectedTab] = useState<string>("흡연의 중요성");
-  const [posts, setPosts] = useState<{ [key: string]: string[] }>({
-    "흡연의 중요성": [],
-    "금연의 필요성": [],
+  const tabs: Array<keyof typeof tabNames> = ["importance", "necessity"];
+  const tabNames = {
+    importance: "흡연의 중요성",
+    necessity: "금연의 필요성",
+  };
+  const currentTab =
+    tabs.find((tab) => location.pathname.includes(tab)) || "importance";
+
+  const [selectedTab, setSelectedTab] =
+    useState<keyof typeof tabNames>(currentTab);
+  const [posts, setPosts] = useState<{
+    [key in keyof typeof tabNames]: string[];
+  }>({
+    importance: [],
+    necessity: [],
   }); // 각 탭별 게시물 내용
   const scrollBoxRef = useRef<HTMLDivElement>(null); // 스크롤 박스의 ref
 
+  useEffect(() => {
+    setSelectedTab(currentTab);
+  }, [currentTab]);
+
   // 각 탭을 클릭했을 때 호출되는 함수
-  const handleTabClick = (tabName: string) => {
+  const handleTabClick = (tabName: keyof typeof tabNames) => {
     setSelectedTab(tabName);
+    navigate(`/smokeText/${tabName}`);
   };
 
   // 새로운 게시물이 추가될 때 호출되는 함수
   const addNewPost = () => {
     const newPost =
-      selectedTab === "흡연의 중요성"
+      selectedTab === "importance"
         ? `
         <div class="${styles.textBox}">
           <div class="${styles.leftContainer}">
@@ -111,22 +136,17 @@ const SmokeText: React.FC = () => {
             <p className={styles.p}>담배에 대해 얼마나 아십니까?</p>
           </div>
           <div className={styles.container}>
-            <div
-              className={`${styles.box} ${
-                selectedTab === "흡연의 중요성" ? styles.active : ""
-              }`}
-              onClick={() => handleTabClick("흡연의 중요성")}
-            >
-              <div className={styles.text}>흡연의 중요성</div>
-            </div>
-            <div
-              className={`${styles.box} ${
-                selectedTab === "금연의 필요성" ? styles.active : ""
-              }`}
-              onClick={() => handleTabClick("금연의 필요성")}
-            >
-              <div className={styles.text}>금연의 필요성</div>
-            </div>
+            {tabs.map((tab) => (
+              <div
+                key={tab}
+                className={`${styles.box} ${
+                  selectedTab === tab ? styles.active : ""
+                }`}
+                onClick={() => handleTabClick(tab)}
+              >
+                <div className={styles.text}>{tabNames[tab]}</div>
+              </div>
+            ))}
           </div>
           <TabContent />
         </div>
