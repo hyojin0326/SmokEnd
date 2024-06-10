@@ -16,20 +16,20 @@ const SmokeText: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const tabs: Array<keyof typeof tabNames> = ["importance", "necessity"];
+  const tabs: Array<keyof typeof tabNames> = ["risk", "necessity"];
   const tabNames = {
-    importance: "흡연의 중요성",
+    risk: "흡연의 위험성",
     necessity: "금연의 필요성",
   };
   const currentTab =
-    tabs.find((tab) => location.pathname.includes(tab)) || "importance";
+    tabs.find((tab) => location.pathname.includes(tab)) || "risk";
 
   const [selectedTab, setSelectedTab] =
     useState<keyof typeof tabNames>(currentTab);
   const [posts, setPosts] = useState<{
     [key in keyof typeof tabNames]: string[];
   }>({
-    importance: [],
+    risk: [],
     necessity: [],
   }); // 각 탭별 게시물 내용
   const scrollBoxRef = useRef<HTMLDivElement>(null); // 스크롤 박스의 ref
@@ -47,7 +47,7 @@ const SmokeText: React.FC = () => {
   // 새로운 게시물이 추가될 때 호출되는 함수
   const addNewPost = () => {
     const newPost =
-      selectedTab === "importance"
+      selectedTab === "risk"
         ? `
         <div class="${styles.textBox}">
           <div class="${styles.leftContainer}">
