@@ -56,7 +56,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding-bottom: 0.2vw;
+    padding-bottom: 1vw;
     border-bottom: 0.1vw solid #454545;
 }
 .review>p{
@@ -64,7 +64,7 @@
     font-size:1vw;
 }
 .money>.case{
-    margin:0.5vw 0;
+    margin:1vw 0;
     font-size: 1.2vw;
 }
 .delivery{
@@ -73,7 +73,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-bottom: 1vw;
+    padding-bottom: 1.2vw;
     border-bottom: 0.1vw solid #454545;
 }
 .deliveryFee{
@@ -150,7 +150,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 0.5vw 0;
+    margin: 1vw 0;
     font-size: 1.2vw;
 }
 .totalMoney{
@@ -173,7 +173,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top:0.5vw;
+    margin-top:1vw;
     font-size: 1.2vw;
 }
 .des{
@@ -185,9 +185,10 @@
 }
 .reviewTop{
     width:100%;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
-    font-size: 1.2vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    font-size: 1.1vw;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
 }
