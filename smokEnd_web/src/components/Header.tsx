@@ -191,7 +191,7 @@ function Header() {
                             흡연 상식 점검
                         </p>
                         <br />
-                        <p className={styles.loggedInli3} onClick={(event) => handleProtectedClick(event, "/selfAsssessment/condition")}>
+                        <p className={styles.loggedInli3} onClick={(event) => handleProtectedClick(event, "/selfAssessment/condition")}>
                             나의 신체상태 진단
                         </p>
                       </div>
