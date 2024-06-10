@@ -31,18 +31,21 @@ function Main() {
 
   //로그인 상태에 따라
   useEffect(() => {
-    const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const sessionId = document.cookie.replace(
+      /(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
     setIsLogin(!!sessionId);
   }, []);
   //스크롤 가능, 불가능
   useEffect(() => {
     if (isLogin) {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     } else {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isLogin]);
 
@@ -148,8 +151,9 @@ function Main() {
           <div className={styles.mainProduct}>
             <div className={styles.leftArrow} onClick={handleLeftArrowClick} />
             <div
-              className={`${styles.product} ${specialProductIndex === 0 ? styles.specialProduct : ""
-                }`}
+              className={`${styles.product} ${
+                specialProductIndex === 0 ? styles.specialProduct : ""
+              }`}
               style={{ transform: getProductTransform1(0) }}
             >
               <Link to="/smokEndCase">
@@ -165,8 +169,9 @@ function Main() {
               )}
             </div>
             <div
-              className={`${styles.product} ${specialProductIndex === 1 ? styles.specialProduct : ""
-                }`}
+              className={`${styles.product} ${
+                specialProductIndex === 1 ? styles.specialProduct : ""
+              }`}
               style={{ transform: getProductTransform2(0) }}
             >
               <div className={styles.product_img}></div>
@@ -180,8 +185,9 @@ function Main() {
               )}
             </div>
             <div
-              className={`${styles.product} ${specialProductIndex === 2 ? styles.specialProduct : ""
-                }`}
+              className={`${styles.product} ${
+                specialProductIndex === 2 ? styles.specialProduct : ""
+              }`}
               style={{ transform: getProductTransform3(0) }}
             >
               <Image></Image>
@@ -246,7 +252,7 @@ function Main() {
             </div>
           </div>
         </div>
-        {!isMobile ?
+        {!isMobile ? (
           <div className={styles.smoke_write}>
             <div className={styles.write}>
               <div>
@@ -272,7 +278,7 @@ function Main() {
               </div>
             </div>
           </div>
-          :
+        ) : (
           <div>
             <p className={styles.mobile_title}>
               당신의 <span>금연</span> 시작을 위해
@@ -297,10 +303,9 @@ function Main() {
                   <p className={styles.write_date}>2021-03-19</p>
                 </div>
               </div>
-
             </div>
           </div>
-        }
+        )}
       </div>
     </>
   );
