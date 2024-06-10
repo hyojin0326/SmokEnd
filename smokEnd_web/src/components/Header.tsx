@@ -249,7 +249,7 @@ function Header() {
                           onClick={(event) =>
                             handleProtectedClick(
                               event,
-                              "/selfAsssessment/condition"
+                              "/selfAssessment/condition"
                             )
                           }
                         >
