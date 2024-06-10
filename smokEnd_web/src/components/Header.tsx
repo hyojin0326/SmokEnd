@@ -162,7 +162,7 @@ function Header() {
                         <p
                           className={styles.loggedInli}
                           onClick={(event) =>
-                            handleProtectedClick(event, "/SmokeText")
+                            handleProtectedClick(event, "/SmokeText/risk")
                           }
                         >
                           흡연의 위험성
@@ -171,7 +171,7 @@ function Header() {
                         <p
                           className={styles.loggedInli}
                           onClick={(event) =>
-                            handleProtectedClick(event, "/smokeText")
+                            handleProtectedClick(event, "/smokeText/necessity")
                           }
                         >
                           금연의 필요성
@@ -334,7 +334,7 @@ function Header() {
                   <p
                     className={styles.MobileloggedInli2}
                     onClick={(event) =>
-                      handleProtectedClick(event, "/smokeText")
+                      handleProtectedClick(event, "/smokeText/risk")
                     }
                   >
                     흡연의 위험성
@@ -343,7 +343,7 @@ function Header() {
                   <p
                     className={styles.MobileloggedInli2}
                     onClick={(event) =>
-                      handleProtectedClick(event, "/smokeText")
+                      handleProtectedClick(event, "/smokeText/necessity")
                     }
                   >
                     금연의 필요성
@@ -474,7 +474,7 @@ function Header() {
                       <p
                         className={styles.loggedInli}
                         onClick={(event) =>
-                          handleProtectedClick(event, "/smokeText")
+                          handleProtectedClick(event, "/smokeText/risk")
                         }
                         style={{ color: "white" }}
                       >
@@ -484,7 +484,7 @@ function Header() {
                       <p
                         className={styles.loggedInli}
                         onClick={(event) =>
-                          handleProtectedClick(event, "/smokeText")
+                          handleProtectedClick(event, "/smokeText/necessity")
                         }
                         style={{ color: "white" }}
                       >
@@ -644,7 +644,7 @@ function Header() {
                   <p
                     className={styles.MobileloggedInli2}
                     onClick={(event) =>
-                      handleProtectedClick(event, "/SmokeText")
+                      handleProtectedClick(event, "/SmokeText/risk")
                     }
                   >
                     흡연의 위험성
@@ -653,7 +653,7 @@ function Header() {
                   <p
                     className={styles.MobileloggedInli2}
                     onClick={(event) =>
-                      handleProtectedClick(event, "/SmokeText")
+                      handleProtectedClick(event, "/SmokeText/necessity")
                     }
                   >
                     금연의 필요성

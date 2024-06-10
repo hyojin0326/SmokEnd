@@ -104,14 +104,7 @@ function AppContent() {
             </>
           }
         />
-        <Route
-          path="/review"
-          element={
-            <>
-              <ReviewPopup />
-            </>
-          }
-        />
+
         <Route path="/smokeText/:tab" element={<SmokeText />} />
         <Route path="/smokeText" element={<SmokeText />} />
         <Route
