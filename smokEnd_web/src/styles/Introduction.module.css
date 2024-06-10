@@ -57,13 +57,13 @@
 .phone1 {
   width: 70vw;
   position: absolute;
-  top: 11vh;
+  top: 23%;
   left: -20%;
   transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
+  z-index: 2;
   display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; 
+  align-items: center;
 }
 
 .phone2 {
