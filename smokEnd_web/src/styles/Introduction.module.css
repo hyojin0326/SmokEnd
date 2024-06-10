@@ -1,5 +1,5 @@
 .MOMBox {
-  height: 450vw;
+  height: 560vw;
 }
 
 .outerContainer {
@@ -49,15 +49,15 @@
 }
 
 .backgroundImage6 {
-  margin-top: -37%;
+  margin-top: -50%;
   width: 100vw;
-  height: 120vh;
+  height: 80vh;
 }
 
 .phone1 {
   width: 70vw;
   position: absolute;
-  top: 12%;
+  top: 30%;
   left: -20%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
@@ -107,7 +107,7 @@
 .phone5 {
   width: 70vw;
   position: absolute;
-  top: -75%;
+  top: -65%;
   left: -20%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
@@ -119,7 +119,7 @@
 .phone6 {
   width: 70vw;
   position: absolute;
-  top: -55%;
+  top: -63%;
   right: 41%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
@@ -132,7 +132,7 @@
 .web {
   width: 70vw;
   position: absolute;
-  top: -45%;
+  top: -75%;
   left: -22%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
@@ -144,7 +144,7 @@
 .web2 {
   width: 70vw;
   position: absolute;
-  top: -45%;
+  top: -100%;
   left: -15%;
   transform: translateX(50%);
   z-index: 2; /* phone1 이미지를 위에 표시 */
@@ -335,7 +335,7 @@
 
 .centerCircleContainer {
   position: absolute;
-  top: 370vw;
+  top: 470vw;
   display: flex;
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
