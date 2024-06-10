@@ -7,7 +7,7 @@ import menuWhite from "../assets/mobile_menu_white.png";
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const isMobile = window.innerWidth <= 768;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [menuOpen, setMenuOpen] = useState(false);
   const [slideIn, setSlideIn] = useState(false);
   const isAboutPage = location.pathname === "/introduction";
@@ -25,6 +25,18 @@ function Header() {
       setIsLoggedIn(true);
     }
   }, []);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      window.addEventListener("resize", handleResize);
+  
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
 
   // const handleMenuClick = () => {
   //   setMenuOpen(!menuOpen);
