@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/ReviewPopup.module.css";
 import pick from "../assets/Review/pick.png";
 import star from "../assets/Review/star.png";
 import star2 from "../assets/Review/star2.png";
 
-function ReviewPopup() {
-  const [isOpen, setIsOpen] = useState(true);
+interface ReviewPopupProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
   const [stars, setStars] = useState([star, star, star, star, star]);
   const [text, setText] = useState("");
   const isMobile = window.innerWidth <= 768;
 
-  const togglePopup = () => {
-    if (!isOpen) {
-      // 팝업을 열 때 초기화 -> 나중에 초기화 지우기 -> 디비로 넘어가고
+  useEffect(() => {
+    if (isOpen) {
       setStars([star, star, star, star, star]);
       setText("");
     }
-    setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   const toggleStar = (index: number) => {
     const newStars = stars.map((_, i) => (i <= index ? star2 : star));
@@ -40,58 +42,58 @@ function ReviewPopup() {
     setText(event.target.value);
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div>
-      {isOpen && (
-        <div className={styles["popup-background"]} onClick={togglePopup}>
-          <div
-            className={styles["popup-content"]}
-            // 팝업 내부 클릭시 이벤트 전파 막기
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className={styles.bigbigBox}>
-              <div className={styles.bigBox}>
-                <div className={styles.p}>상세 사진</div>
-                <div className={styles.pick}>
-                  <div className={styles.pickAlign}>
-                    <img src={pick} alt="pick" />
-                  </div>
-                </div>
-
-                <div className={styles.p}>만족도</div>
-                <div className={styles.star}>
-                  {stars.map((starImg, index) => (
-                    <img
-                      key={index}
-                      src={starImg}
-                      onClick={() => toggleStar(index)}
-                    />
-                  ))}
-                </div>
-
-                <div className={styles.p}>상세 글</div>
-                <div>
-                  <textarea
-                    className={styles.textarea}
-                    placeholder="상품에 대해..."
-                    value={text}
-                    onChange={handleTextChange}
-                  />
-                </div>
-                <button
-                  type="button"
-                  className={styles.butcss}
-                  onClick={handleSubmit}
-                >
-                  작성하기
-                </button>
+    <div
+      className={styles["popup-background"]}
+      onClick={() => setIsOpen(false)}
+    >
+      <div
+        className={styles["popup-content"]}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={styles.bigbigBox}>
+          <div className={styles.bigBox}>
+            <div className={styles.p}>상세 사진</div>
+            <div className={styles.pick}>
+              <div className={styles.pickAlign}>
+                <img src={pick} alt="pick" />
               </div>
             </div>
+
+            <div className={styles.p}>만족도</div>
+            <div className={styles.star}>
+              {stars.map((starImg, index) => (
+                <img
+                  key={index}
+                  src={starImg}
+                  onClick={() => toggleStar(index)}
+                />
+              ))}
+            </div>
+
+            <div className={styles.p}>상세 글</div>
+            <div>
+              <textarea
+                className={styles.textarea}
+                placeholder="상품에 대해..."
+                value={text}
+                onChange={handleTextChange}
+              />
+            </div>
+            <button
+              type="button"
+              className={styles.butcss}
+              onClick={handleSubmit}
+            >
+              작성하기
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
-}
+};
 
 export default ReviewPopup;
