@@ -1,7 +1,7 @@
 import styles from "../styles/SmokEndCase.module.css";
 import star from "../assets/Review/star.png";
 import star2 from "../assets/Review/star2.png";
-import data1 from "../assets/Introduction/case.png";
+import data1 from "../assets/Introduction/case_background.png";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import ReviewPopup from "../components/ReviewPopup";
