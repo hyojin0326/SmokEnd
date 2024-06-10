@@ -3,41 +3,41 @@
   height: 100vh;
   background-color: #000000;
 }
-.Link{
-  color:black;
+.Link {
+  color: black;
   text-decoration: none;
 }
 .main {
   position: absolute;
-  top: calc(50% - 83px);
+  top: calc(50vh - 83px);
   margin-left: 4vw;
 }
-.main>.mainText {
-  font-family: 'NanumSquareRoundExtraBold', sans-serif;
+.main > .mainText {
+  font-family: "NanumSquareRoundExtraBold", sans-serif;
   color: white;
-  font-size: 3.8vw;
+  font-size: 3vw;
   font-weight: 500;
 }
 
-.mainText>span {
+.mainText > span {
   color: red;
 }
 
-.main>.subText {
+.main > .subText {
   color: grey;
   font-family: "NanumSquareRoundL";
   font-size: 2vw;
   margin-top: 4vw;
 }
 
-.main>.mainButton {
+.main > .mainButton {
   width: 10vw;
   height: 3vw;
   border: 0.2vw solid white;
   border-radius: 2vw;
   margin-top: 1.5vw;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   color: white;
   font-family: "NanumSquareRoundL";
@@ -47,28 +47,30 @@
 }
 
 .main_smoke {
-  width: 69vw;
-  height: 40vw;
+  position: relative;
+  width: 50%;
+  height: 100vh;
   float: right;
-  position: relative;
-  top:16vw;
-  background-image: url('../assets/main/Main_smoke.png');
-  background-size: cover; 
-
+  right: 6vw;
+  bottom: 2vw;
+  background-image: url("../assets/main/Main_smoke.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
-.bottom{
-  width:100vw;
-  height:3vw;
-  position: relative;
-  top:12vw;
+.bottom {
+  z-index: 1;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   opacity: 0.7;
   animation: bounce 1s infinite alternate;
 }
-.bottom>img{
-  height:3.5vw;
+.bottom > img {
+  height: 3.5vw;
 }
 
 @keyframes bounce {
@@ -79,71 +81,70 @@
     transform: translateY(-1vw); /* 약간 위로 이동하는 애니메이션 효과 */
   }
 }
-.main_product{
-  height:33vw;
+.main_product {
+  height: 33vw;
   position: relative;
-  top:12vw;
+  top: 12vw;
   overflow: hidden;
-/* overflow */
+  /* overflow */
 }
-.main_product>.main_product_text{
+.main_product > .main_product_text {
   position: absolute;
-  top:5.5vw;
+  top: 5.5vw;
   margin-left: 3vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.main_product_title{
-  color:black;
+.main_product_title {
+  color: black;
   font-family: "NanumSquareRoundL";
   font-size: 3.8vw;
   font-weight: 500;
   line-height: 1.3;
 }
-.main_select_title{
-  color:black;
+.main_select_title {
+  color: black;
   font-family: "NanumSquareRoundL";
   font-size: 3.8vw;
   font-weight: 500;
   line-height: 1.3;
 }
-.main_product_title>span{
+.main_product_title > span {
   color: red;
 }
-.main_select_title>span{
+.main_select_title > span {
   color: red;
 }
-.main_product_text>.main_product_sub{
+.main_product_text > .main_product_sub {
   color: grey;
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   margin-top: 4vw;
   line-height: 1.3;
 }
-.main_product_text>*>.main_product_button{
+.main_product_text > * > .main_product_button {
   width: 10vw;
   height: 3vw;
   border: 0.15vw solid rgb(0, 0, 0);
   border-radius: 2vw;
   margin-top: 1.5vw;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   color: rgb(0, 0, 0);
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
   overflow: hidden;
 }
-.mainProduct{
-  width:85vw;
-  height:40vw;
+.mainProduct {
+  width: 85vw;
+  height: 40vw;
   position: absolute;
   margin-left: 32vw;
-
 }
-.mainProduct>.product{
-  width:25vw;
+.mainProduct > .product {
+  width: 25vw;
   display: inline-block;
   margin-left: 3vw;
   border-radius: 1vw;
@@ -153,70 +154,70 @@
 .specialProduct {
   box-shadow: 0 0 1vw 0.2vw rgba(0, 0, 0, 0.285);
 }
-.product_img{
-  width:25vw;
-  height:26vw;
+.product_img {
+  width: 25vw;
+  height: 26vw;
   border-radius: 1vw;
-  background-image: url('../assets/main/data1.png');
-  background-size:cover;
+  background-image: url("../assets/main/data1.png");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.product_des{
-  width:25vw;
-  height:5vw;
+.product_des {
+  width: 25vw;
+  height: 5vw;
   border-radius: 1vw;
   display: flex;
-  justify-content:center; 
-  align-items:normal;
-  flex-direction:column;
+  justify-content: center;
+  align-items: normal;
+  flex-direction: column;
 }
-.product_des>.product_title{
+.product_des > .product_title {
   margin-left: 1vw;
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
   font-weight: bold;
 }
-.product_des>.product_sub{
+.product_des > .product_sub {
   margin-left: 1vw;
-  margin-top:0.5vw;
+  margin-top: 0.5vw;
   font-family: "NanumSquareRoundL";
   font-size: 1vw;
   font-weight: bold;
-  color:#767676;
+  color: #767676;
 }
-.leftArrow{
-  width:2.5vw;
-  height:2.5vw;
+.leftArrow {
+  width: 2.5vw;
+  height: 2.5vw;
   position: relative;
-  top:15vw;
-  background-image: url('../assets/main/product_arrow.png');
-  background-size:contain;
+  top: 15vw;
+  background-image: url("../assets/main/product_arrow.png");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-.rightArrow{
-  width:2.5vw;
-  height:2.5vw;
+.rightArrow {
+  width: 2.5vw;
+  height: 2.5vw;
   position: relative;
   transform: translate(65vw, -17.1vw) rotate(180deg);
-  background-image: url('../assets/main/product_arrow.png');
-  background-size:contain;
+  background-image: url("../assets/main/product_arrow.png");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-.select{
-  width:100vw;
-  height:45vw;
-  margin-top:15vw;
+.select {
+  width: 100vw;
+  height: 45vw;
+  margin-top: 15vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.select_content{
+.select_content {
   width: 85vw;
-  height:25vw;
+  height: 25vw;
   border-radius: 1vw;
   margin-top: 3vw;
   display: flex;
@@ -224,149 +225,148 @@
   align-items: center;
   justify-content: center;
 }
-.self_check{
+.self_check {
   background-color: #000000;
-  width:40vw;
-  height:25vw;
+  width: 40vw;
+  height: 25vw;
   border-radius: 1vw;
-  margin-right:2vw;
+  margin-right: 2vw;
   border: 0.1vw solid black;
   position: relative;
   display: flex;
   justify-content: center;
 }
-.self_check>div{
-  width:80%;
-  
+.self_check > div {
+  width: 80%;
 }
-.campaign{
-  width:40vw;
-  height:25vw;
-  background-color:rgb(255, 255, 255);
+.campaign {
+  width: 40vw;
+  height: 25vw;
+  background-color: rgb(255, 255, 255);
   border-radius: 1vw;
-  margin-left:2vw;
+  margin-left: 2vw;
   border: 0.1vw solid black;
   position: relative;
   display: flex;
   justify-content: center;
 }
-.campaign>div{
-  width:80%;
+.campaign > div {
+  width: 80%;
 }
-  
-.self_check>div>.content_title{
+
+.self_check > div > .content_title {
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   font-weight: bold;
-  color:white;
-  padding-top:2vw;  
+  color: white;
+  padding-top: 2vw;
 }
-.self_check>div>.content_des{
+.self_check > div > .content_des {
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   font-weight: bold;
-  color:white;
-  padding-top:2vw;
+  color: white;
+  padding-top: 2vw;
   line-height: 1.7;
 }
-.self_check_button{
+.self_check_button {
   width: 10vw;
   height: 3vw;
   border: 0.1vw solid rgb(255, 255, 255);
   border-radius: 2vw;
   margin-top: -1vw;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   color: rgb(255, 255, 255);
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
 }
-.self_check_img{
+.self_check_img {
   width: 15vw;
-  height:15vw;
+  height: 15vw;
   background-image: url("../assets/main/self_check.png");
-  background-size:contain;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   float: right;
   position: relative;
-  top:-3vw;
+  top: -3vw;
 }
-.campaign>div>.content_title{
+.campaign > div > .content_title {
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   font-weight: bold;
-  color:black;
-  padding-top:2vw;
+  color: black;
+  padding-top: 2vw;
 }
-.campaign>div>.content_des{
+.campaign > div > .content_des {
   font-size: 1.8vw;
   font-family: "NanumSquareRoundL";
   font-weight: bold;
-  color:black;
-  padding-top:2vw;
+  color: black;
+  padding-top: 2vw;
   line-height: 1.7;
 }
-.campaign_button{
+.campaign_button {
   width: 10vw;
   height: 3vw;
   border: 0.1vw solid black;
   border-radius: 2vw;
   margin-top: -1vw;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   color: black;
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
 }
-.campaign_img{
+.campaign_img {
   width: 15vw;
-  height:16vw;
+  height: 16vw;
   background-image: url("../assets/main/campaign.png");
-  background-size:contain;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   float: right;
   position: relative;
-  top:-5vw;
+  top: -5vw;
 }
-.smoke_write{
+.smoke_write {
   margin: 0 auto;
-  width:85vw;
+  width: 85vw;
   margin-top: 5vw;
   margin-bottom: 5vw;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   margin-bottom: 10vw;
 }
-.smoke_write>.write{
-  width:26vw;
-  height:16vw;
+.smoke_write > .write {
+  width: 26vw;
+  height: 16vw;
   border: 0.1vw solid black;
   border-radius: 1vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.write>div{
-  width:90%;
+.write > div {
+  width: 90%;
   margin: 0 auto;
 }
-.write>div>.write_category{
-  color:#8F4A4A;
+.write > div > .write_category {
+  color: #8f4a4a;
   font-family: "NanumSquareRoundL";
   font-size: 1.5vw;
 }
-.write>div>.write_title{
+.write > div > .write_title {
   margin-top: 2vw;
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
   font-weight: bold;
 }
-.write>div>.write_date{
+.write > div > .write_date {
   margin-top: 4vw;
   font-family: "NanumSquareRoundL";
   font-size: 1vw;
@@ -376,15 +376,15 @@
   .main {
     margin-left: 5vw;
   }
-  .main>.mainText {
+  .main > .mainText {
     font-size: 8vw;
   }
-  .main>.subText {
+  .main > .subText {
     font-size: 5vw;
     margin-top: 1vw;
   }
-  
-  .main>.mainButton {
+
+  .main > .mainButton {
     width: 18vw;
     height: 5vw;
     border-radius: 4vw;
@@ -392,114 +392,111 @@
     padding-left: 4vw;
     border: 0.5vw solid white;
   }
-  
+
   .main_smoke {
     display: none;
   }
-  .bottom{
-    height:8vw;
-    top:165vw;
+  .bottom {
+    height: 8vw;
+    top: 165vw;
   }
-  .bottom>img{
-    height:8vw;
+  .bottom > img {
+    height: 8vw;
   }
-  .main_product{
-    height:120vw;
-    top:15vw;
+  .main_product {
+    height: 120vw;
+    top: 15vw;
   }
-  .main_product>.main_product_text{
-    top:10.5vw;
+  .main_product > .main_product_text {
+    top: 10.5vw;
     margin-left: 5vw;
   }
-  .main_product_title{
-    font-size: 8vw; 
+  .main_product_title {
+    font-size: 8vw;
   }
-  .main_select_title{
-    font-size: 5vw; 
+  .main_select_title {
+    font-size: 5vw;
   }
-  .main_product_text>.main_product_sub{
+  .main_product_text > .main_product_sub {
     font-size: 5vw;
     margin-top: 1vw;
   }
-  .main_product_text>*>.main_product_button{
+  .main_product_text > * > .main_product_button {
     width: 18vw;
     height: 5vw;
     border-radius: 4vw;
     margin-top: 3.5vw;
     font-size: 2vw;
     border: 0.3vw solid black;
-
   }
-  .mainProduct{
-    width:150vw;
-    height:50vw;
+  .mainProduct {
+    width: 150vw;
+    height: 50vw;
     position: absolute;
     margin-left: 5vw;
-    top:65vw;
-  
+    top: 65vw;
   }
-  .mainProduct>.product{
-    width:35vw;
+  .mainProduct > .product {
+    width: 35vw;
     margin-top: -1.5vw;
     margin-left: 5vw;
-
   }
-  .product_img{
-    width:35vw;
-    height:36vw;
+  .product_img {
+    width: 35vw;
+    height: 36vw;
   }
-  .product_des{
-    width:35vw;
-    height:10vw;
+  .product_des {
+    width: 35vw;
+    height: 10vw;
   }
-  .product_des>.product_title{
+  .product_des > .product_title {
     margin-left: 2vw;
     font-size: 2.5vw;
   }
-  .product_des>.product_sub{
+  .product_des > .product_sub {
     margin-left: 2vw;
-    margin-top:1vw;
+    margin-top: 1vw;
     font-size: 2vw;
   }
-  .leftArrow{
-    width:4vw;
-    height:4vw;
-    top:20vw;
-  }
-  .rightArrow{
-    width:4vw;
+  .leftArrow {
+    width: 4vw;
     height: 4vw;
-    top:-12vw;
-    right:-25vw;
+    top: 20vw;
+  }
+  .rightArrow {
+    width: 4vw;
+    height: 4vw;
+    top: -12vw;
+    right: -25vw;
     transform: translate(65vw, -17.1vw) rotate(180deg);
   }
-  .select{
-    height:85vw;
-    margin-top:25vw;
+  .select {
+    height: 85vw;
+    margin-top: 25vw;
   }
-  .select_content{
+  .select_content {
     width: 85vw;
-    height:45vw;
+    height: 45vw;
   }
-  .self_check{
+  .self_check {
     border-radius: 2vw;
-    height:45vw;
+    height: 45vw;
     border: 0.3vw solid black;
   }
-  .campaign{
-    height:45vw;
+  .campaign {
+    height: 45vw;
     border-radius: 2vw;
     border: 0.3vw solid black;
   }
-  .self_check>div>.content_title{
+  .self_check > div > .content_title {
     font-size: 3vw;
-    padding-top:4vw;  
+    padding-top: 4vw;
   }
-  .self_check>div>.content_des{
+  .self_check > div > .content_des {
     font-size: 2.2vw;
-    padding-top:3vw;
+    padding-top: 3vw;
   }
-  .self_check_button{
+  .self_check_button {
     width: 13vw;
     height: 3vw;
     border-radius: 4vw;
@@ -507,21 +504,21 @@
     font-size: 2vw;
     border: 0.3vw solid white;
   }
-  .self_check_img{
+  .self_check_img {
     width: 20vw;
-    height:20vw;
-    margin-right: 2vw;  
-    top:3vw;
+    height: 20vw;
+    margin-right: 2vw;
+    top: 3vw;
   }
-  .campaign>div>.content_title{
+  .campaign > div > .content_title {
     font-size: 3vw;
-    padding-top:4vw;
+    padding-top: 4vw;
   }
-  .campaign>div>.content_des{
+  .campaign > div > .content_des {
     font-size: 2.2vw;
-    padding-top:3vw;
+    padding-top: 3vw;
   }
-  .campaign_button{
+  .campaign_button {
     width: 13vw;
     height: 3vw;
     border-radius: 4vw;
@@ -529,42 +526,42 @@
     font-size: 2vw;
     border: 0.3w solid black;
   }
-  .campaign_img{
+  .campaign_img {
     width: 20vw;
-    height:20vw;
-    margin-right: -1vw;  
-    top:1vw;
+    height: 20vw;
+    margin-right: -1vw;
+    top: 1vw;
   }
-  .smoke_write{
-    width:85vw;
+  .smoke_write {
+    width: 85vw;
     margin-top: 2vw;
   }
-  .smoke_write>.write{
+  .smoke_write > .write {
     border-radius: 2vw;
-    width:38vw;
-    height:25vw;
+    width: 38vw;
+    height: 25vw;
     border: 0.3vw solid black;
   }
-  .write>div>.write_category{
+  .write > div > .write_category {
     font-size: 3vw;
   }
-  .write>div>.write_title{
+  .write > div > .write_title {
     margin-top: 1vw;
     font-size: 2.2vw;
   }
-  .write>div>.write_date{
+  .write > div > .write_date {
     margin-top: 3vw;
     font-size: 2vw;
   }
-  .mobile_title{
+  .mobile_title {
     font-family: "NanumSquareRoundL";
-    color:black;
+    color: black;
     font-weight: 500;
     line-height: 1.3;
-    font-size: 5vw; 
+    font-size: 5vw;
     text-align: center;
   }
-  .mobile_title>span{
+  .mobile_title > span {
     color: red;
   }
 }
