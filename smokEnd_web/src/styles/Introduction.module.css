@@ -377,7 +377,8 @@
     width: 100vw;
     /* display: flex; */
     /* justify-content: center; */
-    /* align-items: center; 수직 중앙 정렬 */
+    /* 수직 중앙 정렬 */
+    /* align-items: center; */
   }
 
   .backgroundImg {
@@ -403,6 +404,7 @@
     /* height: 175vw; */
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .inSide {
@@ -415,6 +417,12 @@
   .inSide2 {
     width: 80vw;
     margin-top: 10vw;
+  }
+
+  .inSide3 {
+    width: 80vw;
+    margin-top: 10vw;
+    text-align: right;
   }
 
   .LOGO {
