@@ -151,9 +151,8 @@ function Main() {
           <div className={styles.mainProduct}>
             <div className={styles.leftArrow} onClick={handleLeftArrowClick} />
             <div
-              className={`${styles.product} ${
-                specialProductIndex === 0 ? styles.specialProduct : ""
-              }`}
+              className={`${styles.product} ${specialProductIndex === 0 ? styles.specialProduct : ""
+                }`}
               style={{ transform: getProductTransform1(0) }}
             >
               <Link to="/smokEndCase">
@@ -169,9 +168,8 @@ function Main() {
               )}
             </div>
             <div
-              className={`${styles.product} ${
-                specialProductIndex === 1 ? styles.specialProduct : ""
-              }`}
+              className={`${styles.product} ${specialProductIndex === 1 ? styles.specialProduct : ""
+                }`}
               style={{ transform: getProductTransform2(0) }}
             >
               <div className={styles.product_img}></div>
@@ -185,9 +183,8 @@ function Main() {
               )}
             </div>
             <div
-              className={`${styles.product} ${
-                specialProductIndex === 2 ? styles.specialProduct : ""
-              }`}
+              className={`${styles.product} ${specialProductIndex === 2 ? styles.specialProduct : ""
+                }`}
               style={{ transform: getProductTransform3(0) }}
             >
               <Image></Image>
@@ -207,52 +204,82 @@ function Main() {
             />
           </div>
         </div>
-
-        <div className={styles.select}>
-          <p className={styles.main_select_title}>
-            <span>금연</span>을 위한 최고의 선택
-          </p>
-          <div className={styles.select_content}>
-            <div className={styles.self_check}>
-              <div>
-                <p className={styles.content_title}>자가진단</p>
-                <p className={styles.content_des}>
-                  금연을 위해서는 현재 본인의 상태
-                  <br />
-                  제대로 아는것이 우선입니다.
-                </p>
+      </div>
+      <div className={styles.select_background}>
+        <p className={styles.main_select_title}>
+          <span>금연</span>을 위한 최고의 선택
+        </p>
+        <div className={styles.select_content}>
+          <div className={styles.self_check}>
+            <div>
+              <p className={styles.content_title}>자가진단</p>
+              <p className={styles.content_des}>
+                금연을 위해서는 현재 본인의 상태
                 <br />
-                <br />
-                <Link to="/selfAssessment/nicotine" className={styles.Link}>
-                  <div className={styles.self_check_button}>
-                    <span>바로가기</span> <span>&gt;</span>
-                  </div>
-                </Link>
-                <div className={styles.self_check_img}></div>
-              </div>
+                제대로 아는것이 우선입니다.
+              </p>
+              <br />
+              <br />
+              <Link to="/selfAssessment/nicotine" className={styles.Link}>
+                <div className={styles.self_check_button}>
+                  <span>바로가기</span> <span>&gt;</span>
+                </div>
+              </Link>
+              <div className={styles.self_check_img}></div>
             </div>
+          </div>
 
-            <div className={styles.campaign}>
-              <div>
-                <p className={styles.content_title}>금연 지도</p>
-                <p className={styles.content_des}>
-                  SmokEnd가 당신의 건강을 위해
-                  <br />
-                  함께합니다.
-                </p>
+          <div className={styles.campaign}>
+            <div>
+              <p className={styles.content_title}>금연 지도</p>
+              <p className={styles.content_des}>
+                SmokEnd가 당신의 건강을 위해
                 <br />
-                <br />
-                <Link to="/noSmokingArea" className={styles.Link}>
-                  <div className={styles.campaign_button}>
-                    <span>바로가기</span> <span>&gt;</span>
-                  </div>
-                </Link>
-                <div className={styles.campaign_img}></div>
-              </div>
+                함께합니다.
+              </p>
+              <br />
+              <br />
+              <Link to="/noSmokingArea" className={styles.Link}>
+                <div className={styles.campaign_button}>
+                  <span>바로가기</span> <span>&gt;</span>
+                </div>
+              </Link>
+              <div className={styles.campaign_img}></div>
             </div>
           </div>
         </div>
-        {!isMobile ? (
+      </div>
+      {/* {!isMobile ? (
+        <div className={styles.smoke_write}>
+          <div className={styles.write}>
+            <div>
+              <p className={styles.write_category}>금연의 필요성</p>
+              <p className={styles.write_title}>
+                금연을 실천해야 하는 104가지 이유
+              </p>
+              <p className={styles.write_date}>2021-03-19</p>
+            </div>
+          </div>
+          <div className={styles.write}>
+            <div>
+              <p className={styles.write_category}>흡연의 위험성</p>
+              <p className={styles.write_title}>흡연과 암</p>
+              <p className={styles.write_date}>2021-03-19</p>
+            </div>
+          </div>
+          <div className={styles.write}>
+            <div>
+              <p className={styles.write_category}>금연의 필요성</p>
+              <p className={styles.write_title}>금연의 경제적 이득</p>
+              <p className={styles.write_date}>2021-03-19</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <p className={styles.mobile_title}>
+            당신의 <span>금연</span> 시작을 위해
+          </p>
           <div className={styles.smoke_write}>
             <div className={styles.write}>
               <div>
@@ -263,50 +290,19 @@ function Main() {
                 <p className={styles.write_date}>2021-03-19</p>
               </div>
             </div>
-            <div className={styles.write}>
-              <div>
-                <p className={styles.write_category}>흡연의 위험성</p>
-                <p className={styles.write_title}>흡연과 암</p>
-                <p className={styles.write_date}>2021-03-19</p>
-              </div>
-            </div>
+
             <div className={styles.write}>
               <div>
                 <p className={styles.write_category}>금연의 필요성</p>
-                <p className={styles.write_title}>금연의 경제적 이득</p>
+                <p className={styles.write_title}>
+                  금연을 실천해야 하는 104가지 이유
+                </p>
                 <p className={styles.write_date}>2021-03-19</p>
               </div>
             </div>
           </div>
-        ) : (
-          <div>
-            <p className={styles.mobile_title}>
-              당신의 <span>금연</span> 시작을 위해
-            </p>
-            <div className={styles.smoke_write}>
-              <div className={styles.write}>
-                <div>
-                  <p className={styles.write_category}>금연의 필요성</p>
-                  <p className={styles.write_title}>
-                    금연을 실천해야 하는 104가지 이유
-                  </p>
-                  <p className={styles.write_date}>2021-03-19</p>
-                </div>
-              </div>
-
-              <div className={styles.write}>
-                <div>
-                  <p className={styles.write_category}>금연의 필요성</p>
-                  <p className={styles.write_title}>
-                    금연을 실천해야 하는 104가지 이유
-                  </p>
-                  <p className={styles.write_date}>2021-03-19</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )} */}
     </>
   );
 }

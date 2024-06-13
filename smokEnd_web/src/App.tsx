@@ -153,7 +153,7 @@ function AppContent() {
           }
         />
       </Routes>
-      {/* {shouldShowFooter && <Footer />} */}
+      {shouldShowFooter && <Footer />}
     </>
   );
 }
