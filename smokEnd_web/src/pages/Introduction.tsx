@@ -90,7 +90,7 @@ function Introduction() {
               </div>
               <div className={styles.backgroundC}>
                 <div className={styles.backSize2}>
-                  <div className={styles.inSide2}>
+                  <div className={styles.inSide3}>
                     <div className={styles.Fname}>
                       조금씩, <br />
                       하지만 확실하게.
@@ -134,7 +134,7 @@ function Introduction() {
               </div>
               <br />
               <div className={styles.backSize2}>
-                <div className={styles.inSide2}>
+                <div className={styles.inSide3}>
                   <div className={styles.Fname}>노력의 결실을 한 눈에. </div>
                   <br />
                   <img
@@ -175,7 +175,7 @@ function Introduction() {
               <br />
               <div className={styles.backgroundC}>
                 <div className={styles.backSize2}>
-                  <div className={styles.inSide2}>
+                  <div className={styles.inSide3}>
                     <div className={styles.Fname}>
                       금연 성공, <br />
                       마일리지로 누리는 혜택
