@@ -136,25 +136,24 @@ function Signup() {
 
     return (
         <>
-            <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
             <div className={styles.MainContent}>
                 <div className={styles.signup}>
                     <div className={styles.logo}>
-                        <Link to="/" className={styles.Link}><p>Smok<span>E</span>nd</p></Link>
+                        <Link to="/" className={styles.Link}><p>회원가입</p></Link>
                     </div>
                     <div className={styles.signupForm}>
                         <form onSubmit={onSubmit}>
-                            <p>아이디</p>
-                            <input className={styles.input} type="text" name="email" value={email} onChange={onChange} placeholder="이메일을 입력하세요" required />
+                            <div className={styles.id_pw_des}><p>사용할 아이디와 비밀번호를 입력해주세요.</p></div>
+                            <input className={styles.input} type="text" name="email" value={email} onChange={onChange} placeholder="이메일" required />
                             {emailError && <p className={styles.Error}>{emailError}</p>}
-                            <p>비밀번호</p>
-                            <input className={styles.input} type="password" name="password" value={password} onChange={onChange} placeholder="6자 이상 입력하세요."required />
+                            <input className={styles.input} type="password" name="password" value={password} onChange={onChange} placeholder="비밀번호"required />
                             {passwordCheckError && <p className={styles.Error}>{passwordCheckError}</p>}
-                            <p>비밀번호 확인</p>
-                            <input className={styles.input} type="password" name="passwordCheck" value={passwordCheck} onChange={onChange} required />
-                            <p>닉네임</p>
-                            <input className={styles.input} type="text" name="name" value={name} onChange={onChange} required />
-                            <p>생년월일</p>
+                            <input className={styles.input} type="password" name="passwordCheck" value={passwordCheck} onChange={onChange} placeholder="비밀번호 확인" required />
+                            <p className={styles.pwAlert}>비밀번호는 영문, 숫자, 특수문자 포함 6자 이상으로 선정해주세요.</p>
+                            
+                            <div className={styles.name_birth_gender_des}><p>사용할 닉네임과 생년월일, 성별을 입력해주세요.</p></div>
+                            <input className={styles.input} type="text" name="name" value={name} onChange={onChange} placeholder="닉네임"required />
+                            <p className={styles.birthAlert}>생년월일</p>
                             <div className={styles.input_row}>
                                 <input className={styles.input_birth} type="text" name="year" value={year} onChange={onChange} placeholder="년(4자)" required />
                                 <select className={styles.input_birth} name="month" value={month} onChange={onChange} required>
@@ -175,13 +174,12 @@ function Signup() {
                                 <input className={styles.input_birth} type="text" name="day" value={day} onChange={onChange} placeholder="일" required />
                             </div>
                             {birthError && <p className={styles.Error}>{birthError}</p>}
-                            <p>성별</p>
                             <select className={styles.input} name="gender" value={gender} onChange={onChange} required>
                                 <option value="" disabled hidden>성별</option>
                                 <option value="male">남자</option>
                                 <option value="female">여자</option>
                             </select>
-                            <button>회원가입</button>
+                            <button className={styles.SignupButton}>가입하기</button>
                         </form>
                     </div>
                 </div>

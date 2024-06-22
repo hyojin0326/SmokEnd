@@ -152,7 +152,7 @@ function SmokEndCase() {
             </div>
           </div>
         </div>
-        <div className={styles.underline} />
+        <div className={styles.underline}/>
         <div className={styles.des}></div>
         <div className={styles.underline} id="reviews" />
         {/* 리뷰 컨텐츠 부분 */}
