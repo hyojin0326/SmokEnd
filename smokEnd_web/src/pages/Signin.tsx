@@ -144,25 +144,26 @@ function Signin() {
 
     return (
         <>
-            <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
             <div className={styles.MainContent}>
                 <div className={styles.signin}>
                     <div className={styles.logo}>
-                        <Link to="/" className={styles.Link}><p>Smok<span>E</span>nd</p></Link>
+                        <Link to="/" className={styles.Link}><p>LOGIN</p></Link>
                     </div>
                     <div className={styles.login}>
                         <form onSubmit={onSubmit}>
                             <input className={styles.input} type="text" name="email" value={email} onChange={onChange} placeholder="이메일을 입력하세요" required />
                             {emailError && <p className={styles.emailError}>{emailError}</p>}
                             <input className={styles.input} type="password" name="password" value={password} onChange={onChange} placeholder="비밀번호를 입력하세요" required />
-                            <label htmlFor="chk" className={styles.check_p}>
-                                <input type="checkbox" id="chk" className={styles.check} name="remember_me" checked={remember_me} onChange={onChange} />
-                                로그인 유지
-                            </label>
-                            <button>로그인</button>
-                            <div className={styles.joinOrfind}>
-                                <span><Link to="/signup" className={styles.Link}>회원가입</Link></span>|<span><Link to="/findpw" className={styles.Link}>비밀번호 찾기</Link></span>
+
+                            <div className={styles.checkBox_findpw}>
+                                <label htmlFor="chk" className={styles.check_p}>
+                                    <input type="checkbox" id="chk" className={styles.check} name="remember_me" checked={remember_me} onChange={onChange} />
+                                    &nbsp; &nbsp;로그인 유지
+                                </label>
+                                <span><Link to="/findpw" className={styles.Link} style={{color:"#6C6C6C"}}>비밀번호 찾기</Link></span>
                             </div>
+                            <button className={styles.LoginButton}>로그인</button>
+                            <button className={styles.SignUPButton} type="button" onClick={() => window.location.href='/signup'}>회원가입</button>
                         </form>
 
                     </div>

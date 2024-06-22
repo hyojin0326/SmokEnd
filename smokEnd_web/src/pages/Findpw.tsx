@@ -81,20 +81,21 @@ function Findpw() {
 
     return (
         <>
-            <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
             <div className={styles.MainContent}>
                 <div className={styles.findpw}>
                     <div className={styles.logo}>
-                        <Link to="/" className={styles.Link}><p>Smok<span>E</span>nd</p></Link>
+                        <Link to="/" className={styles.Link}><p>FIND</p></Link>
                     </div>
                     <div className={styles.findpwForm}>
                         <form onSubmit={onSubmit}>
                             <input className={styles.input} type="text" name="email" value={email} onChange={onChange} placeholder="이메일을 입력하세요" required />
                             {emailError && <p className={styles.emailError}>{emailError}</p>}
-                            <button>비밀번호 찾기</button>
-                            <div className={styles.loginOrSignup}>
-                                <span><Link to="/login" className={styles.Link}>로그인</Link></span>|<span><Link to="/signup" className={styles.Link}>회원가입</Link></span>
+
+                            <div className={styles.login_signup}>
+                                <span style={{color:"#6C6C6C"}}><Link to="/login" className={styles.Link} style={{color:"#6C6C6C"}}>로그인</Link></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span><Link to="/signup" className={styles.Link} style={{color:"#6C6C6C"}}>회원가입</Link></span>
                             </div>
+                            <button className={styles.LoginButton}>비밀번호 찾기</button>
+                            
                         </form>
 
                     </div>

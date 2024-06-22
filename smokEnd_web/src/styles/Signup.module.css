@@ -3,24 +3,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 10px;
-    /* margin-bottom: 10vw; */
 }
 .signup{
     width:40vw;
-    border-radius: 4vw;
-    border: 0.1vw solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.2vw 0.1vw;
     flex-direction: column;
-    padding-top:5vw;
-    padding-bottom: 4vw;
-    margin-top: 10vw;
+    margin: 8vw 0;
+    /* padding-top:5vw;
+    padding-bottom: 10vw;
+    margin-top: 5vw; */
 }
 .logo{
-    width:30vw;
+    width:35vw;
 }
 .Link{
     color:black;
@@ -29,9 +26,9 @@
 .logo>*>p{
     font-size: 3.3vw;
     text-align: center;
-}
-.logo>*>p>span{
-    color:red
+    font-weight:bold;
+    padding: 1.5vw 0;
+    border-bottom: 0.2vw solid black;
 }
 .signupForm{
     width:35vw; 
@@ -46,102 +43,148 @@ form{
 form>p{
     font-size: 1.2vw;
 }
-.Error{
+ .Error{
     color: red;
     position: relative;
-    top:-2vw;
+    top: -0.5vw;
     margin-left: 0.1vw;
     font-size: 1vw;
+ }
+ .id_pw_des{
+    width:35vw;
+    margin-bottom: 3vw;
+    font-size: 1.2vw;
 }
-.input{
-    height:4.5vw;
-    margin-bottom: 0.6vw;
+.pwAlert{
+    color:#6C6C6C;
+    font-size: 0.9vw;
+}
+.birthAlert{
+    color:#6C6C6C;
+    font-size: 0.9vw;
+    margin-bottom: 0.5vw;
+}
+.name_birth_gender_des{
+    width:35vw;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+    font-size: 1.2vw;
+}
+.input {
+    height: 4.5vw;
+    margin-bottom: 0.8vw;
     padding-left: 1vw;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
     border: 0.1vw solid black;
-    font-size:1vw;
-    margin-bottom: 2.5vw;
-    margin-top: 0.5vw;
+    font-size: 1vw;
 }
 .input_birth{
     width:10vw;
     height:4.5vw;
-    margin-bottom: 0.6vw;
     padding-left: 1vw;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
     border: 0.1vw solid black;
     font-size:1vw;
-    margin-bottom: 2.5vw;
+    /* margin-bottom: 2.5vw;
     margin-left:0.4vw;
-    margin-right: 0.4vw;
+    margin-right: 0.4vw; */
 }
-form>button{
-    height:4vw;
+ .input_row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8vw;
+ }
+
+.SignupButton{
+    height: 4vw;
     background-color: rgb(0, 0, 0);
-    border-radius: 3vw;
-    font-size: 1.8vw;
-    color:white;
-    margin-top: 0.1vw;
+    border-radius: 0.5vw;
+    font-size: 1.5vw;
+    color: white;
+    margin-top: 2vw;
+    margin-bottom: 0.5vw;
 }
 @media (max-width: 768px) {
+    .MainContent{
+        width:100vw;
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .signup{
         width:70vw;
-        border-radius: 8vw;
-        margin-top: 30vw;
-        border: 0.3vw solid black;
+        padding: 0;
     }
     .logo{
         width:60vw;
     }
     .logo>*>p{
-        font-size:7vw;
+        font-size: 7vw;
+        padding: 5vw 0;
+        border-bottom: 0.5vw solid black;
+        margin-bottom: 5vw;
     }
     .signupForm{
         width:60vw; 
-        display: flex;
-        justify-content: center;
     }
     form{
         width:60vw;
     }
-    form>p{
+     .Error{
+        color: red;
+        position: relative;
+        top: -0.5vw;
+        margin-left: 0.1vw;
+        font-size: 1vw;
+     }
+     .id_pw_des{
+        width:60vw;
+        margin-bottom: 5vw;
+        font-size: 3vw;
+    }
+    .pwAlert{
+        color:#6C6C6C;
         font-size: 2.2vw;
     }
-    .input{
-        height:9vw;
+    .birthAlert{
+        color:#6C6C6C;
+        font-size: 2.2vw;
+        margin-bottom: 1vw;
+    }
+    .name_birth_gender_des{
+        width:60vw;
+        margin-top: 5vw;
+        margin-bottom: 5vw;
+        font-size: 3vw;
+    }
+    .input {
+        height: 9vw;
         margin-bottom: 3vw;
         padding-left: 3vw;
-        border-radius: 3vw;
-        font-size:2.5vw;
+        border-radius: 1vw;
         border: 0.3vw solid black;
-    }
-    .input::placeholder{
-        color:#454545;
+        font-size: 3vw;
     }
     .input_birth{
-        width:17vw;
+        width:16vw;
         height:9vw;
-        margin-bottom: 3vw;
-        padding-left: 2vw;
-        border-radius: 3vw;
-        font-size:2.5vw;
-        margin-bottom: 2.5vw;
-        margin-left:0.6vw;
-        margin-right: 0.6vw;
+        padding-left: 3vw;
+        border-radius: 1vw;
         border: 0.3vw solid black;
+        font-size:3vw;
+        margin-bottom: 3vw;
     }
-    .input_birth::placeholder{
-        color:#454545;
-    }
-    .Error{
-        top:-1.5vw;
-        margin-left: 1vw;
-        font-size: 2vw;
-    }
-    form>button{
-        height:7vw;
-        border-radius: 3vw;
+     .input_row{
+        margin-bottom: 0vw;
+     }
+    
+    .SignupButton{
+        height: 7vw;
+        border-radius: 1vw;
         font-size: 3vw;
-        margin-top: 3vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
     }
 }

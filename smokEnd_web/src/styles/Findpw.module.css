@@ -8,9 +8,6 @@
 }
 .findpw{
     width:40vw;
-    height:40vw;
-    border-radius: 4vw;
-    border: 0.1vw solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,79 +19,80 @@
     text-decoration: none;
 }
 .logo{
-    width:30vw;
-    margin-top: 2vw;
+    width:35vw;
 }
 .logo>*>p{
     font-size: 3.3vw;
     text-align: center;
+    font-weight:bold;
+    padding: 1.5vw 0;
+    border-bottom: 0.2vw solid black;
 }
 .logo>*>p>span{
     color:red
 }
 .findpwForm{
-    width:35vw; 
-    /* margin-top:; */
-    
+    width:35vw;     
 }
 form{
     width:35vw;
     display: flex;
     justify-content: center;
     flex-direction:column;
+    margin-top: 3vw;
 }
 .input{
     height:4.5vw;
     margin-bottom: 0.6vw;
     padding-left: 1vw;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
     border: 0.1vw solid black;
     font-size:1vw;
-    margin-top: 3vw;
-    margin-bottom: 5vw;
 }
 .emailError{
     color: red;
     position: relative;
-    top:-3.5vw;
+    top: -0.5vw;
     margin-left: 0.1vw;
     font-size: 1vw;
 }
-form>button{
-    height:4vw;
-    background-color: rgb(0, 0, 0);
-    border-radius: 3vw;
-    font-size: 1.8vw;
-    color:white;
-    margin-top: 0.1vw;
-}
-.loginOrSignup{
-    width:35vw;
-    font-size: 1vw;
-    margin:2vw 0;
+.login_signup{
     display: flex;
-    justify-content:center;
+    flex-direction: row;
     align-items: center;
-    
+    justify-content:end;
+    margin-bottom: 1.5vw;
+    margin-top: 0.5vw;
+    font-size: 1vw;
 }
-.loginOrSignup>span{   
-    width:10vw;
-    text-align: center;
+.LoginButton{
+    height: 4vw;
+    background-color: rgb(0, 0, 0);
+    border-radius: 0.5vw;
+    font-size: 1.5vw;
+    color: white;
+    margin-top: 0.1vw;
+    margin-bottom: 0.5vw;
 }
-.social{
-    width:35vw;
+
+.social {
+    margin-top:5vw;
+    width: 35vw;
     border-top: 0.1vw solid #454545;
     display: flex;
     justify-content: center;
-} 
-.social_name{
+}
+
+.social_name {
     background-color: rgb(255, 255, 255);
     position: relative;
     font-size: 1vw;
-    top:-0.5vw;
-    padding:0 1vw;
+    top: -0.5vw;
+    padding: 0 1vw;
 }
-.social_Login{
+
+.social_Login {
+    margin-top: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,66 +102,57 @@ form>button{
 @media (max-width: 768px) {
     .findpw{
         width:70vw;
-        height:80vw;
         padding: 0;
-        border-radius: 8vw;
-        border: 0.3vw solid black;
     }
     .logo{
         width:60vw;
-        margin-bottom: 3vw;
     }
     .logo>*>p{
-        font-size:7vw;
+        font-size: 7vw;
+        padding: 5vw 0;
+        border-bottom: 0.5vw solid black;
+        margin-bottom: 5vw;
     }
     .findpwForm{
-        width:60vw; 
-        display: flex;
-        justify-content: center;
+        width:60vw;     
     }
     form{
         width:60vw;
     }
     .input{
         height:9vw;
-        margin-bottom: 4vw;
+        margin-bottom: 3vw;
         padding-left: 3vw;
-        border-radius: 3vw;
-        font-size:2.5vw;
+        border-radius: 1vw;
         border: 0.3vw solid black;
-    }
-    .input::placeholder{
-        color:#454545;
+        font-size:3vw;
     }
     .emailError{
-        top:-1.5vw;
+        top: -1.5vw;
         margin-left: 1vw;
-        font-size: 2vw;
-    }
-    form>button{
-        height:7vw;
-        border-radius: 3vw;
         font-size: 3vw;
-        margin-top: 6vw;
     }
-    .loginOrSignup{
-        width:60vw;
-        font-size: 2vw;
-        margin:4vw 0;
+    .login_signup{
+        margin-bottom: 5vw;
+        margin-top: 0vw;
+        font-size: 2.5vw;
     }
-    .loginOrSignup>span{   
-        width:20vw;
-        text-align: center;
+    .LoginButton{
+        height: 7vw;
+        border-radius: 1vw;
+        font-size: 3vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
     }
-    .social{
-        width:60vw;
+    
+    .social {
+        width: 60vw;
         border-top: 0.3vw solid #454545;
-        margin:2.5vw 0;
-        
-    } 
-    .social_name{
-        font-size: 2vw;
-        top:-1vw;
-        padding:0 2vw;
+    }
+    
+    .social_name {
+        font-size: 2.5vw;
+        top: -1vw;
+        padding: 0 2vw;
     }
 }
