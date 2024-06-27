@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
     margin:0;
   }
+
 `;
 function AppContent() {
   const location = useLocation();

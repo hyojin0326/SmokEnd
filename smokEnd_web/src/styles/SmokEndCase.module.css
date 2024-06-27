@@ -22,7 +22,7 @@
 }
 
 .box>.picture {
-    width: 60%;
+    width: 50%;
     height: 85%;
     background-image: url('../assets/Introduction//case.png');
     background-size: contain;
@@ -31,14 +31,14 @@
 }
 
 .box>.detailContent {
-    width: 40%;
+    width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .detailContent>div{
-    width:100%;
+    width:80%;
 }
 .title {
     font-family: "NanumSquareRoundB";

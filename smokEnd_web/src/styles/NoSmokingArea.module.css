@@ -4,15 +4,29 @@
   padding-top: 7vw;
   margin-bottom: 20vw;
 }
-
+/* @font-face {
+  font-family: 'GangwonEduPowerExtraBoldA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NanumBarunGothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//fastly.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+  src: url('//fastly.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//fastly.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//fastly.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+} */
+/* *{
+  font-family: "NanumBarunGothic";
+} */
 .pageName {
-  font-family: "Tenada";
+  font-family: 'Tenada';
   font-size: 3.2vw;
   text-align: center;
 }
 
 .p {
-  font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
   text-align: center;
   color: rgb(66, 66, 66);
