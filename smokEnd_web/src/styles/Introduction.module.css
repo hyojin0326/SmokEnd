@@ -32,7 +32,7 @@
 
 .rightBox {
   float: right;
-  margin-left: 10vw;
+  margin-left: 8vw;
 }
 
 .Grey .logo {
@@ -41,19 +41,6 @@
 
 .Grey .p {
   color: rgb(55, 54, 54);
-}
-
-.logo {
-  font-family: "Tenada";
-  display: inline;
-  font-size: 1.5vw;
-  color: rgb(0, 0, 0);
-}
-
-.logo2 {
-  font-family: "Tenada";
-  color: red;
-  display: inline;
 }
 
 .p {
