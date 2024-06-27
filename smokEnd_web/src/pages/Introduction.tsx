@@ -226,19 +226,25 @@ function Introduction() {
   return (
     <>
       <div className={styles.chapter1}>
-        <img src={phone1} className={styles.phoneImage1} />
-        <div className={styles.rightBox}>
-          <div className={styles.logo}>
-            Smok<div className={styles.logo2}>E</div>nd
+        <div className={styles.outerContainer}>
+          <div className={styles.innerContainer}>
+            <div className={styles.box}>
+              <img src={phone1} className={styles.phoneImage1} />
+              <div className={styles.rightBox}>
+                <div className={styles.logo}>
+                  Smok<div className={styles.logo2}>E</div>nd
+                </div>
+                <p className={styles.p}>에 오신 걸 환영 합니다.</p>
+                <br />
+                <br />
+                <p className={styles.p}>지금 부터</p>
+                <div className={styles.logo}>
+                  Smok<div className={styles.logo2}>E</div>nd
+                </div>
+                <p className={styles.p}>의 이야기를 시작합니다.</p>
+              </div>
+            </div>
           </div>
-          <p className={styles.p}>에 오신 걸 환영 합니다.</p>
-          <br />
-          <br />
-          <p className={styles.p}>지금 부터</p>
-          <div className={styles.logo}>
-            Smok<div className={styles.logo2}>E</div>nd
-          </div>
-          <p className={styles.p}>의 이야기를 시작합니다.</p>
         </div>
       </div>
     </>

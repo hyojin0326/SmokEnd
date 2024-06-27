@@ -3,10 +3,28 @@
   background-size: 100vw 100vh;
 }
 
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.innerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.box {
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
 .phoneImage1 {
   width: 19vw;
   height: 74vh;
-  margin-left: 25vw;
   margin-top: 6vw;
   margin-bottom: 5.4vw;
   /* animation: shake 2s ease-in-out 1 forwards; */
@@ -14,8 +32,7 @@
 
 .rightBox {
   float: right;
-  margin-right: 20vw;
-  margin-top: 20vw;
+  margin-left: 10vw;
 }
 
 .Grey .logo {
