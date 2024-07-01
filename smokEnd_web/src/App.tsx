@@ -44,7 +44,7 @@ function AppContent() {
     "/login",
     "/signup",
     "/findpw",
-    "/selfAssessment/result",
+   
   ];
 
   const shouldShowFooter = !noFooterRoutes.includes(location.pathname);
