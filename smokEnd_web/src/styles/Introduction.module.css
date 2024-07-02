@@ -1,18 +1,23 @@
 .chapter1 {
   background-image: url("../assets/Introduction/background1.jpg");
-  background-size: 100vw 100vh;
+  background-size: 100vw 700px;
+  /* background-size: 100vw 100vh; */
 }
 
 .outerContainer {
   display: flex;
   justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
+  width: 100vw;
+  height: 700px;
 }
 
 .innerContainer {
   display: flex;
   justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
+  width: 100vw;
+  height: 700px;
 }
 
 .box {
@@ -23,8 +28,11 @@
 }
 
 .phoneImage1 {
-  width: 19vw;
-  height: 74vh;
+  width: 270px;
+  height: 500px;
+  /* 500px */
+  /* 33.5vw */
+  /* 74vh */
   margin-top: 6vw;
   margin-bottom: 5.4vw;
   /* animation: shake 2s ease-in-out 1 forwards; */
