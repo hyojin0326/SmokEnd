@@ -519,3 +519,9 @@ const handle = async () => {
 타이틀 : response.title
 설명 : response.value
 ```
+<br />
+
+## DB에 내용 작성
+### 리뷰 작성하기 (method : POST | Functions : api | endpoint : /api/handle/postReview) - 미완성
+- 클라이언트 측에서 선택한 이미지를 base64로 인코딩해서 인코딩한 문자열을 서버로 전송하는 방식으로 만들고 있습니다
+- 사실 다 만들고 테스트도 해 봤는데, 리엑트쪽 코드를 어떻게 작성해야 하는지 몰라서 잠시 보류해 두겠습니다
