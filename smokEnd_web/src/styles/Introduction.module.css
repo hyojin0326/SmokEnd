@@ -4,6 +4,24 @@
   /* background-size: 100vw 100vh; */
 }
 
+.chapter2 {
+  background-image: url("../assets/Introduction/background2.png");
+  background-size: 100vw 700px;
+  /* background-size: 100vw 100vh; */
+}
+
+.chapter3 {
+  /* background-image: url("../assets/Introduction/background2.png"); */
+  background-size: 100vw 400px;
+  /* background-size: 100vw 100vh; */
+}
+
+.chapter4 {
+  /* background-image: url("../assets/Introduction/background2.png"); */
+  background-size: 100vw 400px;
+  /* background-size: 100vw 100vh; */
+}
+
 .outerContainer {
   display: flex;
   justify-content: center;
@@ -27,6 +45,21 @@
   align-items: center; /* 수직 중앙 정렬 */
 }
 
+.box2 {
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.box3 {
+  width: 70vw;
+  margin-top: -500px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
 .phoneImage1 {
   width: 270px;
   height: 500px;
@@ -38,9 +71,75 @@
   /* animation: shake 2s ease-in-out 1 forwards; */
 }
 
+.phoneImage2 {
+  /* float: right; */
+  width: 260px;
+  height: 510px;
+  /* 500px */
+  /* 33.5vw */
+  /* 74vh */
+  margin-top: 6vw;
+  margin-bottom: 5.4vw;
+  /* animation: shake 2s ease-in-out 1 forwards; */
+}
+
+.phoneImage3 {
+  /* float: right; */
+  width: 250px;
+  height: 510px;
+  /* 500px */
+  /* 33.5vw */
+  /* 74vh */
+  margin-top: 6vw;
+  margin-bottom: 5.4vw;
+  /* animation: shake 2s ease-in-out 1 forwards; */
+}
+
+.caseImage {
+  width: 21vw;
+  margin-left: 50px;
+}
+
+.webImage {
+  width: 40vw;
+  height: 41vw;
+  margin-bottom: 5vw;
+}
+
 .rightBox {
   float: right;
   margin-left: 8vw;
+}
+
+.rightBox2 {
+  float: right;
+  margin-left: 15vw;
+  /* margin-right: 8vw; */
+  margin-top: 6vw;
+}
+
+.rightBox3 {
+  float: right;
+  /* margin-left: 15vw; */
+  /* margin-right: 8vw; */
+  margin-top: 6vw;
+}
+
+.leftBox {
+  float: left;
+  margin-right: 8vw;
+}
+
+.leftBox2 {
+  float: left;
+  margin-right: 8vw;
+  margin-top: 300px;
+}
+
+.leftBox3 {
+  float: left;
+  margin-right: 6vw;
+  margin-top: 300px;
 }
 
 .Grey .logo {
@@ -64,6 +163,47 @@
   display: inline;
   font-size: 1.5vw;
   color: rgb(255, 1, 1);
+}
+
+.Fname {
+  font-family: "NanumSquareRoundEB";
+  font-size: 2vw;
+}
+
+.centerCircleBigContainer {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.centerCircleContainer {
+  /* position: absolute; */
+  /* top: 700vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 200px;
+  width: 70vw;
+}
+
+.circle {
+  width: 0.5vw;
+}
+
+.circleP {
+  font-family: "NanumSquareRoundB";
+  /* display: inline; */
+  font-size: 1.8vw;
+  color: rgb(0, 0, 0);
+  /* letter-spacing: 1px; */
+}
+
+.test {
+  width: 70vw;
+  height: 700px;
+  margin-top: 10vw;
+  margin-bottom: 10vw;
 }
 
 @media (max-width: 768px) {
