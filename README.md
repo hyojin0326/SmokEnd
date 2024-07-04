@@ -466,15 +466,18 @@ const handle = async () => {
 
 ### 나의 흡연 습관 평가 (method : POST | Functions : api | endpoint : /api/diagnosis/habit)
 - 위의 니코틴 의존도 검사와 조금도 다르지 않습니다
-- 서버는 다음과 같은 JSON 데이터를 반환합니다. <b>배열 아니니까 주의합시다</b>
+- 요청한대로, 10점이 넘어가는 모든 유형의 데이터를 반환합니다
+- 서버는 다음과 같은 데이터가 담긴 배열을 반환합니다
 ```
-{
-    title: "A유형/무슨무슨유형"
-    value: "대충 그 유형에 대한 설명"
-}
+[
+    {
+        title: "A유형/무슨무슨유형"
+        value: "대충 그 유형에 대한 설명"
+    }
+]
 ```
 ```
-const [response, setResponse] = useState('');
+const [response, setResponse] = useState([]);
   
 const [selectedAnswers, setSelectedAnswers] = useState({
     q1: 0,q2: 0,q3: 0,q4: 0,q5: 0,q6: 0,
@@ -505,8 +508,6 @@ const handle = async () => {
 
         } else if(response.status === 500) { // 서버 에러
 
-            const resData = await response.text();
-            setResponse(resData);
         }
       })
       .catch(error => {
