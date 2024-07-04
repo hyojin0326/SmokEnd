@@ -1,16 +1,19 @@
 import { useState } from "react";
 import styles from "../styles/SelfAssessmentComponent.module.css";
+import { useNavigate } from "react-router-dom";
 
 function HabitComponent() {
-    const [evaluationComplete, setEvaluationComplete] = useState(false);
+    const [response, setResponse] = useState('');
 
     const [selectedAnswers, setSelectedAnswers] = useState({
-        q1: 0,q2: 0,q3: 0,q4: 0,q5: 0,q6: 0,
-        q7: 0,q8: 0,q9: 0,q10: 0,q11: 0,q12: 0,
-        q13: 0,q14: 0,q15: 0,q16: 0,q17: 0,q18: 0,
-        q19: 0,q20: 0,q21: 0
+        q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0,
+        q7: 0, q8: 0, q9: 0, q10: 0, q11: 0, q12: 0,
+        q13: 0, q14: 0, q15: 0, q16: 0, q17: 0, q18: 0,
+        q19: 0, q20: 0, q21: 0
     });
 
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
     const handleAnswerChange = (question: string, value: number) => {
         setSelectedAnswers({
             ...selectedAnswers,
@@ -18,14 +21,48 @@ function HabitComponent() {
         });
     };
 
-    const handleEvaluate = () => {
+    const handleEvaluate = async() => {
+        if (isLoading) {
+            alert("평가 중입니다.");
+            return;
+        }
         // 모든 질문에 대한 답변이 선택되었는지 확인
         const allAnswered = Object.values(selectedAnswers).every(answer => answer !== 0);
 
         if (allAnswered) {
-            setEvaluationComplete(true);
-            alert("평가가 완료되었습니다!");
+            setIsLoading(true);
+            const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+            await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/habit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: sessionId,
+                    selectedAnswers: selectedAnswers
+                })
+            }).then(async response => {
+                if (response.status === 200) { // 성공
+
+                    const resData = await response.json(); // 데이터가 json형태로 답깁니다
+                    setResponse(resData);
+                    alert("평가가 완료되었습니다.")
+
+                    navigate('/selfAssessment/result?type=Habit', { state: { response_Habit: resData } });
+
+                } else if (response.status === 500) { // 서버 에러
+
+                    const resData = await response.text();
+                    setResponse(resData);
+                    console.log(resData);
+                }
+            })
+                .catch(error => {
+                    console.log('fetch에러');
+                });
         } else {
+            setIsLoading(false);
             alert("모든 항목에 답변을 선택해주세요.");
         }
     };
@@ -446,7 +483,7 @@ function HabitComponent() {
                                 <input type="radio" name="q21" value="5" onChange={() => handleAnswerChange("q21", 5)} />
                             </td>
                         </tr>
-                        
+
 
                     </tbody>
                 </table>

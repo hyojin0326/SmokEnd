@@ -3,7 +3,6 @@ import styles from "../styles/SelfAssessmentComponent.module.css"
 import { useNavigate } from "react-router-dom";
 
 function KnowledgeComponent() {
-    // const [evaluationComplete, setEvaluationComplete] = useState(false);
     const [response, setResponse] = useState('');
     const [selectedAnswers, setSelectedAnswers] = useState({
         q1: 0, q2: 0, q3: 0, q4: 0, q5: 0,
@@ -12,6 +11,7 @@ function KnowledgeComponent() {
         q16: 0, q17: 0, q18: 0, q19: 0, q20: 0,
         q21: 0, q22: 0, q23: 0, q24: 0, q25: 0
     });
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleAnswerChange = (question: string, value: number) => {
@@ -22,10 +22,15 @@ function KnowledgeComponent() {
     };
 
     const handleEvaluate = async () => {
+        if (isLoading) {
+            alert("평가 중입니다.");
+            return;
+        }
         // 모든 질문에 대한 답변이 선택되었는지 확인
         const allAnswered = Object.values(selectedAnswers).every(answer => answer !== 0);
 
         if (allAnswered) {
+            setIsLoading(true);
             const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
             await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/knowledge`, {
@@ -42,9 +47,9 @@ function KnowledgeComponent() {
 
                     const resData = await response.json(); // 데이터가 json형태로 답깁니다
                     setResponse(resData);
-                    console.log(resData);
+                    alert("평가가 완료되었습니다.")
 
-                    navigate('/selfAssessment/result?type=Knowledge', { state: { response: resData } });
+                    navigate('/selfAssessment/result?type=Knowledge', { state: { response_Knowledge: resData } });
                 } else if (response.status === 500) {
 
                 } else if (response.status === 500) { // 서버 에러
@@ -58,6 +63,7 @@ function KnowledgeComponent() {
                     console.log('fetch에러');
                 });
         } else {
+            setIsLoading(false);
             alert("모든 항목에 답변을 선택해주세요.");
         }
     };
