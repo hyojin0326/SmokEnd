@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/SelfAssessmentComponent.module.css";
 import { useLocation } from "react-router-dom";
+import React from "react";
 
 interface ResponseItem_Knowledge {
     no: number;
     answer: string;
     description: string;
 }
-// interface ResponseItem_Nicotine {
-//     title: string;
-//     value: string;
-// }
+interface ResponseItem_Habit {
+    title: string;
+    value: string;
+}
 
 // interface LocationState {
 //     response_Knowledge?: ResponseItem_Knowledge[];
@@ -19,7 +20,7 @@ interface ResponseItem_Knowledge {
 
 const SelfAssessmentResult: React.FC = () => {
     const location = useLocation();
-    const { response_Knowledge, response_Nicotine, response_Habit } = location.state || {};
+    const { response_Knowledge, response_Nicotine, response_Habit, response_Condition } = location.state || {};
     const queryParams = new URLSearchParams(location.search);
     const type = queryParams.get('type');
     // let name = ""; 
@@ -79,18 +80,49 @@ const SelfAssessmentResult: React.FC = () => {
             ) : (
                 <div></div>
             )}
-            {type === 'Habit' ? (
+
+            {type === 'Habit' && response_Habit && response_Habit.length > 0 ? (
                 <div>
                     <p className={styles.title}>평가결과 - 나의 흡연 습관 평가</p>
+                    {response_Habit.map((item: ResponseItem_Habit, index: number) => (
+                        <table style={{ marginBottom: "5vw" }} key={index}>
+                            <thead>
+                                <tr>
+                                    <th>{item.title}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {item.value.split('\\n').map((line, i) => (
+                                            <React.Fragment key={i}>
+                                                {line}
+                                                {i !== item.value.split('\\n').length - 1 && <br />} {/* 마지막 줄에는 <br/> 추가하지 않음 */}
+                                            </React.Fragment>
+                                        ))}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    ))}
+                    <div style={{ marginBottom: "30vw" }}></div>
+
+                </div>
+            ) : (
+                <div></div>
+            )}
+            {type === 'Condition' ? (
+                <div>
+                    <p className={styles.title}>평가결과 - 나의 신체상태 진단</p>
                     <table style={{ marginBottom: "30vw" }}>
                         <thead>
                             <tr>
-                                <th>{response_Habit.title}</th>
+                                <th>{response_Condition.title}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{response_Habit.value}</td>
+                                <td>{response_Condition.value}</td>
                             </tr>
 
                         </tbody>
@@ -99,7 +131,6 @@ const SelfAssessmentResult: React.FC = () => {
             ) : (
                 <div></div>
             )}
-
         </div>
     );
 };

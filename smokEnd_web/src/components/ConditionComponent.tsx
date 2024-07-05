@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 function ConditionComponent() {
     const navigate = useNavigate();
-    const [evaluationComplete, setEvaluationComplete] = useState(false);
 
     const [selectedAnswers, setSelectedAnswers] = useState({
-        q1: 0, q2: 0, q3: 0, q4: 0, q5: 0,
-        q6: 0, q7: 0
+        q1: null, q2: null, q3: null, q4: null, q5: null,
+        q6: null, q7: null
     });
 
     const handleAnswerChange = (question: string, value: number) => {
@@ -20,16 +19,23 @@ function ConditionComponent() {
 
     const handleEvaluate = () => {
         // 모든 질문에 대한 답변이 선택되었는지 확인
-        const allAnswered = Object.values(selectedAnswers).every(answer => answer !== 0);
+        const allAnswered = Object.values(selectedAnswers).every(answer => answer !== null);
 
         if (allAnswered) {
-            setEvaluationComplete(true);
             alert("평가가 완료되었습니다!");
-            // 결과를 SelfAssessmentResult 컴포넌트로 전송
-            const evaluationResult = { "value": "매우 활동적인 신체활동을 시작하기 전이나 체력 평가 전에 의사와 전화통화를 하거나 직접 찾아가 위 설문지에 '예'라고 답한 문항에 대해 상의하고 신체활동을 시작해도 좋은지 확인하여 주시기 바랍니다.", "head": "평가결과" };
+            //하나라도 예가 있으면 true, 아니면 false
+            const condition = Object.values(selectedAnswers).every(answer => answer !== 1);
+            let evaluationResult;
+            if(condition){
+                evaluationResult = { "value": "매우 활동적인 신체활동을 시작해도 되지만 명심할 것은 시작은 천천히 점진적으로 이루어져야 한다는 것입니다. 그것이 가장 안전하고 쉬운 방법이기 때문입니다.", "title": "평가결과" };
+            }
+            else{
+                evaluationResult = { "value": '매우 활동적인 신체활동을 시작하기 전이나 체력 평가 전에 의사와 전화통화를 하거나 직접 찾아가 위 설문지에 "예"라고 답한 문항에 대해 상의하고 신체활동을 시작해도 좋은지 확인하여 주시기 바랍니다.', "title": "평가결과" };
+            }
+            
 
             // 결과와 함께 SelfAssessmentResult 컴포넌트로 이동
-            navigate("/selfAssessment/result", { state: { evaluationResult: evaluationResult } });
+            navigate("/selfAssessment/result?type=Condition", { state: { response_Condition: evaluationResult } });
         } else {
             alert("모든 항목에 답변을 선택해주세요.");
         }
