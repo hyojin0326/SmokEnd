@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
     margin:0;
   }
+
 `;
 function AppContent() {
   const location = useLocation();
@@ -43,7 +44,7 @@ function AppContent() {
     "/login",
     "/signup",
     "/findpw",
-    "/selfAssessment/result",
+   
   ];
 
   const shouldShowFooter = !noFooterRoutes.includes(location.pathname);

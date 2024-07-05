@@ -1,17 +1,19 @@
 import { useState } from "react";
 import styles from "../styles/SelfAssessmentComponent.module.css";
+import { useNavigate } from "react-router-dom";
 
 function NicotionComponent() {
-    const [evaluationComplete, setEvaluationComplete] = useState(false);
-
+    const [response, setResponse] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [selectedAnswers, setSelectedAnswers] = useState({
-        q1: 0,
-        q2: 0,
-        q3: 0,
-        q4: 0,
-        q5: 0,
-        q6: 0,
+        q1: null,
+        q2: null,
+        q3: null,
+        q4: null,
+        q5: null,
+        q6: null,
     });
+    const navigate = useNavigate();
 
     const handleAnswerChange = (question:string, value:number) => {
         setSelectedAnswers({
@@ -20,14 +22,49 @@ function NicotionComponent() {
         });
     };
 
-    const handleEvaluate = () => {
+    const handleEvaluate = async() => {
+        if (isLoading) {
+            alert("평가 중입니다.");
+            return;
+        }
         // 모든 질문에 대한 답변이 선택되었는지 확인
-        const allAnswered = Object.values(selectedAnswers).every(answer => answer !== 0);
+        const allAnswered = Object.values(selectedAnswers).every(answer => answer !== null);
     
         if (allAnswered) {
-            setEvaluationComplete(true);
-            alert("평가가 완료되었습니다!");
+            setIsLoading(true);
+            const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+            await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/nicotine`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: sessionId,
+                        selectedAnswers: selectedAnswers
+                    })
+            }).then(async response => {
+                if (response.status === 200) { // 성공
+        
+                    const resData = await response.json(); // 데이터가 json형태로 답깁니다
+                    setResponse(resData);
+                    alert("평가가 완료되었습니다.")
+                    console.log(resData);
+                    navigate('/selfAssessment/result?type=Nicotine', { state: { response_Nicotine: resData } });
+        
+                } else if(response.status === 500) { // 서버 에러
+        
+                    const resData = await response.text();
+                    setResponse(resData);
+                    console.log(resData);
+                }
+              })
+              .catch(error => {
+                console.log('fetch에러');
+              });
+
         } else {
+            setIsLoading(false);
             alert("모든 항목에 답변을 선택해주세요.");
         }
     };

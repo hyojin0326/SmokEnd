@@ -16,7 +16,16 @@ interface MarkerData {
 interface Districts {
     [key: string]: string[];
 }
+interface Geo {
+    _latitude: number;
+    _longitude: number;
+}
 
+interface Location {
+    name: string;
+    address: string;
+    geo: Geo;
+}
 const districts: Districts = {
     충북: ['충주시', '청주시 흥덕구', '청주시 청원구', '청주시 서원구', '청주시 상당구', '진천군', '증평군', '제천시', '음성군', '옥천군', '영등군', '보은군', '단양군', '괴산군'],
     충남: ['홍성군', '태안군', '청양군', '천안시 서북구', '천안시 동남구', '예산군', '아산시', '서천군', '서산시', '부여군', '보령시', '당진시', '논산시', '금산군', '공주시', '계룡시'],
@@ -46,6 +55,8 @@ function NoSmokingArea() {
     const [markerData, setMarkerData] = useState<MarkerData>({ name: "", lat: 0, lng: 0, address: "", number: "" });
     const [selectedRegion, setSelectedRegion] = useState<string>('');
     const [selectedDistrict, setSelectedDistrict] = useState<string>('');
+    const [locationData, setLocationData] = useState<Location[]>([]);
+    const [response, setResponse] = useState<string>('');
 
     const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedRegion(event.target.value);
@@ -58,16 +69,44 @@ function NoSmokingArea() {
     const handleSearchClick = () => {
         console.log('선택된 지역:', selectedRegion);
         console.log('선택된 구:', selectedDistrict);
+        getLocation();
+        // if (selectedRegion === '강원' && selectedDistrict === '강릉시') {
+        //     //강원 강릉시에 있는 보건소 값(디비) 에서 아무값이나 가져와서 보여줄 예정
+        //     handleMarker("강릉시보건소", 37.7428443073466, 128.88276932466, "강원 강릉시 남부로17번길 38 강릉시보건소", "033-660-3500")();
+        // }
+        // else if (selectedRegion === '강원' && selectedDistrict === '고성군') {
+        //     //강원 강릉시에 있는 보건소 값(디비) 에서 아무값이나 가져와서 보여줄 예정
+        //     handleMarker("고성군보건소", 38.37735022121055, 128.472121778786, "강원 고성군 수성로 30", "033-660-3500")();
+        // }
+    };
 
-        if (selectedRegion === '강원' && selectedDistrict === '강릉시') {
-            //강원 강릉시에 있는 보건소 값(디비) 에서 아무값이나 가져와서 보여줄 예정
-            handleMarker("강릉시보건소", 37.7428443073466, 128.88276932466, "강원 강릉시 남부로17번길 38 강릉시보건소", "033-660-3500")();
-        }
-        else if (selectedRegion === '강원' && selectedDistrict === '고성군') {
-            //강원 강릉시에 있는 보건소 값(디비) 에서 아무값이나 가져와서 보여줄 예정
-            handleMarker("고성군보건소", 38.37735022121055, 128.472121778786, "강원 고성군 수성로 30", "033-660-3500")();
+    const getLocation = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_URL_API}/api/get/location/${selectedRegion}/${selectedDistrict}`);
+
+            if (response.status === 200) {
+                const resData: Location[] = await response.json();
+                setLocationData(resData);
+                console.log(resData);
+
+                // 첫 번째 위치 데이터를 사용하여 handleMarker 호출
+                if (resData.length > 0) {
+                    const { name, geo, address } = resData[0];
+                    handleMarker(name, geo._latitude, geo._longitude, address, "033-660-3500")();
+                }
+
+            } else {
+                const resData = await response.text();
+                setResponse(resData);
+            }
+        } catch (error) {
+            console.error('fetch 에러', error);
+            setResponse('fetch 에러');
         }
     };
+
+
+
 
     // //맵띄우기
     useEffect(() => {
@@ -126,7 +165,7 @@ function NoSmokingArea() {
 
                 // 인포윈도우를 생성합니다
                 const infowindow = new kakao.maps.InfoWindow({
-                    position: isMobile? iwPosition_mobile : iwPosition,
+                    position: isMobile ? iwPosition_mobile : iwPosition,
                     content: isMobile ? iwContent_mobile : iwContent
                 });
 
@@ -151,6 +190,45 @@ function NoSmokingArea() {
     };
 
 
+
+    const renderLocationBoxes = () => {
+        const rows = [];
+        for (let i = 0; i < locationData.length; i += 2) {
+          const firstLocation = locationData[i];
+          const secondLocation = locationData[i + 1];
+          rows.push(
+            <div key={`boxContent-${i}`} className={styles.boxContent}>
+              <div className={styles.box} style={{ marginRight: '2vw' }}>
+                <div className={styles.one}>
+                  <p>{firstLocation.name}</p>
+                  <p style={{ fontSize: isMobile ? '2.2vw' : '1vw' }}>{firstLocation.address}</p>
+                  <p style={{ fontSize: isMobile ? '2.2vw' : '1vw' }}>연락처: 033-660-3500</p>
+                </div>
+                <div className={styles.two}>
+                  <div className={styles.findMap} onClick={handleMarker(firstLocation.name, firstLocation.geo._latitude, firstLocation.geo._longitude, firstLocation.address, '033-660-3500')}>
+                    <span>지도찾기</span> <span>&gt;</span>
+                  </div>
+                </div>
+              </div>
+              {secondLocation && (
+                <div className={styles.box} style={{ marginRight: '2vw' }}>
+                  <div className={styles.one}>
+                    <p>{secondLocation.name}</p>
+                    <p style={{ fontSize: isMobile ? '2.2vw' : '1vw' }}>{secondLocation.address}</p>
+                    <p style={{ fontSize: isMobile ? '2.2vw' : '1vw' }}>연락처: 033-660-3500</p>
+                  </div>
+                  <div className={styles.two}>
+                    <div className={styles.findMap} onClick={handleMarker(secondLocation.name, secondLocation.geo._latitude, secondLocation.geo._longitude, secondLocation.address, '033-660-3500')}>
+                      <span>지도찾기</span> <span>&gt;</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        }
+        return rows;
+    }
 
 
     return (
@@ -184,7 +262,20 @@ function NoSmokingArea() {
                         <div className={styles.searchButton} onClick={handleSearchClick}>검색</div>
                     </div>
                     <div className={styles.kakaoMap} id="map" />
-                    <div className={styles.boxContent}>
+
+                    {locationData.length > 0 && renderLocationBoxes()}
+
+                    {/* <div className={styles.boxContent}>
+                        <div className={styles.box} style={{ marginRight: "2vw" }}>
+                            <div className={styles.one}>
+                                <p>강릉시보건소</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>강원 강릉시 남부로17번길 38 강릉시보건소</p>
+                                <p style={{ fontSize: isMobile ? '2.2vw' : '1w' }}>연락처: 033-660-3500</p>
+                            </div>
+                            <div className={styles.two}>
+                                <div className={styles.findMap} onClick={handleMarker("강릉시보건소", 37.7428443073466, 128.88276932466, "강원 강릉시 남부로17번길 38 강릉시보건소", "033-660-3500")}><span>지도찾기</span> <span>&gt;</span></div>
+                            </div>
+                        </div>
                         <div className={styles.box} style={{ marginRight: "2vw" }}>
                             <div className={styles.one}>
                                 <p>강릉시보건소</p>
@@ -196,7 +287,7 @@ function NoSmokingArea() {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
 
 
 

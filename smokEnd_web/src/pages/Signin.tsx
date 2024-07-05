@@ -6,6 +6,8 @@ import NaverLogo from "../assets/logo/naverLogo.jpeg";
 import KakaoLogo from "../assets/logo/kakaoLogo.png";
 import GoogleLogo from "../assets/logo/googleLogo.png";
 import { Link } from "react-router-dom";
+import { auth } from "../config/firebaseConfig";
+import { GoogleAuthProvider, User, getRedirectResult, signInWithPopup, signInWithRedirect } from "firebase/auth";
 
 interface FormData {
     email: string;
@@ -28,6 +30,9 @@ const SocialLogo = styled.div`
     `;
 
 function Signin() {
+    //구글 로그인
+    const [userData, setUserData] = useState<User | null>(null);
+    //로컬 로그인
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: '',
@@ -136,6 +141,28 @@ function Signin() {
         })
     };
 
+
+    // const handleGoogleLogin = () => {
+    //     const provider = new GoogleAuthProvider();
+    //     signInWithRedirect(auth, provider);
+    // };
+
+    // useEffect(() => {
+    //     getRedirectResult(auth)
+    //         .then((result) => {
+    //             if (result) {
+    //                 const user = result.user;
+    //                 setUserData(user);
+    //                 console.log('구글 로그인 성공:', user);
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.error('구글 로그인 결과 가져오기 에러:', error);
+    //         });
+    // }, []);
+
+
+
     const validateEmail = (email: string): boolean => {
         // 간단한 이메일 형식 유효성 검사를 수행하는 정규 표현식
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -160,10 +187,10 @@ function Signin() {
                                     <input type="checkbox" id="chk" className={styles.check} name="remember_me" checked={remember_me} onChange={onChange} />
                                     &nbsp; &nbsp;로그인 유지
                                 </label>
-                                <span><Link to="/findpw" className={styles.Link} style={{color:"#6C6C6C"}}>비밀번호 찾기</Link></span>
+                                <span><Link to="/findpw" className={styles.Link} style={{ color: "#6C6C6C" }}>비밀번호 찾기</Link></span>
                             </div>
                             <button className={styles.LoginButton}>로그인</button>
-                            <button className={styles.SignUPButton} type="button" onClick={() => window.location.href='/signup'}>회원가입</button>
+                            <button className={styles.SignUPButton} type="button" onClick={() => window.location.href = '/signup'}>회원가입</button>
                         </form>
 
                     </div>
@@ -174,6 +201,7 @@ function Signin() {
                     <div className={styles.social_Login}>
                         <SocialLogo style={{ backgroundImage: `url(${NaverLogo})` }} />
                         <SocialLogo style={{ backgroundImage: `url(${KakaoLogo})` }} />
+                        {/* <SocialLogo style={{ backgroundImage: `url(${GoogleLogo})` }} onClick={handleGoogleLogin} /> */}
                         <SocialLogo style={{ backgroundImage: `url(${GoogleLogo})` }} />
                     </div>
                 </div>
