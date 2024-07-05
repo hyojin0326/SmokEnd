@@ -1,156 +1,103 @@
-.MOMBox {
-  height: 500vw;
+.chapter1 {
+  background-image: url("../assets/Introduction/background1.jpg");
+  background-size: 100vw 700px;
+  /* background-size: 100vw 100vh; */
+}
+
+.chapter2 {
+  background-image: url("../assets/Introduction/background2.png");
+  background-size: 100vw 700px;
+  /* background-size: 100vw 100vh; */
+}
+
+.chapter3 {
+  /* background-image: url("../assets/Introduction/background2.png"); */
+  background-size: 100vw 400px;
+  /* background-size: 100vw 100vh; */
+}
+
+.chapter4 {
+  /* background-image: url("../assets/Introduction/background2.png"); */
+  background-size: 100vw 400px;
+  /* background-size: 100vw 100vh; */
 }
 
 .outerContainer {
   display: flex;
   justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
-  /* width: 100%; */
+  width: 100vw;
+  height: 700px;
 }
 
 .innerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
   width: 100vw;
+  height: 700px;
+}
+
+.box {
+  width: 70vw;
   display: flex;
   justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
 }
 
-.container {
-  /* position: relative; */
-  /* height: auto; */
-  /* width: 70vw; */
+.box2 {
+  width: 70vw;
   display: flex;
   justify-content: center;
-  align-items: center; /* 수직 중앙 정렬 */
+  /* align-items: center; */
 }
 
-.Incontainer {
+.box3 {
+  width: 70vw;
+  margin-top: -500px;
   display: flex;
   justify-content: center;
-  align-items: center; /* 수직 중앙 정렬 */
-  /* width: 100%; */
+  /* align-items: center; */
 }
 
-.background {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+.phoneImage1 {
+  width: 270px;
+  height: 500px;
+  /* 500px */
+  /* 33.5vw */
+  /* 74vh */
+  margin-top: 6vw;
+  margin-bottom: 5.4vw;
+  /* animation: shake 2s ease-in-out 1 forwards; */
 }
 
-.backgroundImage {
-  width: 100vw;
-  height: 100vh;
+.phoneImage2 {
+  /* float: right; */
+  width: 260px;
+  height: 510px;
+  /* 500px */
+  /* 33.5vw */
+  /* 74vh */
+  margin-top: 6vw;
+  margin-bottom: 5.4vw;
+  /* animation: shake 2s ease-in-out 1 forwards; */
 }
 
-.backgroundImage2 {
-  width: 100vw;
-  height: 150vh;
+.phoneImage3 {
+  /* float: right; */
+  width: 250px;
+  height: 510px;
+  /* 500px */
+  /* 33.5vw */
+  /* 74vh */
+  margin-top: 6vw;
+  margin-bottom: 5.4vw;
+  /* animation: shake 2s ease-in-out 1 forwards; */
 }
 
-.backgroundImage6 {
-  margin-top: -70%;
-  width: 100vw;
-  height: 90vh;
-}
-
-.phone1 {
-  width: 70vw;
-  position: absolute;
-  top: 23%;
-  left: -20%;
-  transform: translateX(50%);
-  z-index: 2;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-}
-
-.phone2 {
-  width: 70vw;
-  position: absolute;
-  top: 13%;
-  right: 42%;
-  transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  /* display: flex; */
-  /* flex-direction: column;   */
-  justify-content: center;
-  align-items: center;
-}
-
-.phone3 {
-  width: 70vw;
-  position: absolute;
-  top: -18vw;
-  left: -20%; /* 중앙 정렬을 위해 left를 50%로 설정 */
-  transform: translateX(50%); /* 가로 방향으로 -50%만큼 이동하여 중앙 정렬 */
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-}
-
-.phone4 {
-  width: 70vw;
-  position: absolute;
-  top: -16vw;
-  right: 41%;
-  transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  /* display: flex; */
-  /* flex-direction: column;   */
-  justify-content: center;
-  align-items: center;
-}
-
-.phone5 {
-  width: 70vw;
-  position: absolute;
-  top: -76%;
-  left: -20%;
-  transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-}
-
-.phone6 {
-  width: 70vw;
-  position: absolute;
-  top: -76%;
-  right: 41%;
-  transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  /* display: flex; */
-  /* flex-direction: column;   */
-  justify-content: center;
-  align-items: center;
-}
-
-.web {
-  width: 70vw;
-  position: absolute;
-  top: -85%;
-  left: -22%;
-  transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  /* display: flex; */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-}
-
-.web2 {
-  width: 70vw;
-  position: absolute;
-  top: -105%;
-  left: -15%;
-  transform: translateX(50%);
-  z-index: 2; /* phone1 이미지를 위에 표시 */
-  /* display: flex; */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+.caseImage {
+  width: 21vw;
+  margin-left: 50px;
 }
 
 .webImage {
@@ -159,151 +106,48 @@
   margin-bottom: 5vw;
 }
 
-.phoneImage {
-  width: 19vw;
-  height: 33.5vw;
-  /* animation: shake 2s ease-in-out 1 forwards; */
-}
-
-.phoneImage2 {
-  width: 19vw;
-  height: 36vw;
-}
-
-.phoneImage3 {
-  width: 19vw;
-  height: 36vw;
-}
-
-.caseImage {
-  /* position: absolute; */
-  /* top: 14vw; .leftBox 아래로 이동 */
-  /* left: -4vw; */
-  width: 23vw; /* 적절한 크기로 조정 */
-  /* z-index: 1; .phoneImage보다 낮은 z-index 설정 */
-}
-
-/* 위로 슥 올라오는 애니메이션 */
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-/* 흔들리는 애니메이션 */
-@keyframes shake {
-  0% {
-    transform: rotate(-5deg);
-  }
-  25% {
-    transform: rotate(5deg);
-  }
-  50% {
-    transform: rotate(-5deg);
-  }
-  75% {
-    transform: rotate(5deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .rightBox {
   float: right;
-  margin-left: 7vw;
+  margin-left: 8vw;
 }
 
 .rightBox2 {
   float: right;
-  margin-left: 7vw;
-}
-
-.rightBox5 {
-  float: right;
   margin-left: 15vw;
-  margin-top: 20vw;
+  /* margin-right: 8vw; */
+  margin-top: 6vw;
 }
 
 .rightBox3 {
   float: right;
-  margin-left: 14vw;
-  margin-top: 20vw;
-}
-
-.rightBoxWeb {
-  float: right;
-  margin-left: 5vw;
-  margin-top: -25vw;
-  display: inline;
+  /* margin-left: 15vw; */
+  /* margin-right: 8vw; */
+  margin-top: 6vw;
 }
 
 .leftBox {
   float: left;
-  margin-right: 7vw;
+  margin-right: 8vw;
 }
 
-.leftBox4 {
+.leftBox2 {
   float: left;
-  margin-right: 15vw;
+  margin-right: 8vw;
+  margin-top: 300px;
 }
 
-.leftBox6 {
+.leftBox3 {
   float: left;
-  margin-right: 7vw;
-  margin-top: 10vw;
-}
-
-.leftBoxWeb {
-  float: left;
-  margin-right: 5vw;
-  margin-top: 16vw;
-}
-
-.rightTextContainer {
-  position: absolute;
-  bottom: -30%;
-  right: 1%; /* 오른쪽으로 10% 정도 이동 */
-}
-
-.leftTextContainer {
-  position: absolute;
-  bottom: 20vw;
-  left: 21vw;
-}
-
-.Fname {
-  font-family: "NanumSquareRoundEB";
-  font-size: 2vw;
+  margin-right: 6vw;
+  margin-top: 300px;
 }
 
 .Grey .logo {
   color: rgb(55, 54, 54);
 }
+
 .Grey .p {
   color: rgb(55, 54, 54);
-}
-
-.additionalText {
-  font-family: "NanumSquareRoundB";
-  font-size: 1.5vw;
-  color: rgb(0, 0, 0);
-}
-
-.logo {
-  font-family: "Tenada";
-  display: inline;
-  font-size: 1.5vw;
-  color: rgb(0, 0, 0);
-}
-
-.logo2 {
-  font-family: "Tenada";
-  color: red;
-  display: inline;
 }
 
 .p {
@@ -321,10 +165,9 @@
   color: rgb(255, 1, 1);
 }
 
-.lastBackground {
-  width: 100%;
-  height: 90vw; /* 전체 뷰포트 높이로 설정 */
-  background-color: rgb(255, 255, 255);
+.Fname {
+  font-family: "NanumSquareRoundEB";
+  font-size: 2vw;
 }
 
 .centerCircleBigContainer {
@@ -334,12 +177,13 @@
 }
 
 .centerCircleContainer {
-  position: absolute;
-  top: 700vh;
+  /* position: absolute; */
+  /* top: 700vh; */
   display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  flex-direction: column; /* 수직 배치 */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 200px;
   width: 70vw;
 }
 
@@ -357,8 +201,9 @@
 
 .test {
   width: 70vw;
-  height: 50vw;
+  height: 700px;
   margin-top: 10vw;
+  margin-bottom: 10vw;
 }
 
 @media (max-width: 768px) {

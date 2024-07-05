@@ -466,15 +466,18 @@ const handle = async () => {
 
 ### 나의 흡연 습관 평가 (method : POST | Functions : api | endpoint : /api/diagnosis/habit)
 - 위의 니코틴 의존도 검사와 조금도 다르지 않습니다
-- 서버는 다음과 같은 JSON 데이터를 반환합니다. <b>배열 아니니까 주의합시다</b>
+- 요청한대로, 10점이 넘어가는 모든 유형의 데이터를 반환합니다
+- 서버는 다음과 같은 데이터가 담긴 배열을 반환합니다
 ```
-{
-    title: "A유형/무슨무슨유형"
-    value: "대충 그 유형에 대한 설명"
-}
+[
+    {
+        title: "A유형/무슨무슨유형"
+        value: "대충 그 유형에 대한 설명"
+    }
+]
 ```
 ```
-const [response, setResponse] = useState('');
+const [response, setResponse] = useState([]);
   
 const [selectedAnswers, setSelectedAnswers] = useState({
     q1: 0,q2: 0,q3: 0,q4: 0,q5: 0,q6: 0,
@@ -505,8 +508,6 @@ const handle = async () => {
 
         } else if(response.status === 500) { // 서버 에러
 
-            const resData = await response.text();
-            setResponse(resData);
         }
       })
       .catch(error => {
@@ -518,4 +519,57 @@ const handle = async () => {
 ```
 타이틀 : response.title
 설명 : response.value
+```
+<br />
+
+## DB에 내용 작성
+### 리뷰 작성하기 (method : POST | Functions : api | endpoint : /api/handle/postReview) - 미완성
+- 클라이언트 측에서 선택한 이미지를 base64로 인코딩해서 인코딩한 문자열을 서버로 전송하는 방식으로 만들고 있습니다
+- 사실 다 만들고 테스트도 해 봤는데, 리엑트쪽 코드를 어떻게 작성해야 하는지 몰라서 잠시 보류해 두겠습니다
+```
+```
+
+<br />
+
+### 현금 상품 구매 (method : POST | Functions : api | endpoint : /api/handle/purchase)
+- 우리 사이트에서 실제 현금으로 구매하는건 담배케이스 하나 뿐이기 때문에, 마일리지 구매랑 다르게 따로 아이디 같은걸 전송할 필요는 없습니다
+- 그냥 sessionId랑 formData만 보내면 됩니다.
+- 보내면 별다른 작업 없이 그대로 저장합니다
+```
+const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    
+if (!sessionId) { // 로그인이 필요함을 알려주시면 됩니다
+    return;
+}
+
+await fetch(`${import.meta.env.VITE_URL_API}/api/handle/purchase`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        formData: formData,
+        sessionId: sessionId
+    })
+})
+.then(async response => {
+    if (response.status === 201) { // 구매 완료
+        const resData = await response.text();
+        await setResponse(resData); // response에 메세지가 담깁니다
+        console.log(resData);
+        
+    } else if(response.status === 401) { // 세션이 유효하지 않은 경우입니다
+
+        const resData = await response.text();
+        await setResponse(resData); // response에 메세지가 담깁니다
+        console.log(resData);
+
+    } else if(response.status === 500) { // 서버 문제 입니다
+
+        const resData = await response.text();
+        await setResponse(resData); // response에 메세지가 담깁니다
+        console.log(resData);
+        
+    }
+});
 ```
