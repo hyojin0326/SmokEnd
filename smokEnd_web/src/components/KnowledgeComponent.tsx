@@ -31,15 +31,15 @@ function KnowledgeComponent() {
 
         if (allAnswered) {
             setIsLoading(true);
-            const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+            const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
-            await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/knowledge`, {
+            await fetch(`http://${import.meta.env.VITE_URL_API}/api/diagnosis/knowledge`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    sessionId: sessionId,
+                    token: token,
                     selectedAnswers: selectedAnswers // state그대로 집어 넣으시는 겁니다
                 })
             }).then(async response => {
@@ -50,8 +50,6 @@ function KnowledgeComponent() {
                     alert("평가가 완료되었습니다.")
 
                     navigate('/selfAssessment/result?type=Knowledge', { state: { response_Knowledge: resData } });
-                } else if (response.status === 500) {
-
                 } else if (response.status === 500) { // 서버 에러
 
                     const resData = await response.text();

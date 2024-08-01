@@ -14,12 +14,12 @@ function Header() {
   const [response, setResponse] = useState("");
 
   useEffect(() => {
-    const sessionId = document.cookie.replace(
-      /(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/,
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
     // setIsLoggedIn(!!sessionId);
-    if (sessionId === "") {
+    if (token === "") {
       setIsLoggedIn(false);
     } else {
       setIsLoggedIn(true);
@@ -67,47 +67,23 @@ function Header() {
       return;
     }
     // 쿠키에 저장된 값을 참조하는 겁니다. 꼭 있어야 합니다.
-    const sessionId = document.cookie.replace(
-      /(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/,
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
 
-    if (!sessionId) {
+    if (!token) {
       // 로그인이 필요함을 알려주시면 됩니다
       setResponse("로그인이 필요합니다");
       return;
     }
-
-    await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/logout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ sessionId }),
-    }).then(async (response) => {
-      if (response.status === 200) {
-        // 로그아웃 완료
-
-        document.cookie = "sessionId=; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // 쿠키를 삭제합니다
-        document.cookie = "userStats=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-        const resData = await response.text();
-        setResponse(resData); // response에 메세지가 담깁니다
-        console.log("로그아웃:", resData);
-        alert("로그아웃 성공");
-        window.location.href = "/";
-      } else if (response.status === 401) {
-        // 세션이 유효하지 않은 경우입니다
-        const resData = await response.text();
-        setResponse(resData); // response에 메세지가 담깁니다
-        console.log("로그아웃 실패(세션 유효):", resData);
-      } else if (response.status === 500) {
-        // 서버 문제 입니다
-        const resData = await response.text();
-        setResponse(resData); // response에 메세지가 담깁니다
-        console.log("로그아웃 실패(서버):", resData);
-      }
-      setIsLoggedIn(false);
-    });
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // 쿠키를 삭제합니다
+    document.cookie = "userStats=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    setIsLoggedIn(false);
+    console.log("로그아웃");
+    alert("로그아웃 성공");
+    window.location.href = "/";
+    
   };
 
   //로그인 안한 상태일때 헤더부분의 내용을 클릭시

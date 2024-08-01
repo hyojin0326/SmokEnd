@@ -31,15 +31,15 @@ function HabitComponent() {
 
         if (allAnswered) {
             setIsLoading(true);
-            const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+            const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
-            await fetch(`${import.meta.env.VITE_URL_API}/api/diagnosis/habit`, {
+            await fetch(`http://${import.meta.env.VITE_URL_API}/api/diagnosis/habit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    sessionId: sessionId,
+                    token: token,
                     selectedAnswers: selectedAnswers
                 })
             }).then(async response => {

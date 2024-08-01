@@ -7,7 +7,7 @@ import KakaoLogo from "../assets/logo/kakaoLogo.png";
 import GoogleLogo from "../assets/logo/googleLogo.png";
 import { Link } from "react-router-dom";
 import { auth } from "../config/firebaseConfig";
-import { GoogleAuthProvider, User, getRedirectResult, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { GoogleAuthProvider, User, getRedirectResult, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from "firebase/auth";
 
 interface FormData {
     email: string;
@@ -73,93 +73,105 @@ function Signin() {
             alert("로그인 중입니다.");
             return;
         }
-        await fetch(`${import.meta.env.VITE_URL_API}/api/auth/w/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        }).then(async response => {
-            setIsLoading(false);
-            if (response.status === 200) {
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+              auth,
+              formData.email,
+              formData.password
+            ); // 이걸로 로그인
+            if (!userCredential.user.emailVerified) {
+              alert("이메일 인증이 완료되지 않은 사용자 입니다");
+              setIsLoading(false);
+              return;
+            }
+            const token = await userCredential.user.getIdToken();
+            // 사용자 정보를 받기 위해 서버에 요청을 보냅니다
+            await fetch(`http://${import.meta.env.VITE_URL_API}/api/auth/w/login`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ token }),
+            }).then(async (response) => {
+              setIsLoading(false);
+              if (response.status === 200) {
                 // 로그인 성공
                 const resData = await response.json();
-                setResponse(JSON.stringify(resData));
-                console.log('로그인 성공:', resData);
-                alert("로그인 성공");
-                window.location.href = '/';
-                return resData;
-
-            } else if (response.status === 401) {
-                // 이메일 인증 안함 OR 비밀번호 다름
-                const resData = await response.text();
-                setResponse(resData);
-                console.log('로그인 실패:', resData);
-                alert(resData);
-                return response.text();
-
-            } else if (response.status === 404) {
-                // 가입된 메일 없음
-                const resData = await response.text();
-                setResponse(resData);
-                console.log('로그인 실패:', resData);
-                alert(resData);
-                return response.text();
-
-            } else if (response.status === 500) {
-                // 에러
-                const resData = await response.text();
-                setResponse(resData);
-                console.log('서버 에러:', resData);
-                return response.text();
-
-            } else {
-                // 여기 있는거 실행되면 매우 큰 문제가 있는거임
-                console.log('???');
-
-            }
-        }).then(result => {
-            // 쿠키 만들기
-            if (result && result.sessionId) {
-                console.log("쿠키생성");
-                if (result.remember_me) {
-                    // remember_me가 true이면 쿠키의 유효기간을 더 길게 설정
-                    const now = new Date();
-                    const expirationDate = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
-                    document.cookie = `sessionId=${result.sessionId}; expires=${expirationDate.toUTCString()};`;
-                    document.cookie = `userStats=${JSON.stringify({ name: result.name, mileage: result.mileage, isAdmin: result.isAdmin })}; expires=${expirationDate.toUTCString()};`;
+                if (formData.remember_me) {
+                  const now = new Date();
+                  const expirationDate = new Date(
+                    now.getFullYear() + 1,
+                    now.getMonth(),
+                    now.getDate()
+                  );
+                  document.cookie = `token=${token}; expires=${expirationDate.toUTCString()};`;
+                  document.cookie = `userStats=${JSON.stringify(
+                    resData
+                  )}; expires=${expirationDate.toUTCString()};`;
                 } else {
-                    document.cookie = `sessionId=${result.sessionId}`;
-                    document.cookie = `userStats=${JSON.stringify({ name: result.name, mileage: result.mileage, isAdmin: result.isAdmin })}`
+                  document.cookie = `token=${token};`;
+                  document.cookie = `userStats=${JSON.stringify(resData)};`;
                 }
-            } else {
-                // 로그인 실패시 동작
-                console.log('로그인 실패')
-            }
-        }).catch(err => {
-
-        })
+                window.location.href = "/";
+              } else if (response.status === 401) {
+                // 토큰이 유효하지 않음
+                const resData = await response.text();
+                console.log("로그인 실패: ", resData);
+                alert(resData);
+                return;
+              } else {
+                // 서버 에러
+                const resData = await response.text();
+                console.log("로그인 실패: ", resData);
+                alert(resData);
+                return;
+              }
+            });
+          } catch {
+            alert("해당 이메일을 가진 사용자가 없거나 비밀번호가 일치하지 않습니다");
+            setIsLoading(false);
+          }
     };
 
 
-    // const handleGoogleLogin = () => {
-    //     const provider = new GoogleAuthProvider();
-    //     signInWithRedirect(auth, provider);
-    // };
-
-    // useEffect(() => {
-    //     getRedirectResult(auth)
-    //         .then((result) => {
-    //             if (result) {
-    //                 const user = result.user;
-    //                 setUserData(user);
-    //                 console.log('구글 로그인 성공:', user);
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.error('구글 로그인 결과 가져오기 에러:', error);
-    //         });
-    // }, []);
+    const handleGoogleLogin = async () => {
+        const provider = new GoogleAuthProvider();
+    
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          const token = await user.getIdToken();
+    
+          await fetch(
+            `http://${import.meta.env.VITE_URL_API}/api/auth/w/glogin`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ token }),
+            }
+          ).then(async (response) => {
+            if (response.status === 200) {
+              // 로그인 성공. 쿠키 만들면 됨
+              const resData = await response.json();
+              document.cookie = `token=${token};`;
+              document.cookie = `userStats=${JSON.stringify(resData)};`;
+              window.location.href = "/";
+            } else if (response.status === 401) {
+              // 토큰 오류
+            } else if (response.status === 404) {
+              // 회원가입 해야 됨
+              document.cookie = `token=${token};`;
+              window.location.href = "/SocialSignup";
+            } else {
+              // 에러남
+            }
+          });
+        } catch (error) {
+          alert("error");
+        }
+      };
 
 
 
@@ -202,7 +214,7 @@ function Signin() {
                         <SocialLogo style={{ backgroundImage: `url(${NaverLogo})` }} />
                         <SocialLogo style={{ backgroundImage: `url(${KakaoLogo})` }} />
                         {/* <SocialLogo style={{ backgroundImage: `url(${GoogleLogo})` }} onClick={handleGoogleLogin} /> */}
-                        <SocialLogo style={{ backgroundImage: `url(${GoogleLogo})` }} />
+                        <SocialLogo style={{ backgroundImage: `url(${GoogleLogo})` }} onClick={handleGoogleLogin} />
                     </div>
                 </div>
 

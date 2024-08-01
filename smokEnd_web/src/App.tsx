@@ -3,6 +3,7 @@ import Main from "./pages/Main";
 import Signin from "./pages/Signin";
 import Findpw from "./pages/Findpw";
 import Signup from "./pages/Signup";
+import SocialSignup from "./pages/SocialSignup";
 import ReviewPopup from "./components/ReviewPopup";
 import Introduction from "./pages/Introduction";
 import SelfAssessment from "./pages/SelfAssessment";
@@ -65,6 +66,7 @@ function AppContent() {
         {/* <Route path="/" element={<><Test /></>}/> */}
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/socialSignup" element={<SocialSignup />} />
         <Route path="/findpw" element={<Findpw />} />
         <Route
           path="/selfAssessment/*"
