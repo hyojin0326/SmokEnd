@@ -82,7 +82,7 @@ function NoSmokingArea() {
 
     const getLocation = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_URL_API}/api/get/location/${selectedRegion}/${selectedDistrict}`);
+            const response = await fetch(`http://${import.meta.env.VITE_URL_API}/api/get/location/${selectedRegion}/${selectedDistrict}`);
 
             if (response.status === 200) {
                 const resData: Location[] = await response.json();

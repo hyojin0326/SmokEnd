@@ -40,7 +40,7 @@ function Signup() {
         });
     };
 
-    const onSubmit = (e: React.FormEvent) => {
+    const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         var dayFormatted = formData.day.length === 1 ? `0${formData.day}` : formData.day;
@@ -105,7 +105,7 @@ function Signup() {
         }
 
         // 서버로 데이터 전송
-        fetch(`${import.meta.env.VITE_URL_API}/api/auth/join`, {
+        await fetch(`http://${import.meta.env.VITE_URL_API}/api/auth/join`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
