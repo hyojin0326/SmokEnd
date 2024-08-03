@@ -109,6 +109,7 @@ function Purchase() {
         addressZonecode, address, addressDetail,
         accountName, accountNumber, paymentMethod
     } = formData;
+    const [response, setResponse] = useState('');
 
     const handleAddressButtonClick = () => {
         setShowPostcode(true);
@@ -203,7 +204,7 @@ function Purchase() {
         }));
     };
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼의 기본 동작(페이지 새로고침)을 막습니다.
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
@@ -239,6 +240,40 @@ function Purchase() {
             
 
         //서버 기능
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+        await fetch(`${import.meta.env.VITE_URL_API}/api/handle/purchase`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                token: token,
+                formData: formData
+            })
+        })
+            .then(async response => {
+                if (response.status === 201) { // 구매 완료
+                    const resData = await response.text();
+                    await setResponse(resData); // response에 메세지가 담깁니다
+                    console.log(resData);
+                    alert("구매가 완료되었습니다.");
+                    //이후 작업 필요
+
+                } else if (response.status === 401) { // 세션이 유효하지 않은 경우입니다
+
+                    const resData = await response.text();
+                    await setResponse(resData); // response에 메세지가 담깁니다
+                    console.log(resData);
+
+                } else if (response.status === 500) { // 서버 문제 입니다
+
+                    const resData = await response.text();
+                    await setResponse(resData); // response에 메세지가 담깁니다
+                    console.log(resData);
+
+                }
+            });
 
     }
 
