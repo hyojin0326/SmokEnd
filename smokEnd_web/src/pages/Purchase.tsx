@@ -155,6 +155,7 @@ function Purchase() {
     };
     const [selectedOption, setSelectedOption] = useState("신용/체크카드");
     const [selectedPayment, setSelectedPayment] = useState("");
+    const [response, setResponse] = useState('');
 
     const handleOptionClick = (option: string) => {
         setSelectedOption((prevOption) => (prevOption === option ? "" : option));
@@ -203,7 +204,7 @@ function Purchase() {
         }));
     };
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼의 기본 동작(페이지 새로고침)을 막습니다.
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
@@ -232,13 +233,47 @@ function Purchase() {
             return;
         }
 
-        if (allAgreement == false){
+        if (allAgreement == false) {
             alert("팔수 약관 동의를 선택해주세요.");
             return;
         }
-            
+
 
         //서버 기능
+        const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+
+        await fetch(`${import.meta.env.VITE_URL_API}/api/handle/purchase`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                formData: formData,
+                sessionId: sessionId
+            })
+        })
+            .then(async response => {
+                if (response.status === 201) { // 구매 완료
+                    const resData = await response.text();
+                    await setResponse(resData); // response에 메세지가 담깁니다
+                    console.log(resData);
+                    alert("구매가 완료되었습니다.");
+                    //이후 작업 필요
+
+                } else if (response.status === 401) { // 세션이 유효하지 않은 경우입니다
+
+                    const resData = await response.text();
+                    await setResponse(resData); // response에 메세지가 담깁니다
+                    console.log(resData);
+
+                } else if (response.status === 500) { // 서버 문제 입니다
+
+                    const resData = await response.text();
+                    await setResponse(resData); // response에 메세지가 담깁니다
+                    console.log(resData);
+
+                }
+            });
 
     }
 
@@ -299,7 +334,7 @@ function Purchase() {
                                     <div>
                                         <p className={styles.name}>결제수단</p>
                                         <div className={styles.underline} />
-                                        <label style={{ fontSize: isMobile ? '3vw' : '1.2vw' , paddingTop: isMobile? '2vw':'', paddingBottom: isMobile? '2vw':''}}><input type="radio" id="pay" name="pay"  defaultChecked />일반결제</label>
+                                        <label style={{ fontSize: isMobile ? '3vw' : '1.2vw', paddingTop: isMobile ? '2vw' : '', paddingBottom: isMobile ? '2vw' : '' }}><input type="radio" id="pay" name="pay" defaultChecked />일반결제</label>
                                         <div className={styles.payment}>
                                             <div className={styles.payment_select}>
                                                 <div
@@ -350,7 +385,7 @@ function Purchase() {
                                                             onClick={() => handlePaymentClick("카카오뱅크")} />
                                                         <div className={styles.underline} style={{ backgroundColor: "#8f8f8f" }} />
                                                         <div className={styles.payment_bottom}>
-                                                            <p style={{ color: "blue", fontSize: isMobile ? '2.2vw' : '1vw'}}>법인카드 결제 시 일시불만 가능</p>
+                                                            <p style={{ color: "blue", fontSize: isMobile ? '2.2vw' : '1vw' }}>법인카드 결제 시 일시불만 가능</p>
                                                             <p style={{ fontSize: isMobile ? '2vw' : '0.8vw' }}>무이자 할부 안내</p>
                                                         </div>
                                                         <select className={styles.select_payment} value={paymentMethod} onChange={onChangeSelect}>
@@ -384,7 +419,7 @@ function Purchase() {
                                                             onClick={() => handlePaymentClick("씨티은행")} />
 
                                                         <div className={styles.bank_bottom}>
-                                                            <p style={{ color: "blue", fontSize: isMobile ? '2.5vw' : '1vw', paddingBottom: isMobile ? '1vw' : '0.5vw'}}>ATM기기로 현금 입금은 우리, 기업, 하나은행만 가능합니다. (은행창구, 인터넷뱅킹은 전 은행 이용가능)</p>
+                                                            <p style={{ color: "blue", fontSize: isMobile ? '2.5vw' : '1vw', paddingBottom: isMobile ? '1vw' : '0.5vw' }}>ATM기기로 현금 입금은 우리, 기업, 하나은행만 가능합니다. (은행창구, 인터넷뱅킹은 전 은행 이용가능)</p>
                                                             <p style={{ fontSize: isMobile ? '2.2vw' : '0.8vw', paddingBottom: isMobile ? '1vw' : '0.5vw' }}>비회원 주문건 현금영수증은 국세청 홈택스에서 직접 발급 해 주세요.</p>
                                                             <div className={styles.underline} style={{ backgroundColor: "#8f8f8f" }} />
                                                             <p style={{ fontSize: isMobile ? '2.5vw' : '1vw', paddingTop: isMobile ? '1vw' : '0.5vw' }}>환불계좌 등록</p>
@@ -394,9 +429,9 @@ function Purchase() {
                                                                 <li style={{ paddingBottom: isMobile ? '1vw' : '0.5vw' }}>계좌로 환불이 어려운 경우, 사유에 따라 계좌정보 변경 후 다시 환불 신청하실 수 있습니다.</li>
                                                             </ul>
                                                             <div className={styles.mobileBank}>
-                                                            <p className={styles.label}><span>은행명</span><input type="text" className={styles.input} style={{ color: "8f8f8f" }} name="payment" value={selectedPayment} readOnly required></input></p>
-                                                            <p className={styles.label}><span>계좌번호</span><input type="text" className={styles.input} name="accountNumber" value={accountNumber} onChange={onChange} placeholder='"-"없이 입력해 주세요.' required></input></p>
-                                                            <div className={styles.label}><span>예금주명</span><input type="text" className={styles.input_address} name="accountName" value={accountName} onChange={onChange} placeholder={isMobile? '':'예금주 명을 입력해 주세요.'} required></input><div className={styles.input_address_button} onClick={handleAccountButtonClick}>계좌확인</div></div>
+                                                                <p className={styles.label}><span>은행명</span><input type="text" className={styles.input} style={{ color: "8f8f8f" }} name="payment" value={selectedPayment} readOnly required></input></p>
+                                                                <p className={styles.label}><span>계좌번호</span><input type="text" className={styles.input} name="accountNumber" value={accountNumber} onChange={onChange} placeholder='"-"없이 입력해 주세요.' required></input></p>
+                                                                <div className={styles.label}><span>예금주명</span><input type="text" className={styles.input_address} name="accountName" value={accountName} onChange={onChange} placeholder={isMobile ? '' : '예금주 명을 입력해 주세요.'} required></input><div className={styles.input_address_button} onClick={handleAccountButtonClick}>계좌확인</div></div>
                                                             </div>
                                                         </div>
 
