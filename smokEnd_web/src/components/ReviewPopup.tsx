@@ -26,7 +26,7 @@ const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
     setStars(newStars);
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
@@ -36,6 +36,28 @@ const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
     );
     console.log("상세 글:", text);
     setIsOpen(false); // 팝업창 닫기
+
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    await fetch(
+      `http://${import.meta.env.VITE_URL_API}/api/handle/postReview`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: token,
+          stars: stars.filter((starImg) => starImg === star2).length,
+          text: text,
+        }),
+      }
+    ).then(async (response) => {
+      const resData = await response.text();
+      alert(resData);
+    });
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
