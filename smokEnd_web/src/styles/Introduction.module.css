@@ -1,25 +1,25 @@
 .chapter1 {
   background-image: url("../assets/Introduction/background1.jpg");
-  background-size: 100vw 700px;
-  /* background-size: 100vw 100vh; */
+  /* background-size: 100vw 700px; */
+  background-size: 100vw 100vh;
 }
 
 .chapter2 {
   background-image: url("../assets/Introduction/background2.png");
-  background-size: 100vw 700px;
-  /* background-size: 100vw 100vh; */
+  /* background-size: 100vw 700px; */
+  background-size: 100vw 100vh;
 }
 
 .chapter3 {
   /* background-image: url("../assets/Introduction/background2.png"); */
-  background-size: 100vw 400px;
-  /* background-size: 100vw 100vh; */
+  /* background-size: 100vw 400px; */
+  background-size: 100vw 100vh;
 }
 
 .chapter4 {
   /* background-image: url("../assets/Introduction/background2.png"); */
-  background-size: 100vw 400px;
-  /* background-size: 100vw 100vh; */
+  /* background-size: 100vw 400px; */
+  background-size: 100vw 100vh;
 }
 
 .outerContainer {

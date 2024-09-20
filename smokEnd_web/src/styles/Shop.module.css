@@ -2,12 +2,12 @@
 
 .smokeBox {
   background-image: url("../assets/shop/shopBack.png");
-  background-size: 110vw 700px;
+  background-size: 110vw 100vh;
 }
 
 .smokCase {
   width: 100vw;
-  height: 700px;
+  height: 100vh;
 }
 
 .caseImage {
@@ -63,6 +63,7 @@
   display: flex;
   justify-content: center;
 }
+
 .bottom > img {
   height: 3.5vw;
 }
