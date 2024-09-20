@@ -196,6 +196,8 @@ function Purchase() {
             return;
         }
         //서버 기능
+        alert("구매 완료");
+        window.location.href="/";
 
     }
 

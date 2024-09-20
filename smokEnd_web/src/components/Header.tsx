@@ -13,6 +13,7 @@ function Header() {
   const isAboutPage = location.pathname === "/introduction";
   const [response, setResponse] = useState("");
   const [name, setName] = useState("");
+  const [mileage, setMileage] = useState(0);
 
   useEffect(() => {
     const token = document.cookie.replace(
@@ -25,6 +26,7 @@ function Header() {
     );
     if(user != ""){
       const userStats = JSON.parse(user);
+      setMileage(userStats.mileage);
       setName(userStats.name);
     }
     
@@ -263,7 +265,7 @@ function Header() {
                   <div className={styles.linkContainer3}>
                     <div className={styles.loggedIna}>
                       {name}<div className={styles.margin}></div>
-                      <a>29 p</a>
+                      <a>{mileage} p</a>
                     </div>
 
                     <div className={styles.subMenu}>
@@ -405,7 +407,7 @@ function Header() {
                   <br />
                   <div>
                     <a className={styles.MobileloggedInli4}>{name}</a>
-                    <a className={styles.MobileloggedInli3}>29 p</a>
+                    <a className={styles.MobileloggedInli3}>`{mileage} p`</a>
                     <a className={styles.MobileloggedInli3}>/</a>
                     <p
                       className={styles.MobileloggedInli3}
