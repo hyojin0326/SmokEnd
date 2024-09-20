@@ -113,8 +113,12 @@ function Shop() {
                         />
                         <a className={styles.t2}>{item.name}</a>
                         <div className={styles.shopBox4}>
-                          <a className={styles.t3}>{item.price} 원 /</a>
-                          <a className={styles.t3}>{item.m_price} P</a>
+                          <a className={styles.t3}>
+                            {item.price.toLocaleString()} 원 /
+                          </a>
+                          <a className={styles.t3}>
+                            {item.m_price.toLocaleString()} P
+                          </a>
                         </div>
                       </div>
                     </div>
