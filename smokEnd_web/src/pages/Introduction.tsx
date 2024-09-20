@@ -12,6 +12,8 @@ import circle from "../assets/Introduction/circle.png";
 import caseImage from "../assets/Introduction/case.png";
 import test from "../assets/Introduction/test.jpg";
 
+import { motion } from "framer-motion";
+
 function Introduction() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -49,10 +51,11 @@ function Introduction() {
                       src={phone1}
                       alt="phone1"
                       className={styles.phoneImage}
-                    /> */}
+                    /> */}{" "}
                     <div className={styles.logoContainer}>
+                      {" "}
                       <img src={LOGO12} alt="phone1" className={styles.LOGO} />
-                    </div>
+                    </div>{" "}
                     <br />
                   </div>
                 </div>
@@ -60,12 +63,23 @@ function Introduction() {
               <div className={styles.backSize2}>
                 <div className={styles.inSide2}>
                   <div className={styles.Fname}>함께,</div>
-                  <br />
-                  <img
-                    src={phone2}
-                    alt="phone2"
-                    className={styles.phoneImage2}
-                  />
+                  <br />{" "}
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false }}
+                    transition={{
+                      ease: "easeInOut",
+                      duration: 2,
+                      y: { duration: 1 },
+                    }}
+                  >
+                    <img
+                      src={phone2}
+                      alt="phone2"
+                      className={styles.phoneImage2}
+                    />
+                  </motion.div>
                   <br />{" "}
                   <div className={styles.Grey}>
                     <div className={styles.logo}>
@@ -92,8 +106,19 @@ function Introduction() {
                       조금씩, <br />
                       하지만 확실하게.
                     </div>{" "}
-                    <br />
-                    <img src={phone3} className={styles.phoneImage2} />
+                    <br />{" "}
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{
+                        ease: "easeInOut",
+                        duration: 2,
+                        y: { duration: 1 },
+                      }}
+                    >
+                      <img src={phone3} className={styles.phoneImage2} />
+                    </motion.div>
                     <br />
                     <div className={styles.Grey}>
                       <div className={styles.p}>
@@ -113,8 +138,19 @@ function Introduction() {
                 <div className={styles.backSize2}>
                   <div className={styles.inSide2}>
                     <div className={styles.Fname}>기록은 편하게, </div>
-                    <br />
-                    <img src={caseImage} className={styles.caseImage} />
+                    <br />{" "}
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{
+                        ease: "easeInOut",
+                        duration: 2,
+                        y: { duration: 1 },
+                      }}
+                    >
+                      <img src={caseImage} className={styles.caseImage} />
+                    </motion.div>
                     <br />
                     <div className={styles.Grey}>
                       <div className={styles.p}>하루의 흡연 상황을</div> <br />
@@ -133,12 +169,23 @@ function Introduction() {
               <div className={styles.backSize2}>
                 <div className={styles.inSide3}>
                   <div className={styles.Fname}>노력의 결실을 한 눈에. </div>
-                  <br />
-                  <img
-                    src={phone4}
-                    alt="phone1"
-                    className={styles.phoneImage2}
-                  />{" "}
+                  <br />{" "}
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false }}
+                    transition={{
+                      ease: "easeInOut",
+                      duration: 2,
+                      y: { duration: 1 },
+                    }}
+                  >
+                    <img
+                      src={phone4}
+                      alt="phone1"
+                      className={styles.phoneImage2}
+                    />{" "}
+                  </motion.div>
                   <br />
                   <div className={styles.Grey}>
                     <div className={styles.p}>캘린더를 통해 나의</div> <br />
@@ -153,8 +200,19 @@ function Introduction() {
               <div className={styles.backSize2}>
                 <div className={styles.inSide2}>
                   <div className={styles.Fname}>남들 보다 더. </div>
-                  <br />
-                  <img src={phone5} className={styles.phoneImage2} /> <br />
+                  <br />{" "}
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false }}
+                    transition={{
+                      ease: "easeInOut",
+                      duration: 2,
+                      y: { duration: 1 },
+                    }}
+                  >
+                    <img src={phone5} className={styles.phoneImage2} /> <br />
+                  </motion.div>
                   <div className={styles.Grey}>
                     <div className={styles.p}>
                       주간 랭킹을 통해 보상을 지급하여
@@ -226,7 +284,19 @@ function Introduction() {
         <div className={styles.outerContainer}>
           <div className={styles.innerContainer}>
             <div className={styles.box}>
-              <img src={phone1} className={styles.phoneImage2} />
+              {" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={phone1} className={styles.phoneImage2} />{" "}
+              </motion.div>
               <div className={styles.rightBox}>
                 <div className={styles.p}>
                   Smok<div className={styles.redP}>E</div>nd
@@ -269,8 +339,19 @@ function Introduction() {
                     그리고 건강하고 새로운 시작을 지원합니다.
                   </p>
                 </div>
-              </div>
-              <img src={phone2} className={styles.phoneImage2} />
+              </div>{" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={phone2} className={styles.phoneImage2} />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -280,7 +361,19 @@ function Introduction() {
         <div className={styles.outerContainer}>
           <div className={styles.innerContainer}>
             <div className={styles.box2}>
-              <img src={phone3} className={styles.phoneImage3} />
+              {" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={phone3} className={styles.phoneImage3} />
+              </motion.div>
               <div className={styles.rightBox2}>
                 <div className={styles.Fname}>조금씩, 하지만 확실하게.</div>
                 <br />
@@ -321,8 +414,19 @@ function Introduction() {
                   <br />
                   <p className={styles.p}>자동으로 측정/갱신합니다.</p>
                 </div>
-              </div>
-              <img src={caseImage} className={styles.caseImage} />
+              </div>{" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={caseImage} className={styles.caseImage} />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -332,7 +436,19 @@ function Introduction() {
         <div className={styles.outerContainer}>
           <div className={styles.innerContainer}>
             <div className={styles.box2}>
-              <img src={phone4} className={styles.phoneImage3} />
+              {" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={phone4} className={styles.phoneImage3} />
+              </motion.div>
               <div className={styles.rightBox2}>
                 <div className={styles.Fname}>노력의 결실을 한 눈에.</div>
                 <br />
@@ -372,8 +488,19 @@ function Introduction() {
                   <br />
                   <p className={styles.p}>자동으로 측정/갱신합니다.</p>
                 </div>
-              </div>
-              <img src={phone5} className={styles.phoneImage3} />
+              </div>{" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={phone5} className={styles.phoneImage3} />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -383,7 +510,19 @@ function Introduction() {
         <div className={styles.outerContainer}>
           <div className={styles.innerContainer}>
             <div className={styles.box}>
-              <img src={web} className={styles.webImage} />
+              {" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={web} className={styles.webImage} />
+              </motion.div>
               <div className={styles.rightBox3}>
                 <div className={styles.Fname}>
                   금연 성공, 마일리지로 누리는 혜택
@@ -411,8 +550,19 @@ function Introduction() {
                   <br />
                   <p className={styles.p}>구매할 수 있습니다.</p>
                 </div>
-              </div>
-              <img src={web2} className={styles.webImage} />
+              </div>{" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 2,
+                  y: { duration: 1 },
+                }}
+              >
+                <img src={web2} className={styles.webImage} />
+              </motion.div>
             </div>
           </div>
         </div>

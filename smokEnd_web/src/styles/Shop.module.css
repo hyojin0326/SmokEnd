@@ -1,198 +1,314 @@
-/* 더미 데이터 컨테이너 */
-.dummyDataContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* smoke case box 부분 */
+
+.smokeBox {
+  background-image: url("../assets/shop/shopBack.png");
+  background-size: 110vw 700px;
 }
 
-/* 더미 데이터 아이템 */
-.dummyDataItem {
-  margin: 0vw 1.5vw; /* 상하 2vw, 좌우 2.5vw */
+.smokCase {
+  width: 100vw;
+  height: 700px;
 }
+
+.caseImage {
+  width: 20vw;
+  margin-left: 15vw;
+  margin-top: 10vw;
+}
+
+.box {
+  /* width: 70vw; */
+  /* margin-top: -500px; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.leftBox {
+  float: left;
+  margin-right: 8vw;
+  margin-top: 200px;
+}
+
+.Grey .logo {
+  color: rgb(55, 54, 54);
+}
+
+.Grey .p {
+  color: rgb(55, 54, 54);
+}
+
+.p {
+  font-family: "NanumSquareRoundB";
+  display: inline;
+  font-size: 1.5vw;
+  color: rgb(0, 0, 0);
+  letter-spacing: 1px;
+}
+
+.Fname {
+  font-family: "NanumSquareRoundEB";
+  font-size: 5vw;
+  color: #000000;
+}
+
+.bottom {
+  z-index: 1;
+  width: 100vw;
+  height: 3.5vw;
+  opacity: 0.7;
+  animation: bounce 1s infinite alternate;
+  position: absolute; /* fixed로 변경 */
+  bottom: 1vw; /* 화면의 아래쪽으로 위치 */
+  display: flex;
+  justify-content: center;
+}
+.bottom > img {
+  height: 3.5vw;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1vw); /* 약간 위로 이동하는 애니메이션 효과 */
+  }
+}
+
+/* ************************************************************************************** */
+
+/* products 부분 */
 
 .outerContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
 .innerContainer {
-  width: 70vw;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
-.bigBox {
-  padding-top: 7vw;
+.productsBox {
+  /* width: 70vw; */
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.pageName {
-  font-family: "Tenada";
-  font-size: 3.2vw;
-  text-align: center;
+.products {
+  display: flex; /* 수평 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  width: 100vw;
 }
 
-.p {
-  font-family: "NanumSquareRoundL";
-  font-size: 1.2vw;
-  text-align: center;
-  color: rgb(66, 66, 66);
-}
-
-.smokShopContainer {
-  background-color: #eee9e9;
-  width: 70vw;
-  height: 25vw;
-  /* 마진 여기도 맞추려면 5vw로 하면 됨 */
-  margin-top: 3vw;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.295);
-  cursor: pointer;
-}
-
-.smokShopLeft {
-  float: left;
-  margin-top: 12vw;
-  margin-left: 8vw;
-}
-
-.text {
-  font-family: "NanumSquareRoundL";
-  font-size: 1.2vw;
-  color: rgb(66, 66, 66);
-  margin-top: 1vw;
-}
-
-.logo {
+.p2 {
   font-family: "NanumSquareRoundB";
   display: inline;
-  font-size: 3vw;
-  margin-bottom: 1vw;
+  font-size: 2vw;
   color: rgb(0, 0, 0);
+  letter-spacing: 1px;
+  margin-right: 2vw;
+  margin-left: 10vw;
+  white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
 }
 
-.logo2 {
-  font-family: "NanumSquareRoundB";
-  color: red;
-  display: inline;
+.border {
+  flex-grow: 1;
+  height: 1px; /* 선의 두께 */
+  background-color: black; /* 선의 색상 */
 }
 
-.smokShopRight {
-  float: right;
-  margin-top: 2vw;
-  margin-right: 6vw;
-}
+/* **************************************************************** */
 
-.smokShopRight img {
-  width: 16vw;
-  height: 20vw;
-}
+/* 외부 shop 부분 */
 
-.ShopBigContainer {
-  background-color: #000000;
-  width: 14vw;
-  height: 22vw;
-  margin-top: 6vw;
-  cursor: pointer;
-}
-
-.hoverBox {
-  display: none; /* 기본적으로 숨김 */
-  position: absolute;
-  width: 14vw;
-  height: 23vw;
-  margin-bottom: 2vw;
-  background-color: rgba(0, 0, 0, 0.342);
-  /* border-radius: 10px; */
-  z-index: 999;
-}
-
-.ShopBigContainer:hover .hoverBox {
-  display: block; /* 호버 시 나타남 */
-}
-
-.hoverCenter {
-  display: flex; /* flexbox 사용 */
-  flex-direction: column; /* 수직 배치 */
-  justify-content: center; /* 수평 중앙 정렬 */
+.outerContainer1 {
+  display: flex;
+  justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
-  text-align: center; /* 텍스트 중앙 정렬 */
-  margin-top: 6vw;
 }
 
-.hoverTextBox {
-  margin-top: 1vw;
-  width: 12vw;
-  height: 3vw;
-  background-color: rgb(129, 129, 129);
-  border-radius: 30px;
-  display: flex; /* flexbox 사용 */
-  justify-content: center; /* 수평 중앙 정렬 */
+.innerContainer1 {
+  display: flex;
+  justify-content: center;
   align-items: center; /* 수직 중앙 정렬 */
-  text-align: center; /* 텍스트 중앙 정렬 */
 }
 
-.hoverTextBox:hover {
-  width: 12vw;
-  height: 3vw;
-  background-color: rgba(0, 0, 0, 0.452);
-  border-radius: 30px;
-  display: flex; /* flexbox 사용 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  text-align: center; /* 텍스트 중앙 정렬 */
+.shop {
+  width: 90vw;
+  height: 100vw;
+  /* background-color: bisque; */
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
+  margin-left: 2.5%;
 }
 
-.hoverText {
-  padding-top: 1.8vw;
-  width: 12vw;
-  height: 3vw;
-  font-family: "NanumSquareRoundB";
-  font-size: 1.2vw;
-  color: rgb(255, 255, 255);
-  display: inline;
-  text-decoration: none; /* 밑줄 제거 */
-  z-index: 99999;
+.shopBox {
+  width: 20vw;
+  height: 30vw;
+  background-color: #f1f1f1;
+  position: relative;
+
+  /* display: flex; */
+  flex-wrap: wrap;
+  /* gap: 16px; */
+  /* justify-content: space-between;  */
+
+  display: inline-block;
+  margin: 1%;
 }
 
-.ShopBigContainer:hover {
-  background-color: #000000;
-  width: 14vw;
-  height: 22vw;
-  /* margin-top: 1vw; */
-  cursor: pointer;
-  border-radius: 10px;
+.shopBox2 {
+  width: 20vw;
+  height: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1 1 calc(25% - 16px); /* 4개씩 한 줄에 표시 */
+  box-sizing: border-box;
 }
 
-.ShopContainer {
-  background-color: #ffffff;
-  width: 14vw;
-  height: 22vw;
-  margin-top: 6vw;
-  cursor: pointer;
+.shopBox3 {
+  display: flex; /* Flexbox로 변경 */
+  /* 자식 요소들을 수직으로 배치 */
+  flex-direction: column;
+  /* justify-content: center; */
+  margin-top: 25%;
+  align-items: center; /* 자식 요소들을 수평 중앙 정렬 */
+  width: 20vw;
+  height: 30vw;
 }
 
-.ShopContainerimg {
-  background-color: #e7e7e7;
-  width: 14vw;
+.shopBox4 {
+  width: 20vw;
+  display: flex;
+  justify-content: center; /* 자식 요소들을 수직 중앙 정렬 */
+  align-items: center; /* 자식 요소들을 수평 중앙 정렬 */
+}
+
+.img {
+  width: 15vw;
   height: 17vw;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.295);
+  margin-bottom: 7%;
 }
 
-.ShopTextBox {
-  text-align: center;
-  margin-top: 1vw;
+.t2 {
+  /* margin-left: 16%; */
+  margin: 5%;
+  font-size: 1.1vw;
+  font-weight: bold;
 }
 
-.ShopTextB {
-  font-family: "NanumSquareRoundB";
-  font-size: 1.5vw;
-  margin-bottom: 1vw;
-}
-
-.ShopTextL {
-  font-family: "NanumSquareRoundL";
+.t3 {
+  margin-left: 1%;
   font-size: 1vw;
-  color: rgb(66, 66, 66);
-  display: inline;
 }
+
+.hovershopBox {
+  position: absolute; /* 또는 레이아웃에 따라 상대적 위치 사용 가능 */
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 20vw;
+  height: 30vw;
+  display: none;
+  cursor: pointer;
+}
+
+.shopBox:hover .hovershopBox {
+  display: block;
+  width: 20vw;
+  height: 30vw;
+  background-color: rgba(0, 0, 0, 0.642);
+  z-index: 999;
+  cursor: pointer;
+}
+
+.btnBack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vw;
+}
+
+.btnBox {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vw; */
+}
+
+.btn1 {
+  background-color: rgba(231, 228, 228, 0.541);
+  width: 15vw;
+  height: 3vw;
+  display: block;
+  border-radius: 3vw;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background-color: rgba(0, 0, 0, 0.485);
+  width: 15vw;
+  height: 3vw;
+  display: block;
+  border-radius: 3vw;
+  cursor: pointer;
+}
+
+.btn2 {
+  background-color: rgba(231, 228, 228, 0.541);
+  width: 15vw;
+  height: 3vw;
+  margin-top: 1vw;
+  display: block;
+  border-radius: 3vw;
+  cursor: pointer;
+}
+
+.btn2:hover {
+  background-color: rgba(0, 0, 0, 0.485);
+  width: 15vw;
+  height: 3vw;
+  display: block;
+  border-radius: 3vw;
+  cursor: pointer;
+}
+
+.tBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3vw;
+}
+
+.t {
+  font-family: "NanumSquareRoundL";
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* **************************************************************** */
 
 /* 페이지네이션 */
 
