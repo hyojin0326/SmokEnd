@@ -8,29 +8,31 @@ import belowArrow from "../assets/shop/belowArrow.png";
 import test from "../assets/Introduction/test.jpg";
 
 // Item 타입 정의 (예시)
-type Item = {
+interface Item {
   ID: number;
   image: string;
   m_price: number;
   name: string;
   price: number;
   url: string;
-};
+}
 
 function Shop() {
   const [itemsData, setItemsData] = useState<Item[]>([]);
   const [response, setResponse] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(12);
+  const [itemsPerPage] = useState(12); // 한 줄에 3개, 3줄
 
   const fetchItems = async () => {
     try {
       const response = await fetch(
         `http://${import.meta.env.VITE_URL_API}/api/get/items`
       );
-      if (response.ok) {
+      if (response.status == 200) {
         const data: Item[] = await response.json();
         setItemsData(data);
+        console.log("가져오기 성공");
+        // console.log(data);
       } else {
         setResponse("서버 오류");
       }
@@ -42,15 +44,15 @@ function Shop() {
 
   useEffect(() => {
     fetchItems();
-  }, [currentPage]);
+  }, []);
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
+  // const handleNextPage = () => {
+  //   setCurrentPage((prevPage) => prevPage + 1);
+  // };
 
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
+  // const handlePreviousPage = () => {
+  //   setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  // };
 
   return (
     <>
@@ -96,12 +98,13 @@ function Shop() {
         <div className={styles.innerContainer1}>
           <div className={styles.shop}>
             <div>
-              {response && <p>{response}</p>}
+              {/* {response && <p>{response}</p>} */}
               {itemsData.length > 0 ? (
+                (console.log(itemsData),
                 itemsData.map((item) => (
                   <div key={item.ID} className={styles.shopBox}>
                     {/* 상품 칸 */}
-                    {/* <div className={styles.shopBox2}>
+                    <div className={styles.shopBox2}>
                       <div className={styles.shopBox3}>
                         <img
                           src={item.image}
@@ -114,7 +117,7 @@ function Shop() {
                           <a className={styles.t3}>{item.m_price} P</a>
                         </div>
                       </div>
-                    </div> */}
+                    </div>
                     {/* // */}
                     <div className={styles.hovershopBox}>
                       <div className={styles.btnBack}>
@@ -125,7 +128,8 @@ function Shop() {
                             </div>
                           </a>
                           <Link
-                            to="/mileagePurchase?id=${ID}"
+                            key={item.ID}
+                            to={`/mileagePurchase?id=${item.ID}`}
                             style={{ textDecoration: "none" }}
                           >
                             <div className={styles.btn2}>
@@ -138,21 +142,13 @@ function Shop() {
                       </div>
                     </div>
                   </div>
-                ))
+                )))
               ) : (
                 <p>데이터를 불러오는 중입니다...</p>
               )}
             </div>
           </div>
         </div>
-      </div>
-
-      <div className={styles.pagination}>
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          이전
-        </button>
-        <span>Page {currentPage}</span>
-        <button onClick={handleNextPage}>다음</button>
       </div>
     </>
   );
