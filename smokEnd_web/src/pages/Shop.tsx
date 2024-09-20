@@ -46,13 +46,13 @@ function Shop() {
     fetchItems();
   }, [currentPage]);
 
-  // const handleNextPage = () => {
-  //   setCurrentPage((prevPage) => prevPage + 1);
-  // };
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
-  // const handlePreviousPage = () => {
-  //   setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  // };
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
 
   return (
     <>
@@ -103,7 +103,7 @@ function Shop() {
                 itemsData.map((item) => (
                   <div key={item._id} className={styles.shopBox}>
                     {/* 상품 칸 */}
-                    <div className={styles.shopBox2}>
+                    {/* <div className={styles.shopBox2}>
                       <div className={styles.shopBox3}>
                         <img
                           src={item.image}
@@ -116,7 +116,7 @@ function Shop() {
                           <a className={styles.t3}>{item.m_price} P</a>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     {/* // */}
                     <div className={styles.hovershopBox}>
                       <div className={styles.btnBack}>
@@ -149,13 +149,13 @@ function Shop() {
         </div>
       </div>
 
-      {/* <div className={styles.pagination}>
+      <div className={styles.pagination}>
         <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           이전
         </button>
         <span>Page {currentPage}</span>
         <button onClick={handleNextPage}>다음</button>
-      </div> */}
+      </div>
     </>
   );
 }

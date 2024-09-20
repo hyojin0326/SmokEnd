@@ -175,6 +175,26 @@ function Signin() {
     }
   };
 
+  const handleKakaoLogin = () => {
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${
+      import.meta.env.VITE_KAKAO_REST_API_KEY
+    }&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}&response_type=code`;
+    window.location.href = kakaoURL;
+    const code = new URL(window.location.href).searchParams.get("code");
+  };
+
+  const handleNaverLogin = () => {
+    //state값 지정해야하는듯?
+    const STATE = "false";
+    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${
+      import.meta.env.VITE_NAVER_CLIENT_ID
+    }&state=${STATE}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`;
+    window.location.href = NAVER_AUTH_URL;
+    let params = new URL(window.location.href).searchParams;
+    let code = params.get("code");
+    let state = params.get("state");
+  };
+
   const validateEmail = (email: string): boolean => {
     // 간단한 이메일 형식 유효성 검사를 수행하는 정규 표현식
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -248,8 +268,14 @@ function Signin() {
             <div className={styles.social_name}>간편 로그인</div>
           </div>
           <div className={styles.social_Login}>
-            <SocialLogo style={{ backgroundImage: `url(${NaverLogo})` }} />
-            <SocialLogo style={{ backgroundImage: `url(${KakaoLogo})` }} />
+            <SocialLogo
+              style={{ backgroundImage: `url(${NaverLogo})` }}
+              onClick={handleNaverLogin}
+            />
+            <SocialLogo
+              style={{ backgroundImage: `url(${KakaoLogo})` }}
+              onClick={handleKakaoLogin}
+            />
             {/* <SocialLogo style={{ backgroundImage: `url(${GoogleLogo})` }} onClick={handleGoogleLogin} /> */}
             <SocialLogo
               style={{ backgroundImage: `url(${GoogleLogo})` }}
