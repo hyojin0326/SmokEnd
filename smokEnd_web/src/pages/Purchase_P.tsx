@@ -3,6 +3,7 @@ import styles from "../styles/Purchase.module.css";
 import DaumPostcode from 'react-daum-postcode';
 import styled from "styled-components";
 import product from "../assets/Introduction/case.png";
+import { useSearchParams } from "react-router-dom";
 
 
 interface FormData {
@@ -40,7 +41,18 @@ const Orderinfo_img = styled.div`
     }
 `;
 
+interface Item {
+    ID: number;
+    image: string;
+    m_price: number;
+    name: string;
+    price: number;
+    url: string;
+  }
+
 function Purchase() {
+    const [itemsData, setItemsData] = useState<Item>();
+    const [searchParams] = useSearchParams();
     const isMobile = window.innerWidth <= 768;
     const [showPostcode, setShowPostcode] = useState<boolean>(false);
     const [formData, setFormData] = useState<FormData>({
@@ -78,6 +90,30 @@ function Purchase() {
         }));
 
     };
+
+    useEffect(()=>{
+        const id = searchParams.get('id');
+        if(id != null){
+            selectItemFromId(Number(id));
+        }
+        
+    },[])
+
+    const selectItemFromId = async(id: number) =>{
+     try {
+            const response = await fetch(
+              `http://${import.meta.env.VITE_URL_API}/api/get/item/${id}`
+            );
+            if (response.status == 200) {
+                const data: Item = await response.json();
+                setItemsData(data);
+                // const formattedPrice = itemsData?.m_price?.toLocaleString() || '0';
+              console.log(data);
+              // console.log(data);
+            } 
+          } catch (error) {
+          }
+    }
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -225,18 +261,18 @@ function Purchase() {
                                         <div className={styles.orderInfo}>
                                             <Orderinfo_img style={{ backgroundImage: `url(${product})` }} />
                                             <div className={styles.orderInfo_info}>
-                                                <p className={styles.top_text}>자체 제작 담배 케이스</p>
-                                                <p className={styles.bottom_text}>2,000 P / 1개</p>
+                                                <p className={styles.top_text}>{itemsData?.name}</p>
+                                                <p className={styles.bottom_text}>{itemsData?.m_price.toLocaleString()} P / 1개</p>
                                             </div>
                                         </div>
                                         <div className={styles.underline} />
                                         <div className={styles.orderPay}>
-                                            <p>상품금액<span>2,000P</span></p>
+                                            <p>상품금액<span>{itemsData?.m_price.toLocaleString()} P</span></p>
                                             <p>배송비 <span style={{ color: "green" }}>0P</span></p>
                                         </div>
                                         <div className={styles.underline} />
                                         <div className={styles.orderTotal}>
-                                            <p>총 결제금액<span>2,000P</span></p>
+                                            <p>총 결제금액<span>{itemsData?.m_price.toLocaleString()} P</span></p>
                                         </div>
                                         <button className={styles.button}>결제하기</button>
                                     </div>
