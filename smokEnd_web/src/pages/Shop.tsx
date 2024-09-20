@@ -9,7 +9,7 @@ import test from "../assets/Introduction/test.jpg";
 
 // Item 타입 정의 (예시)
 type Item = {
-  _id: string;
+  ID: number;
   image: string;
   m_price: number;
   name: string;
@@ -21,14 +21,12 @@ function Shop() {
   const [itemsData, setItemsData] = useState<Item[]>([]);
   const [response, setResponse] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(12); // 한 줄에 3개, 3줄
+  const [itemsPerPage] = useState(12);
 
   const fetchItems = async () => {
     try {
       const response = await fetch(
-        `http://${
-          import.meta.env.VITE_URL_API
-        }/api/get/items?page=${currentPage}&limit=${itemsPerPage}`
+        `http://${import.meta.env.VITE_URL_API}/api/get/items`
       );
       if (response.ok) {
         const data: Item[] = await response.json();
@@ -101,7 +99,7 @@ function Shop() {
               {response && <p>{response}</p>}
               {itemsData.length > 0 ? (
                 itemsData.map((item) => (
-                  <div key={item._id} className={styles.shopBox}>
+                  <div key={item.ID} className={styles.shopBox}>
                     {/* 상품 칸 */}
                     {/* <div className={styles.shopBox2}>
                       <div className={styles.shopBox3}>
@@ -127,7 +125,7 @@ function Shop() {
                             </div>
                           </a>
                           <Link
-                            to="/Purchase"
+                            to="/mileagePurchase?id=${ID}"
                             style={{ textDecoration: "none" }}
                           >
                             <div className={styles.btn2}>
