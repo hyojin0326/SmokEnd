@@ -240,7 +240,7 @@ function Purchase() {
             
 
         //서버 기능
-        const token = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
         await fetch(`${import.meta.env.VITE_URL_API}/api/handle/purchase`, {
             method: 'POST',

@@ -1,10 +1,8 @@
 import styles from "../styles/Main.module.css";
-import Header from "../components/Header";
 import belowArrow from "../assets/main/belowArrow_white.png";
 import { useEffect, useState } from "react";
 import data1Image from "../assets/Introduction/case_background.png";
 import styled from "styled-components";
-import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
 const Image = styled.div`
@@ -31,11 +29,11 @@ function Main() {
 
   //로그인 상태에 따라
   useEffect(() => {
-    const sessionId = document.cookie.replace(
-      /(?:(?:^|.*;\s*)sessionId\s*=\s*([^;]*).*$)|^.*$/,
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
-    setIsLogin(!!sessionId);
+    setIsLogin(!!token);
   }, []);
   //스크롤 가능, 불가능
   useEffect(() => {
