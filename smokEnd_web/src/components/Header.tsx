@@ -12,18 +12,28 @@ function Header() {
   const [slideIn, setSlideIn] = useState(false);
   const isAboutPage = location.pathname === "/introduction";
   const [response, setResponse] = useState("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
     const token = document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
-    // setIsLoggedIn(!!sessionId);
+    const user = document.cookie.replace(
+      /(?:(?:^|.*;\s*)userStats\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    if(user != ""){
+      const userStats = JSON.parse(user);
+      setName(userStats.name);
+    }
+    
     if (token === "") {
       setIsLoggedIn(false);
-    } else {
+    } else {     
       setIsLoggedIn(true);
     }
+    
   }, []);
   
     useEffect(() => {
@@ -252,7 +262,7 @@ function Header() {
                 <div className={styles.box2}>
                   <div className={styles.linkContainer3}>
                     <div className={styles.loggedIna}>
-                      DUDIN<div className={styles.margin}></div>
+                      {name}<div className={styles.margin}></div>
                       <a>29 p</a>
                     </div>
 
@@ -394,7 +404,7 @@ function Header() {
                   </p>
                   <br />
                   <div>
-                    <a className={styles.MobileloggedInli4}>DUDIN</a>
+                    <a className={styles.MobileloggedInli4}>{name}</a>
                     <a className={styles.MobileloggedInli3}>29 p</a>
                     <a className={styles.MobileloggedInli3}>/</a>
                     <p

@@ -25,7 +25,7 @@ import Purchase from "./pages/Purchase";
 import Purchase_P from "./pages/Purchase_P";
 
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
-import NoSmokingArea from "./pages/NosmokingAreas";
+import NoSmokingArea from "./pages/NosmokingAreas copy";
 import ScrollToTop from "./components/ScrollToTop";
 import Test from "./pages/Test";
 import Shop from "./pages/Shop";
@@ -45,6 +45,7 @@ function AppContent() {
     "/login",
     "/signup",
     "/findpw",
+    "/socialSignup"
    
   ];
 

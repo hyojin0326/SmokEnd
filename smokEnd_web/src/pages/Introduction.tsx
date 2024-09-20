@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Introduction.module.css";
-import LOGO9 from "../assets/Introduction/LOGO9.png";
 import LOGO12 from "../assets/Introduction/LOGO12.png";
-import background1 from "../assets/Introduction/background1.jpg";
-import background2 from "../assets/Introduction/background2.png";
 import phone1 from "../assets/Introduction/phone1.png";
 import phone2 from "../assets/Introduction/phone2.png";
 import phone3 from "../assets/Introduction/phone3.png";
