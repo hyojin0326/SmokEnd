@@ -17,3 +17,25 @@
   font-weight: bold; /* 또는 활성 페이지를 강조하는 다른 스타일 */
   color: rgb(62, 62, 62); /* 색상 변경 등 다른 스타일 */
 }
+
+@media (max-width: 768px) {
+  .pagination {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    margin-top: auto; /* 자동으로 위쪽으로 정렬 */
+  }
+
+  .list {
+    margin-top: 2vw;
+    margin-bottom: 8vw;
+    margin-right: 3vw;
+    cursor: pointer;
+    font-size: 3vw;
+  }
+
+  .active {
+    font-weight: bold; /* 또는 활성 페이지를 강조하는 다른 스타일 */
+    color: rgb(62, 62, 62); /* 색상 변경 등 다른 스타일 */
+  }
+}

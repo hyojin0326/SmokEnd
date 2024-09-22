@@ -306,265 +306,309 @@ a:active {
 
 /* **************************************************************** */
 
-/* 페이지네이션 */
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 4vw;
-  margin-bottom: 4vw;
-}
-
-.pagination button {
-  background-color: #ffffff;
-  border: 0px solid #ddd;
-  color: #333;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.pagination button:hover {
-  background-color: #f0f0f0;
-}
-
-.pagination button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.pagination button.activePage {
-  background-color: #00000060;
-  color: #ffffff;
-  font-weight: bold;
-}
-
 @media (max-width: 768px) {
-  /* 더미 데이터 컨테이너 */
-  .dummyDataContainer {
+  .smokeBox {
+    background-image: url("../assets/shop/shopBack.png");
+    background-size: 110vw 30vh;
+  }
+
+  .smokCase {
+    width: 100vw;
+    height: 30vh;
+  }
+
+  .caseImage {
+    width: 20vw;
+    margin-left: 10vw;
+    margin-top: 17vw;
+  }
+
+  .box {
+    /* width: 70vw; */
+    /* margin-top: -500px; */
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+  }
+
+  .leftBox {
+    float: left;
+    margin-right: 1vw;
+    margin-top: 25vw;
+  }
+
+  .Grey .logo {
+    color: rgb(55, 54, 54);
+  }
+
+  .Grey .p {
+    color: rgb(55, 54, 54);
+  }
+
+  .p {
+    font-family: "NanumSquareRoundB";
+    display: inline;
+    font-size: 2.5vw;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+  }
+
+  .Fname {
+    font-family: "NanumSquareRoundEB";
+    font-size: 6vw;
+    color: #000000;
+  }
+
+  .bottom {
+    z-index: 1;
+    width: 100vw;
+    height: 3.5vw;
+    opacity: 0.7;
+    position: absolute; /* fixed로 변경 */
+    bottom: 1vw; /* 화면의 아래쪽으로 위치 */
+    display: flex;
     justify-content: center;
   }
 
-  /* 더미 데이터 아이템 */
-  .dummyDataItem {
-    margin: 0vw 0vw; /* 상하 2vw, 좌우 2.5vw */
+  .bottom > img {
+    height: 3.5vw;
   }
+
+  /* ************************************************************************************** */
+
+  /* products 부분 */
 
   .outerContainer {
     display: flex;
     justify-content: center;
-    width: 100%;
+    align-items: center; /* 수직 중앙 정렬 */
   }
 
   .innerContainer {
-    width: 80vw;
-  }
-
-  .bigBox {
-    padding-top: 15vw;
-  }
-
-  .pageName {
-    font-family: "Tenada";
-    font-size: 5.5vw;
-    text-align: center;
-  }
-
-  .p {
-    font-family: "NanumSquareRoundL";
-    font-size: 2.5vw;
-    text-align: center;
-    color: rgb(66, 66, 66);
-  }
-
-  .smokShopContainer {
-    background-color: #e7e7e7;
-    width: 80vw;
-    height: 25vw;
-    /* 마진 여기도 맞추려면 5vw로 하면 됨 */
-    margin-top: 3vw;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.295);
-    cursor: pointer;
-  }
-
-  .smokShopLeft {
-    float: left;
-    margin-top: 6.5vw;
-    margin-left: 7vw;
-  }
-
-  .text {
-    font-family: "NanumSquareRoundL";
-    font-size: 2.5vw;
-    color: rgb(66, 66, 66);
-  }
-
-  .logo {
-    font-family: "NanumSquareRoundB";
-    display: inline;
-    font-size: 4.5vw;
-    color: rgb(0, 0, 0);
-  }
-
-  .logo2 {
-    font-family: "NanumSquareRoundB";
-    color: red;
-    display: inline;
-  }
-
-  .smokShopRight {
-    float: right;
-    margin-top: 1vw;
-    margin-right: 6vw;
-  }
-
-  .smokShopRight img {
-    width: 18vw;
-    height: 22vw;
-  }
-
-  .ShopBigContainer {
-    background-color: #000000;
-    width: 80vw;
-    height: 25vw;
-    margin-top: 6vw;
-    cursor: pointer;
-  }
-
-  .hoverBox {
-    display: none; /* 기본적으로 숨김 */
-    position: absolute;
-    width: 80vw;
-    height: 25vw;
-    margin-bottom: 2vw;
-    background-color: rgba(0, 0, 0, 0.342);
-    /* border-radius: 10px; */
-    z-index: 999;
-  }
-
-  .ShopBigContainer:hover .hoverBox {
-    display: block; /* 호버 시 나타남 */
-  }
-
-  .hoverCenter {
-    display: flex; /* flexbox 사용 */
-    flex-direction: column; /* 수직 배치 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    margin-top: 7vw;
-  }
-
-  .hoverTextBox {
-    margin-top: 1vw;
-    width: 30vw;
-    height: 5vw;
-    background-color: rgb(129, 129, 129);
-    border-radius: 30px;
-    display: flex; /* flexbox 사용 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-  }
-
-  .hoverTextBox:hover {
-    width: 30vw;
-    height: 5vw;
-    background-color: rgba(0, 0, 0, 0.452);
-    border-radius: 30px;
-    display: flex; /* flexbox 사용 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-  }
-
-  .hoverText {
-    padding-top: 3vw;
-    width: 30vw;
-    height: 5vw;
-    font-family: "NanumSquareRoundB";
-    font-size: 2.5vw;
-    color: rgb(255, 255, 255);
-    display: inline;
-  }
-
-  .ShopBigContainer:hover {
-    background-color: #000000;
-    width: 80vw;
-    height: 25vw;
-    /* margin-top: 1vw; */
-    cursor: pointer;
-    border-radius: 10px;
-  }
-
-  .ShopContainer {
-    background-color: #ffffff;
-    width: 14vw;
-    height: 22vw;
-    margin-top: 6vw;
-    cursor: pointer;
-  }
-
-  .ShopContainerimg {
-    background-color: #e7e7e7;
-    width: 80vw;
-    height: 25vw;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.295);
-  }
-
-  .ShopTextBox {
-    text-align: center;
-    margin-top: -16vw;
-    margin-left: 55vw;
-    width: 20vw;
-    float: left;
-  }
-
-  .ShopTextB {
-    font-family: "NanumSquareRoundB";
-    font-size: 3vw;
-  }
-
-  .ShopTextL {
-    font-family: "NanumSquareRoundL";
-    font-size: 2vw;
-    color: rgb(66, 66, 66);
-    display: inline;
-  }
-
-  /* 페이지네이션 */
-
-  .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 4vw;
-    margin-bottom: 4vw;
+    align-items: center; /* 수직 중앙 정렬 */
   }
 
-  .pagination button {
-    background-color: #ffffff;
-    border: 0px solid #ddd;
-    color: #333;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .productsBox {
+    /* width: 70vw; */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .pagination button:hover {
-    background-color: #f0f0f0;
+  .products {
+    display: flex; /* 수평 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    width: 100vw;
   }
 
-  .pagination button:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
+  .p2 {
+    font-family: "NanumSquareRoundB";
+    display: inline;
+    font-size: 5vw;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+    margin-right: 2vw;
+    margin-left: 10vw;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
   }
 
-  .pagination button.activePage {
-    background-color: #00000060;
-    color: #ffffff;
+  .border {
+    flex-grow: 1;
+    height: 1px; /* 선의 두께 */
+    background-color: black; /* 선의 색상 */
+  }
+
+  /* **************************************************************** */
+
+  /* 외부 shop 부분 */
+
+  .outerContainer1 {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .innerContainer1 {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 */
+  }
+
+  .shop {
+    width: 93vw;
+    /* height: 100vw; */
+    /* background-color: bisque; */
+    position: relative;
+    /* margin-left: 2%; */
+  }
+
+  .shopBox {
+    width: 88vw;
+    height: 25vw;
+    background-color: #f1f1f1;
+    position: relative;
+
+    /* display: flex; */
+    flex-wrap: wrap;
+    /* gap: 16px; */
+    /* justify-content: space-between;  */
+
+    display: inline-block;
+    margin: 1%;
+  }
+
+  .shopBox2 {
+    width: 85vw;
+    height: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex: 1 1 calc(25% - 16px); /* 4개씩 한 줄에 표시 */
+    box-sizing: border-box;
+  }
+
+  .shopBox3 {
+    /* display: flex; */
+    /* 자식 요소들을 수직으로 배치 */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* margin-top: 25%; */
+    /* 자식 요소들을 수평 중앙 정렬 */
+    /* align-items: center; */
+    /* width: 85vw; */
+    /* height: 25vw; */
+  }
+
+  .shopBox4 {
+    width: 20vw;
+    display: flex;
+    justify-content: center; /* 자식 요소들을 수직 중앙 정렬 */
+    align-items: center; /* 자식 요소들을 수평 중앙 정렬 */
+  }
+
+  .img {
+    width: 20vw;
+    height: 20vw;
+    margin-top: 6.5vw;
+    /* margin-bottom: 7%; */
+  }
+
+  .t2 {
+    /* margin-left: 16%; */
+    /* margin: 5%; */
+    font-size: 2.5vw;
+    width: 25vw;
     font-weight: bold;
+  }
+
+  .t3 {
+    margin-left: 1%;
+    font-size: 2vw;
+  }
+
+  .hovershopBox {
+    /* 또는 레이아웃에 따라 상대적 위치 사용 가능 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 300px; /* 원하는 px 값으로 변경 */
+    height: 150px; /* 원하는 px 값으로 변경 */
+    display: none;
+    cursor: pointer;
+  }
+
+  /* ************************************************************* */
+
+  .shopBox:hover .hovershopBox {
+    display: block;
+    width: 85vw;
+    height: 25vw;
+    background-color: rgba(0, 0, 0, 0.642);
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .btnBack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vw;
+  }
+
+  .btnBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .btn1 {
+    background-color: rgba(231, 228, 228, 0.541);
+    width: 50vw;
+    height: 5.5vw;
+    display: block;
+    border-radius: 3vw;
+    margin-bottom: 1vw;
+    cursor: pointer;
+  }
+
+  .btn1:hover {
+    background-color: rgba(0, 0, 0, 0.485);
+    width: 50vw;
+    height: 5.5vw;
+    display: block;
+    border-radius: 3vw;
+    margin-bottom: 1vw;
+    cursor: pointer;
+  }
+
+  .btn2 {
+    background-color: rgba(231, 228, 228, 0.541);
+    width: 50vw;
+    height: 5.5vw;
+    margin-top: 1vw;
+    display: block;
+    border-radius: 3vw;
+    cursor: pointer;
+  }
+
+  .btn2:hover {
+    background-color: rgba(0, 0, 0, 0.485);
+    width: 50vw;
+    height: 5.5vw;
+    display: block;
+    border-radius: 3vw;
+    cursor: pointer;
+  }
+
+  .tBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.5vw;
+  }
+
+  .t {
+    font-family: "NanumSquareRoundB";
+    color: #ffffff;
+    font-size: 3.5vw;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: inherit;
   }
 }
 
