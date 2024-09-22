@@ -142,15 +142,10 @@
 
 .shop {
   width: 90vw;
-  height: 100vw;
+  /* height: 100vw; */
   /* background-color: bisque; */
   position: relative;
-
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-
-  margin-left: 2.5%;
+  margin-left: 2%;
 }
 
 .shopBox {
