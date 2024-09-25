@@ -31,6 +31,7 @@ import Test from "./pages/Test";
 import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
 import SmokEndCase from "./pages/SmokEndCase";
+import TextWrite from "./pages/TextWrite";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -41,7 +42,14 @@ const GlobalStyles = createGlobalStyle`
 `;
 function AppContent() {
   const location = useLocation();
-  const noFooterRoutes = ["/login", "/signup", "/findpw", "/socialSignup"];
+  const noFooterRoutes = [
+    "/login",
+    "/signup",
+    "/findpw",
+    "/socialSignup",
+    "/textWrite/neccesarity",
+    "/textWrite/risk",
+  ];
 
   const shouldShowFooter = !noFooterRoutes.includes(location.pathname);
 
@@ -147,6 +155,14 @@ function AppContent() {
             <>
               <Header />
               <SmokEndCase />
+            </>
+          }
+        />
+        <Route
+          path="/textWrite/:category"
+          element={
+            <>
+              <TextWrite />
             </>
           }
         />

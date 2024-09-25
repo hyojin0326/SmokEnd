@@ -5,6 +5,7 @@ import {
   Routes,
   useNavigate,
   useLocation,
+  Link,
 } from "react-router-dom";
 import styles from "../styles/SmokeText.module.css";
 import test from "../assets/SmokeText/test.jpg";
@@ -15,6 +16,19 @@ const SmokeText: React.FC = () => {
   const isMobile = window.innerWidth <= 768;
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+
+  useEffect(() => {
+    const user = document.cookie.replace(
+      /(?:(?:^|.*;\s*)userStats\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    if(user != ""){
+      const userStats = JSON.parse(user);
+      setIsAdmin(userStats.isAdmin);
+    }
+  }, []);
 
   const tabs: Array<keyof typeof tabNames> = ["risk", "necessity"];
   const tabNames = {
@@ -107,9 +121,15 @@ const SmokeText: React.FC = () => {
     return (
       <div>
         <div className={styles.but}>
-          <button className={styles.noButtonStyle} onClick={addNewPost}>
+          {/* <button className={styles.noButtonStyle} onClick={addNewPost}> */}
+          {isAdmin == true ? 
+          <Link to={`/textWrite/${selectedTab}`}>
+          <button className={styles.noButtonStyle}>
             <img src={textwrite} />
           </button>
+          </Link>
+          :
+          <></>}
         </div>
         <div className={styles.scrollBox} ref={scrollBoxRef}>
           <div className={styles.textBox}>
