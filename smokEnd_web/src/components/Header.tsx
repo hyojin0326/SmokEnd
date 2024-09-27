@@ -13,6 +13,7 @@ function Header() {
   const isAboutPage = location.pathname === "/introduction";
   const [response, setResponse] = useState("");
   const [name, setName] = useState("");
+  const [mileage, setMileage] = useState(0);
 
   useEffect(() => {
     const token = document.cookie.replace(
@@ -23,30 +24,30 @@ function Header() {
       /(?:(?:^|.*;\s*)userStats\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
-    if(user != ""){
+    if (user != "") {
       const userStats = JSON.parse(user);
+      setMileage(userStats.mileage);
       setName(userStats.name);
     }
-    
+
     if (token === "") {
       setIsLoggedIn(false);
-    } else {     
+    } else {
       setIsLoggedIn(true);
     }
-    
   }, []);
-  
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
-  
-      window.addEventListener("resize", handleResize);
-  
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // const handleMenuClick = () => {
   //   setMenuOpen(!menuOpen);
@@ -93,7 +94,6 @@ function Header() {
     console.log("로그아웃");
     alert("로그아웃 성공");
     window.location.href = "/";
-    
   };
 
   //로그인 안한 상태일때 헤더부분의 내용을 클릭시
@@ -160,7 +160,7 @@ function Header() {
                         <p
                           className={styles.loggedInli}
                           onClick={(event) =>
-                            handleProtectedClick(event, "/SmokeText/risk")
+                            handleProtectedClick(event, "/smokeText/risk")
                           }
                         >
                           흡연의 위험성
@@ -262,8 +262,9 @@ function Header() {
                 <div className={styles.box2}>
                   <div className={styles.linkContainer3}>
                     <div className={styles.loggedIna}>
-                      {name}<div className={styles.margin}></div>
-                      <a>29 p</a>
+                      {name}
+                      <div className={styles.margin}></div>
+                      <a>{mileage} p</a>
                     </div>
 
                     <div className={styles.subMenu}>
@@ -405,7 +406,7 @@ function Header() {
                   <br />
                   <div>
                     <a className={styles.MobileloggedInli4}>{name}</a>
-                    <a className={styles.MobileloggedInli3}>29 p</a>
+                    <a className={styles.MobileloggedInli3}>`{mileage} p`</a>
                     <a className={styles.MobileloggedInli3}>/</a>
                     <p
                       className={styles.MobileloggedInli3}

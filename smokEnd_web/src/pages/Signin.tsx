@@ -175,7 +175,7 @@ function Signin() {
     }
   };
 
-  const handleKakaoLogin = async() => {
+  const handleKakaoLogin = async () => {
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${
       import.meta.env.VITE_KAKAO_REST_API_KEY
     }&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}&response_type=code`;
@@ -183,30 +183,28 @@ function Signin() {
     const code = new URL(window.location.href).searchParams.get("code");
 
     await fetch(`http://${import.meta.env.VITE_URL_API}/api/auth/kakao/token`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-          'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ code }),
-  })
-      .then(response => {
-          if(response.status === 201) {
-              // 회원가입이 정상적으로 이루어진 경우의 동작
-              console.log(response.text());
-      
-            } else if(response.status === 500) {
-              // 회원가입이 정상적으로 이루어지지 않은 경우의 동작
-              console.log(response.text());
-      
-            } else {
-              // 여기 있는거 실행되면 매우 큰 문제가 있는거임
-              console.log('???');
-              
-            }
-          }).catch(err => {
-            // fetch호출 자체가 실패한 경우
-            console.log("fetch err");
-          })
+    })
+      .then((response) => {
+        if (response.status === 201) {
+          // 회원가입이 정상적으로 이루어진 경우의 동작
+          console.log(response.text());
+        } else if (response.status === 500) {
+          // 회원가입이 정상적으로 이루어지지 않은 경우의 동작
+          console.log(response.text());
+        } else {
+          // 여기 있는거 실행되면 매우 큰 문제가 있는거임
+          console.log("???");
+        }
+      })
+      .catch((err) => {
+        // fetch호출 자체가 실패한 경우
+        console.log("fetch err");
+      });
   };
 
   const handleNaverLogin = () => {
