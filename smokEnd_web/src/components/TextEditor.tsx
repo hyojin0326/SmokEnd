@@ -26,7 +26,7 @@ const TextEditor = ({ categoryName, name }: categoryProps) => {
   const [category, setCategory] = useState<string>(
     categoryName == "risk" ? "흡연의 위험성" : "금연의 필요성"
   );
-  const imageString = crypto.randomBytes(16).toString("hex");
+  // const imageString = crypto.randomBytes(16).toString("hex");
   const quillRef = useRef<ReactQuill | null>(null);
   const titleRef = useRef<HTMLInputElement | null>(null);
   const formats: string[] = [
