@@ -33,6 +33,7 @@ import Footer from "./components/Footer";
 import SmokEndCase from "./pages/SmokEndCase";
 import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
+import Kakao from "./pages/oAuthKakao";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -71,6 +72,7 @@ function AppContent() {
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/socialSignup" element={<SocialSignup />} />
+        <Route path="/oAuthkakao" element={<Kakao />} />
         <Route path="/findpw" element={<Findpw />} />
         <Route
           path="/selfAssessment/*"

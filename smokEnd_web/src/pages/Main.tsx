@@ -20,21 +20,42 @@ const Image = styled.div`
   }
 `;
 
+interface Item {
+  ID: number;
+  image: string;
+  m_price: number;
+  name: string;
+  price: number;
+  url: string;
+}
+
 function Main() {
   //const [scrollPosition, setScrollPosition] = useState(0);
+  const [itemsData, setItemsData] = useState<Item[]>([]);
   const [num, setNum] = useState<number>(0);
   const [specialProductIndex, setSpecialProductIndex] = useState<number>(0);
   const isMobile = window.innerWidth <= 768;
   const [isLogin, setIsLogin] = useState(false);
+  const [response, setResponse] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
   //로그인 상태에 따라
   useEffect(() => {
+    getThreeItems();
     const token = document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
     setIsLogin(!!token);
   }, []);
+
+  // itemsData가 변경될 때마다 콘솔에 값을 찍는 useEffect 추가
+  useEffect(() => {
+    if (itemsData.length > 0) {
+      console.log(itemsData[0]);
+    }
+  }, [itemsData]);
+
   //스크롤 가능, 불가능
   useEffect(() => {
     if (isLogin) {
@@ -46,6 +67,26 @@ function Main() {
       document.body.style.overflow = "auto";
     };
   }, [isLogin]);
+
+  //상품 세개 띄워주기
+  const getThreeItems = async () => {
+    try {
+      const response = await fetch(
+        `http://${import.meta.env.VITE_URL_API}/api/get/threeitem`
+      );
+      if (response.status === 200) {
+        const data: Item[] = await response.json();
+        setItemsData(data);
+      } else {
+        setResponse("서버 오류");
+      }
+    } catch (error) {
+      console.error("fetch 에러", error);
+      setResponse("fetch 에러");
+    } finally {
+      setIsLoading(false); // 데이터 로딩 완료 후 로딩 상태 해제
+    }
+  };
 
   const handleLeftArrowClick = () => {
     // num을 1씩 감소시키면서 순환되도록 설정
@@ -148,53 +189,84 @@ function Main() {
           </div>
           <div className={styles.mainProduct}>
             <div className={styles.leftArrow} onClick={handleLeftArrowClick} />
-            <div
-              className={`${styles.product} ${specialProductIndex === 0 ? styles.specialProduct : ""
-                }`}
-              style={{ transform: getProductTransform1(0) }}
-            >
-              <Link to="/smokEndCase">
-                <Image></Image>
-              </Link>
-              {specialProductIndex === 0 && (
-                <div className={styles.product_des}>
-                  <p className={styles.product_title}>SomkEnd 담배 케이스</p>
-                  <p className={styles.product_sub}>
-                    당신의 금연을 도와줄 수 있습니다.
-                  </p>
+
+            {isLoading ? (
+              <p>로딩 중...</p> // 로딩 중일 때 표시할 내용
+            ) : (
+              <>
+                <div
+                  className={`${styles.product} ${
+                    specialProductIndex === 0 ? styles.specialProduct : ""
+                  }`}
+                  style={{ transform: getProductTransform1(0) }}
+                >
+                  <Link to="/shop">
+                    <div
+                      className={styles.product_img}
+                      style={{ backgroundImage: `url(${itemsData[0].image})` }}
+                    ></div>
+                  </Link>
+
+                  {specialProductIndex === 0 && (
+                    <div className={styles.product_des}>
+                      <p className={styles.product_title}>
+                        {itemsData[0].name}
+                      </p>
+                      <p className={styles.product_sub}>
+                        {itemsData[0].price.toLocaleString()} 원
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            <div
-              className={`${styles.product} ${specialProductIndex === 1 ? styles.specialProduct : ""
-                }`}
-              style={{ transform: getProductTransform2(0) }}
-            >
-              <div className={styles.product_img}></div>
-              {specialProductIndex === 1 && (
-                <div className={styles.product_des}>
-                  <p className={styles.product_title}>특별한 경우 2</p>
-                  <p className={styles.product_sub}>
-                    이 제품은 특별한 경우에만 보입니다.
-                  </p>
+                <div
+                  className={`${styles.product} ${
+                    specialProductIndex === 1 ? styles.specialProduct : ""
+                  }`}
+                  style={{ transform: getProductTransform2(0) }}
+                >
+                  <Link to="/shop">
+                    <div
+                      className={styles.product_img}
+                      style={{ backgroundImage: `url(${itemsData[1].image})` }}
+                    ></div>
+                  </Link>
+                  {specialProductIndex === 1 && (
+                    <div className={styles.product_des}>
+                      <p className={styles.product_title}>
+                        {itemsData[1].name}
+                      </p>
+                      <p className={styles.product_sub}>
+                        {itemsData[1].price.toLocaleString()} 원
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            <div
-              className={`${styles.product} ${specialProductIndex === 2 ? styles.specialProduct : ""
-                }`}
-              style={{ transform: getProductTransform3(0) }}
-            >
-              <Image></Image>
-              {specialProductIndex === 2 && (
-                <div className={styles.product_des}>
-                  <p className={styles.product_title}>특별한 경우 3</p>
-                  <p className={styles.product_sub}>
-                    이 제품은 특별한 경우에만 보입니다.
-                  </p>
+                <div
+                  className={`${styles.product} ${
+                    specialProductIndex === 2 ? styles.specialProduct : ""
+                  }`}
+                  style={{ transform: getProductTransform3(0) }}
+                >
+                  <Link to="/shop">
+                    <div
+                      className={styles.product_img}
+                      style={{ backgroundImage: `url(${itemsData[2].image})` }}
+                    ></div>
+                  </Link>
+
+                  {specialProductIndex === 2 && (
+                    <div className={styles.product_des}>
+                      <p className={styles.product_title}>
+                        {itemsData[2].name}
+                      </p>
+                      <p className={styles.product_sub}>
+                        {itemsData[2].price.toLocaleString()} 원
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            )}
 
             <div
               className={styles.rightArrow}

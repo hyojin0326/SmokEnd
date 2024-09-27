@@ -45,8 +45,16 @@ function SocialSignup() {
       formData.day.length === 1 ? `0${formData.day}` : formData.day;
     const birth = `${formData.year}-${formData.month}-${dayFormatted}`;
 
-    const token = document.cookie.split("=")[1];
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    const type = document.cookie.replace(
+      /(?:(?:^|.*;\s*)type\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
     const dbData = {
+      type: type,
       token: token,
       name: formData.name,
       birth: birth,
