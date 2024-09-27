@@ -32,6 +32,7 @@ import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
 import SmokEndCase from "./pages/SmokEndCase";
 import TextWrite from "./pages/TextWrite";
+import SmokeTextById from "./pages/SmokeTextById";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -47,7 +48,7 @@ function AppContent() {
     "/signup",
     "/findpw",
     "/socialSignup",
-    "/textWrite/neccesarity",
+    "/textWrite/necessity",
     "/textWrite/risk",
   ];
 
@@ -111,10 +112,10 @@ function AppContent() {
           }
         />
 
-        <Route path="/smokeText/:tab" element={<SmokeText />} />
+        {/* <Route path="/smokeText/:tab" element={<SmokeText />} /> */}
         <Route path="/smokeText" element={<SmokeText />} />
         <Route
-          path="/smokeText"
+          path="/smokeText/:tab"
           element={
             <>
               <Header />
@@ -122,6 +123,7 @@ function AppContent() {
             </>
           }
         />
+
         <Route
           path="/introduction"
           element={

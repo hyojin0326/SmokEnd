@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import TextEditor from "../components/TextEditor";
 import TextEditorModule from "../components/TextEditorModule";
 import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function TextWrite() {
   const { category } = useParams<{ category: string }>();

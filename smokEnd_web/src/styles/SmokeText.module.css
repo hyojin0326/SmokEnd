@@ -79,25 +79,37 @@
 
 .textBox {
   width: 65vw; /* 원하는 너비로 조정 */
-  max-height: 60vw; /* 원하는 높이로 조정 */
-  overflow-y: auto;
+  /* max-height: 60vw; 원하는 높이로 조정 */
+  height: 15vw;
+  /* overflow-y: auto; */
+  display: flex;
+  margin-bottom: 2vw;
 }
 
 .imageContainer {
-  width: 13vw;
-  height: 13vw;
-  overflow: hidden; /* 이미지가 div 영역을 벗어나는 경우 잘라냅니다. */
-  float: right;
+  width: 15vw; /* 컨테이너 너비 고정 */
+  height: 15vw; /* 컨테이너 높이 고정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
+.imageContainer_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .imageContainer img {
-  /* 이미지를 div의 가로 너비에 맞게 조정합니다. */
-  width: 15vw;
-  height: auto; /* 비율을 유지하면서 이미지를 조정합니다. */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .leftContainer {
-  float: left;
+  padding-right: 1.5vw;
+  width: 50vw;
+  height: 15vw;
 }
 
 .NickName {
@@ -124,7 +136,7 @@
 }
 
 .post {
-  margin-top: 1vw;
+  margin-top: 0vw;
 }
 
 .but {

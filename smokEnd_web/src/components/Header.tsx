@@ -24,31 +24,30 @@ function Header() {
       /(?:(?:^|.*;\s*)userStats\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
-    if(user != ""){
+    if (user != "") {
       const userStats = JSON.parse(user);
       setMileage(userStats.mileage);
       setName(userStats.name);
     }
-    
+
     if (token === "") {
       setIsLoggedIn(false);
-    } else {     
+    } else {
       setIsLoggedIn(true);
     }
-    
   }, []);
-  
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
-  
-      window.addEventListener("resize", handleResize);
-  
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // const handleMenuClick = () => {
   //   setMenuOpen(!menuOpen);
@@ -95,7 +94,6 @@ function Header() {
     console.log("로그아웃");
     alert("로그아웃 성공");
     window.location.href = "/";
-    
   };
 
   //로그인 안한 상태일때 헤더부분의 내용을 클릭시
@@ -162,7 +160,7 @@ function Header() {
                         <p
                           className={styles.loggedInli}
                           onClick={(event) =>
-                            handleProtectedClick(event, "/SmokeText/risk")
+                            handleProtectedClick(event, "/smokeText/risk")
                           }
                         >
                           흡연의 위험성
@@ -264,7 +262,8 @@ function Header() {
                 <div className={styles.box2}>
                   <div className={styles.linkContainer3}>
                     <div className={styles.loggedIna}>
-                      {name}<div className={styles.margin}></div>
+                      {name}
+                      <div className={styles.margin}></div>
                       <a>{mileage} p</a>
                     </div>
 
