@@ -116,17 +116,46 @@ const TextEditor = ({ categoryName, name }: categoryProps) => {
     []
   );
 
-  const buttonClick = () => {
+  const buttonClick = async () => {
+    const formData = new FormData();
+    formData.append("sessionId", uniqueString);
+    formData.append("category", category);
     var title, content;
     if (titleRef.current) {
       title = titleRef.current.value;
+      formData.append("title", title);
+      if (title == "") alert("제목을 입력해주세요");
     }
     if (quillRef.current) {
-      content = quillRef.current.value;
+      // content = quillRef.current.value;
+      const quillInstance = quillRef.current.getEditor(); // Quill 인스턴스 가져오기
+      content = quillInstance.root.innerHTML; // HTML 형식으로 내용 가져오기
+      formData.append("content", content);
+      if (content.trim() === "") alert("내용을 입력해주세요");
     }
+    console.log("sessionId : " + uniqueString);
     console.log("카테고리 : " + category);
     console.log("제목 : " + title);
     console.log("내용 : " + content);
+
+    try {
+      // 서버로 아티클 전송
+      const response = await fetch(
+        `http://${import.meta.env.VITE_URL_API}/api/handle/uploadArticle`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.status === 200) {
+        window.location.href = `/smokeText/${category}`;
+      } else {
+        console.log("글작성 실패");
+      }
+    } catch (error) {
+      console.error("글 작성 실패임:", error);
+    }
   };
 
   const CustomQuillEditorView = styled.div`
