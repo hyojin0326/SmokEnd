@@ -13,15 +13,22 @@ type categoryProps = {
   name: string;
 };
 
-// type FormData = {
-//   category: string;
-//   title: string;
-//   content: string;
-// };
+interface FormData_edit {
+  sessionId: string;
+  category: string;
+  title: string;
+  content: string;
+}
 
 const TextEditor = ({ categoryName, name }: categoryProps) => {
   // const [content, setContent] = useState<string>("");
   // const [title, setTitle] = useState<string>("");
+  const [formData, setFormData] = useState<FormData_edit>({
+    sessionId: "",
+    category: "",
+    title: "",
+    content: "",
+  });
   const sanitizer = dompurify.sanitize;
   const [category, setCategory] = useState<string>(
     categoryName == "risk" ? "흡연의 위험성" : "금연의 필요성"
@@ -116,40 +123,56 @@ const TextEditor = ({ categoryName, name }: categoryProps) => {
     []
   );
 
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
+
   const buttonClick = async () => {
-    const formData = new FormData();
-    formData.append("sessionId", uniqueString);
-    formData.append("category", category);
+    var category_ = category == "금연의 필요성" ? "necessity" : "risk";
     var title, content;
     if (titleRef.current) {
       title = titleRef.current.value;
-      formData.append("title", title);
-      if (title == "") alert("제목을 입력해주세요");
+      if (title == "") {
+        alert("제목을 입력해주세요");
+        return;
+      }
     }
+
     if (quillRef.current) {
       // content = quillRef.current.value;
       const quillInstance = quillRef.current.getEditor(); // Quill 인스턴스 가져오기
       content = quillInstance.root.innerHTML; // HTML 형식으로 내용 가져오기
-      formData.append("content", content);
-      if (content.trim() === "") alert("내용을 입력해주세요");
+      if (content === "<p><br></p>") {
+        alert("내용을 입력해주세요");
+        return;
+      }
     }
-    console.log("sessionId : " + uniqueString);
-    console.log("카테고리 : " + category);
-    console.log("제목 : " + title);
-    console.log("내용 : " + content);
-
+    const updatedFormData = {
+      sessionId: uniqueString,
+      category: category_,
+      title: title!,
+      content: content!,
+    };
     try {
-      // 서버로 아티클 전송
+      console.log(updatedFormData);
+      //서버로 아티클 전송
       const response = await fetch(
         `http://${import.meta.env.VITE_URL_API}/api/handle/uploadArticle`,
         {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json", // 헤더 추가
+          },
+          body: JSON.stringify({
+            sessionId: uniqueString,
+            category: category_,
+            title: title!,
+            content: content!,
+          }),
         }
       );
-
       if (response.status === 200) {
-        window.location.href = `/smokeText/${category}`;
+        window.location.href = `/smokeText/${category_}`;
       } else {
         console.log("글작성 실패");
       }
@@ -204,6 +227,7 @@ const TextEditor = ({ categoryName, name }: categoryProps) => {
                 : styles.selectOption
             }
             onChange={handleSelectChange}
+            disabled
           >
             <option value="흡연의 위험성">흡연의 위험성</option>
             <option value="금연의 필요성">금연의 필요성</option>
