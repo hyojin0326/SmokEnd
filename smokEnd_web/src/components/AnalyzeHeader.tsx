@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Header.module.css";
+import styles from "../styles/analyzeHeader.module.css";
 import { Link } from "react-router-dom";
 import menu from "../assets/mobile_menu.png";
 import menuWhite from "../assets/mobile_menu_white.png";
 
-function Header() {
+function AnalyzeHeader() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -124,16 +124,17 @@ function Header() {
               Smok<div className={styles.loggedInlogo2}>E</div>nd
             </div>
           </Link>
-        </div>
-        <div className={styles.loggedInheaderright}>
-          <div className={styles.dropdownContainer}>
-            <ul>
-              <div className={styles.loggedInText}>
-                <li className={styles.li}>
-                  <div className={styles.box}>
-                    <div className={styles.linkContainer}>
-                      <a className={styles.loggedIna}>소개</a>
-                      <div className={styles.subMenu}>
+
+          <div className={styles.loggedInheaderright}>
+            <div className={styles.dropdownContainer}>
+              <ul>
+                <div className={styles.loggedInText}>
+                  <li className={styles.li}>
+                    <div className={styles.box}>
+                      <div className={styles.linkContainer}>
+                        <a className={styles.loggedIna}>소개</a>
+                        <br />
+
                         <p className={styles.loggedInli}>
                           <Link to="/introduction" className={styles.Link}>
                             SmokEnd 소개
@@ -141,149 +142,156 @@ function Header() {
                         </p>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li className={styles.li}>
-                  <div className={styles.box}>
-                    <div className={styles.linkContainer}>
-                      <a className={styles.loggedIna}>금연</a>
-                      <div className={styles.subMenu}>
-                        <p
-                          className={styles.loggedInli}
-                          onClick={(event) =>
-                            handleProtectedClick(event, "/noSmokingArea")
-                          }
-                        >
-                          금연 지도
-                        </p>
-                        <br />
-                        <p
-                          className={styles.loggedInli}
-                          onClick={(event) =>
-                            handleProtectedClick(event, "/smokeText/risk")
-                          }
-                        >
-                          흡연의 위험성
-                        </p>
-                        <br />
-                        <p
-                          className={styles.loggedInli}
-                          onClick={(event) =>
-                            handleProtectedClick(event, "/smokeText/necessity")
-                          }
-                        >
-                          금연의 필요성
-                        </p>
+                  </li>
+                  <li className={styles.li}>
+                    <div className={styles.box}>
+                      <div className={styles.linkContainer}>
+                        <a className={styles.loggedIna}>금연</a>
+                        <div className={styles.subMenu}>
+                          <p
+                            className={styles.loggedInli}
+                            onClick={(event) =>
+                              handleProtectedClick(event, "/noSmokingArea")
+                            }
+                          >
+                            금연 지도
+                          </p>
+                          <br />
+                          <p
+                            className={styles.loggedInli}
+                            onClick={(event) =>
+                              handleProtectedClick(event, "/smokeText/risk")
+                            }
+                          >
+                            흡연의 위험성
+                          </p>
+                          <br />
+                          <p
+                            className={styles.loggedInli}
+                            onClick={(event) =>
+                              handleProtectedClick(
+                                event,
+                                "/smokeText/necessity"
+                              )
+                            }
+                          >
+                            금연의 필요성
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li className={styles.li}>
-                  <div className={styles.box}>
-                    <div className={styles.linkContainer}>
-                      <a className={styles.loggedIna}>상품</a>
-                      <div className={styles.subMenu}>
-                        <p
-                          className={styles.loggedInli}
-                          onClick={(event) =>
-                            handleProtectedClick(event, "/smokEndCase")
-                          }
-                        >
-                          담배 케이스
-                        </p>
-                        <br />
-                        <p
-                          className={styles.loggedInli}
-                          onClick={(event) =>
-                            handleProtectedClick(event, "/shop")
-                          }
-                        >
-                          금연 상품
-                        </p>
+                  </li>
+                  <li className={styles.li}>
+                    <div className={styles.box}>
+                      <div className={styles.linkContainer}>
+                        <a className={styles.loggedIna}>상품</a>
+                        <div className={styles.subMenu}>
+                          <p
+                            className={styles.loggedInli3}
+                            onClick={(event) =>
+                              handleProtectedClick(event, "/smokEndCase")
+                            }
+                          >
+                            담배 케이스
+                          </p>
+                          <br />
+                          <p
+                            className={styles.loggedInli3}
+                            onClick={(event) =>
+                              handleProtectedClick(event, "/shop")
+                            }
+                          >
+                            금연 상품
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li className={styles.li}>
-                  <div className={styles.box}>
-                    <div className={styles.linkContainer2}>
-                      <a className={styles.loggedIna}>자가진단</a>
-                      <div className={styles.subMenu}>
-                        <p
-                          className={styles.loggedInli3}
-                          onClick={(event) =>
-                            handleProtectedClick(
-                              event,
-                              "/selfAssessment/nicotine"
-                            )
-                          }
-                        >
-                          니코틴 의존도 진단
-                        </p>
-                        <br />
-                        <p
-                          className={styles.loggedInli3}
-                          onClick={(event) =>
-                            handleProtectedClick(event, "/selfAssessment/habit")
-                          }
-                        >
-                          나의 흡연습관 평가
-                        </p>
-                        <br />
-                        <p
-                          className={styles.loggedInli3}
-                          onClick={(event) =>
-                            handleProtectedClick(
-                              event,
-                              "/selfAssessment/knowledge"
-                            )
-                          }
-                        >
-                          흡연 상식 점검
-                        </p>
-                        <br />
-                        <p
-                          className={styles.loggedInli3}
-                          onClick={(event) =>
-                            handleProtectedClick(
-                              event,
-                              "/selfAssessment/condition"
-                            )
-                          }
-                        >
-                          나의 신체상태 진단
-                        </p>
+                  </li>
+                  <li className={styles.li}>
+                    <div className={styles.box}>
+                      <div className={styles.linkContainer}>
+                        <a className={styles.loggedIna}>자가진단</a>
+                        <div className={styles.subMenu}>
+                          <p
+                            className={styles.loggedInli3}
+                            onClick={(event) =>
+                              handleProtectedClick(
+                                event,
+                                "/selfAssessment/nicotine"
+                              )
+                            }
+                          >
+                            니코틴 의존도 진단
+                          </p>
+                          <br />
+                          <p
+                            className={styles.loggedInli3}
+                            onClick={(event) =>
+                              handleProtectedClick(
+                                event,
+                                "/selfAssessment/habit"
+                              )
+                            }
+                          >
+                            나의 흡연습관 평가
+                          </p>
+                          <br />
+                          <p
+                            className={styles.loggedInli3}
+                            onClick={(event) =>
+                              handleProtectedClick(
+                                event,
+                                "/selfAssessment/knowledge"
+                              )
+                            }
+                          >
+                            흡연 상식 점검
+                          </p>
+                          <br />
+                          <p
+                            className={styles.loggedInli3}
+                            onClick={(event) =>
+                              handleProtectedClick(
+                                event,
+                                "/selfAssessment/condition"
+                              )
+                            }
+                          >
+                            나의 신체상태 진단
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              </div>
-              <li className={styles.li}>
-                <div className={styles.box2}>
-                  <div className={styles.linkContainer3}>
-                    <div className={styles.loggedIna}>
-                      {name}
-                      <div className={styles.margin}></div>
-                      <a>{mileage} p</a>
-                    </div>
-
-                    <div className={styles.subMenu}>
-                      <p
-                        className={styles.loggedInli2}
-                        onClick={(event) =>
-                          handleProtectedClick(event, "/analyze")
-                        }
-                      >
-                        AI분석하기
-                      </p>
-                      <p className={styles.loggedInli2} onClick={handleLogout}>
-                        LOGOUT
-                      </p>
-                    </div>
-                  </div>
+                  </li>
                 </div>
-              </li>
-            </ul>
+                <li className={styles.li}>
+                  <div className={styles.linkContainer3}>
+                    {" "}
+                    <p
+                      className={styles.loggedIna}
+                      onClick={(event) =>
+                        handleProtectedClick(event, "/analyze")
+                      }
+                    >
+                      AI분석하기
+                    </p>{" "}
+                    <br />{" "}
+                    <div className={styles.box22}>
+                      <div className={styles.loggedIna1}>
+                        {name}
+                        <div className={styles.margin}></div>
+                        <a>{mileage} p</a>
+                      </div>
+                      <div className={styles.subMenu}>
+                        <p className={styles.loggedIna1} onClick={handleLogout}>
+                          LOGOUT
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -422,7 +430,7 @@ function Header() {
                         handleProtectedClick(event, "/analyze")
                       }
                     >
-                      AI분석하기
+                      분석하기
                     </p>
                     <br />
                     <br />
@@ -759,4 +767,4 @@ function Header() {
     : loggedOutHeader;
 }
 
-export default Header;
+export default AnalyzeHeader;
