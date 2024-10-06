@@ -85,11 +85,11 @@ function Signin() {
         formData.email,
         formData.password
       ); // 이걸로 로그인
-      if (!userCredential.user.emailVerified) {
-        alert("이메일 인증이 완료되지 않은 사용자 입니다");
-        setIsLoading(false);
-        return;
-      }
+      // if (!userCredential.user.emailVerified) {
+      //   alert("이메일 인증이 완료되지 않은 사용자 입니다");
+      //   setIsLoading(false);
+      //   return;
+      // }
       const token = await userCredential.user.getIdToken();
       // 사용자 정보를 받기 위해 서버에 요청을 보냅니다
       await fetch(`http://${import.meta.env.VITE_URL_API}/api/auth/w/login`, {

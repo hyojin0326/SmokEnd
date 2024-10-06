@@ -27,12 +27,14 @@ import Purchase_P from "./pages/Purchase_P";
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
 import NoSmokingArea from "./pages/NosmokingAreas copy";
 import ScrollToTop from "./components/ScrollToTop";
-import Test from "./pages/Test";
 import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
 import SmokEndCase from "./pages/SmokEndCase";
 import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
+import Analyze from "./pages/Analyze";
+
+import ATest from "./pages/analyze/ATest";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -160,11 +162,30 @@ function AppContent() {
             </>
           }
         />
+
+        <Route
+          path="/analyze"
+          element={
+            <>
+              <Analyze />
+            </>
+          }
+        />
+
         <Route
           path="/textWrite/:category"
           element={
             <>
               <TextWrite />
+            </>
+          }
+        />
+
+        <Route
+          path="/ATest"
+          element={
+            <>
+              <ATest />
             </>
           }
         />
