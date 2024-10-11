@@ -80,6 +80,7 @@ function SmokeTextById() {
     #quillContent .ql-editor {
       border: none; /* 에디터 텍스트 영역의 테두리 제거 */
       font-size: 1.2vw;
+      line-height: 2;
     }
 
     #quillContent .ql-editor.ql-blank::before {
