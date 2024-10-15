@@ -162,6 +162,8 @@ function AppContent() {
           }
         />
 
+        <Route path="/oAuthkakao" element={<Kakao />} />
+
         <Route
           path="/analyze"
           element={
