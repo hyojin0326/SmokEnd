@@ -57,7 +57,7 @@ const PersonalSmokingTrend: React.FC = () => {
         setChartData(response.data);
       } catch (err) {
         console.error("데이터 가져오기 오류:", err);
-        setError("데이터를 가져오는 중 오류가 발생했습니다.");
+        setError("나의 흡연량을 평가해주세요.");
       } finally {
         setLoading(false);
       }

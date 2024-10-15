@@ -27,7 +27,7 @@ const AiAnalyze = () => {
         setValue(response.data);
       } catch (err) {
         console.error("데이터 가져오기 오류:", err);
-        setError("데이터를 가져오는 중 오류가 발생했습니다.");
+        setError("자가진단을 진행해 주세요.");
       } finally {
         setLoading(false);
       }
