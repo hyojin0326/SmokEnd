@@ -14,7 +14,7 @@
 
 .loggedInheader {
   width: 19vw;
-  height: 120vh;
+  height: 150vh;
   background-color: rgb(255, 255, 255);
   z-index: 99999;
 }
@@ -81,7 +81,8 @@
 
 .loggedInheaderleft {
   /* float: left; */
-  margin-top: 3.3vw;
+  /* margin-top: 3.3vw; */
+  padding-top: 3.3vw;
 }
 
 .loggedInheaderright {
