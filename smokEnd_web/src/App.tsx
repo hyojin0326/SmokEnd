@@ -34,8 +34,6 @@ import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
 import Analyze from "./pages/Analyze";
 
-import ATest from "./pages/analyze/ATest";
-
 const GlobalStyles = createGlobalStyle`
   *{
     padding:0;
@@ -177,15 +175,6 @@ function AppContent() {
           element={
             <>
               <TextWrite />
-            </>
-          }
-        />
-
-        <Route
-          path="/ATest"
-          element={
-            <>
-              <ATest />
             </>
           }
         />
