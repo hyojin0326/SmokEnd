@@ -1,8 +1,16 @@
 .momBox {
   width: 100vw;
-  height: 125vh;
+  height: 150vh;
   /* background-color: aqua; */
+  /* background-color: #f8f8f8; */
+  height: auto;
+}
+
+.rightBox {
   background-color: #f8f8f8;
+  width: auto;
+  height: 150vh;
+  /* height: auto; */
 }
 
 body {
