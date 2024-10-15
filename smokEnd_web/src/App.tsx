@@ -33,6 +33,7 @@ import SmokEndCase from "./pages/SmokEndCase";
 import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
 import Analyze from "./pages/Analyze";
+import Kakao from "./pages/oAuthKakao";
 
 const GlobalStyles = createGlobalStyle`
   *{
