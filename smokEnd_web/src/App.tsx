@@ -34,6 +34,7 @@ import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
 import Analyze from "./pages/Analyze";
 import Kakao from "./pages/oAuthKakao";
+import Naver from "./pages/oAuthNaver";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -163,6 +164,7 @@ function AppContent() {
         />
 
         <Route path="/oAuthkakao" element={<Kakao />} />
+        <Route path="oAuthNaver" element={<Naver />} />
 
         <Route
           path="/analyze"

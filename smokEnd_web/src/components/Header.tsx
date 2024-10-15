@@ -90,6 +90,9 @@ function Header() {
     }
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // 쿠키를 삭제합니다
     document.cookie = "userStats=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    localStorage.clear();
+
     setIsLoggedIn(false);
     console.log("로그아웃");
     alert("로그아웃 성공");

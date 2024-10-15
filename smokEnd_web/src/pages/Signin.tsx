@@ -114,6 +114,8 @@ function Signin() {
             document.cookie = `userStats=${JSON.stringify(
               resData
             )}; expires=${expirationDate.toUTCString()};`;
+
+            localStorage.setItem('Expiration', expirationDate.toUTCString());
           } else {
             document.cookie = `token=${token};`;
             document.cookie = `userStats=${JSON.stringify(resData)};`;
@@ -164,6 +166,7 @@ function Signin() {
           // 토큰 오류
         } else if (response.status === 404) {
           // 회원가입 해야 됨
+          document.cookie = `type=google`;
           document.cookie = `token=${token};`;
           window.location.href = "/SocialSignup";
         } else {
@@ -185,7 +188,7 @@ function Signin() {
     const STATE = "false";
     const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${
       import.meta.env.VITE_NAVER_CLIENT_ID
-    }&state=${STATE}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`;
+    }&state=${STATE}&redirect_uri=http://localhost:5173/oAuthNaver`;
     window.location.href = NAVER_AUTH_URL;
     let params = new URL(window.location.href).searchParams;
     let code = params.get("code");

@@ -12,12 +12,14 @@ interface ReviewPopupProps {
 const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
   const [stars, setStars] = useState([star, star, star, star, star]);
   const [text, setText] = useState("");
+  const [selectedImage, setSelectedImage] = useState<File | null>(null); // 선택한 이미지를 저장할 상태
   const isMobile = window.innerWidth <= 768;
 
   useEffect(() => {
     if (isOpen) {
       setStars([star, star, star, star, star]);
       setText("");
+      setSelectedImage(null); // 팝업 열릴 때 이미지 초기화
     }
   }, [isOpen]);
 
@@ -41,18 +43,24 @@ const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
+
+    const formData = new FormData();
+    formData.append("token", token);
+    formData.append(
+      "stars",
+      stars.filter((starImg) => starImg === star2).length.toString()
+    );
+    formData.append("text", text);
+
+    if (selectedImage) {
+      formData.append("image", selectedImage); // 선택한 이미지가 있을 경우 추가
+    }
+
     await fetch(
       `http://${import.meta.env.VITE_URL_API}/api/handle/postReview`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: token,
-          stars: stars.filter((starImg) => starImg === star2).length,
-          text: text,
-        }),
+        body: formData, // FormData로 전송
       }
     ).then(async (response) => {
       const resData = await response.text();
@@ -62,6 +70,12 @@ const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value);
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedImage(event.target.files[0]); // 선택한 이미지 저장
+    }
   };
 
   if (!isOpen) return null;
@@ -80,9 +94,24 @@ const ReviewPopup: React.FC<ReviewPopupProps> = ({ isOpen, setIsOpen }) => {
             <div className={styles.p}>상세 사진</div>
             <div className={styles.pick}>
               <div className={styles.pickAlign}>
-                <img src={pick} alt="pick" />
+                <label htmlFor="image-upload">
+                  <img src={pick} alt="pick" />
+                </label>
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleImageChange} // 이미지 선택 이벤트 핸들러
+                />
               </div>
             </div>
+            {selectedImage && (
+                <>
+                  <br />
+                  <p>선택된 파일: {selectedImage.name}</p>
+                </>
+                )}
 
             <div className={styles.p}>만족도</div>
             <div className={styles.star}>
