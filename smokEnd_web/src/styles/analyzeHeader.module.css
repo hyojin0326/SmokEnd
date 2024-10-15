@@ -1,0 +1,374 @@
+.Link {
+  color: black;
+  text-decoration: none;
+  font-family: "NanumSquareRoundR";
+}
+.Link1 {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-family: "NanumSquareRoundR";
+  margin-bottom: 2vw;
+}
+
+/*로그인 해더*/
+
+.loggedInheader {
+  width: 19vw;
+  height: 150vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 99999;
+}
+
+.linkContainer {
+  margin-top: 1vw;
+  position: relative;
+  /* display: inline-block; */
+  /* display: inline; */
+  /* margin-left: 1vw; */
+}
+
+.linkContainer2 {
+  margin-top: 1vw;
+  position: relative;
+  /* display: inline-block; */
+  /* display: inline; */
+  /* margin-left: 1vw; */
+}
+
+.linkContainer3 {
+  margin-top: 1vw;
+  position: relative;
+  /* display: inline-block; */
+  /* display: inline; */
+  /* margin-left: 1vw; */
+}
+
+.loggedIna {
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: black;
+  font-family: "NanumSquareRoundB";
+  cursor: pointer;
+  margin-left: 4vw;
+  display: inline;
+  font-size: 1.2vw;
+  margin-top: 6vw;
+}
+
+.loggedIna1 {
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: black;
+  font-family: "NanumSquareRoundB";
+  cursor: pointer;
+  margin-left: 4vw;
+  display: inline;
+  font-size: 1vw;
+  /* margin-top: 10vw; */
+}
+
+.loggedInlogo {
+  font-family: "Tenada";
+  display: inline;
+  font-size: 2.2vw;
+  color: rgb(0, 0, 0);
+  margin-left: 4vw;
+}
+
+.loggedInlogo2 {
+  font-family: "Tenada";
+  color: red;
+  display: inline;
+}
+
+.loggedInheaderleft {
+  /* float: left; */
+  /* margin-top: 3.3vw; */
+  padding-top: 3.3vw;
+}
+
+.loggedInheaderright {
+  margin-top: 0.5vw;
+  /* margin-right: 5vw; */
+  /* float: left; */
+  font-size: 1.7vw;
+}
+
+/**/
+
+a {
+  /* color: black; */
+  /* margin-left: 1vw; */
+  font-family: "NanumSquareRoundB";
+  cursor: pointer;
+}
+
+.li {
+  display: inline;
+  cursor: pointer;
+}
+
+ul {
+  display: inline;
+  cursor: pointer;
+}
+
+nav {
+  display: inline;
+}
+
+.margin {
+  margin-left: 1vw;
+  display: inline;
+}
+
+.loggedInli {
+  margin-left: 5vw;
+  font-size: 1vw;
+  margin-bottom: 1vw;
+  margin-top: 1vw;
+  display: inline;
+  cursor: pointer;
+}
+
+/* .loggedInli2 {
+  margin-left: 6vw;
+  font-size: 1.5vw;
+  margin-top: 1vw;
+} */
+
+.loggedInli3 {
+  margin-left: 5vw;
+  /* margin-top: 2vw; */
+  font-size: 1vw;
+  display: inline;
+  margin-top: 1vw;
+  cursor: pointer;
+}
+
+/* .Box {
+  margin-top: 3vw;
+} */
+
+.box22 {
+  margin-top: 5vw;
+}
+
+@media (max-width: 768px) {
+  /*로그아웃 해더*/
+  .MobileloggedOutHeader {
+    width: 110vw;
+    height: 10vw;
+    background-color: rgba(255, 255, 255, 0);
+    position: fixed;
+    display: inline;
+    z-index: 9999;
+  }
+
+  .loggedOutlogo {
+    font-family: "Tenada";
+    display: inline;
+    font-size: 5vw;
+    margin-left: 4vw;
+    color: white;
+  }
+
+  .loggedOutlogo2 {
+    font-family: "Tenada";
+    color: red;
+    display: inline;
+  }
+
+  .loggedOutheaderleft {
+    margin-top: 3.3vw;
+    float: left;
+  }
+
+  /* 로그인 헤더 */
+
+  .menuOpenBackground {
+    position: fixed;
+    top: 10vw;
+    left: 0;
+    width: 100vw;
+    height: 190vw;
+    background-color: rgba(0, 0, 0, 0.783); /* 흰색 박스의 색상과 투명도 조절 */
+    z-index: 999; /* 다른 요소 위에 표시되도록 z-index 설정 */
+  }
+  .menuOpenContent {
+    position: fixed;
+    top: 10vw;
+    right: -0.5vw;
+    width: 70vw;
+    height: 190vw;
+    background-color: white;
+    z-index: 1000; /* 흰색 박스 위에 위치하도록 설정 */
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    animation: slideIn 0.5s forwards;
+  }
+  .menuCloseContent {
+    position: fixed;
+    top: 10vw;
+    right: -0.5vw;
+    width: 70vw;
+    height: 190vw;
+    background-color: white;
+    z-index: 1000; /* 흰색 박스 위에 위치하도록 설정 */
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    animation: slideOut 0.5s forwards;
+  }
+  @keyframes slideIn {
+    from {
+      right: -70vw;
+    }
+    to {
+      right: -0.5vw;
+    }
+  }
+  @keyframes slideOut {
+    from {
+      right: -0.5vw;
+    }
+    to {
+      right: -70vw;
+    }
+  }
+
+  .MobileloggedInHeader {
+    width: 110vw;
+    height: 10vw;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    display: inline;
+    z-index: 9999;
+  }
+
+  .MobiledefaultHeader {
+    width: 110vw;
+    height: 10vw;
+    background-color: rgba(255, 255, 255, 0);
+    position: fixed;
+    display: inline;
+    z-index: 9999;
+  }
+
+  .loggedInlogo {
+    font-family: "Tenada";
+    display: inline;
+    font-size: 5vw;
+    color: rgb(0, 0, 0);
+    margin-left: 4vw;
+  }
+
+  .loggedInlogo2 {
+    font-family: "Tenada";
+    color: red;
+    display: inline;
+  }
+
+  .loggedInheaderleft {
+    float: left;
+    margin-top: 3.3vw;
+  }
+
+  .loggedInheaderright {
+    margin-top: 1.5vw;
+    /* margin-right: 5vw; */
+    float: right;
+    font-size: 4.5vw;
+  }
+
+  /**/
+
+  a {
+    /* color: black; */
+    /* margin-left: 1vw; */
+    font-family: "NanumSquareRoundB";
+  }
+
+  .li {
+    display: inline;
+  }
+
+  ul {
+    display: inline;
+  }
+
+  nav {
+    display: inline;
+  }
+
+  .margin {
+    margin-left: 1vw;
+    display: inline;
+  }
+
+  .menu {
+    position: relative; /* 부모 요소로서의 위치를 기준으로 하기 위해 설정 */
+    display: inline;
+  }
+
+  .menu img {
+    height: 6vw;
+    width: 7vw;
+    margin-top: 2.6vw;
+    margin-left: 57vw;
+  }
+
+  .MobileloggedInli {
+    margin-left: 3vw;
+    font-size: 4vw;
+  }
+
+  .MobileloggedInli2 {
+    margin-left: 6vw;
+    font-size: 4vw;
+  }
+
+  .MobileloggedInli3 {
+    margin-left: 2vw;
+    margin-top: 2vw;
+    font-size: 4vw;
+    display: inline;
+  }
+
+  .MobileloggedInli4 {
+    margin-left: 6vw;
+    margin-top: 2vw;
+    font-size: 4vw;
+    display: inline;
+  }
+
+  .MobileloggedInli5 {
+    margin-left: 6vw;
+    margin-top: 2vw;
+    font-size: 4vw;
+  }
+
+  .MobileBox {
+    margin-top: 3vw;
+  }
+}
+
+@font-face {
+  font-family: "Tenada";
+  src: url("../assets/font/Tenada.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url("../assets/font/NanumSquareRoundB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url("../assets/font/NanumSquareRoundEB.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundL";
+  src: url("../assets/font/NanumSquareRoundL.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url("../assets/font/NanumSquareRoundR.ttf");
+}

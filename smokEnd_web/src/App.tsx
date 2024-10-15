@@ -27,13 +27,12 @@ import Purchase_P from "./pages/Purchase_P";
 import SelfAssessmentResult from "./components/SelfAssessmentResult";
 import NoSmokingArea from "./pages/NosmokingAreas copy";
 import ScrollToTop from "./components/ScrollToTop";
-import Test from "./pages/Test";
 import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
 import SmokEndCase from "./pages/SmokEndCase";
 import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
-import Kakao from "./pages/oAuthKakao";
+import Analyze from "./pages/Analyze";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -72,7 +71,6 @@ function AppContent() {
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/socialSignup" element={<SocialSignup />} />
-        <Route path="/oAuthkakao" element={<Kakao />} />
         <Route path="/findpw" element={<Findpw />} />
         <Route
           path="/selfAssessment/*"
@@ -162,6 +160,16 @@ function AppContent() {
             </>
           }
         />
+
+        <Route
+          path="/analyze"
+          element={
+            <>
+              <Analyze />
+            </>
+          }
+        />
+
         <Route
           path="/textWrite/:category"
           element={

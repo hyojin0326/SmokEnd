@@ -1,0 +1,12 @@
+.chartContainer {
+  background-color: #f8f8f8;
+  height: 30vh;
+  padding: 2vw;
+  margin-top: 2vw;
+
+  display: flex;
+  /* 가로 정렬 */
+  justify-content: center;
+  /* 세로 정렬 */
+  align-items: center;
+}
