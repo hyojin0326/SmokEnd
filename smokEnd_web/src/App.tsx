@@ -33,8 +33,7 @@ import SmokEndCase from "./pages/SmokEndCase";
 import TextWrite from "./pages/TextWrite";
 import SmokeTextById from "./pages/SmokeTextById";
 import Analyze from "./pages/Analyze";
-
-import ATest from "./pages/analyze/ATest";
+import Kakao from "./pages/oAuthKakao";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -177,15 +176,6 @@ function AppContent() {
           element={
             <>
               <TextWrite />
-            </>
-          }
-        />
-
-        <Route
-          path="/ATest"
-          element={
-            <>
-              <ATest />
             </>
           }
         />

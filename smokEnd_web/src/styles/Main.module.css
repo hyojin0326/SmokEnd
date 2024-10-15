@@ -8,7 +8,7 @@
   text-decoration: none;
 }
 .main {
-  width:35%;
+  width: 35%;
   position: absolute;
   top: calc(50vh - 83px);
   margin-left: 4vw;
@@ -82,11 +82,10 @@
     transform: translateY(-1vw); /* 약간 위로 이동하는 애니메이션 효과 */
   }
 }
-.main_white{
-  width:100vw;
-  height:100vh;
+.main_white {
+  width: 100vw;
+  height: 100vh;
   margin-left: 10vw;
-
 }
 .main_product {
   height: 33vw;
@@ -110,10 +109,9 @@
   font-weight: 500;
   line-height: 1.3;
 }
-.select_background{
-  width:70vw;
+.select_background {
+  width: 70vw;
   margin: 0 auto;
-
 }
 .main_select_title {
   color: black;
@@ -171,7 +169,6 @@
   width: 25vw;
   height: 26vw;
   border-radius: 1vw;
-  background-image: url("../assets/main/data1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -386,19 +383,19 @@
   font-family: "NanumSquareRoundL";
   font-size: 1vw;
   font-weight: lighter;
-  color:rgb(181, 181, 181)
+  color: rgb(181, 181, 181);
 }
 @media (max-width: 768px) {
   .main_black {
     background-color: #000000;
-    background-image: url('../assets/main//test.gif');
+    background-image: url("../assets/main//test.gif");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
-}
+  }
   .main {
     margin-left: 5vw;
-    width:100%;
+    width: 100%;
   }
   .main > .mainText {
     font-size: 8vw;
@@ -427,9 +424,9 @@
   .bottom > img {
     height: 8vw;
   }
-  .main_white{
+  .main_white {
     height: 85vh;
-  margin-left: 0;
+    margin-left: 0;
   }
   .main_product {
     height: 120vw;
@@ -502,24 +499,23 @@
     height: 105vw;
     margin-top: 25vw;
   }
-  .select_background{
-    width:100vw;  
+  .select_background {
+    width: 100vw;
   }
   .select_content {
-
     width: 100vw;
     height: 45vw;
     margin-bottom: 20vw;
   }
 
   .self_check {
-    width:40vw;
+    width: 40vw;
     border-radius: 2vw;
     height: 40vw;
     border: 0.3vw solid black;
   }
   .campaign {
-    width:40vw;
+    width: 40vw;
     height: 40vw;
     border-radius: 2vw;
     border: 0.3vw solid black;
