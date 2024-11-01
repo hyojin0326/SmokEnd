@@ -1,6 +1,6 @@
 import styles from "../styles/Main.module.css";
 import belowArrow from "../assets/main/belowArrow_white.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import data1Image from "../assets/Introduction/case_background.png";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -38,6 +38,32 @@ function Main() {
   const [isLogin, setIsLogin] = useState(false);
   const [response, setResponse] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null); // container_temp를 참조할 변수
+  const [isVisible, setIsVisible] = useState(false); // 화면에 나타났는지 여부를 관리
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true); // 요소가 화면에 들어오면 상태를 true로 변경
+            observer.disconnect(); // 한 번 감지되면 더 이상 관찰하지 않음
+          }
+        });
+      },
+      { threshold: 0.1 } // 요소가 10% 정도 보일 때 감지
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current); // container_temp를 관찰
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current); // cleanup 시 관찰 해제
+      }
+    };
+  }, []);
 
   //로그인 상태에 따라
   useEffect(() => {
@@ -166,6 +192,29 @@ function Main() {
             <img src={belowArrow} alt="Arrow" />
           </div>
         )}
+      </div>
+
+      <div className={styles.select_background}>
+        <div className={styles.main_temp}>
+          <h1>smokEnd는 이런 서비스에요</h1>
+          {/* container_temp 요소에 fadeIn 클래스를 동적으로 추가 */}
+          <div
+            ref={containerRef}
+            className={`${styles.container_temp} ${isVisible ? styles.fadeIn : ""}`}
+          >
+            {/* 컨텐츠 */}
+          </div>
+          <br />
+          <br />
+          <p>
+            <h1>
+              내 흡연 통계가 궁금하다면?{" "}
+              <a href="/analyze" style={{ color: "red" }}>
+                진단 결과 보러 가기 <span>&gt;</span>
+              </a>
+            </h1>
+          </p>
+        </div>
       </div>
 
       <div className={styles.main_white}>
