@@ -1,37 +1,44 @@
+* {
+  overflow-x: hidden;
+}
+
 .main_black {
   width: 100vw;
   height: 100vh;
   background-color: #000000;
 }
+
 .Link {
   color: black;
   text-decoration: none;
 }
+
 .main {
   width: 35%;
   position: absolute;
   top: calc(50vh - 83px);
   margin-left: 4vw;
 }
-.main > .mainText {
+
+.main>.mainText {
   font-family: "NanumSquareRoundExtraBold", sans-serif;
   color: white;
   font-size: 3vw;
   font-weight: 500;
 }
 
-.mainText > span {
+.mainText>span {
   color: red;
 }
 
-.main > .subText {
+.main>.subText {
   color: grey;
   font-family: "NanumSquareRoundL";
   font-size: 2vw;
   margin-top: 4vw;
 }
 
-.main > .mainButton {
+.main>.mainButton {
   width: 10vw;
   height: 3vw;
   border: 0.2vw solid white;
@@ -59,18 +66,22 @@
   background-repeat: no-repeat;
   background-position: bottom;
 }
+
 .bottom {
   z-index: 1;
   width: 100vw;
   height: 3.5vw;
   opacity: 0.7;
   animation: bounce 1s infinite alternate;
-  position: absolute; /* fixed로 변경 */
-  bottom: 1vw; /* 화면의 아래쪽으로 위치 */
+  position: absolute;
+  /* fixed로 변경 */
+  bottom: 1vw;
+  /* 화면의 아래쪽으로 위치 */
   display: flex;
   justify-content: center;
 }
-.bottom > img {
+
+.bottom>img {
   height: 3.5vw;
 }
 
@@ -78,10 +89,13 @@
   from {
     transform: translateY(0);
   }
+
   to {
-    transform: translateY(-1vw); /* 약간 위로 이동하는 애니메이션 효과 */
+    transform: translateY(-1vw);
+    /* 약간 위로 이동하는 애니메이션 효과 */
   }
 }
+
 .main_white {
   width: 100vw;
   height: 100vh;
@@ -97,7 +111,7 @@
 .container_temp {
   width: 100%;
   height: 70vh;
-  background-image: url('../assets/main/temp.png');
+  background-image: url('../assets/main/temp2.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -106,8 +120,10 @@
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* 살짝 위에서 나타나는 느낌 */
+    transform: translateY(20px);
+    /* 살짝 위에서 나타나는 느낌 */
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -116,8 +132,10 @@
 
 .fadeIn {
   opacity: 0;
-  animation: fadeIn 2.5s ease-out forwards; /* 1초 동안 애니메이션이 진행되고 끝난 후 유지 */
+  animation: fadeIn 2.5s ease-out forwards;
+  /* 1초 동안 애니메이션이 진행되고 끝난 후 유지 */
 }
+
 /* temp end*/
 
 .main_product {
@@ -127,7 +145,8 @@
   overflow: hidden;
   /* overflow */
 }
-.main_product > .main_product_text {
+
+.main_product>.main_product_text {
   position: absolute;
   top: 5.5vw;
   margin-left: 3vw;
@@ -135,6 +154,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .main_product_title {
   color: black;
   font-family: "NanumSquareRoundL";
@@ -142,10 +162,12 @@
   font-weight: 500;
   line-height: 1.3;
 }
+
 .select_background {
   width: 70vw;
   margin: 0 auto;
 }
+
 .main_select_title {
   color: black;
   font-family: "NanumSquareRoundL";
@@ -154,20 +176,24 @@
   font-weight: 500;
   line-height: 1.3;
 }
-.main_product_title > span {
+
+.main_product_title>span {
   color: red;
 }
-.main_select_title > span {
+
+.main_select_title>span {
   color: red;
 }
-.main_product_text > .main_product_sub {
+
+.main_product_text>.main_product_sub {
   color: grey;
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   margin-top: 4vw;
   line-height: 1.3;
 }
-.main_product_text > * > .main_product_button {
+
+.main_product_text>*>.main_product_button {
   width: 10vw;
   height: 3vw;
   border: 0.15vw solid rgb(0, 0, 0);
@@ -181,13 +207,15 @@
   font-size: 1.2vw;
   overflow: hidden;
 }
+
 .mainProduct {
   width: 85vw;
   height: 40vw;
   position: absolute;
   margin-left: 32vw;
 }
-.mainProduct > .product {
+
+.mainProduct>.product {
   width: 25vw;
   display: inline-block;
   margin-left: 3vw;
@@ -195,9 +223,11 @@
   transition: transform 0.5s ease;
   margin-top: -1.5vw;
 }
+
 .specialProduct {
   box-shadow: 0 0 1vw 0.2vw rgba(0, 0, 0, 0.285);
 }
+
 .product_img {
   width: 25vw;
   height: 26vw;
@@ -206,6 +236,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .product_des {
   width: 25vw;
   height: 5vw;
@@ -215,13 +246,15 @@
   align-items: normal;
   flex-direction: column;
 }
-.product_des > .product_title {
+
+.product_des>.product_title {
   margin-left: 1vw;
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
   font-weight: bold;
 }
-.product_des > .product_sub {
+
+.product_des>.product_sub {
   margin-left: 1vw;
   margin-top: 0.5vw;
   font-family: "NanumSquareRoundL";
@@ -229,6 +262,7 @@
   font-weight: bold;
   color: #767676;
 }
+
 .leftArrow {
   width: 2.5vw;
   height: 2.5vw;
@@ -239,16 +273,18 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .rightArrow {
   width: 2.5vw;
   height: 2.5vw;
   position: relative;
-  transform: translate(65vw, -17.1vw) rotate(180deg);
+  transform: translate(53vw, -17.1vw) rotate(180deg);
   background-image: url("../assets/main/product_arrow.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .select {
   width: 100vw;
   height: 45vw;
@@ -258,6 +294,7 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .select_content {
   width: 70vw;
   height: 25vw;
@@ -269,6 +306,7 @@
   justify-content: center;
   margin-bottom: 10vw;
 }
+
 .self_check {
   background-color: #000000;
   width: 35vw;
@@ -280,9 +318,11 @@
   display: flex;
   justify-content: center;
 }
-.self_check > div {
+
+.self_check>div {
   width: 80%;
 }
+
 .campaign {
   width: 35vw;
   height: 25vw;
@@ -294,18 +334,20 @@
   display: flex;
   justify-content: center;
 }
-.campaign > div {
+
+.campaign>div {
   width: 80%;
 }
 
-.self_check > div > .content_title {
+.self_check>div>.content_title {
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   font-weight: bold;
   color: white;
   padding-top: 2vw;
 }
-.self_check > div > .content_des {
+
+.self_check>div>.content_des {
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   font-weight: bold;
@@ -313,6 +355,7 @@
   padding-top: 2vw;
   line-height: 1.7;
 }
+
 .self_check_button {
   width: 10vw;
   height: 3vw;
@@ -326,6 +369,7 @@
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
 }
+
 .self_check_img {
   width: 15vw;
   height: 15vw;
@@ -337,14 +381,16 @@
   position: relative;
   top: -3vw;
 }
-.campaign > div > .content_title {
+
+.campaign>div>.content_title {
   font-family: "NanumSquareRoundL";
   font-size: 1.8vw;
   font-weight: bold;
   color: black;
   padding-top: 2vw;
 }
-.campaign > div > .content_des {
+
+.campaign>div>.content_des {
   font-size: 1.8vw;
   font-family: "NanumSquareRoundL";
   font-weight: bold;
@@ -352,6 +398,7 @@
   padding-top: 2vw;
   line-height: 1.7;
 }
+
 .campaign_button {
   width: 10vw;
   height: 3vw;
@@ -365,6 +412,7 @@
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
 }
+
 .campaign_img {
   width: 15vw;
   height: 16vw;
@@ -376,6 +424,7 @@
   position: relative;
   top: -5vw;
 }
+
 .smoke_write {
   margin: 0 auto;
   width: 65vw;
@@ -386,7 +435,8 @@
   justify-content: space-between;
   margin-bottom: 10vw;
 }
-.smoke_write > .write {
+
+.smoke_write>.write {
   width: 20vw;
   height: 12vw;
   border: 0.1vw solid rgb(181, 181, 181);
@@ -395,29 +445,34 @@
   flex-direction: column;
   justify-content: center;
 }
-.write > div {
+
+.write>div {
   width: 90%;
   margin: 0 auto;
 }
-.write > div > .write_category {
+
+.write>div>.write_category {
   color: #8f4a4a;
   font-family: "NanumSquareRoundL";
   font-size: 1.5vw;
 }
-.write > div > .write_title {
+
+.write>div>.write_title {
   margin-top: 1vw;
   font-family: "NanumSquareRoundL";
   font-size: 1.2vw;
   font-weight: bold;
   color: rgb(53, 53, 53);
 }
-.write > div > .write_date {
+
+.write>div>.write_date {
   margin-top: 3vw;
   font-family: "NanumSquareRoundL";
   font-size: 1vw;
   font-weight: lighter;
   color: rgb(181, 181, 181);
 }
+
 @media (max-width: 768px) {
   .main_black {
     background-color: #000000;
@@ -426,19 +481,22 @@
     background-repeat: no-repeat;
     background-position: center bottom;
   }
+
   .main {
     margin-left: 5vw;
     width: 100%;
   }
-  .main > .mainText {
+
+  .main>.mainText {
     font-size: 8vw;
   }
-  .main > .subText {
+
+  .main>.subText {
     font-size: 5vw;
     margin-top: 1vw;
   }
 
-  .main > .mainButton {
+  .main>.mainButton {
     width: 18vw;
     height: 5vw;
     border-radius: 4vw;
@@ -450,36 +508,45 @@
   .main_smoke {
     display: none;
   }
+
   .bottom {
     height: 8vw;
     top: 165vw;
   }
-  .bottom > img {
+
+  .bottom>img {
     height: 8vw;
   }
+
   .main_white {
     height: 85vh;
     margin-left: 0;
   }
+
   .main_product {
     height: 120vw;
     top: 15vw;
   }
-  .main_product > .main_product_text {
+
+  .main_product>.main_product_text {
     top: 10.5vw;
     margin-left: 5vw;
   }
+
   .main_product_title {
     font-size: 8vw;
   }
+
   .main_select_title {
     font-size: 5vw;
   }
-  .main_product_text > .main_product_sub {
+
+  .main_product_text>.main_product_sub {
     font-size: 5vw;
     margin-top: 1vw;
   }
-  .main_product_text > * > .main_product_button {
+
+  .main_product_text>*>.main_product_button {
     width: 18vw;
     height: 5vw;
     border-radius: 4vw;
@@ -487,6 +554,7 @@
     font-size: 2vw;
     border: 0.3vw solid black;
   }
+
   .mainProduct {
     width: 150vw;
     height: 50vw;
@@ -494,47 +562,57 @@
     margin-left: 5vw;
     top: 65vw;
   }
-  .mainProduct > .product {
+
+  .mainProduct>.product {
     width: 35vw;
     margin-top: -1.5vw;
     margin-left: 5vw;
   }
+
   .product_img {
     width: 35vw;
     height: 36vw;
   }
+
   .product_des {
     width: 35vw;
     height: 10vw;
   }
-  .product_des > .product_title {
+
+  .product_des>.product_title {
     margin-left: 2vw;
     font-size: 2.5vw;
   }
-  .product_des > .product_sub {
+
+  .product_des>.product_sub {
     margin-left: 2vw;
     margin-top: 1vw;
     font-size: 2vw;
   }
+
   .leftArrow {
     width: 4vw;
     height: 4vw;
     top: 20vw;
   }
+
   .rightArrow {
     width: 4vw;
     height: 4vw;
     top: -12vw;
     right: -25vw;
-    transform: translate(65vw, -17.1vw) rotate(180deg);
+    transform: translate(65vw, 25vw) rotate(180deg);
   }
+
   .select {
     height: 105vw;
     margin-top: 25vw;
   }
+
   .select_background {
     width: 100vw;
   }
+
   .select_content {
     width: 100vw;
     height: 45vw;
@@ -547,20 +625,24 @@
     height: 40vw;
     border: 0.3vw solid black;
   }
+
   .campaign {
     width: 40vw;
     height: 40vw;
     border-radius: 2vw;
     border: 0.3vw solid black;
   }
-  .self_check > div > .content_title {
+
+  .self_check>div>.content_title {
     font-size: 3vw;
     padding-top: 4vw;
   }
-  .self_check > div > .content_des {
+
+  .self_check>div>.content_des {
     font-size: 2.2vw;
     padding-top: 3vw;
   }
+
   .self_check_button {
     width: 13vw;
     height: 3vw;
@@ -569,20 +651,24 @@
     font-size: 2vw;
     border: 0.3vw solid white;
   }
+
   .self_check_img {
     width: 20vw;
     height: 20vw;
     margin-right: 2vw;
     top: 3vw;
   }
-  .campaign > div > .content_title {
+
+  .campaign>div>.content_title {
     font-size: 3vw;
     padding-top: 4vw;
   }
-  .campaign > div > .content_des {
+
+  .campaign>div>.content_des {
     font-size: 2.2vw;
     padding-top: 3vw;
   }
+
   .campaign_button {
     width: 13vw;
     height: 3vw;
@@ -591,33 +677,40 @@
     font-size: 2vw;
     border: 0.3w solid black;
   }
+
   .campaign_img {
     width: 20vw;
     height: 20vw;
     margin-right: -1vw;
     top: 1vw;
   }
+
   .smoke_write {
     width: 85vw;
     margin-top: 2vw;
   }
-  .smoke_write > .write {
+
+  .smoke_write>.write {
     border-radius: 2vw;
     width: 38vw;
     height: 25vw;
     border: 0.3vw solid black;
   }
-  .write > div > .write_category {
+
+  .write>div>.write_category {
     font-size: 3vw;
   }
-  .write > div > .write_title {
+
+  .write>div>.write_title {
     margin-top: 1vw;
     font-size: 2.2vw;
   }
-  .write > div > .write_date {
+
+  .write>div>.write_date {
     margin-top: 3vw;
     font-size: 2vw;
   }
+
   .mobile_title {
     font-family: "NanumSquareRoundL";
     color: black;
@@ -626,7 +719,8 @@
     font-size: 5vw;
     text-align: center;
   }
-  .mobile_title > span {
+
+  .mobile_title>span {
     color: red;
   }
 }
