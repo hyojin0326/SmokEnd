@@ -86,6 +86,7 @@ function Main() {
   useEffect(() => {
     if (isLogin) {
       document.body.style.overflow = "auto";
+      document.body.style.overflowX = "hidden";
     } else {
       document.body.style.overflow = "hidden";
     }
@@ -200,7 +201,9 @@ function Main() {
           {/* container_temp 요소에 fadeIn 클래스를 동적으로 추가 */}
           <div
             ref={containerRef}
-            className={`${styles.container_temp} ${isVisible ? styles.fadeIn : ""}`}
+            className={`${styles.container_temp} ${
+              isVisible ? styles.fadeIn : ""
+            }`}
           >
             {/* 컨텐츠 */}
           </div>

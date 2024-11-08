@@ -50,7 +50,7 @@ const AiAnalyze = () => {
           clearInterval(intervalId);
           setSuccess(true); // 글자가 모두 렌더링되면 success 상태를 true로 설정
         }
-      }, 10); // 30ms 간격으로 글자 표시
+      }, 5); // 30ms 간격으로 글자 표시
 
       return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 인터벌 정리
     }
