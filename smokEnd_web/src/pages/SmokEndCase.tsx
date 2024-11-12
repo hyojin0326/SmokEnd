@@ -44,12 +44,14 @@ function SmokEndCase() {
       setShowScrollButton(false);
     }
   };
-  
+
   window.addEventListener("scroll", handleScroll);
 
   const fetchReviews = async () => {
     try {
-      const response = await fetch(`http://${import.meta.env.VITE_URL_API}/api/get/review`);
+      const response = await fetch(
+        `http://${import.meta.env.VITE_URL_API}/api/get/review`
+      );
       const data = await response.json();
       setReviews(data);
     } catch (error) {
@@ -84,7 +86,7 @@ function SmokEndCase() {
   };
 
   useEffect(() => {
-    const newTotalPrice = number * 20000 + 3000; 
+    const newTotalPrice = number * 20000 + 3000;
     setTotalPrice(newTotalPrice);
   }, [number]);
 
@@ -114,7 +116,7 @@ function SmokEndCase() {
     />
   );
 
-  const ReviewImg: React.FC<ReviewProps> = ({ isMobile, review }) => (
+  const ReviewImg: React.FC<ReviewProps> = ({ isMobile, review }) =>
     review.imageUrl ? (
       <div
         style={{
@@ -127,8 +129,7 @@ function SmokEndCase() {
           backgroundPosition: "center",
         }}
       />
-    ) : null
-  );
+    ) : null;
 
   return (
     <>
@@ -178,11 +179,13 @@ function SmokEndCase() {
                 <span className={styles.totalMoney}>{totalPrice}</span>
               </div>
               <div className={styles.button}>구매하기</div>
-              <div className={styles.bottom}>size | 2000 * 5000</div>
+              <div className={styles.bottom}>
+                size | 가로: 7.5 x 세로 3.5 x 높이 12
+              </div>
             </div>
           </div>
         </div>
-        <div className={styles.underline}/>
+        <div className={styles.underline} />
         <div className={styles.des}></div>
         <div className={styles.underline} id="reviews" />
         {/* 리뷰 컨텐츠 부분 */}
@@ -200,7 +203,12 @@ function SmokEndCase() {
         {reviews.map((review) => (
           <div className={styles.reviewContent} key={review._id}>
             <div className={styles.reviewUser}>
-              <div className={styles.userProfile} style={{ backgroundImage: `url(${review.userInfo.profileImage})` }}></div>
+              <div
+                className={styles.userProfile}
+                style={{
+                  backgroundImage: `url(${review.userInfo.profileImage})`,
+                }}
+              ></div>
               <div className={styles.userInfo}>
                 <div className={styles.nickName}>{review.userInfo.name}</div>
                 <div className={styles.star}>
@@ -216,12 +224,12 @@ function SmokEndCase() {
               </div>
             </div>
             <div className={styles.reviewtitle}>SmokEnd 케이스</div>
-            {review.imageUrl && <div className={styles.reviewImgs}>
-              <ReviewImg isMobile={isMobile} review={review} />
-            </div>}
-            <div className={styles.reviewDes}>
-              {review.text}
-            </div>
+            {review.imageUrl && (
+              <div className={styles.reviewImgs}>
+                <ReviewImg isMobile={isMobile} review={review} />
+              </div>
+            )}
+            <div className={styles.reviewDes}>{review.text}</div>
           </div>
         ))}
       </div>

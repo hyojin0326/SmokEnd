@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Shop.module.css";
 import CASE from "../assets/Introduction/case.png";
 import { Link } from "react-router-dom";
-import caseImage from "../assets/Introduction/case.png";
+import caseImage from "../assets/smokEndCase/case_main.png";
 import belowArrow from "../assets/shop/belowArrow.png";
 
 import Pagination from "../components/Pagination";

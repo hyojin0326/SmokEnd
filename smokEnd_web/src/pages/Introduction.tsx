@@ -9,7 +9,7 @@ import phone5 from "../assets/Introduction/phone5.png";
 import web from "../assets/Introduction/web.png";
 import web2 from "../assets/Introduction/web2.png";
 import circle from "../assets/Introduction/circle.png";
-import caseImage from "../assets/Introduction/case.png";
+import caseImage from "../assets/smokEndCase/case_main.png";
 import test from "../assets/Introduction/test.jpg";
 
 import { motion } from "framer-motion";
